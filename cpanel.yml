@@ -1,0 +1,33 @@
+deployment:
+  tasks:
+    # === Variables ===
+    - export REPOPATH=$(pwd)
+    - export DEPLOYPATH=/home/mmysiste2/public_html/diagnostika
+
+    # === Comprobaciones ===
+    - 'echo "Repo: $REPOPATH"'
+    - 'echo "Deploy a: $DEPLOYPATH"'
+    - '/bin/mkdir -p $DEPLOYPATH'
+
+    # === Composer (si usas vendor/) ===
+    # En cPanel suele estar en esta ruta
+    - '/opt/cpanel/composer/bin/composer install --no-interaction --prefer-dist --no-dev --optimize-autoloader'
+
+    # === Copia de archivos al public_html ===
+    # Usamos rsync para que sea rápido y consistente.
+    # --delete: elimina archivos que ya no existen en el repo (comportamiento de "sync").
+    # Ajusta la lista de --exclude según tu proyecto.
+    - >
+      /usr/bin/rsync -a --delete
+      --exclude=".git/"
+      --exclude="cpanel.yml"
+      --exclude=".env.example"
+      --exclude="node_modules/"
+      $REPOPATH/ $DEPLOYPATH/
+
+    # === Permisos básicos (opcional) ===
+    - '/bin/find $DEPLOYPATH -type d -exec chmod 755 {} \;'
+    - '/bin/find $DEPLOYPATH -type f -exec chmod 644 {} \;'
+
+    # === Mensaje final ===
+    - 'echo "✅ Deploy completado en $DEPLOYPATH"'
