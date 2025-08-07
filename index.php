@@ -5,46 +5,46 @@ require_once __DIR__ . '/includes/db.php';
 
 // Inicializar carrito si no existe
 if (!isset($_SESSION['carrito'])) {
-  $_SESSION['carrito'] = [];
+    $_SESSION['carrito'] = [];
 }
 
 // Si se agrega al carrito
 if (isset($_POST['agregar_carrito'])) {
-  $id = intval($_POST['id_producto']);
-  if (isset($_SESSION['carrito'][$id])) {
-    $_SESSION['carrito'][$id]['cantidad']++;
-  } else {
-    $prod = $database->get('productos', '*', ['id_producto' => $id]);
-    if ($prod) {
-      $_SESSION['carrito'][$id] = [
-        'nombre' => $prod['nombre'],
-        'precio' => $prod['precio'],
-        'cantidad' => 1
-      ];
+    $id = intval($_POST['id_producto']);
+    if (isset($_SESSION['carrito'][$id])) {
+        $_SESSION['carrito'][$id]['cantidad']++;
+    } else {
+        $prod = $database->get('productos', '*', ['id_producto' => $id]);
+        if ($prod) {
+            $_SESSION['carrito'][$id] = [
+                'nombre' => $prod['nombre'],
+                'precio' => $prod['precio'],
+                'cantidad' => 1
+            ];
+        }
     }
-  }
-  // ✅ Agregar mensaje de confirmación
-  $_SESSION['mensaje_carrito'] = "✅ Producto añadido al carrito correctamente";
-  header("Location: index.php");
-  exit;
+    // ✅ Agregar mensaje de confirmación
+    $_SESSION['mensaje_carrito'] = "✅ Producto añadido al carrito correctamente";
+    header("Location: index.php");
+    exit;
 }
 
 $categorias = $database->select('categorias', '*');
 $productos = $database->select('productos', '*', [
-  "ORDER" => ["id_producto" => "DESC"],
-  "LIMIT" => 12
+    "ORDER" => ["id_producto" => "DESC"],
+    "LIMIT" => 12
 ]);
 
 $favoritos_usuario = [];
 
 if (isset($_SESSION['usuario_id'])) {
-  $favoritos = $database->select("favoritos", "id_producto", [
-    "id_usuario" => $_SESSION['usuario_id']
-  ]);
+    $favoritos = $database->select("favoritos", "id_producto", [
+        "id_usuario" => $_SESSION['usuario_id']
+    ]);
 
-  if ($favoritos) {
-    $favoritos_usuario = $favoritos; // ya es array de IDs
-  }
+    if ($favoritos) {
+        $favoritos_usuario = $favoritos; // ya es array de IDs
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -53,7 +53,7 @@ if (isset($_SESSION['usuario_id'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>DIAGNOSTIKA DIESEL GLOBAL</title>
+    <title>xDIAGNOSTIKA DIESEL GLOBAL</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
