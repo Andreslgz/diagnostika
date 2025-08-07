@@ -7,6 +7,6 @@ $database = new Medoo([
     'type' => 'mysql',
     'host' => 'localhost',
     'database' => 'mysiste2_tienda',
-    'username' => 'root',
-    'password' => ''
+    'username' => 'mysiste2_root',
+    'password' => 'karen2024'
 ]);
