@@ -479,11 +479,21 @@ if (isset($_SESSION['usuario_id'])) {
         <section class="bg-gradient-to-b from-white to-[#D9D9D9] my-20">
             <div class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
                 <img src="assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-center h-full w-[440px]" />
-                <div class="grid grid-cols-2">
+                <div class="grid grid-cols-2 mt-16">
                     <img src=" assets/images/estadisticas.png" alt="" class="w-full h-full">
                     <div>
-                        <div>
-
+                        <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
+                            <div
+                                class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="assets/icons/estadisticas/1.svg" alt="">
+                            </div>
+                            <div class="flex-1 flex flex-col">
+                                <h2>Soporte técnico especializado</h2>
+                                <p>
+                                    Le apoyamos antes, durante y después de la instalación con asistencia remota para
+                                    responder a sus preguntas y ayudarle a trabajar con confianza.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
