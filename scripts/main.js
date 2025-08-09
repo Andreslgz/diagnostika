@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
     type: "loop",
     perPage: 4,
     perMove: 1,
-    gap: "2rem",
+    gap: "0.1rem",
     autoplay: false,
     pauseOnHover: true,
     arrows: true,
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
     breakpoints: {
       1024: {
         perPage: 3,
-        gap: "1.5rem",
+        gap: "1.1rem",
       },
       768: {
         perPage: 2,
@@ -206,7 +206,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-
 // Logica para el login / via ajax....
 
 document.getElementById("login-form").addEventListener("submit", function (e) {
@@ -217,10 +216,10 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
 
   fetch("login.php", {
     method: "POST",
-    body: formData
+    body: formData,
   })
-    .then(response => response.json())
-    .then(data => {
+    .then((response) => response.json())
+    .then((data) => {
       if (data.success) {
         window.location.href = data.redirect;
       } else {
@@ -229,43 +228,50 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
         errorDiv.classList.remove("hidden");
       }
     })
-    .catch(error => {
+    .catch((error) => {
       console.error("Error:", error);
     });
 });
 
 //Logica para registrar al usuario
 
-document.getElementById("register-form").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  const form = e.target;
+document
+  .getElementById("register-form")
+  .addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
 
-  // Validación rápida en cliente
-  const pwd = form.querySelector('input[name="password"]').value.trim();
-  const pwd2 = form.querySelector('input[name="password_confirm"]').value.trim();
-  if (pwd !== pwd2) {
-    showError("Las contraseñas no coinciden.");
-    return;
-  }
-
-  const formData = new FormData(form);
-  try {
-    const res = await fetch("register.php", { method: "POST", body: formData });
-    const data = await res.json();
-
-    if (data.success) {
-      showSuccess(data.message || "¡Registro exitoso!");
-      // autologin: redirige según lo que diga el backend
-      if (data.redirect) window.location.href = data.redirect;
-      else form.reset();
-    } else {
-      showError(data.message || "No pudimos crear tu cuenta.");
+    // Validación rápida en cliente
+    const pwd = form.querySelector('input[name="password"]').value.trim();
+    const pwd2 = form
+      .querySelector('input[name="password_confirm"]')
+      .value.trim();
+    if (pwd !== pwd2) {
+      showError("Las contraseñas no coinciden.");
+      return;
     }
-  } catch (err) {
-    console.error(err);
-    showError("Ocurrió un error inesperado. Inténtalo de nuevo.");
-  }
-});
+
+    const formData = new FormData(form);
+    try {
+      const res = await fetch("register.php", {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+
+      if (data.success) {
+        showSuccess(data.message || "¡Registro exitoso!");
+        // autologin: redirige según lo que diga el backend
+        if (data.redirect) window.location.href = data.redirect;
+        else form.reset();
+      } else {
+        showError(data.message || "No pudimos crear tu cuenta.");
+      }
+    } catch (err) {
+      console.error(err);
+      showError("Ocurrió un error inesperado. Inténtalo de nuevo.");
+    }
+  });
 
 function showError(msg) {
   const e = document.getElementById("register-error");
@@ -296,35 +302,37 @@ document.getElementById("cancelLogout").addEventListener("click", () => {
 
 //Logica de agregar a favoritos
 
-document.querySelectorAll('.favorito-btn').forEach(btn => {
-  btn.addEventListener('click', function (e) {
+document.querySelectorAll(".favorito-btn").forEach((btn) => {
+  btn.addEventListener("click", function (e) {
     e.preventDefault();
     const id = this.dataset.id;
-    const svg = this.querySelector('svg');
+    const svg = this.querySelector("svg");
 
-    fetch('ajax_favorito.php', {
-      method: 'POST',
+    fetch("ajax_favorito.php", {
+      method: "POST",
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
+        "Content-Type": "application/x-www-form-urlencoded",
       },
-      body: 'id_producto=' + encodeURIComponent(id)
+      body: "id_producto=" + encodeURIComponent(id),
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.auth === false) {
-          mostrarAlerta("Debes iniciar sesión para agregar productos a favoritos.");
+          mostrarAlerta(
+            "Debes iniciar sesión para agregar productos a favoritos."
+          );
           return;
         }
 
         if (data.success) {
           if (data.favorito) {
-            svg.setAttribute('fill', 'red');
-            svg.classList.remove('text-black');
-            svg.classList.add('text-red-600');
+            svg.setAttribute("fill", "red");
+            svg.classList.remove("text-black");
+            svg.classList.add("text-red-600");
           } else {
-            svg.setAttribute('fill', 'none');
-            svg.classList.remove('text-red-600');
-            svg.classList.add('text-black');
+            svg.setAttribute("fill", "none");
+            svg.classList.remove("text-red-600");
+            svg.classList.add("text-black");
           }
         } else {
           mostrarAlerta(data.message || "Ocurrió un error.");
@@ -337,15 +345,15 @@ document.querySelectorAll('.favorito-btn').forEach(btn => {
 });
 
 function mostrarAlerta(mensaje) {
-  const alerta = document.getElementById('alertaFavorito');
-  const texto = document.getElementById('alertaTexto');
+  const alerta = document.getElementById("alertaFavorito");
+  const texto = document.getElementById("alertaTexto");
 
   texto.textContent = mensaje;
-  alerta.classList.remove('hidden');
-  alerta.classList.add('flex');
+  alerta.classList.remove("hidden");
+  alerta.classList.add("flex");
 
   setTimeout(() => {
-    alerta.classList.add('hidden');
-    alerta.classList.remove('flex');
+    alerta.classList.add("hidden");
+    alerta.classList.remove("flex");
   }, 3000);
 }

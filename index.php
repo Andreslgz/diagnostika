@@ -64,19 +64,19 @@ if (isset($_SESSION['usuario_id'])) {
 <body>
 
     <?php if (!empty($_SESSION['mensaje_carrito'])): ?>
-    <div id="alertCarrito"
-        class="fixed bottom-6 right-6 flex items-center gap-3 bg-green-600 text-white px-5 py-4 rounded-xl shadow-xl z-50 animate-slide-in">
-        <!-- Icono -->
-        <div class="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
-            ✅
+        <div id="alertCarrito"
+            class="fixed bottom-6 right-6 flex items-center gap-3 bg-green-600 text-white px-5 py-4 rounded-xl shadow-xl z-50 animate-slide-in">
+            <!-- Icono -->
+            <div class="flex items-center justify-center w-10 h-10 rounded-full bg-white/20">
+                ✅
+            </div>
+            <!-- Mensaje -->
+            <div class="flex-1">
+                <p class="font-semibold text-base">¡Producto añadido!</p>
+                <p class="text-sm text-green-100">Se agregó correctamente al carrito.</p>
+            </div>
         </div>
-        <!-- Mensaje -->
-        <div class="flex-1">
-            <p class="font-semibold text-base">¡Producto añadido!</p>
-            <p class="text-sm text-green-100">Se agregó correctamente al carrito.</p>
-        </div>
-    </div>
-    <?php unset($_SESSION['mensaje_carrito']); ?>
+        <?php unset($_SESSION['mensaje_carrito']); ?>
     <?php endif; ?>
 
     <!-- TOP HEADER -->
@@ -115,18 +115,18 @@ if (isset($_SESSION['usuario_id'])) {
 
 
                     <?php if (!isset($_SESSION['usuario_id'])): ?>
-                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        data-active-tab="login"
-                        class="bg-black text-white rounded-lg px-3 py-1 text-nowrap xl:mr-3 cursor-pointer xl:text-base text-sm"
-                        type="button">
-                        Iniciar sesión
-                    </button>
-                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        data-active-tab="register"
-                        class="text-gray-500 border border-solid border-gray-500 rounded-lg px-3 py-1 cursor-pointer hidden lg:inline-block"
-                        type="button">
-                        Registro
-                    </button>
+                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                            data-active-tab="login"
+                            class="bg-black text-white rounded-lg px-3 py-1 text-nowrap xl:mr-3 cursor-pointer xl:text-base text-sm"
+                            type="button">
+                            Iniciar sesión
+                        </button>
+                        <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                            data-active-tab="register"
+                            class="text-gray-500 border border-solid border-gray-500 rounded-lg px-3 py-1 cursor-pointer hidden lg:inline-block"
+                            type="button">
+                            Registro
+                        </button>
 
                     <?php endif; ?>
 
@@ -244,7 +244,7 @@ if (isset($_SESSION['usuario_id'])) {
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-0 lg:mt-0 lg:h-full">
                         <li class="lg:h-full lg:flex lg:items-center btn-secondary xl:py-3">
                             <a href="#"
-                                class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio 123</a>
+                                class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio</a>
                         </li>
                         <li class="lg:h-full lg:flex lg:items-center xl:py-3">
                             <a href="#"
@@ -339,57 +339,54 @@ if (isset($_SESSION['usuario_id'])) {
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <?php foreach ($productos as $prod): ?>
-                                <li class="splide__slide !pb-10 !pr-4 !pl-4">
-                                    <div
-                                        class="shadow-xl hover:shadow-2xl transition-all duration-300 border-white border-solid hover:border-gray-300 rounded-lg p-6 flex flex-col gap-3">
-
-
-                                        <div class="flex justify-end">
-                                            <button type="button" class="favorito-btn"
-                                                data-id="<?php echo $prod['id_producto']; ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg"
-                                                    fill="<?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
-                                                    viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                    class="w-6 h-6 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
-                                                </svg>
-                                            </button>
+                                    <li
+                                        class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2 sm:!pr-4 lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
+                                        <div
+                                            class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                            <div class="flex justify-end -mb-1">
+                                                <button type="button" class="favorito-btn p-1 sm:p-2"
+                                                    data-id="<?php echo $prod['id_producto']; ?>">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                        fill="<?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
+                                                        viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                                                        class="w-7 h-7 sm:w-7 sm:h-7 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+                                            <img src="<?php echo !empty($prod['imagen']) ? 'uploads/' . $prod['imagen'] : 'https://placehold.co/600x400/png'; ?>"
+                                                alt="<?php echo htmlspecialchars($prod['nombre']); ?>"
+                                                class="w-full h-46 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                            <p
+                                                class="inline font-semibold text-sm sm:text-base lg:text-xl text-balance leading-tight uppercase">
+                                                <?php echo htmlspecialchars($prod['nombre']); ?>
+                                            </p>
+                                            <p class="inline text-lg sm:text-xl lg:text-2xl uppercase font-bold">
+                                                USD <?php echo number_format($prod['precio'], 2); ?>
+                                            </p>
+                                            <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                                <form method="post">
+                                                    <input type="hidden" name="id_producto"
+                                                        value="<?php echo $prod['id_producto']; ?>">
+                                                    <button type="submit" name="agregar_carrito"
+                                                        class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                                        Agregar al carrito
+                                                    </button>
+                                                </form>
+                                                <button
+                                                    class="inline border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                                    Previsualizar
+                                                </button>
+                                            </div>
                                         </div>
-
-                                        <img src="<?php echo !empty($prod['imagen']) ? 'uploads/' . $prod['imagen'] : 'https://placehold.co/600x400/png'; ?>"
-                                            alt="<?php echo htmlspecialchars($prod['nombre']); ?>" class="w-full" />
-                                        <p class="inline font-semibold text-xl text-balance leading-tight uppercase">
-                                            <?php echo htmlspecialchars($prod['nombre']); ?>
-                                        </p>
-                                        <p class="inline text-2xl uppercase font-bold">
-                                            USD <?php echo number_format($prod['precio'], 2); ?>
-                                        </p>
-
-                                        <form method="post">
-                                            <input type="hidden" name="id_producto"
-                                                value="<?php echo $prod['id_producto']; ?>">
-                                            <button type="submit" name="agregar_carrito"
-                                                class="btn-secondary inline w-full py-2 rounded-lg uppercase font-semibold">
-                                                Agregar al carrito
-                                            </button>
-                                        </form>
-
-
-
-
-                                        <button
-                                            class="inline border border-gray-400 rounded-lg py-2 uppercase font-semibold">
-                                            Previsualizar
-                                        </button>
-                                    </div>
-                                </li>
+                                    </li>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
                     </section>
                 </div>
-                <section class="mx-auto max-w-screen-xl mt-6 grid xl:grid-cols-6 grid-cols-2 xl:gap-6 gap-8">
+                <section class="mx-auto max-w-screen-xl mt-6 grid xl:grid-cols-6 grid-cols-2 xl:gap-6 gap-8 mt-10">
                     <div
                         class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
                         <img src="assets/images/logos/logo1.svg" alt="" />
@@ -482,7 +479,15 @@ if (isset($_SESSION['usuario_id'])) {
         <section class="bg-gradient-to-b from-white to-[#D9D9D9] my-20">
             <div class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
                 <img src="assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-center h-full w-[440px]" />
-                <div class="max-w-6xl mx-auto mb-16">
+                <div class="grid grid-cols-2">
+                    <img src=" assets/images/estadisticas.png" alt="" class="w-full h-full">
+                    <div>
+                        <div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class=" max-w-6xl mx-auto mb-16">
                     <div
                         class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-800 overflow-hidden">
                         <div class="py-5 px-8 text-center">
@@ -860,95 +865,95 @@ if (isset($_SESSION['usuario_id'])) {
             class="flex flex-col items-center w-full max-w-sm mx-auto p-4 rounded-xl border border-gray-200 bg-white/90 shadow-md backdrop-blur-sm">
 
             <?php if (isset($_SESSION['usuario_id'])): ?>
-            <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
+                <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
 
-            <!-- Saludo -->
-            <div class="text-center mb-4">
-                <p class="text-lg font-semibold text-slate-900">
-                    👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
-                </p>
-                <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
-            </div>
+                <!-- Saludo -->
+                <div class="text-center mb-4">
+                    <p class="text-lg font-semibold text-slate-900">
+                        👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
+                    </p>
+                    <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
+                </div>
 
-            <!-- Botón cerrar sesión -->
-            <button type="button" id="logoutModalBtn"
-                class="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400 focus:ring-offset-1 transition-colors mb-4">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
-                </svg>
-                <span>Cerrar sesión</span>
-            </button>
+                <!-- Botón cerrar sesión -->
+                <button type="button" id="logoutModalBtn"
+                    class="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400 focus:ring-offset-1 transition-colors mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                    </svg>
+                    <span>Cerrar sesión</span>
+                </button>
 
-            <!-- Modal -->
-            <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
-                <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                    <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
-                    <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de inicio
-                        de sesión.</p>
-                    <div class="flex justify-end gap-3">
-                        <button id="cancelLogout"
-                            class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
-                        <a href="logout.php"
-                            class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600">Sí,
-                            salir</a>
+                <!-- Modal -->
+                <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                        <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
+                        <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de inicio
+                            de sesión.</p>
+                        <div class="flex justify-end gap-3">
+                            <button id="cancelLogout"
+                                class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
+                            <a href="logout.php"
+                                class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600">Sí,
+                                salir</a>
+                        </div>
                     </div>
                 </div>
-            </div>
 
             <?php else: ?>
-            <!-- Botones login y registro -->
-            <div class="flex gap-3 mb-4">
-                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                    data-active-tab="login"
-                    class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
-                    type="button">
-                    Iniciar sesión
-                </button>
-                <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                    data-active-tab="register"
-                    class="text-gray-700 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
-                    type="button">
-                    Registro
-                </button>
-            </div>
+                <!-- Botones login y registro -->
+                <div class="flex gap-3 mb-4">
+                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        data-active-tab="login"
+                        class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
+                        type="button">
+                        Iniciar sesión
+                    </button>
+                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        data-active-tab="register"
+                        class="text-gray-700 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
+                        type="button">
+                        Registro
+                    </button>
+                </div>
             <?php endif; ?>
 
             <!-- Carrito -->
             <div class="w-full">
                 <?php if (!empty($_SESSION['carrito'])): ?>
-                <ul
-                    class="divide-y divide-gray-200 max-h-64 overflow-y-auto rounded-lg border border-gray-100 bg-gray-50 p-2">
-                    <?php $total = 0; ?>
-                    <?php foreach ($_SESSION['carrito'] as $item): ?>
-                    <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
-                    <?php $total += $subtotal; ?>
-                    <li class="py-2 flex justify-between items-center hover:bg-white rounded-md px-2">
-                        <div>
-                            <p class="font-medium text-slate-700"><?php echo $item['nombre']; ?></p>
-                            <p class="text-xs text-slate-500">Cantidad: <?php echo $item['cantidad']; ?></p>
-                        </div>
-                        <span class="text-indigo-600 font-semibold">$<?php echo number_format($subtotal, 2); ?></span>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
+                    <ul
+                        class="divide-y divide-gray-200 max-h-64 overflow-y-auto rounded-lg border border-gray-100 bg-gray-50 p-2">
+                        <?php $total = 0; ?>
+                        <?php foreach ($_SESSION['carrito'] as $item): ?>
+                            <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
+                            <?php $total += $subtotal; ?>
+                            <li class="py-2 flex justify-between items-center hover:bg-white rounded-md px-2">
+                                <div>
+                                    <p class="font-medium text-slate-700"><?php echo $item['nombre']; ?></p>
+                                    <p class="text-xs text-slate-500">Cantidad: <?php echo $item['cantidad']; ?></p>
+                                </div>
+                                <span class="text-indigo-600 font-semibold">$<?php echo number_format($subtotal, 2); ?></span>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
 
-                <div class="mt-3 border-t pt-3">
-                    <div class="flex justify-between items-center mb-3">
-                        <span class="font-bold text-slate-800">Total:</span>
-                        <span class="text-green-600 font-bold text-lg">$<?php echo number_format($total, 2); ?></span>
+                    <div class="mt-3 border-t pt-3">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold text-slate-800">Total:</span>
+                            <span class="text-green-600 font-bold text-lg">$<?php echo number_format($total, 2); ?></span>
+                        </div>
+                        <a href="carrito.php"
+                            class="block w-full text-center bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-full font-medium transition-colors">
+                            Ver carrito
+                        </a>
                     </div>
-                    <a href="carrito.php"
-                        class="block w-full text-center bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-full font-medium transition-colors">
-                        Ver carrito
-                    </a>
-                </div>
                 <?php else: ?>
-                <p
-                    class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
-                    <span class="text-2xl mb-1">🛒</span>
-                    <span class="font-medium">Tu carrito está vacío</span>
-                </p>
+                    <p
+                        class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
+                        <span class="text-2xl mb-1">🛒</span>
+                        <span class="font-medium">Tu carrito está vacío</span>
+                    </p>
                 <?php endif; ?>
             </div>
         </div>
@@ -964,7 +969,7 @@ if (isset($_SESSION['usuario_id'])) {
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-    AOS.init();
+        AOS.init();
     </script>
     <script src="scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
