@@ -54,6 +54,7 @@ if (isset($_SESSION['usuario_id'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>cDIAGNOSTIKA DIESEL GLOBAL</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
@@ -244,7 +245,12 @@ if (isset($_SESSION['usuario_id'])) {
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-0 lg:mt-0 lg:h-full">
                         <li class="lg:h-full lg:flex lg:items-center btn-secondary xl:py-3">
                             <a href="#"
+<<<<<<< Updated upstream
                                 class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio</a>
+=======
+                                class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio
+                                123</a>
+>>>>>>> Stashed changes
                         </li>
                         <li class="lg:h-full lg:flex lg:items-center xl:py-3">
                             <a href="#"

@@ -344,6 +344,7 @@ document.querySelectorAll(".favorito-btn").forEach((btn) => {
   });
 });
 
+//Mostrar alerta de favoritos
 function mostrarAlerta(mensaje) {
   const alerta = document.getElementById("alertaFavorito");
   const texto = document.getElementById("alertaTexto");
@@ -357,3 +358,13 @@ function mostrarAlerta(mensaje) {
     alerta.classList.remove("flex");
   }, 3000);
 }
+
+// Alerta de Producto Agregado
+document.addEventListener('DOMContentLoaded', () => {
+  const toast = document.getElementById('alertCarrito');
+  if (toast) {
+    setTimeout(() => {
+      toast.remove();
+    }, 4000); // 4 segundos
+  }
+});
