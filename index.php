@@ -482,53 +482,81 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
         </section>
         <!-- STATITICS 2 -->
-        <section class="bg-gradient-to-b from-white to-[#D9D9D9] my-20">
+        <section class="my-20 bg-statistics-2 bg-gradient-to-b from-white to-[#D9D9D9]">
             <div class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
                 <img src="assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-center h-full w-[440px]" />
                 <div class="grid grid-cols-2 mt-16">
-                    <img src=" assets/images/estadisticas.png" alt="" class="w-full h-full">
-                    <div>
+                    <img src="assets/images/estadisticas_crop.png" alt="" class="w-full h-full">
+                    <div class="flex flex-col gap-8">
                         <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
                             <div
                                 class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
                                 <img src="assets/icons/estadisticas/1.svg" alt="">
                             </div>
                             <div class="flex-1 flex flex-col">
-                                <h2>Soporte técnico especializado</h2>
-                                <p>
+                                <h2 class="font-bold text-xl">Soporte técnico especializado</h2>
+                                <p class="text-gray-900">
                                     Le apoyamos antes, durante y después de la instalación con asistencia remota para
                                     responder a sus preguntas y ayudarle a trabajar con confianza.
                                 </p>
                             </div>
                         </div>
+                        <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
+                            <div
+                                class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="assets/icons/estadisticas/2.svg" alt="">
+                            </div>
+                            <div class="flex-1 flex flex-col">
+                                <h2 class="font-bold text-xl">Cobertura global y soporte inmediato</h2>
+                                <p class="text-gray-900">
+                                    Asistimos a técnicos y mecánicos de todo el mundo con soporte rápido por WhatsApp y
+                                    Telegram. Estés donde estés, te tenemos cubierto.
+                                </p>
+                            </div>
+                        </div>
+                        <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
+                            <div
+                                class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="assets/icons/estadisticas/3.svg" alt="">
+                            </div>
+                            <div class="flex-1 flex flex-col">
+                                <h2 class="font-bold text-xl">Instalación de software de diagnóstico profesional</h2>
+                                <p class="text-gray-900">
+                                    Convertimos su portátil en una potente herramienta para el diagnóstico de camiones y
+                                    maquinaria pesada. El software se entrega instalado, activado y listo para usar.
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class=" max-w-6xl mx-auto mb-16">
+                <div class=" max-w-6xl mx-auto mt-20">
                     <div
                         class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-800 overflow-hidden">
                         <div class="py-5 px-8 text-center">
-                            <h2 class="text-6xl lg:text-7xl font-bold text-gray-800 mb-2">
+                            <h2 class="text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
                                 123K<span class="text-blue-600">+</span>
                             </h2>
-                            <p class="text-xl lg:text-2xl text-gray-600 font-medium">
+                            <p class="text-xl lg:text-2xl text-gray-600 font-bold">
                                 Installations
                             </p>
                         </div>
 
                         <div class="py-5 px-8 text-center">
-                            <h2 class="text-6xl lg:text-7xl font-bold text-gray-800 mb-2">
+
+                            <h2 class="text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
                                 60<span class="text-blue-600">+</span>
                             </h2>
-                            <p class="text-xl lg:text-2xl text-gray-600 font-medium">
+                            <p class="text-xl lg:text-2xl text-gray-600 font-bold">
                                 Cities
                             </p>
+
                         </div>
 
                         <div class="py-5 px-8 text-center">
-                            <h2 class="text-6xl lg:text-7xl font-bold text-gray-800 mb-2">
+                            <h2 class="text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
                                 10K<span class="text-blue-600">+</span>
                             </h2>
-                            <p class="text-xl lg:text-2xl text-gray-600 font-medium">
+                            <p class="text-xl lg:text-2xl text-gray-600 font-bold">
                                 Clients
                             </p>
                         </div>
@@ -629,6 +657,197 @@ if (isset($_SESSION['usuario_id'])) {
                         Instalación remota
                     </p>
                 </div>
+            </div>
+        </section>
+        <!-- TESTIMONIALS -->
+        <section class="py-20 px-4 mx-auto max-w-screen-2xl " data-aos="fade-up">
+            <div class="text-start mb-10">
+                <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
+                    Lo que dicen nuestros clientes
+                </h2>
+
+            </div>
+
+            <section id="testimonials-carousel" class="splide" aria-label="Testimonios de clientes">
+                <div class="splide__track pb-6 pt-3">
+                    <ul class="splide__list ">
+                        <li class="splide__slide">
+                            <div
+                                class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between min-h-[320px]">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-1 mb-4">
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="flex items-center gap-4 mb-4 mt-2">
+                                        <img src="/assets/images/testimonial.png" class="size-[53px]" alt="">
+                                        <p class="font-bold text-xl">
+                                            Jhon Doe
+                                        </p>
+                                    </div>
+
+                                    <blockquote class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+                                        "El software de diagnóstico VOLVO PTT llegó perfectamente instalado y
+                                        configurado. La instalación remota fue impecable y el soporte técnico
+                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo de
+                                        manera profesional."
+                                    </blockquote>
+
+                                    <div class="flex items-center gap-2 justify-end">
+                                        <p>País:</p>
+                                        <img src="/assets/icons/svg/peru_flag.svg" alt="" class="w-[20px] h-auto">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="splide__slide">
+                            <div
+                                class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between min-h-[320px]">
+                                <div class="flex-1">
+                                    <div class="flex items-center gap-1 mb-4">
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                            <path
+                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+                                        </svg>
+                                    </div>
+
+                                    <div class="flex items-center gap-4 mb-4 mt-2">
+                                        <img src="/assets/images/testimonial.png" class="size-[53px]" alt="">
+                                        <p class="font-bold text-xl">
+                                            Carlos Sánchez
+                                        </p>
+                                    </div>
+
+                                    <blockquote class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+                                        "El software de diagnóstico VOLVO PTT llegó perfectamente instalado y
+                                        configurado. La instalación remota fue impecable y el soporte técnico
+                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo de
+                                        manera profesional."
+                                    </blockquote>
+
+                                    <div class="flex items-center gap-2 justify-end">
+                                        <p>País:</p>
+                                        <img src="/assets/icons/svg/peru_flag.svg" alt="" class="w-[20px] h-auto">
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+
+                    </ul>
+                </div>
+            </section>
+        </section>
+        <!-- FAQ -->
+        <section class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden" data-aos="fade-up">
+            <div class="text-start xl:mb-12 mb-5">
+                <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
+                    Preguntas frecuentes
+                </h2>      
+            </div>
+
+            <div class="w-full space-y-4" id="faq-container">
+                <!-- FAQ Item 1 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                    <button
+                        class="faq-header w-full px-6 py-5 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
+                        <h3 class="text-lg font-bold text-gray-900 pr-4">
+                            ¿Cómo sé si el software es compatible con mi interfaz?
+                        </h3>
+                        <div class="faq-icon flex-shrink-0 transform transition-transform duration-300 ease-in-out">
+                            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 py-5 bg-gray-50 border-t border-gray-100">
+                            <p class="text-gray-700 leading-relaxed">
+                                Cada software incluye una lista detallada de interfaces compatibles en su descripción.
+                                Además, nuestro equipo técnico puede asesorarte sobre la compatibilidad específica de tu
+                                equipo. Contamos con software para las principales marcas como Launch, Autel, OTC y
+                                muchas más.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="faq-item border border-gray-200 rounded-lg overflow-hidden shadow-sm">
+                    <button
+                        class="faq-header w-full px-6 py-5 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
+                        <h3 class="text-lg font-bold text-gray-900 pr-4">
+                            ¿Qué incluye la compra del software?
+                        </h3>
+                        <div class="faq-icon flex-shrink-0 transform transition-transform duration-300 ease-in-out">
+                            <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </div>
+                    </button>
+                    <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
+                        <div class="px-6 py-5 bg-gray-50 border-t border-gray-100">
+                            <p class="text-gray-700 leading-relaxed mb-3">
+                                Tu compra incluye:
+                            </p>
+                            <ul class="text-gray-700 space-y-2">
+                                <li class="flex items-start">
+                                    <span class="text-amber-500 mr-2">•</span>
+                                    Software completo con todas las funciones
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-500 mr-2">•</span>
+                                    Manual de instalación paso a paso
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-500 mr-2">•</span>
+                                    Soporte técnico especializado
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-amber-500 mr-2">•</span>
+                                    Actualizaciones por tiempo determinado
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
     </main>

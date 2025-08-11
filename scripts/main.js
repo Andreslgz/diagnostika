@@ -33,42 +33,93 @@ document.addEventListener("DOMContentLoaded", function () {
 // Splide carousel initialization
 document.addEventListener("DOMContentLoaded", function () {
   // Hero carousel
-  new Splide("#image-carousel", {
-    type: "loop",
-    autoplay: true,
-    interval: 5000,
-    pauseOnHover: true,
-    arrows: true,
-    pagination: true,
-    cover: true,
-    height: "85vh",
-  }).mount();
+  const heroCarousel = document.getElementById("image-carousel");
+  if (heroCarousel) {
+    new Splide("#image-carousel", {
+      type: "loop",
+      autoplay: true,
+      interval: 5000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: true,
+      cover: true,
+      height: "85vh",
+    }).mount();
+  }
 
   // Products carousel
-  new Splide("#products-carousel", {
-    type: "loop",
-    perPage: 4,
-    perMove: 1,
-    gap: "0.1rem",
-    autoplay: false,
-    pauseOnHover: true,
-    arrows: true,
-    pagination: false,
-    breakpoints: {
-      1024: {
-        perPage: 3,
-        gap: "1.1rem",
+  const productsCarousel = document.getElementById("products-carousel");
+  if (productsCarousel) {
+    new Splide("#products-carousel", {
+      type: "loop",
+      perPage: 4,
+      perMove: 1,
+      gap: "0.1rem",
+      autoplay: false,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: false,
+      breakpoints: {
+        1024: {
+          perPage: 3,
+          gap: "1.1rem",
+        },
+        768: {
+          perPage: 2,
+          gap: "1rem",
+        },
+        640: {
+          perPage: 1,
+          gap: "1rem",
+        },
       },
-      768: {
-        perPage: 2,
-        gap: "1rem",
-      },
-      640: {
-        perPage: 1,
-        gap: "1rem",
-      },
-    },
-  }).mount();
+    }).mount();
+  }
+
+  // Testimonials carousel
+  const testimonialsCarousel = document.getElementById("testimonials-carousel");
+  if (testimonialsCarousel) {
+    try {
+      new Splide("#testimonials-carousel", {
+        type: "loop",
+        perPage: 4,
+        perMove: 1,
+        gap: "1.5rem",
+        autoplay: true,
+        interval: 4000,
+        pauseOnHover: true,
+        arrows: true,
+        pagination: true,
+        focus: "center",
+        trimSpace: false,
+        breakpoints: {
+          1280: {
+            perPage: 3,
+            gap: "1.2rem",
+          },
+          1024: {
+            perPage: 2,
+            gap: "1rem",
+          },
+          768: {
+            perPage: 1,
+            gap: "1rem",
+            focus: "center",
+          },
+          640: {
+            perPage: 1,
+            gap: "0.8rem",
+            focus: "center",
+          },
+        },
+      }).mount();
+      console.log("Testimonials carousel initialized successfully");
+    } catch (error) {
+      console.error("Error initializing testimonials carousel:", error);
+    }
+  } else {
+    console.error("Testimonials carousel element not found");
+  }
 });
 
 // Modal tab functionality
@@ -208,36 +259,38 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Logica para el login / via ajax....
 
-document.getElementById("login-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+const loginFormEl = document.getElementById("login-form");
+if (loginFormEl)
+  loginFormEl.addEventListener("submit", function (e) {
+    e.preventDefault();
 
-  const form = e.target;
-  const formData = new FormData(form);
+    const form = e.target;
+    const formData = new FormData(form);
 
-  fetch("login.php", {
-    method: "POST",
-    body: formData,
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      if (data.success) {
-        window.location.href = data.redirect;
-      } else {
-        const errorDiv = document.getElementById("login-error");
-        errorDiv.textContent = data.message;
-        errorDiv.classList.remove("hidden");
-      }
+    fetch("login.php", {
+      method: "POST",
+      body: formData,
     })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
-});
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          window.location.href = data.redirect;
+        } else {
+          const errorDiv = document.getElementById("login-error");
+          errorDiv.textContent = data.message;
+          errorDiv.classList.remove("hidden");
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  });
 
 //Logica para registrar al usuario
 
-document
-  .getElementById("register-form")
-  .addEventListener("submit", async (e) => {
+const registerFormEl = document.getElementById("register-form");
+if (registerFormEl)
+  registerFormEl.addEventListener("submit", async (e) => {
     e.preventDefault();
     const form = e.target;
 
@@ -290,15 +343,23 @@ function showSuccess(msg) {
 
 // Logica modal Salir de la session
 
-document.getElementById("logoutModalBtn").addEventListener("click", () => {
-  document.getElementById("logoutModal").classList.remove("hidden");
-  document.getElementById("logoutModal").classList.add("flex");
-});
+const logoutBtnEl = document.getElementById("logoutModalBtn");
+if (logoutBtnEl)
+  logoutBtnEl.addEventListener("click", () => {
+    const modal = document.getElementById("logoutModal");
+    if (!modal) return;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+  });
 
-document.getElementById("cancelLogout").addEventListener("click", () => {
-  document.getElementById("logoutModal").classList.add("hidden");
-  document.getElementById("logoutModal").classList.remove("flex");
-});
+const cancelLogoutEl = document.getElementById("cancelLogout");
+if (cancelLogoutEl)
+  cancelLogoutEl.addEventListener("click", () => {
+    const modal = document.getElementById("logoutModal");
+    if (!modal) return;
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+  });
 
 //Logica de agregar a favoritos
 
@@ -359,12 +420,385 @@ function mostrarAlerta(mensaje) {
   }, 3000);
 }
 
-// Alerta de Producto Agregado
-document.addEventListener('DOMContentLoaded', () => {
-  const toast = document.getElementById('alertCarrito');
-  if (toast) {
+// Auto-hide cart alert
+document.addEventListener("DOMContentLoaded", function () {
+  const alertCarrito = document.getElementById("alertCarrito");
+  if (alertCarrito) {
+    // Auto-hide after 4 seconds
     setTimeout(() => {
-      toast.remove();
-    }, 4000); // 4 segundos
+      alertCarrito.style.opacity = "0";
+      alertCarrito.style.transform = "translateX(100%)";
+      setTimeout(() => {
+        alertCarrito.remove();
+      }, 300);
+    }, 4000);
+
+    // Add close button functionality if needed
+    alertCarrito.addEventListener("click", function () {
+      this.style.opacity = "0";
+      this.style.transform = "translateX(100%)";
+      setTimeout(() => {
+        this.remove();
+      }, 300);
+    });
   }
 });
+
+/* ============================================
+   FAQ FUNCTIONALITY - Funcionalidad de Preguntas Frecuentes
+   ============================================ */
+
+// FAQ Accordion - Sistema de acordeón para preguntas frecuentes
+document.addEventListener("DOMContentLoaded", function () {
+  // Usar un timeout para asegurar que todo el DOM esté completamente cargado
+  setTimeout(() => {
+    initializeFAQ();
+  }, 100);
+});
+
+function initializeFAQ() {
+  console.log("Initializing FAQ...");
+
+  const faqContainer = document.getElementById("faq-container");
+  if (!faqContainer) {
+    console.warn("FAQ container not found");
+    return;
+  }
+
+  const faqItems = document.querySelectorAll(".faq-item");
+  const faqHeaders = document.querySelectorAll(".faq-header");
+
+  console.log(
+    `Found ${faqItems.length} FAQ items and ${faqHeaders.length} headers`
+  );
+
+  if (faqHeaders.length === 0) {
+    console.warn("No FAQ headers found");
+    return;
+  }
+
+  // Delegación: permitir clic en todo el item FAQ
+  faqContainer.addEventListener("click", function (e) {
+    const item = e.target.closest(".faq-item");
+    if (!item || !faqContainer.contains(item)) return;
+    const header = item.querySelector(".faq-header");
+    if (!header) return;
+    const headers = Array.from(document.querySelectorAll(".faq-header"));
+    const index = headers.indexOf(header);
+    if (index === -1) return;
+    e.preventDefault();
+    handleFAQToggle(header, index);
+  });
+
+  // Configurar eventos para cada header de FAQ (teclado y accesibilidad)
+  faqHeaders.forEach((header, index) => {
+    console.log(`Setting up FAQ header ${index}`);
+
+    // Remover listeners existentes si los hay
+    header.removeEventListener("click", header._faqClickHandler);
+    header.removeEventListener("keydown", header._faqKeyHandler);
+
+    // Crear handlers y almacenarlos en el elemento
+    header._faqClickHandler = function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+      console.log(`FAQ ${index} clicked`);
+      handleFAQToggle(this, index);
+    };
+
+    header._faqKeyHandler = function (e) {
+      handleFAQKeyboard(e, this, index);
+    };
+
+    // Agregar los event listeners
+    // El click lo maneja la delegación anterior para que funcione en todo el item
+    header.addEventListener("keydown", header._faqKeyHandler);
+
+    // Mejorar accesibilidad
+    header.setAttribute("role", "button");
+    header.setAttribute("tabindex", "0");
+    header.setAttribute("aria-expanded", "false");
+    header.setAttribute("aria-controls", `faq-content-${index}`);
+
+    // Agregar ID al contenido para accesibilidad
+    const content = header.nextElementSibling;
+    if (content && content.classList.contains("faq-content")) {
+      content.setAttribute("id", `faq-content-${index}`);
+      content.setAttribute("role", "region");
+      content.setAttribute("aria-labelledby", `faq-header-${index}`);
+    }
+
+    // Agregar ID al header
+    header.setAttribute("id", `faq-header-${index}`);
+  });
+
+  console.log(`FAQ initialized successfully with ${faqItems.length} items`);
+}
+
+function handleFAQToggle(header, index) {
+  console.log(`Handling FAQ toggle for index ${index}`);
+
+  const faqItem = header.closest(".faq-item");
+  const content = header.nextElementSibling;
+  const icon = header.querySelector(".faq-icon");
+
+  if (!faqItem || !content) {
+    console.error(`Missing elements for FAQ ${index}:`, {
+      faqItem: !!faqItem,
+      content: !!content,
+      icon: !!icon,
+    });
+    return;
+  }
+
+  const isActive = faqItem.classList.contains("active");
+  console.log(`FAQ ${index} is currently ${isActive ? "active" : "inactive"}`);
+
+  try {
+    if (isActive) {
+      // Cerrar FAQ actual
+      console.log(`Closing FAQ ${index}`);
+      closeFAQ(faqItem, header, content, icon);
+    } else {
+      // Cerrar otros FAQs (comportamiento acordeón)
+      console.log(`Opening FAQ ${index}, closing others`);
+      closeAllFAQs();
+
+      // Abrir FAQ seleccionado
+      openFAQ(faqItem, header, content, icon);
+    }
+
+    // Scroll suave al FAQ si es necesario
+    if (!isActive) {
+      setTimeout(() => {
+        scrollToFAQ(faqItem);
+      }, 300);
+    }
+  } catch (error) {
+    console.error("Error handling FAQ toggle:", error);
+  }
+}
+
+function openFAQ(faqItem, header, content, icon) {
+  console.log(
+    "Opening FAQ:",
+    faqItem.querySelector("h3")?.textContent?.substring(0, 30) + "..."
+  );
+
+  // Agregar clase activa
+  faqItem.classList.add("active");
+
+  // Actualizar aria-expanded
+  header.setAttribute("aria-expanded", "true");
+
+  // Calcular altura del contenido
+  const contentInner = content.querySelector("div");
+  if (!contentInner) {
+    console.error("Content inner div not found");
+    return;
+  }
+
+  // Resetear el max-height para calcular la altura real
+  content.style.maxHeight = "none";
+  const targetHeight = contentInner.scrollHeight;
+  content.style.maxHeight = "0px";
+
+  // Forzar reflow
+  content.offsetHeight;
+
+  // Animar apertura
+  requestAnimationFrame(() => {
+    content.style.maxHeight = targetHeight + "px";
+  });
+
+  // Añadir clase de animación
+  setTimeout(() => {
+    content.classList.add("faq-open");
+  }, 10);
+
+  console.log(`FAQ opened with height: ${targetHeight}px`);
+}
+
+function closeFAQ(faqItem, header, content, icon) {
+  console.log(
+    "Closing FAQ:",
+    faqItem.querySelector("h3")?.textContent?.substring(0, 30) + "..."
+  );
+
+  // Remover clase activa
+  faqItem.classList.remove("active");
+
+  // Actualizar aria-expanded
+  header.setAttribute("aria-expanded", "false");
+
+  // Animar cierre
+  content.style.maxHeight = "0px";
+
+  // Remover clase de animación
+  content.classList.remove("faq-open");
+
+  console.log("FAQ closed");
+}
+
+function closeAllFAQs() {
+  const activeFAQs = document.querySelectorAll(".faq-item.active");
+
+  activeFAQs.forEach((faqItem) => {
+    const header = faqItem.querySelector(".faq-header");
+    const content = faqItem.querySelector(".faq-content");
+    const icon = faqItem.querySelector(".faq-icon");
+
+    closeFAQ(faqItem, header, content, icon);
+  });
+}
+
+function handleFAQKeyboard(e, header, index) {
+  const faqItems = document.querySelectorAll(".faq-header");
+
+  switch (e.key) {
+    case "Enter":
+    case " ": // Spacebar
+      e.preventDefault();
+      handleFAQToggle(header, index);
+      break;
+
+    case "ArrowDown":
+      e.preventDefault();
+      const nextIndex = (index + 1) % faqItems.length;
+      faqItems[nextIndex].focus();
+      break;
+
+    case "ArrowUp":
+      e.preventDefault();
+      const prevIndex = (index - 1 + faqItems.length) % faqItems.length;
+      faqItems[prevIndex].focus();
+      break;
+
+    case "Home":
+      e.preventDefault();
+      faqItems[0].focus();
+      break;
+
+    case "End":
+      e.preventDefault();
+      faqItems[faqItems.length - 1].focus();
+      break;
+
+    case "Escape":
+      e.preventDefault();
+      closeAllFAQs();
+      header.blur();
+      break;
+  }
+}
+
+function scrollToFAQ(faqItem) {
+  const rect = faqItem.getBoundingClientRect();
+  const isVisible = rect.top >= 0 && rect.bottom <= window.innerHeight;
+
+  if (!isVisible) {
+    faqItem.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+      inline: "nearest",
+    });
+  }
+}
+
+// FAQ Utilidades adicionales
+function getFAQState() {
+  const faqItems = document.querySelectorAll(".faq-item");
+  const state = {};
+
+  faqItems.forEach((item, index) => {
+    const question = item.querySelector("h3").textContent.trim();
+    const isActive = item.classList.contains("active");
+    state[index] = {
+      question: question.substring(0, 50) + "...",
+      isActive: isActive,
+    };
+  });
+
+  return state;
+}
+
+// Función para abrir FAQ específico por índice (útil para enlaces directos)
+function openFAQByIndex(index) {
+  const faqItems = document.querySelectorAll(".faq-item");
+  if (index >= 0 && index < faqItems.length) {
+    const header = faqItems[index].querySelector(".faq-header");
+    if (header) {
+      closeAllFAQs();
+      setTimeout(() => {
+        handleFAQToggle(header, index);
+      }, 100);
+    }
+  }
+}
+
+// Función para abrir FAQ por texto de pregunta (búsqueda parcial)
+function openFAQByQuestion(searchText) {
+  const faqItems = document.querySelectorAll(".faq-item");
+
+  faqItems.forEach((item, index) => {
+    const question = item.querySelector("h3").textContent.toLowerCase();
+    if (question.includes(searchText.toLowerCase())) {
+      const header = item.querySelector(".faq-header");
+      if (header) {
+        closeAllFAQs();
+        setTimeout(() => {
+          handleFAQToggle(header, index);
+        }, 100);
+        return true;
+      }
+    }
+  });
+
+  return false;
+}
+
+// Exponer funciones globalmente para uso desde consola o otros scripts
+window.FAQUtils = {
+  openByIndex: openFAQByIndex,
+  openByQuestion: openFAQByQuestion,
+  closeAll: closeAllFAQs,
+  getState: getFAQState,
+  // Funciones de debugging
+  reinitialize: initializeFAQ,
+  testFAQ: function (index = 0) {
+    console.log("Testing FAQ functionality...");
+    const faqHeaders = document.querySelectorAll(".faq-header");
+    if (faqHeaders[index]) {
+      console.log(`Testing FAQ ${index}`);
+      faqHeaders[index].click();
+    } else {
+      console.error(
+        `FAQ ${index} not found. Available FAQs: 0-${faqHeaders.length - 1}`
+      );
+    }
+  },
+  debug: function () {
+    console.log("=== FAQ DEBUG INFO ===");
+    const container = document.getElementById("faq-container");
+    const items = document.querySelectorAll(".faq-item");
+    const headers = document.querySelectorAll(".faq-header");
+    const contents = document.querySelectorAll(".faq-content");
+
+    console.log("Container found:", !!container);
+    console.log("Items found:", items.length);
+    console.log("Headers found:", headers.length);
+    console.log("Contents found:", contents.length);
+
+    headers.forEach((header, index) => {
+      const hasClickListener = header._faqClickHandler !== undefined;
+      console.log(`Header ${index}: has click listener = ${hasClickListener}`);
+    });
+
+    return {
+      container: !!container,
+      items: items.length,
+      headers: headers.length,
+      contents: contents.length,
+    };
+  },
+};
