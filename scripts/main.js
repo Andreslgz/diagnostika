@@ -33,42 +33,93 @@ document.addEventListener("DOMContentLoaded", function () {
 // Splide carousel initialization
 document.addEventListener("DOMContentLoaded", function () {
   // Hero carousel
-  new Splide("#image-carousel", {
-    type: "loop",
-    autoplay: true,
-    interval: 5000,
-    pauseOnHover: true,
-    arrows: true,
-    pagination: true,
-    cover: true,
-    height: "85vh",
-  }).mount();
+  const heroCarousel = document.getElementById("image-carousel");
+  if (heroCarousel) {
+    new Splide("#image-carousel", {
+      type: "loop",
+      autoplay: true,
+      interval: 5000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: true,
+      cover: true,
+      height: "85vh",
+    }).mount();
+  }
 
   // Products carousel
-  new Splide("#products-carousel", {
-    type: "loop",
-    perPage: 4,
-    perMove: 1,
-    gap: "0.1rem",
-    autoplay: false,
-    pauseOnHover: true,
-    arrows: true,
-    pagination: false,
-    breakpoints: {
-      1024: {
-        perPage: 3,
-        gap: "1.1rem",
+  const productsCarousel = document.getElementById("products-carousel");
+  if (productsCarousel) {
+    new Splide("#products-carousel", {
+      type: "loop",
+      perPage: 4,
+      perMove: 1,
+      gap: "0.1rem",
+      autoplay: false,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: false,
+      breakpoints: {
+        1024: {
+          perPage: 3,
+          gap: "1.1rem",
+        },
+        768: {
+          perPage: 2,
+          gap: "1rem",
+        },
+        640: {
+          perPage: 1,
+          gap: "1rem",
+        },
       },
-      768: {
-        perPage: 2,
-        gap: "1rem",
-      },
-      640: {
-        perPage: 1,
-        gap: "1rem",
-      },
-    },
-  }).mount();
+    }).mount();
+  }
+
+  // Testimonials carousel
+  const testimonialsCarousel = document.getElementById("testimonials-carousel");
+  if (testimonialsCarousel) {
+    try {
+      new Splide("#testimonials-carousel", {
+        type: "loop",
+        perPage: 4,
+        perMove: 1,
+        gap: "1.5rem",
+        autoplay: true,
+        interval: 4000,
+        pauseOnHover: true,
+        arrows: true,
+        pagination: true,
+        focus: "center",
+        trimSpace: false,
+        breakpoints: {
+          1280: {
+            perPage: 3,
+            gap: "1.2rem",
+          },
+          1024: {
+            perPage: 2,
+            gap: "1rem",
+          },
+          768: {
+            perPage: 1,
+            gap: "1rem",
+            focus: "center",
+          },
+          640: {
+            perPage: 1,
+            gap: "0.8rem",
+            focus: "center",
+          },
+        },
+      }).mount();
+      console.log("Testimonials carousel initialized successfully");
+    } catch (error) {
+      console.error("Error initializing testimonials carousel:", error);
+    }
+  } else {
+    console.error("Testimonials carousel element not found");
+  }
 });
 
 // Modal tab functionality
@@ -357,3 +408,27 @@ function mostrarAlerta(mensaje) {
     alerta.classList.remove("flex");
   }, 3000);
 }
+
+// Auto-hide cart alert
+document.addEventListener("DOMContentLoaded", function () {
+  const alertCarrito = document.getElementById("alertCarrito");
+  if (alertCarrito) {
+    // Auto-hide after 4 seconds
+    setTimeout(() => {
+      alertCarrito.style.opacity = "0";
+      alertCarrito.style.transform = "translateX(100%)";
+      setTimeout(() => {
+        alertCarrito.remove();
+      }, 300);
+    }, 4000);
+
+    // Add close button functionality if needed
+    alertCarrito.addEventListener("click", function () {
+      this.style.opacity = "0";
+      this.style.transform = "translateX(100%)";
+      setTimeout(() => {
+        this.remove();
+      }, 300);
+    });
+  }
+});
