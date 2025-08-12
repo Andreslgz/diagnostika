@@ -771,7 +771,7 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="text-start xl:mb-12 mb-5">
                 <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
                     Preguntas frecuentes
-                </h2>      
+                </h2>
             </div>
 
             <div class="w-full space-y-4" id="faq-container">
@@ -846,7 +846,82 @@ if (isset($_SESSION['usuario_id'])) {
         </section>
     </main>
     <!-- FOOTER -->
-    <footer></footer>
+    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)]">
+        <div class="py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-4 gap-16">
+            <div>
+                <img src="/assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-start h-min w-[275px]" />
+                <div class="grid grid-cols-5 gap-4 mt-7 border-b border-gray-500 border-solid pb-6 ">
+                    <div
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        <img src="/assets/icons/svg/social/fb.svg" alt="">
+                    </div>
+                    <div
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        <img src="/assets/icons/svg/social/ig.svg" alt="">
+                    </div>
+                    <div
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        <img src="/assets/icons/svg/social/telegram.svg" alt="">
+                    </div>
+                    <div
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        <img src="/assets/icons/svg/social/wsp.svg" alt="">
+                    </div>
+                    <div
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        <img src="/assets/icons/svg/social/email.svg" alt="">
+                    </div>
+                </div>
+                <p class="text-xl max-w-[435px] mt-6 text-center text-balance">
+                    Catálogo con más de <span class="font-extrabold">200 Softwares!</span>
+                </p>
+                <a href="#"
+                    class="btn-secondary w-full rounded-lg block mt-5 font-extrabold text-xl text-center py-3 hover:brightness-110 transition-all easy-in-out duration-200">
+                    Ver catálogo
+                </a>
+            </div>
+            <div>
+                <h2 class="text-2xl font-extrabold">Mapa del sitio </h2>
+                <ul class="flex flex-col gap-5 mt-4 text-lg">
+                    <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Inicio</a>
+                    </li>
+                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sobre nosotros</a>
+                    </li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Software</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">El software más
+                            reciente</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Paquetes</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Las marcas más
+                            vendidas</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-2xl font-extrabold">Ayuda </h2>
+                <ul class="flex flex-col gap-5 mt-4 text-lg">
+                    <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Iniciar sesión</a>
+                    </li>
+                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Registrarse</a>
+                    </li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Preguntas
+                            frecuentes</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Cómo ganar más
+                            monedas</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">How to buy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-2xl font-extrabold">Recursos </h2>
+                <ul class="flex flex-col gap-5 mt-4 text-lg">
+                    <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Términos y
+                            condiciones</a>
+                    </li>
+                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Política de
+                            privacidad</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
     <!-- MODALS -->
     <div id="authentication-modal" tabindex="-1" aria-hidden="true"
         class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[900px]">
