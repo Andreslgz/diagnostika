@@ -1266,8 +1266,8 @@ if (isset($_SESSION['usuario_id'])) {
     </div>
     <!-- DRAWER -->
     <div id="drawer-right-example"
-        class="fixed top-0 right-0 z-40 h-screen px-4 py-10 overflow-y-auto transition-transform translate-x-full btn-secondary w-[450px]"
-        tabindex="-1" aria-labelledby="drawer-right-label">
+        class="fixed top-0 right-0 z-40 h-screen px-4 py-10 overflow-y-auto transition-transform translate-x-full btn-secondary xl:w-[450px]"
+        style="width: calc(100vw - 50px);" tabindex="-1" aria-labelledby="drawer-right-label">
         <div class="flex flex-col items-center w-full  ">
 
             <?php if (isset($_SESSION['usuario_id'])): ?>
@@ -1329,15 +1329,15 @@ if (isset($_SESSION['usuario_id'])) {
             <!-- Carrito -->
             <div class="w-full">
                 <?php if (!empty($_SESSION['carrito'])): ?>
-                    <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg p-2">
+                    <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg ">
                         <?php $total = 0; ?>
                         <?php foreach ($_SESSION['carrito'] as $index => $item): ?>
                             <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
                             <?php $total += $subtotal; ?>
-                            <li class="relative bg-white rounded-xl  p-4 h-full flex items-center gap-3">
+                            <li class="relative bg-white rounded-xl  xl:p-4 p-2.5 h-full flex items-center xl:gap-3 gap-2">
                                 <!-- Imagen del producto con borde -->
                                 <div class="flex-shrink-0">
-                                    <div class="w-[85px] h-[85px] ">
+                                    <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
                                         <img src="/assets/images/carritoProducto.png"
                                             alt="<?php echo htmlspecialchars($item['nombre']); ?>"
                                             class="w-full h-full object-cover">
@@ -1345,15 +1345,16 @@ if (isset($_SESSION['usuario_id'])) {
                                 </div>
 
                                 <!-- Contenido derecho -->
-                                <div class="flex-grow flex flex-col justify-between h-full py-1 gap-6">
+                                <div class="flex-grow flex flex-col justify-between h-full py-1 xl:gap-6 gap-4">
                                     <!-- Parte superior: Nombre y botón cerrar -->
                                     <div class="flex items-start justify-between">
-                                        <h3 class="font-semibold text-gray-800 text-base uppercase tracking-wide">
+                                        <h3 class="font-semibold text-gray-800 xl:text-base text-sm uppercase tracking-wide">
                                             <?php echo htmlspecialchars($item['nombre']); ?>
                                         </h3>
                                         <button onclick="removeItem(<?php echo $index; ?>)"
                                             class="text-gray-600 hover:text-gray-800 transition-colors ml-2">
-                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <svg class="xl:w-6 xl:h-6 w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                     d="M6 18L18 6M6 6l12 12">
                                                 </path>
@@ -1364,22 +1365,22 @@ if (isset($_SESSION['usuario_id'])) {
                                     <!-- Parte inferior: Precio y controles -->
                                     <div class="flex items-center justify-between">
                                         <!-- Precio -->
-                                        <span class="text-xl font-semibold text-gray-800">
+                                        <span class="xl:text-xl text-sm font-semibold text-gray-800">
                                             USD. <?php echo number_format($subtotal, 2); ?>
                                         </span>
 
                                         <!-- Controles de cantidad -->
                                         <div class="flex items-center border border-gray-300 rounded-md">
                                             <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
-                                                class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-xl font-medium">
+                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
                                                 −
                                             </button>
                                             <span
-                                                class="w-12 text-center text-gray-800 font-medium text-lg border-x border-gray-300">
+                                                class="xl:w-12 w-8 text-center text-gray-800 font-medium xl:text-lg text-base border-x border-gray-300">
                                                 <?php echo $item['cantidad']; ?>
                                             </span>
                                             <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
-                                                class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-xl font-medium">
+                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
                                                 +
                                             </button>
                                         </div>
@@ -1391,15 +1392,15 @@ if (isset($_SESSION['usuario_id'])) {
 
                     <div class="border-t pt-4 mt-4">
                         <div class="flex justify-between items-center mb-3">
-                            <span class="font-bold text-xl">Total:</span>
-                            <span class="text-white font-bold text-xl">$<?php echo number_format($total, 2); ?></span>
+                            <span class="font-bold xl:text-xl">Total:</span>
+                            <span class="text-white font-bold xl:text-xl">$<?php echo number_format($total, 2); ?></span>
                         </div>
                         <a href="carrito.php"
-                            class="block w-full text-center btn-primary rounded-lg py-3 text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
+                            class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
                             Ir al Carrito
                         </a>
                         <button
-                            class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg py-3 text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
+                            class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
                             type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
                             Seguir viendo
                         </button>
