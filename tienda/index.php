@@ -428,8 +428,10 @@ if (isset($_SESSION['usuario_id'])) {
                     </div>
                     <!-- Right content -->
                     <div class="w-full ">
-                        <div class="flex items-center justify-between w-full mb-5">
-                            <div class="flex gap-6">
+                        <div
+                            class="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full mb-5 gap-4 lg:gap-0">
+                            <!-- Filtros aplicados -->
+                            <div class="flex gap-2 lg:gap-6 flex-wrap">
                                 <div
                                     class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
                                     <p>Filtro 1</p>
@@ -439,7 +441,6 @@ if (isset($_SESSION['usuario_id'])) {
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                     </svg>
-
                                 </div>
                                 <div
                                     class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
@@ -450,7 +451,6 @@ if (isset($_SESSION['usuario_id'])) {
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                     </svg>
-
                                 </div>
                                 <div
                                     class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
@@ -461,12 +461,13 @@ if (isset($_SESSION['usuario_id'])) {
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
                                     </svg>
-
                                 </div>
                             </div>
-                            <div>
+
+                            <!-- Botón de ordenar -->
+                            <div class="flex justify-end lg:justify-start">
                                 <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
-                                    class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
+                                    class="flex w-full lg:w-auto items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100">
                                     <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -474,7 +475,8 @@ if (isset($_SESSION['usuario_id'])) {
                                             stroke-width="2"
                                             d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
                                     </svg>
-                                    Sort by
+                                    <span class="hidden sm:inline">Sort by</span>
+                                    <span class="sm:hidden">Ordenar</span>
                                     <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -489,32 +491,32 @@ if (isset($_SESSION['usuario_id'])) {
                                         aria-labelledby="sortDropdownButton">
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 The most popular </a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 Newest </a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 Increasing price </a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 Decreasing price </a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 No. reviews </a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 Discount % </a>
                                         </li>
                                     </ul>
