@@ -614,27 +614,32 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="container mx-auto  mb-4 shadow-xl rounded-b-xl" x-data="{ tab: 'tab1' }">
                 <ul class="flex w-full">
                     <li class="flex-1 -mb-px">
-                        <a class="block rounded-t-xl  w-full text-center py-3 px-4 rounded-t border-t !border-l font-extrabold text-xl"
+                        <a class="block rounded-t-xl  w-full text-center py-3 px-4 rounded-t border-t !border-l font-extrabold text-2xl"
                             href="#"
                             :class="{ 'bg-white text-gray-900 font-extrabold border-l border-t-8 border-r border-[#FFBD47]': tab == 'tab1'}"
                             @click.prevent="tab = 'tab1'">Método de pago</a>
                     </li>
                     <li class="flex-1 -mb-px">
-                        <a class="block rounded-t-xl   w-full text-center py-3 px-4 rounded-t border-t !border-r font-extrabold text-gray-500 text-xl"
+                        <a class="block rounded-t-xl   w-full text-center py-3 px-4 rounded-t border-t !border-r font-extrabold text-gray-500 text-2xl"
                             href="#"
                             :class="{ 'bg-white text-gray-900 font-extrabold border-t-8 border-l border-[#FFBD47]': tab == 'tab2'}"
                             @click.prevent="tab = 'tab2'">Herramientas de instalación remota</a>
                     </li>
                 </ul>
                 <div class="content rounded-b-xl   bg-white  border-l border-r border-b border-[#FFBD47] pt-4 border-t">
-                    <div x-show="tab == 'tab1'" class="p-10">
-                        <p class="text-xl">
+                    <div x-show="tab == 'tab1'" class="p-16">
+                        <p class="text-2xl">
                             En DDG aceptamos PayPal, Western Union y MoneyGram; generamos la orden de pago para que
                             usted la complete; tenga en cuenta que PayPal incluye una tarifa adicional.
                         </p>
+                        <div class="flex justify-between w-full mt-10">
+                            <img src="/assets/icons/svg/paymet-methos/paypal.svg" alt="">
+                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt="">
+                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt="">
+                        </div>
                     </div>
-                    <div x-show="tab == 'tab2'" class="p-10">
-                        <p class="text-xl">
+                    <div x-show="tab == 'tab2'" class="p-16">
+                        <p class="text-2xl">
                             En DDG utilizamos AnyDesk, TeamViewer y UltraViewer para instalaciones remotas; solo
                             conéctese a Internet y nos encargaremos del resto de forma rápida, segura y sin
                             complicaciones.
