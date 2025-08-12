@@ -784,55 +784,104 @@ if (isset($_SESSION['usuario_id'])) {
 
 
                         </div>
-                        <!-- Pagination -->
-                        <nav class="mt-6 flex items-center justify-center sm:mt-8" aria-label="Page navigation example">
-                            <ul class="flex h-8 items-center -space-x-px text-sm">
-                                <li>
-                                    <a href="#"
-                                        class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">
-                                        <span class="sr-only">Previous</span>
-                                        <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m15 19-7-7 7-7" />
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">1</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">2</a>
-                                </li>
-                                <li>
-                                    <a href="#" aria-current="page"
-                                        class="z-10 flex h-8 items-center justify-center border border-blue-300 bg-blue-50 px-3 leading-tight text-blue-600 hover:bg-blue-100 hover:text-blue-700   ">3</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">...</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">100</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">
-                                        <span class="sr-only">Next</span>
-                                        <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m9 5 7 7-7 7" />
-                                        </svg>
-                                    </a>
-                                </li>
-                            </ul>
+                        <nav class="flex items-center justify-center py-4 mt-12" aria-label="Paginación">
+                            <div class="flex items-center gap-2">
+
+                                <!-- Botón Primera Página (opcional, visible en desktop) -->
+                                <button
+                                    class="hidden md:flex items-center justify-center w-10 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 19l-7-7 7-7m8 14l-7-7 7-7"></path>
+                                    </svg>
+                                    <span class="sr-only">Primera página</span>
+                                </button>
+
+                                <!-- Botón Anterior -->
+                                <button
+                                    class="flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group">
+                                    <svg class="w-4 h-4 sm:mr-2 group-hover:-translate-x-0.5 transition-transform"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M15 19l-7-7 7-7"></path>
+                                    </svg>
+                                    <span class="hidden sm:inline font-medium">Anterior</span>
+                                </button>
+
+                                <!-- Contenedor de números con mejor separación visual -->
+                                <div class="flex items-center bg-gray-50 rounded-xl p-1 gap-1">
+
+                                    <!-- Página 1 (activa) -->
+                                    <button
+                                        class="relative flex items-center justify-center min-w-[40px] h-9 px-3 text-white btn-secondary rounded-lg font-semibold shadow-sm hover:shadow-md transition-all duration-200">
+                                        1
+
+                                    </button>
+
+                                    <!-- Página 2 -->
+                                    <button
+                                        class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">
+                                        2
+                                    </button>
+
+                                    <!-- Página 3 -->
+                                    <button
+                                        class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">
+                                        3
+                                    </button>
+
+                                    <!-- Separador visual mejorado -->
+                                    <div class="flex items-center px-2">
+                                        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+                                        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+                                        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+                                    </div>
+
+                                    <!-- Páginas finales (mejor agrupación) -->
+                                    <div class="hidden sm:flex items-center gap-1">
+                                        <button
+                                            class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">
+                                            67
+                                        </button>
+                                    </div>
+
+                                    <!-- Última página -->
+                                    <button
+                                        class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">
+                                        68
+                                    </button>
+
+                                </div>
+
+                                <!-- Botón Siguiente -->
+                                <button
+                                    class="flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group">
+                                    <span class="hidden sm:inline font-medium">Siguiente</span>
+                                    <svg class="w-4 h-4 sm:ml-2 group-hover:translate-x-0.5 transition-transform"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M9 5l7 7-7 7"></path>
+                                    </svg>
+                                </button>
+
+                                <!-- Botón Última Página (opcional, visible en desktop) -->
+                                <button
+                                    class="hidden md:flex items-center justify-center w-10 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 5l7 7-7 7M5 5l7 7-7 7"></path>
+                                    </svg>
+                                    <span class="sr-only">Última página</span>
+                                </button>
+
+                            </div>
                         </nav>
+
+                        <!-- Indicador de página actual (mejor para móvil) -->
+                        <div class="text-center mt-3 text-sm text-gray-600">
+                            Página <span class="font-semibold text-gray-900">1</span> de <span
+                                class="font-semibold">68</span>
+                        </div>
                     </div>
                 </div>
                 <!-- Mobile Drawer -->
