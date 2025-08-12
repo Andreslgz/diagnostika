@@ -906,513 +906,136 @@ if (isset($_SESSION['usuario_id'])) {
 
                     <div class="flex flex-1 flex-col justify-between">
                         <div class="space-y-4">
-                            <!-- Product Brand -->
-                            <div>
-                                <label for="product-brand-2" class="mb-2 block text-sm font-medium text-gray-900 ">
-                                    Product Brand
-                                </label>
-                                <select id="product-brand-2"
-                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500    ">
-                                    <option selected value="apple">Apple</option>
-                                    <option value="lg">LG</option>
-                                    <option value="samsung">Samsung</option>
-                                    <option value="logitech">Logitech</option>
-                                    <option value="lenovo">Lenovo</option>
-                                    <option value="samsung">Philips</option>
-                                    <option value="logitech">Microsoft</option>
-                                    <option value="lenovo">Sony</option>
-                                </select>
-                            </div>
-
-                            <!-- Price -->
-                            <div>
-                                <h6 class="mb-2 block text-sm font-medium text-gray-900 ">Price Range
-                                </h6>
-                                <div class="grid grid-cols-2 gap-3">
-                                    <div>
-                                        <input id="min-price" type="range" min="0" max="7000" value="300" step="1"
-                                            class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 " />
-                                    </div>
-
-                                    <div>
-                                        <input id="max-price" type="range" min="0" max="7000" value="3500" step="1"
-                                            class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-gray-200 " />
-                                    </div>
-
-                                    <div class="col-span-2 flex items-center justify-between space-x-4">
-                                        <div class="w-full">
-                                            <label for="min-price-input"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">From</label>
-                                            <input type="number" id="min-price-input" value="300" min="0" max="7000"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500     "
-                                                placeholder="" required />
-                                        </div>
-
-                                        <div class="w-full">
-                                            <label for="max-price-input"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">To</label>
-                                            <input type="number" id="max-price-input" value="3500" min="0" max="7000"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500    "
-                                                placeholder="" required />
-                                        </div>
+                            <!-- Marca de Software -->
+                            <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                                <header class="flex items-center justify-between">
+                                    <p>
+                                        Marca de Software
+                                    </p>
+                                    <button class="" type="button">
+                                        <svg class="-me-0.5 ms-2 h-5 w-5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                </header>
+                                <div class="mt-1">
+                                    <div class="flex flex-col gap-0.5">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Marca 1</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Marca 2</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Marca 3</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-2 gap-4">
-                                <!-- Delivery method -->
-                                <div class="w-full space-y-3">
-                                    <h6 class="mb-2 text-sm font-medium text-black ">Delivery method</h6>
-                                    <div class="flex items-center">
-                                        <input id="flowbox-2" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="flowbox-2" class="ms-2 text-sm font-medium text-gray-900 "> Flowbox
+                            <!-- Año -->
+                            <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                                <header class="flex items-center justify-between">
+                                    <p>
+                                        Año
+                                    </p>
+                                    <button class="" type="button">
+                                        <svg class="-me-0.5 ms-2 h-5 w-5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                </header>
+                                <div class="mt-1">
+                                    <div class="flex flex-col gap-0.5">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Año 1</span>
                                         </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="pick-from-store-2" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="pick-from-store-2" class="ms-2 text-sm font-medium text-gray-900 ">
-                                            Pick from
-                                            the store </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="courier-2" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="courier-2" class="ms-2 text-sm font-medium text-gray-900 "> Fast
-                                            courier </label>
-                                    </div>
-                                </div>
-                                <div class="w-full">
-                                    <h6 class="mb-2 text-sm font-medium text-black ">Rating</h6>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center">
-                                            <input id="five-stars" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                            <label for="five-stars" class="ml-2 flex items-center">
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>First star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Second star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Third star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fourth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fifth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="four-stars" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                            <label for="four-stars" class="ml-2 flex items-center">
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>First star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Second star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Third star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fourth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fifth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="three-stars" type="radio" value="" name="rating" checked
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                            <label for="three-stars" class="ml-2 flex items-center">
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>First star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Second star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Third star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fourth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fifth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="two-stars" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                            <label for="two-stars" class="ml-2 flex items-center">
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>First star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Second star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Third star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fourth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fifth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="one-star" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                            <label for="one-star" class="ml-2 flex items-center">
-                                                <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>First star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Second star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Third star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fourth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
-                                                    fill="currentColor" viewBox="0 0 20 20"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <title>Fifth star</title>
-                                                    <path
-                                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
-                                                    </path>
-                                                </svg>
-                                            </label>
-                                        </div>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Año 2</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Año 3</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Condition -->
-                            <div>
-                                <h6 class="mb-2 text-sm font-medium text-black ">Condition</h6>
-
-                                <ul
-                                    class="flex w-full items-center rounded-lg border border-gray-200 bg-white text-sm font-medium text-gray-900   ">
-                                    <li class="w-full border-r border-gray-200 ">
-                                        <div class="flex items-center pl-3">
-                                            <input id="condition-all" type="radio" value="" name="list-radio" checked
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 " />
-                                            <label for="condition-all"
-                                                class="ml-2 w-full py-3 text-sm font-medium text-gray-900 ">
-                                                All </label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full border-r border-gray-200 ">
-                                        <div class="flex items-center pl-3">
-                                            <input id="condition-new" type="radio" value="" name="list-radio"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 " />
-                                            <label for="condition-new"
-                                                class="ml-2 w-full py-3 text-sm font-medium text-gray-900 ">
-                                                New </label>
-                                        </div>
-                                    </li>
-                                    <li class="w-full">
-                                        <div class="flex items-center pl-3">
-                                            <input id="condition-used" type="radio" value="" name="list-radio"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 " />
-                                            <label for="condition-used"
-                                                class="ml-2 w-full py-3 text-sm font-medium text-gray-900 ">
-                                                Used </label>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-
-                            <!-- Color & Rating -->
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="w-full">
-                                    <h6 class="mb-2 text-sm font-medium text-black ">Colour</h6>
-                                    <div class="space-y-2">
-                                        <div class="flex items-center">
-                                            <input id="blue" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-
-                                            <label for="blue"
-                                                class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
-                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-blue-600"></div>
-                                                Blue
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="gray" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-
-                                            <label for="gray"
-                                                class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
-                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-gray-400"></div>
-                                                Gray
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="green" type="checkbox" value="" checked
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-
-                                            <label for="green"
-                                                class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
-                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-green-400"></div>
-                                                Green
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="pink" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-
-                                            <label for="pink"
-                                                class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
-                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-pink-400"></div>
-                                                Pink
-                                            </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="red" type="checkbox" value="" checked
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-
-                                            <label for="red"
-                                                class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
-                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-red-500"></div>
-                                                Red
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="w-full space-y-3">
-                                    <h6 class="mb-2 text-sm font-medium text-black ">Weight</h6>
-                                    <div class="flex items-center">
-                                        <input id="weight-6" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="weight-6" class="ms-2 text-sm font-medium text-gray-900 "> Under 1
-                                            kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-7" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   "
-                                            checked />
-                                        <label for="weight-7" class="ms-2 text-sm font-medium text-gray-900 "> 1 kg to 5
-                                            kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-8" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="weight-8" class="ms-2 text-sm font-medium text-gray-900 "> 5 kg to
-                                            10 kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-9" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="weight-9" class="ms-2 text-sm font-medium text-gray-900 "> 10 kg to
-                                            20 kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-10" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
-                                        <label for="weight-10" class="ms-2 text-sm font-medium text-gray-900 "> Over 20
-                                            kg </label>
+                            <!-- Industria -->
+                            <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                                <header class="flex items-center justify-between">
+                                    <p>
+                                        Industria
+                                    </p>
+                                    <button class="" type="button">
+                                        <svg class="-me-0.5 ms-2 h-5 w-5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                </header>
+                                <div class="mt-1">
+                                    <div class="flex flex-col gap-0.5">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Industria 1</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Industria 2</span>
+                                        </label>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Industria 3</span>
+                                        </label>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- Delivery -->
-                            <div>
-                                <h6 class="mb-2 text-sm font-medium text-black ">Shipping to</h6>
-
-                                <ul class="grid gap-4 sm:grid-cols-2">
-                                    <li>
-                                        <input type="radio" id="delivery-usa" name="delivery" value="delivery-usa"
-                                            class="peer hidden" checked />
-                                        <label for="delivery-usa"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
-                                            <div class="block">
-                                                <div class="w-full text-base font-semibold">USA</div>
-                                                <div class="w-full text-sm">Delivery only for USA</div>
-                                            </div>
+                            <!-- Interfaz -->
+                            <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                                <header class="flex items-center justify-between">
+                                    <p>
+                                        Interfaz
+                                    </p>
+                                    <button class="" type="button">
+                                        <svg class="-me-0.5 ms-2 h-5 w-5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                </header>
+                                <div class="mt-1">
+                                    <div class="flex flex-col gap-0.5">
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Interfaz 1</span>
                                         </label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="delivery-europe" name="delivery" value="delivery-europe"
-                                            class="peer hidden" />
-                                        <label for="delivery-europe"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
-                                            <div class="block">
-                                                <div class="w-full text-base font-semibold">Europe</div>
-                                                <div class="w-full text-sm">Delivery only for USA</div>
-                                            </div>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Interfaz 2</span>
                                         </label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="delivery-asia" name="delivery" value="delivery-asia"
-                                            class="peer hidden" checked />
-                                        <label for="delivery-asia"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
-                                            <div class="block">
-                                                <div class="w-full text-base font-semibold">Asia</div>
-                                                <div class="w-full text-sm">Delivery only for Asia</div>
-                                            </div>
+                                        <label class="inline-flex items-center">
+                                            <input type="checkbox" class="form-checkbox" />
+                                            <span class="ml-2">Interfaz 3</span>
                                         </label>
-                                    </li>
-                                    <li>
-                                        <input type="radio" id="delivery-australia" name="delivery"
-                                            value="delivery-australia" class="peer hidden" />
-                                        <label for="delivery-australia"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
-                                            <div class="block">
-                                                <div class="w-full text-base font-semibold">Australia</div>
-                                                <div class="w-full text-sm">Delivery only for Australia</div>
-                                            </div>
-                                        </label>
-                                    </li>
-                                </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
