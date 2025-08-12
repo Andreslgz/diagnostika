@@ -519,7 +519,7 @@ if (isset($_SESSION['usuario_id'])) {
             <h2 class="uppercase font-extrabold xl:text-3xl text-lg mb-10 text-start mb-14">
                 PROCESO DE COMPRA
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-3">
+            <div class="grid grid-cols-1 md:grid-cols-5 xl:gap-3 gap-16 w-full">
                 <div class="relative">
                     <div
                         class="absolute z-50 btn-secondary -top-[25px] left-[15px] px-4 py-1 font-extrabold text-3xl aspect-square flex items-center">
