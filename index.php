@@ -86,22 +86,22 @@ if (isset($_SESSION['usuario_id'])) {
         <div class="marquee-container">
             <?php
             // Asumiendo que ya tienes $database (Medoo) inicializado
-
+            
             // Trae 1 registro activo (el más reciente)
             $marquesina = $database->get("marquesina", ["mq_tit", "mq_url"], [
                 "mq_est" => "activo",
-                "ORDER"  => ["mq_id" => "DESC"]
+                "ORDER" => ["mq_id" => "DESC"]
             ]);
 
             if ($marquesina && !empty($marquesina["mq_tit"])) {
                 $titulo = htmlspecialchars($marquesina["mq_tit"], ENT_QUOTES, 'UTF-8');
-                $href   = !empty($marquesina["mq_url"]) ? $marquesina["mq_url"] : '#';
-                $href   = htmlspecialchars($href, ENT_QUOTES, 'UTF-8');
-            ?>
+                $href = !empty($marquesina["mq_url"]) ? $marquesina["mq_url"] : '#';
+                $href = htmlspecialchars($href, ENT_QUOTES, 'UTF-8');
+                ?>
                 <p class="text-white font-semibold marquee-text xl:text-base text-xs">
                     <a href="<?= $href ?>" class="hover:underline"><?= $titulo ?></a>
                 </p>
-            <?php
+                <?php
             } else {
                 // Sin registros: no mostramos nada (o pon un fallback si quieres)
                 // echo '<p class="text-white font-semibold marquee-text xl:text-base text-xs">No hay promociones activas por ahora.</p>';
@@ -244,17 +244,17 @@ if (isset($_SESSION['usuario_id'])) {
                     // Traer todas las imágenes activas ordenadas por ID descendente
                     $sliders = $database->select("slider", "sl_img", [
                         "sl_est" => "activo",
-                        "ORDER"  => ["sl_id" => "DESC"]
+                        "ORDER" => ["sl_id" => "DESC"]
                     ]);
 
                     if ($sliders && count($sliders) > 0) {
                         foreach ($sliders as $img) {
                             $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
-                    ?>
+                            ?>
                             <li class="splide__slide">
                                 <img src="uploads/slider/<?= $imagen ?>" alt="Slide" class="" />
                             </li>
-                        <?php
+                            <?php
                         }
                     } else {
                         // Fallback si no hay imágenes activas
@@ -262,7 +262,7 @@ if (isset($_SESSION['usuario_id'])) {
                         <li class="splide__slide">
                             <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="" />
                         </li>
-                    <?php
+                        <?php
                     }
                     ?>
                 </ul>
@@ -336,12 +336,12 @@ if (isset($_SESSION['usuario_id'])) {
                                         <div
                                             class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
                                             <div class="flex justify-end -mb-1">
-                                                <button type="button" class="favorito-btn p-1 sm:p-2"
+                                                <button type="button" class="favorito-btn"
                                                     data-id="<?php echo $prod['id_producto']; ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         fill="<?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-7 h-7 sm:w-7 sm:h-7 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
+                                                        class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                                     </svg>
@@ -349,7 +349,7 @@ if (isset($_SESSION['usuario_id'])) {
                                             </div>
                                             <img src="<?php echo !empty($prod['imagen']) ? 'uploads/' . $prod['imagen'] : 'https://placehold.co/600x400/png'; ?>"
                                                 alt="<?php echo htmlspecialchars($prod['nombre']); ?>"
-                                                class="w-full h-46 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                                class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
                                             <p
                                                 class="inline font-semibold text-sm sm:text-base lg:text-xl text-balance leading-tight uppercase">
                                                 <?php echo htmlspecialchars($prod['nombre']); ?>
@@ -409,64 +409,82 @@ if (isset($_SESSION['usuario_id'])) {
         <!-- BANNERS -->
         <section class="px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Banner 1 -->
                 <div class="relative">
-                    <div class="flex flex-row">
-                        <div class="btn-secondary w-[30%] h-auto rounded-l-xl p-4">
-                            <img src="assets/icons/banner/banner1.svg" alt="" class="size-[125px]" />
-                            <p class="text-2xl font-extrabold text-banner-1">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Contenido -->
+                        <div
+                            class="btn-secondary w-full md:w-[30%] h-auto rounded-t-xl md:rounded-t-none md:rounded-l-xl p-4 md:p-4">
+                            <img src="assets/icons/banner/banner1.svg" alt=""
+                                class="size-[80px] md:size-[125px] mx-auto md:mx-0" />
+                            <p class="text-xl md:text-2xl font-extrabold text-banner-1 text-center md:text-left mt-2">
                                 En la carretera
                             </p>
-                            <p class="text-white text-lg font-semibold">Paquete</p>
+                            <p class="text-white text-base md:text-lg font-semibold text-center md:text-left">Paquete
+                            </p>
                             <button
-                                class="mt-5 btn-primary rounded-lg px-8 py-2 uppercase font-bold xl:text-base text-base flex items-center gap-2 cursor-pointer hover:underline underline-offset-4">
+                                class="mt-3 md:mt-5 btn-primary rounded-lg px-4 md:px-8 py-2 uppercase font-bold text-sm md:text-base flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 mx-auto md:mx-0">
                                 Ver Todo
                                 <img src="assets/icons/svg/tabler--chevron-right.svg" alt="" />
                             </button>
                         </div>
-                        <div class="w-[70%] h-auto image-anime">
+                        <!-- Imagen -->
+                        <div class="w-full md:w-[70%] h-[200px] md:h-auto image-anime">
                             <img src="assets/images/banner1.jpg" alt=""
-                                class="w-full h-full object-cover rounded-r-xl" />
+                                class="w-full h-full object-cover rounded-b-xl md:rounded-b-none md:rounded-r-xl" />
                         </div>
                     </div>
-                    <div class="absolute top-0 right-0 flex">
-                        <div class="btn-secondary px-4 py-1 font-extrabold text-4xl">
+                    <!-- Badge -->
+                    <div class="absolute top-2 right-2 md:top-0 md:right-0 flex scale-75 md:scale-100 origin-top-right">
+                        <div class="btn-secondary px-3 md:px-4 py-1 font-extrabold text-2xl md:text-4xl">
                             +
                         </div>
-                        <div class="btn-primary px-5 py-1 flex items-center italic font-bold">
+                        <div
+                            class="btn-primary px-3 md:px-5 py-1 flex items-center italic font-bold text-xs md:text-base">
                             100 Programas incluidos
                         </div>
                     </div>
                 </div>
+
+                <!-- Banner 2 -->
                 <div class="relative">
-                    <div class="flex flex-row">
-                        <div class="bg-banner2 w-[30%] h-auto rounded-l-xl p-4">
-                            <img src="assets/icons/banner/banner1.svg" alt="" class="size-[125px]" />
-                            <p class="text-2xl font-extrabold text-banner-1">
+                    <div class="flex flex-col md:flex-row">
+                        <!-- Contenido -->
+                        <div
+                            class="bg-banner2 w-full md:w-[30%] h-auto rounded-t-xl md:rounded-t-none md:rounded-l-xl p-4 md:p-4">
+                            <img src="assets/icons/banner/banner1.svg" alt=""
+                                class="size-[80px] md:size-[125px] mx-auto md:mx-0" />
+                            <p class="text-xl md:text-2xl font-extrabold text-banner-1 text-center md:text-left mt-2">
                                 En la carretera
                             </p>
-                            <p class="text-white text-lg font-semibold">Paquete</p>
+                            <p class="text-white text-base md:text-lg font-semibold text-center md:text-left">Paquete
+                            </p>
                             <button
-                                class="mt-5 btn-primary rounded-lg px-8 py-2 uppercase font-bold xl:text-base text-base flex items-center gap-2 cursor-pointer hover:underline underline-offset-4">
+                                class="mt-3 md:mt-5 btn-primary rounded-lg px-4 md:px-8 py-2 uppercase font-bold text-sm md:text-base flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 mx-auto md:mx-0">
                                 Ver Todo
                                 <img src="assets/icons/svg/tabler--chevron-right.svg" alt="" />
                             </button>
                         </div>
-                        <div class="w-[70%] h-auto image-anime">
+                        <!-- Imagen -->
+                        <div class="w-full md:w-[70%] h-[200px] md:h-auto image-anime">
                             <img src="assets/images/banner2.jpg" alt=""
-                                class="w-full h-full object-cover rounded-r-xl" />
+                                class="w-full h-full object-cover rounded-b-xl md:rounded-b-none md:rounded-r-xl" />
                         </div>
                     </div>
-                    <div class="absolute top-0 right-0 flex">
-                        <div class="btn-secondary px-4 py-1 font-extrabold text-4xl">
+                    <!-- Badge -->
+                    <div class="absolute top-2 right-2 md:top-0 md:right-0 flex scale-75 md:scale-100 origin-top-right">
+                        <div class="btn-secondary px-3 md:px-4 py-1 font-extrabold text-2xl md:text-4xl">
                             +
                         </div>
-                        <div class="btn-primary px-5 py-1 flex items-center italic font-bold">
+                        <div
+                            class="btn-primary px-3 md:px-5 py-1 flex items-center italic font-bold text-xs md:text-base">
                             100 Programas incluidos
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <!-- STATITICS 2 -->
         <section class="my-10 md:my-20 bg-statistics-2 to-[#D9D9D9] overflow-hidden">
             <div class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
@@ -554,11 +572,11 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
         </section>
         <!-- PROCESO DE COMPRA -->
-        <section class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+        <section class="xl:py-20 py-10 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <h2 class="uppercase font-extrabold xl:text-3xl text-lg mb-10 text-start mb-14">
                 PROCESO DE COMPRA
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-5 xl:gap-3 gap-16 w-full">
+            <div class="grid grid-cols-2 md:grid-cols-5 xl:gap-3 gap-14 w-full">
                 <div class="relative">
                     <div
                         class="absolute z-50 btn-secondary -top-[25px] left-[15px] px-4 py-1 font-extrabold text-3xl aspect-square flex items-center">
@@ -605,44 +623,63 @@ if (isset($_SESSION['usuario_id'])) {
                     </div>
                 </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-5 gap-3 justify-items-center w-full mt-10">
-                <div class="flex flex-col items-center gap-7">
-                    <div class="btn-secondary w-[185px] h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/1.svg" class="size-[125px] mx-auto" alt="" />
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 md:gap-3 justify-items-center w-full mt-10">
+                <!-- Paso 1 -->
+                <div class="flex flex-col items-center gap-4 md:gap-7 w-full max-w-[200px]">
+                    <div
+                        class="btn-secondary w-[120px] h-[120px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                        <img src="assets/icons/procesocompra/1.svg"
+                            class="w-[80px] h-[80px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                     </div>
-                    <p class="text-center text-xl font-bold text-balance">
+                    <p class="text-center text-lg md:text-xl font-bold text-balance">
                         Elige tu software o paquete
                     </p>
                 </div>
-                <div class="flex flex-col items-center gap-7">
-                    <div class="btn-secondary w-[185px] h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/2.svg" class="size-[125px] mx-auto" alt="" />
+
+                <!-- Paso 2 -->
+                <div class="flex flex-col items-center gap-4 md:gap-7 w-full max-w-[200px]">
+                    <div
+                        class="btn-secondary w-[120px] h-[120px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                        <img src="assets/icons/procesocompra/2.svg"
+                            class="w-[80px] h-[80px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                     </div>
-                    <p class="text-center text-xl font-bold text-balance">
+                    <p class="text-center text-lg md:text-xl font-bold text-balance">
                         Añade al carrito y completa tu compra.
                     </p>
                 </div>
-                <div class="flex flex-col items-center gap-7">
-                    <div class="btn-secondary w-[185px] h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/3.svg" class="size-[125px] mx-auto" alt="" />
+
+                <!-- Paso 3 -->
+                <div class="flex flex-col items-center gap-4 md:gap-7 w-full max-w-[200px]">
+                    <div
+                        class="btn-secondary w-[120px] h-[120px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                        <img src="assets/icons/procesocompra/3.svg"
+                            class="w-[80px] h-[80px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                     </div>
-                    <p class="text-center text-xl font-bold text-balance">
+                    <p class="text-center text-lg md:text-xl font-bold text-balance">
                         Envía tu número de pedido por WhatsApp
                     </p>
                 </div>
-                <div class="flex flex-col items-center gap-7">
-                    <div class="btn-secondary w-[185px] h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/4.svg" class="size-[125px] mx-auto" alt="" />
+
+                <!-- Paso 4 -->
+                <div class="flex flex-col items-center gap-4 md:gap-7 w-full max-w-[200px]">
+                    <div
+                        class="btn-secondary w-[120px] h-[120px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                        <img src="assets/icons/procesocompra/4.svg"
+                            class="w-[80px] h-[80px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                     </div>
-                    <p class="text-center text-xl font-bold text-balance">
+                    <p class="text-center text-lg md:text-xl font-bold text-balance">
                         Realizar el pago
                     </p>
                 </div>
-                <div class="flex flex-col items-center gap-7">
-                    <div class="btn-secondary w-[185px] h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/5.svg" class="size-[125px] mx-auto" alt="" />
+
+                <!-- Paso 5 -->
+                <div class="flex flex-col items-center gap-4 md:gap-7 w-full max-w-[200px]">
+                    <div
+                        class="btn-secondary w-[120px] h-[120px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                        <img src="assets/icons/procesocompra/5.svg"
+                            class="w-[80px] h-[80px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                     </div>
-                    <p class="text-center text-xl font-bold text-balance">
+                    <p class="text-center text-lg md:text-xl font-bold text-balance">
                         Instalación remota
                     </p>
                 </div>
@@ -704,7 +741,7 @@ if (isset($_SESSION['usuario_id'])) {
 
 
         <!-- TESTIMONIALS -->
-        <section class="py-20 px-4 mx-auto max-w-screen-2xl " data-aos="fade-up">
+        <section class="xl:py-20 py-6 px-4 mx-auto max-w-screen-2xl ">
             <div class="text-start mb-10">
                 <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
                     Lo que dicen nuestros clientes
@@ -903,7 +940,7 @@ if (isset($_SESSION['usuario_id'])) {
     <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
         <div
             class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
-            <div class="text-center sm:text-left">
+            <div class="text-center sm:text-left flex flex-col items-center">
                 <img src="/assets/icons/Logotipo.svg" alt=""
                     class="mx-auto sm:mx-0 block flex items-start h-min w-[200px] md:w-[275px]" />
                 <div
@@ -929,7 +966,8 @@ if (isset($_SESSION['usuario_id'])) {
                         <img src="/assets/icons/svg/social/email.svg" alt="">
                     </div>
                 </div>
-                <p class="text-lg md:text-xl max-w-[435px] mt-4 md:mt-6 text-center sm:text-left mx-auto sm:mx-0">
+                <p
+                    class="text-lg md:text-xl max-w-[435px] mt-4 md:mt-6 text-center sm:text-left mx-auto xl:text-center sm:mx-0">
                     Catálogo con más de <span class="font-extrabold">200 Softwares!</span>
                 </p>
                 <a href="#"
