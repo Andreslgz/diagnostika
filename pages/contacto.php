@@ -1,7 +1,7 @@
 <?php
 // public/index.php (añadir lógica para mostrar el carrito)
 session_start();
-require_once __DIR__ . '../includes/db.php';
+require_once __DIR__ . '/../includes/db.php';
 
 // Inicializar carrito si no existe
 if (!isset($_SESSION['carrito'])) {
@@ -58,7 +58,7 @@ if (isset($_SESSION['usuario_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="/../styles/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 </head>
 
@@ -1289,7 +1289,7 @@ if (isset($_SESSION['usuario_id'])) {
     <script>
         AOS.init();
     </script>
-    <script src="scripts/main.js"></script>
+    <script src="/../sscripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
