@@ -216,49 +216,12 @@ if (isset($_SESSION['usuario_id'])) {
         </nav>
     </header>
     <main>
-        <section class="bg-gray-50 py-8 antialiased  md:py-12">
+        <section class="py-8 antialiased  md:py-12">
             <div class="mx-auto max-w-screen-2xl px-4 2xl:px-0">
                 <div class="mb-4 items-end justify-between sm:flex md:mb-8">
                     <div class="mb-4 sm:mb-0">
-                        <nav class="flex" aria-label="Breadcrumb">
-                            <ol class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
-                                <li class="inline-flex items-center">
-                                    <a href="#"
-                                        class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-primary-600 ">
-                                        <svg class="me-2.5 h-3 w-3" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                            <path
-                                                d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
-                                        </svg>
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="flex items-center">
-                                        <svg class="h-5 w-5 text-gray-400 rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m9 5 7 7-7 7" />
-                                        </svg>
-                                        <a href="#"
-                                            class="ms-1 text-sm font-medium text-gray-700 hover:text-primary-600   md:ms-2">Products</a>
-                                    </div>
-                                </li>
-                                <li aria-current="page">
-                                    <div class="flex items-center">
-                                        <svg class="h-5 w-5 text-gray-400 rtl:rotate-180" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m9 5 7 7-7 7" />
-                                        </svg>
-                                        <span class="ms-1 text-sm font-medium text-gray-500  md:ms-2">Electronics</span>
-                                    </div>
-                                </li>
-                            </ol>
-                        </nav>
-                        <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-2xl">Electronics
+
+                        <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-2xl">Nuestros Productos y paquetes
                         </h2>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -277,7 +240,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     stroke-width="2" d="m19 9-7 7-7-7" />
                             </svg>
                         </button>
-                        <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
+                        <!-- <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
                             class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
                             <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -285,7 +248,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     stroke-width="2"
                                     d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
                             </svg>
-                            Sort
+                            Sort by
                             <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -328,798 +291,203 @@ if (isset($_SESSION['usuario_id'])) {
                                         Discount % </a>
                                 </li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <div class="gap-6 lg:flex">
-                    <!-- Sidenav -->
-                    <aside id="sidebar"
-                        class="hidden h-full w-80 shrink-0 border border-gray-200 bg-white p-4 shadow-sm  lg:block lg:rounded-lg">
-                        <div id="accordion-flush" data-accordion="collapse"
-                            data-active-classes="bg-white  text-gray-900 " data-inactive-classes="text-gray-500 ">
-                            <h2 id="accordion-flush-heading-1">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   "
-                                    data-accordion-target="#accordion-flush-body-1" aria-expanded="true"
-                                    aria-controls="accordion-flush-body-1">
-                                    <span>Categories</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
+
+                    <div class="w-[350px]">
+                        <h1 class="text-2xl font-bold mb-6">Filtros</h1>
+                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                            <header class="flex items-center justify-between">
+                                <p>
+                                    Marca de Software
+                                </p>
+                                <button class="" type="button">
+                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
+                                            stroke-width="2" d="m19 9-7 7-7-7" />
                                     </svg>
                                 </button>
-                            </h2>
-                            <div id="accordion-flush-body-1" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-1">
-                                <div>
-                                    <label for="search"
-                                        class="sr-only mb-2 text-sm font-medium text-gray-900 ">Search</label>
-                                    <div class="relative block">
-                                        <div
-                                            class="pointer-events-none absolute inset-y-0 start-0 flex items-center ps-3">
-                                            <svg class="h-4 w-4 text-gray-500 " aria-hidden="true"
-                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                            </svg>
-                                        </div>
-                                        <input type="search" id="search"
-                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 px-4 py-2 ps-10 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    "
-                                            placeholder="Search for categories" required />
-                                    </div>
-                                </div>
-
-                                <div class="space-y-3">
-                                    <div class="flex items-center">
-                                        <input id="tv-audio-video" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="tv-audio-video" class="ms-2 text-sm font-medium text-gray-900 "> TV,
-                                            Audio-Video </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="desktop-pc" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                            checked />
-                                        <label for="desktop-pc" class="ms-2 text-sm font-medium text-gray-900 "> Desktop
-                                            PC </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="gaming" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="gaming" class="ms-2 text-sm font-medium text-gray-900 "> Gaming
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="monitors" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="monitors" class="ms-2 text-sm font-medium text-gray-900 "> Monitors
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="laptops" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                            checked />
-                                        <label for="laptops" class="ms-2 text-sm font-medium text-gray-900 "> Laptops
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="console" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="console" class="ms-2 text-sm font-medium text-gray-900 "> Console
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="tablets" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                            checked />
-                                        <label for="tablets" class="ms-2 text-sm font-medium text-gray-900 "> Tablets
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="foto" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="foto" class="ms-2 text-sm font-medium text-gray-900 "> Foto
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="fashion" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="fashion" class="ms-2 text-sm font-medium text-gray-900 "> Fashion
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="books" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="books" class="ms-2 text-sm font-medium text-gray-900 "> Books
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <a href="#" title=""
-                                    class="inline-flex items-center gap-1 text-sm font-medium text-primary-700 hover:underline ">
-                                    See more
-                                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <h2 id="accordion-flush-heading-2">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-2" aria-expanded="true"
-                                    aria-controls="accordion-flush-body-2">
-                                    <span>Rating</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-2" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-2">
-                                <div class="space-y-3">
-                                    <div class="flex items-center">
-                                        <input id="rating-checkbox-1" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                            checked />
-                                        <label for="rating-checkbox-1"
-                                            class="ms-2 inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 ">
-                                            <div class="flex items-center gap-0.5">
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                            </div>
-                                            (475)
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="rating-checkbox-2" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                            checked />
-                                        <label for="rating-checkbox-2"
-                                            class="ms-2 inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 ">
-                                            <div class="flex items-center gap-0.5">
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                            </div>
-                                            (12)
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="rating-checkbox-3" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="rating-checkbox-3"
-                                            class="ms-2 inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 ">
-                                            <div class="flex items-center gap-0.5">
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                            </div>
-                                            (20)
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="rating-checkbox-4" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="rating-checkbox-4"
-                                            class="ms-2 inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 ">
-                                            <div class="flex items-center gap-0.5">
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                            </div>
-                                            (11)
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="rating-checkbox-5" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="rating-checkbox-5"
-                                            class="ms-2 inline-flex items-center gap-1.5 text-sm font-medium text-gray-500 ">
-                                            <div class="flex items-center gap-0.5">
-                                                <svg class="h-5 w-5 text-yellow-400" aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                                <svg class="h-5 w-5 text-gray-300 " aria-hidden="true"
-                                                    xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path
-                                                        d="M13.8 4.2a2 2 0 0 0-3.6 0L8.4 8.4l-4.6.3a2 2 0 0 0-1.1 3.5l3.5 3-1 4.4c-.5 1.7 1.4 3 2.9 2.1l3.9-2.3 3.9 2.3c1.5 1 3.4-.4 3-2.1l-1-4.4 3.4-3a2 2 0 0 0-1.1-3.5l-4.6-.3-1.8-4.2Z" />
-                                                </svg>
-                                            </div>
-                                            (6)
-                                        </label>
-                                    </div>
-                                </div>
-
-                                <a href="#" title=""
-                                    class="inline-flex items-center gap-1 text-sm font-medium text-primary-700 hover:underline ">
-                                    View all
-                                    <svg class="h-5 w-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        fill="none" viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-                                    </svg>
-                                </a>
-                            </div>
-                            <h2 id="accordion-flush-heading-3">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-3" aria-expanded="false"
-                                    aria-controls="accordion-flush-body-3">
-                                    <span>Price</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-3" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-3">
-                                <div class="space-y-3">
-                                    <a href="#" title=""
-                                        class="inline-flex items-center gap-1 text-sm font-medium text-primary-700 hover:underline ">
-                                        <svg class="h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                            width="24" height="24" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="m15 19-7-7 7-7" />
-                                        </svg>
-                                        Any Price
-                                    </a>
-                                    <div class="space-y-3">
-                                        <div class="flex items-center">
-                                            <input id="price-range-1" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-1" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                Under
-                                                $10 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-2" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                                checked />
-                                            <label for="price-range-2" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $10
-                                                to $20 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-3" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-3" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $20
-                                                to $30 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-4" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-4" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $30
-                                                to $40 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-5" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                                checked />
-                                            <label for="price-range-5" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $40
-                                                to $50 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-6" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-6" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $50
-                                                to $60 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-7" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                                checked />
-                                            <label for="price-range-7" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $60
-                                                to $70 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-8" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-8" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $70
-                                                to $80 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-9" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-9" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                $80
-                                                to $90 </label>
-                                        </div>
-
-                                        <div class="flex items-center">
-                                            <input id="price-range-10" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                            <label for="price-range-10" class="ms-2 text-sm font-medium text-gray-900 ">
-                                                Over
-                                                $100 </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div>
-                                        <label for="from_amount" class="mb-2 block text-sm font-medium text-gray-900 ">
-                                            From
-                                        </label>
-                                        <input type="text" id="from_amount"
-                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    "
-                                            placeholder="300" required />
-                                    </div>
-
-                                    <div>
-                                        <label for="to_amount" class="mb-2 block text-sm font-medium text-gray-900 "> To
-                                        </label>
-                                        <input type="text" id="to_amount"
-                                            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    "
-                                            placeholder="3500" required />
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 id="accordion-flush-heading-4">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-4" aria-expanded="false"
-                                    aria-controls="accordion-flush-body-4">
-                                    <span>Shipping to</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-4" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-4">
-                                <div class="space-y-3">
-                                    <label for="asia" class="relative block">
-                                        <input type="checkbox" name="asia" id="asia"
-                                            class="peer absolute left-2 top-2 appearance-none" />
-                                        <div
-                                            class="relative cursor-pointer space-y-1 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-primary-700 peer-checked:bg-primary-50 peer-checked:text-primary-700   ">
-                                            <p class="text-sm font-medium">Asia</p>
-                                            <p class="text-sm font-normal">Delivery for Asia for <span
-                                                    class="font-medium">$954</span></p>
-                                        </div>
+                            </header>
+                            <div class="mt-1">
+                                <div class="flex flex-col gap-0.5">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Marca 1</span>
                                     </label>
-
-                                    <label for="africa" class="relative block">
-                                        <input type="checkbox" name="africa" id="africa"
-                                            class="peer absolute left-2 top-2 appearance-none" />
-                                        <div
-                                            class="relative cursor-pointer space-y-1 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-primary-700 peer-checked:bg-primary-50 peer-checked:text-primary-700   ">
-                                            <p class="text-sm font-medium">Africa</p>
-                                            <p class="text-sm font-normal">Delivery for Africa for <span
-                                                    class="font-medium">$706,834</span></p>
-                                        </div>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Marca 2</span>
                                     </label>
-
-                                    <label for="americas" class="relative block">
-                                        <input type="checkbox" name="americas" id="americas"
-                                            class="peer absolute left-2 top-2 appearance-none" checked />
-                                        <div
-                                            class="relative cursor-pointer space-y-1 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-primary-700 peer-checked:bg-primary-50 peer-checked:text-primary-700   ">
-                                            <p class="text-sm font-medium">Americas</p>
-                                            <p class="text-sm font-normal">Delivery for USA for <span
-                                                    class="font-medium">$365,35</span></p>
-                                        </div>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Marca 3</span>
                                     </label>
-
-                                    <label for="australia" class="relative block">
-                                        <input type="checkbox" name="australia" id="australia"
-                                            class="peer absolute left-2 top-2 appearance-none" checked />
-                                        <div
-                                            class="relative cursor-pointer space-y-1 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-primary-700 peer-checked:bg-primary-50 peer-checked:text-primary-700   ">
-                                            <p class="text-sm font-medium">Australia/Oceania</p>
-                                            <p class="text-sm font-normal">Delivery for Australia for <span
-                                                    class="font-medium">$209,98</span></p>
-                                        </div>
-                                    </label>
-
-                                    <label for="europe" class="relative block">
-                                        <input type="checkbox" name="europe" id="europe"
-                                            class="peer absolute left-2 top-2 appearance-none" />
-                                        <div
-                                            class="relative cursor-pointer space-y-1 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-primary-700 peer-checked:bg-primary-50 peer-checked:text-primary-700   ">
-                                            <p class="text-sm font-medium">Europe</p>
-                                            <p class="text-sm font-normal">Delivery for Europe for <span
-                                                    class="font-medium">$1,365,35</span></p>
-                                        </div>
-                                    </label>
-
-                                    <label for="antarctica" class="relative block">
-                                        <input type="checkbox" name="antarctica" id="antarctica"
-                                            class="peer absolute left-2 top-2 appearance-none" />
-                                        <div
-                                            class="relative cursor-pointer space-y-1 overflow-hidden rounded-lg border border-gray-200 bg-white p-4 text-gray-500 peer-checked:border-primary-700 peer-checked:bg-primary-50 peer-checked:text-primary-700   ">
-                                            <p class="text-sm font-medium">Antarctica</p>
-                                            <p class="text-sm font-normal">N/A</p>
-                                        </div>
-                                    </label>
-                                </div>
-                            </div>
-                            <h2 id="accordion-flush-heading-5">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-5" aria-expanded="false"
-                                    aria-controls="accordion-flush-body-5">
-                                    <span>Color</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-5" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-5">
-                                <div>
-                                    <label class="sr-only">Color</label>
-
-                                    <div class="mt-2 flex items-center gap-2">
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-gray-900 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Black" class="sr-only"
-                                                checked />
-                                            <span id="color-choice-0-label" class="sr-only"> Black </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-gray-900 border-opacity-10 bg-gray-900"></span>
-                                        </label>
-
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-primary-700 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Blue" class="sr-only" />
-                                            <span id="color-choice-0-label" class="sr-only"> Blue </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-primary-700 border-opacity-10 bg-primary-700"></span>
-                                        </label>
-
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-pink-600 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Pink" class="sr-only" />
-                                            <span id="color-choice-0-label" class="sr-only"> Pink </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-pink-600 border-opacity-10 bg-pink-600"></span>
-                                        </label>
-
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-teal-600 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Teal" class="sr-only" />
-                                            <span id="color-choice-0-label" class="sr-only"> Teal </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-teal-600 border-opacity-10 bg-teal-600"></span>
-                                        </label>
-
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-purple-600 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Purple" class="sr-only" />
-                                            <span id="color-choice-0-label" class="sr-only"> Purple </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-purple-600 border-opacity-10 bg-purple-600"></span>
-                                        </label>
-
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-yellow-400 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Yellow" class="sr-only" />
-                                            <span id="color-choice-0-label" class="sr-only"> Yellow </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-yellow-400 border-opacity-10 bg-yellow-400"></span>
-                                        </label>
-
-                                        <label
-                                            class="relative -m-0.5 flex cursor-pointer items-center justify-center rounded-full p-0.5 ring-green-600 focus:outline-none has-[:checked]:ring-2">
-                                            <input type="radio" name="color-choice" value="Green" class="sr-only" />
-                                            <span id="color-choice-0-label" class="sr-only"> Green </span>
-                                            <span aria-hidden="true"
-                                                class="h-7 w-7 rounded-full border border-green-600 border-opacity-10 bg-green-600"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 id="accordion-flush-heading-6">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-6" aria-expanded="false"
-                                    aria-controls="accordion-flush-body-6">
-                                    <span>Delivery Method</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-6" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-6">
-                                <div class="space-y-3">
-                                    <div class="flex items-center">
-                                        <input id="flowbox" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="flowbox" class="ms-2 text-sm font-medium text-gray-900 "> Flowbox
-                                        </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="pick-from-store" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="pick-from-store" class="ms-2 text-sm font-medium text-gray-900 ">
-                                            Pick up
-                                            from the store </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="courier" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="courier" class="ms-2 text-sm font-medium text-gray-900 "> Fast
-                                            courier </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <h2 id="accordion-flush-heading-7">
-                                <button type="button"
-                                    class="mb-4 flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-7" aria-expanded="false"
-                                    aria-controls="accordion-flush-body-7">
-                                    <span>Condition</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-7" class="mb-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-7">
-                                <div class="flex items-center">
-                                    <input id="new" type="radio" name="condition" value=""
-                                        class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                    <label for="new" class="ms-2 text-sm font-medium text-gray-900 ">
-                                        New Product</label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="used" type="radio" name="condition" value=""
-                                        class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                    <label for="used" class="ms-2 text-sm font-medium text-gray-900 ">
-                                        Used Prooduct</label>
-                                </div>
-
-                                <div class="flex items-center">
-                                    <input id="resealed" type="radio" name="condition" value=""
-                                        class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                    <label for="resealed" class="ms-2 text-sm font-medium text-gray-900 "> Resealed
-                                    </label>
-                                </div>
-                            </div>
-                            <h2 id="accordion-flush-heading-8">
-                                <button type="button"
-                                    class="flex w-full items-center justify-between font-medium text-gray-500 hover:text-gray-900   rtl:text-right "
-                                    data-accordion-target="#accordion-flush-body-8" aria-expanded="false"
-                                    aria-controls="accordion-flush-body-8">
-                                    <span>Weight</span>
-                                    <svg data-accordion-icon class="h-5 w-5 shrink-0 rotate-180" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m5 15 7-7 7 7" />
-                                    </svg>
-                                </button>
-                            </h2>
-                            <div id="accordion-flush-body-8" class="my-4 hidden space-y-4"
-                                aria-labelledby="accordion-flush-heading-8">
-                                <div class="space-y-3">
-                                    <div class="flex items-center">
-                                        <input id="weight-1" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="weight-1" class="ms-2 text-sm font-medium text-gray-900 "> Under 1
-                                            kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-2" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
-                                            checked />
-                                        <label for="weight-2" class="ms-2 text-sm font-medium text-gray-900 "> 1 kg to 5
-                                            kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-3" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="weight-3" class="ms-2 text-sm font-medium text-gray-900 "> 5 kg to
-                                            10 kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-4" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="weight-4" class="ms-2 text-sm font-medium text-gray-900 "> 10 kg to
-                                            20 kg </label>
-                                    </div>
-
-                                    <div class="flex items-center">
-                                        <input id="weight-5" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
-                                        <label for="weight-5" class="ms-2 text-sm font-medium text-gray-900 "> Over 20
-                                            kg </label>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </aside>
+                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                            <header class="flex items-center justify-between">
+                                <p>
+                                    Año
+                                </p>
+                                <button class="" type="button">
+                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 9-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </header>
+                            <div class="mt-1">
+                                <div class="flex flex-col gap-0.5">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Año 1</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Año 2</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Año 3</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                            <header class="flex items-center justify-between">
+                                <p>
+                                    Industria
+                                </p>
+                                <button class="" type="button">
+                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 9-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </header>
+                            <div class="mt-1">
+                                <div class="flex flex-col gap-0.5">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Industria 1</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Industria 2</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Industria 3</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                            <header class="flex items-center justify-between">
+                                <p>
+                                    Interfaz
+                                </p>
+                                <button class="" type="button">
+                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 9-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </header>
+                            <div class="mt-1">
+                                <div class="flex flex-col gap-0.5">
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Interfaz 1</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Interfaz 2</span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="checkbox" class="form-checkbox" />
+                                        <span class="ml-2">Interfaz 3</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <button
+                            class="w-full btn-secondary py-2.5 mt-3 rounded-lg font-bold text-lg  transition-all duration-200 easy-in-out">
+                            Aplicar filtros
+                        </button>
+                    </div>
                     <!-- Right content -->
-                    <div class="w-full">
+                    <div class="w-full ">
+                        <div class="flex items-center justify-between w-full mb-5">
+                            <div>
+                                Cards
+                            </div>
+                            <div>
+                                <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
+                                    class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
+                                    <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2"
+                                            d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
+                                    </svg>
+                                    Sort by
+                                    <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m19 9-7 7-7-7" />
+                                    </svg>
+                                </button>
+                                <div id="dropdownSort2"
+                                    class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow "
+                                    data-popper-placement="bottom">
+                                    <ul class="p-2 text-left text-sm font-medium text-gray-500 "
+                                        aria-labelledby="sortDropdownButton">
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                The most popular </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                Newest </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                Increasing price </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                Decreasing price </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                No. reviews </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900   ">
+                                                Discount % </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Product Cards -->
                         <div class="grid gap-4 sm:grid-cols-2">
                             <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
@@ -2739,146 +2107,146 @@ if (isset($_SESSION['usuario_id'])) {
         <div class="flex flex-col items-center w-full  ">
 
             <?php if (isset($_SESSION['usuario_id'])): ?>
-                <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
+                        <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
 
-                <!-- Saludo -->
-                <div class="text-center mb-4">
-                    <p class="text-lg font-semibold text-slate-900">
-                        👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
-                    </p>
-                    <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
-                </div>
-
-                <!-- Botón cerrar sesión -->
-                <button type="button" id="logoutModalBtn"
-                    class="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400 focus:ring-offset-1 transition-colors mb-4">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
-                    </svg>
-                    <span>Cerrar sesión</span>
-                </button>
-
-                <!-- Modal -->
-                <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
-                    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                        <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
-                        <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de
-                            inicio
-                            de sesión.</p>
-                        <div class="flex justify-end gap-3">
-                            <button id="cancelLogout"
-                                class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
-                            <a href="logout.php"
-                                class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600">Sí,
-                                salir</a>
+                        <!-- Saludo -->
+                        <div class="text-center mb-4">
+                            <p class="text-lg font-semibold text-slate-900">
+                                👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
+                            </p>
+                            <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
                         </div>
-                    </div>
-                </div>
+
+                        <!-- Botón cerrar sesión -->
+                        <button type="button" id="logoutModalBtn"
+                            class="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400 focus:ring-offset-1 transition-colors mb-4">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                            </svg>
+                            <span>Cerrar sesión</span>
+                        </button>
+
+                        <!-- Modal -->
+                        <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+                            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                                <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
+                                <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de
+                                    inicio
+                                    de sesión.</p>
+                                <div class="flex justify-end gap-3">
+                                    <button id="cancelLogout"
+                                        class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
+                                    <a href="logout.php"
+                                        class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600">Sí,
+                                        salir</a>
+                                </div>
+                            </div>
+                        </div>
 
             <?php else: ?>
-                <!-- Botones login y registro -->
-                <div class="flex gap-3 mb-4">
-                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        data-active-tab="login"
-                        class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
-                        type="button">
-                        Iniciar sesión
-                    </button>
-                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                        data-active-tab="register"
-                        class="text-gray-700 border bg-white border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
-                        type="button">
-                        Registro
-                    </button>
-                </div>
+                        <!-- Botones login y registro -->
+                        <div class="flex gap-3 mb-4">
+                            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                                data-active-tab="login"
+                                class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
+                                type="button">
+                                Iniciar sesión
+                            </button>
+                            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                                data-active-tab="register"
+                                class="text-gray-700 border bg-white border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
+                                type="button">
+                                Registro
+                            </button>
+                        </div>
             <?php endif; ?>
 
             <!-- Carrito -->
             <div class="w-full">
                 <?php if (!empty($_SESSION['carrito'])): ?>
-                    <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg ">
-                        <?php $total = 0; ?>
-                        <?php foreach ($_SESSION['carrito'] as $index => $item): ?>
-                            <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
-                            <?php $total += $subtotal; ?>
-                            <li class="relative bg-white rounded-xl  xl:p-4 p-2.5 h-full flex items-center xl:gap-3 gap-2">
-                                <!-- Imagen del producto con borde -->
-                                <div class="flex-shrink-0">
-                                    <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
-                                        <img src="/assets/images/carritoProducto.png"
-                                            alt="<?php echo htmlspecialchars($item['nombre']); ?>"
-                                            class="w-full h-full object-cover">
-                                    </div>
+                            <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg ">
+                                <?php $total = 0; ?>
+                                <?php foreach ($_SESSION['carrito'] as $index => $item): ?>
+                                            <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
+                                            <?php $total += $subtotal; ?>
+                                            <li class="relative bg-white rounded-xl  xl:p-4 p-2.5 h-full flex items-center xl:gap-3 gap-2">
+                                                <!-- Imagen del producto con borde -->
+                                                <div class="flex-shrink-0">
+                                                    <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
+                                                        <img src="/assets/images/carritoProducto.png"
+                                                            alt="<?php echo htmlspecialchars($item['nombre']); ?>"
+                                                            class="w-full h-full object-cover">
+                                                    </div>
+                                                </div>
+
+                                                <!-- Contenido derecho -->
+                                                <div class="flex-grow flex flex-col justify-between h-full py-1 xl:gap-6 gap-4">
+                                                    <!-- Parte superior: Nombre y botón cerrar -->
+                                                    <div class="flex items-start justify-between">
+                                                        <h3 class="font-semibold text-gray-800 xl:text-base text-sm uppercase tracking-wide">
+                                                            <?php echo htmlspecialchars($item['nombre']); ?>
+                                                        </h3>
+                                                        <button onclick="removeItem(<?php echo $index; ?>)"
+                                                            class="text-gray-600 hover:text-gray-800 transition-colors ml-2">
+                                                            <svg class="xl:w-6 xl:h-6 w-4 h-4" fill="none" stroke="currentColor"
+                                                                viewBox="0 0 24 24">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                    d="M6 18L18 6M6 6l12 12">
+                                                                </path>
+                                                            </svg>
+                                                        </button>
+                                                    </div>
+
+                                                    <!-- Parte inferior: Precio y controles -->
+                                                    <div class="flex items-center justify-between">
+                                                        <!-- Precio -->
+                                                        <span class="xl:text-xl text-sm font-semibold text-gray-800">
+                                                            USD. <?php echo number_format($subtotal, 2); ?>
+                                                        </span>
+
+                                                        <!-- Controles de cantidad -->
+                                                        <div class="flex items-center border border-gray-300 rounded-md">
+                                                            <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
+                                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
+                                                                −
+                                                            </button>
+                                                            <span
+                                                                class="xl:w-12 w-8 text-center text-gray-800 font-medium xl:text-lg text-base border-x border-gray-300">
+                                                                <?php echo $item['cantidad']; ?>
+                                                            </span>
+                                                            <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
+                                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                <?php endforeach; ?>
+                            </ul>
+
+                            <div class="border-t pt-4 mt-4">
+                                <div class="flex justify-between items-center mb-3">
+                                    <span class="font-bold xl:text-xl">Total:</span>
+                                    <span class="text-white font-bold xl:text-xl">$<?php echo number_format($total, 2); ?></span>
                                 </div>
-
-                                <!-- Contenido derecho -->
-                                <div class="flex-grow flex flex-col justify-between h-full py-1 xl:gap-6 gap-4">
-                                    <!-- Parte superior: Nombre y botón cerrar -->
-                                    <div class="flex items-start justify-between">
-                                        <h3 class="font-semibold text-gray-800 xl:text-base text-sm uppercase tracking-wide">
-                                            <?php echo htmlspecialchars($item['nombre']); ?>
-                                        </h3>
-                                        <button onclick="removeItem(<?php echo $index; ?>)"
-                                            class="text-gray-600 hover:text-gray-800 transition-colors ml-2">
-                                            <svg class="xl:w-6 xl:h-6 w-4 h-4" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M6 18L18 6M6 6l12 12">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                    </div>
-
-                                    <!-- Parte inferior: Precio y controles -->
-                                    <div class="flex items-center justify-between">
-                                        <!-- Precio -->
-                                        <span class="xl:text-xl text-sm font-semibold text-gray-800">
-                                            USD. <?php echo number_format($subtotal, 2); ?>
-                                        </span>
-
-                                        <!-- Controles de cantidad -->
-                                        <div class="flex items-center border border-gray-300 rounded-md">
-                                            <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
-                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
-                                                −
-                                            </button>
-                                            <span
-                                                class="xl:w-12 w-8 text-center text-gray-800 font-medium xl:text-lg text-base border-x border-gray-300">
-                                                <?php echo $item['cantidad']; ?>
-                                            </span>
-                                            <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
-                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
-                                                +
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-
-                    <div class="border-t pt-4 mt-4">
-                        <div class="flex justify-between items-center mb-3">
-                            <span class="font-bold xl:text-xl">Total:</span>
-                            <span class="text-white font-bold xl:text-xl">$<?php echo number_format($total, 2); ?></span>
-                        </div>
-                        <a href="carrito.php"
-                            class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
-                            Ir al Carrito
-                        </a>
-                        <button
-                            class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
-                            type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
-                            Seguir viendo
-                        </button>
-                    </div>
+                                <a href="carrito.php"
+                                    class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
+                                    Ir al Carrito
+                                </a>
+                                <button
+                                    class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
+                                    type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
+                                    Seguir viendo
+                                </button>
+                            </div>
                 <?php else: ?>
-                    <p
-                        class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
-                        <span class="text-2xl mb-1">🛒</span>
-                        <span class="font-medium">Tu carrito está vacío</span>
-                    </p>
+                            <p
+                                class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
+                                <span class="text-2xl mb-1">🛒</span>
+                                <span class="font-medium">Tu carrito está vacío</span>
+                            </p>
                 <?php endif; ?>
             </div>
         </div>
