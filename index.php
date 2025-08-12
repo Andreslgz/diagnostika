@@ -141,51 +141,6 @@ if (isset($_SESSION['usuario_id'])) {
                         </div>
                     </button>
 
-                    <!-- <button
-              data-collapse-toggle="mobile-menu-search"
-              aria-controls="mobile-menu-search"
-              aria-expanded="false"
-              type="button"
-              class="lg:hidden inline-flex mr-2 lg:mr-0 items-center text-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2.5 lg:px-5 py-2.5 focus:outline-none"
-            >
-              <svg
-                class="w-5 h-5 lg:mr-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-            <span
-              class="hidden mx-2 w-px h-5 bg-gray-200 lg:inline lg:mx-3"
-            ></span>
-            <button
-              type="button"
-              data-dropdown-toggle="language-dropdown"
-              class="inline-flex items-center text-gray-800 focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-2.5 lg:px-5 py-2.5 mr-2 focus:outline-none"
-            >
-              English
-              <svg
-                class="ml-1 w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 9l-7 7-7-7"
-                ></path>
-              </svg>
-            </button> -->
-                    <!-- Dropdown -->
                     <div class="hidden z-50 my-4 w-48 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
                         id="language-dropdown">
                         <ul class="py-1" role="none">
@@ -244,13 +199,8 @@ if (isset($_SESSION['usuario_id'])) {
                     </form>
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-0 lg:mt-0 lg:h-full">
                         <li class="lg:h-full lg:flex lg:items-center btn-secondary xl:py-3">
-                            <a href="#" <<<<<<< Updated upstream
+                            <a href="#"
                                 class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio</a>
-                            =======
-                            class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6
-                            lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio
-                            123</a>
-                            >>>>>>> Stashed changes
                         </li>
                         <li class="lg:h-full lg:flex lg:items-center xl:py-3">
                             <a href="#"
