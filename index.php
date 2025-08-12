@@ -611,47 +611,54 @@ if (isset($_SESSION['usuario_id'])) {
         </section>
         <!-- METODO DE PAGO Y HERRAMIENTAS -->
         <section class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
-            <div class="container mx-auto  mb-4 shadow-xl rounded-b-xl" x-data="{ tab: 'tab1' }">
+            <div class="container mx-auto mb-4 shadow-xl rounded-b-xl" x-data="{ tab: 'tab1' }">
                 <ul class="flex w-full">
                     <li class="flex-1 -mb-px">
-                        <a class="block rounded-t-xl  w-full text-center py-3 px-4 rounded-t border-t !border-l font-extrabold text-2xl"
+                        <a class="block rounded-t-xl w-full text-center xl:py-3 py-2 xl:px-4 px-2 rounded-t border-t !border-l xl:font-extrabold font-bold xl:text-2xl text-base"
                             href="#"
                             :class="{ 'bg-white text-gray-900 font-extrabold border-l border-t-8 border-r border-[#FFBD47]': tab == 'tab1'}"
                             @click.prevent="tab = 'tab1'">Método de pago</a>
                     </li>
                     <li class="flex-1 -mb-px">
-                        <a class="block rounded-t-xl   w-full text-center py-3 px-4 rounded-t border-t !border-r font-extrabold text-gray-500 text-2xl"
+                        <a class="block rounded-t-xl w-full text-center xl:py-3 py-2 xl:px-4 px-2 rounded-t border-t !border-r xl:font-extrabold font-bold text-gray-500 xl:text-2xl text-base"
                             href="#"
                             :class="{ 'bg-white text-gray-900 font-extrabold border-t-8 border-l border-[#FFBD47]': tab == 'tab2'}"
-                            @click.prevent="tab = 'tab2'">Herramientas de instalación remota</a>
+                            @click.prevent="tab = 'tab2'">
+                            <span class="hidden xl:inline">Herramientas de instalación remota</span>
+                            <span class="xl:hidden">Inst. remota</span>
+                        </a>
                     </li>
                 </ul>
-                <div class="content rounded-b-xl   bg-white  border-l border-r border-b border-[#FFBD47] pt-4 border-t">
-                    <div x-show="tab == 'tab1'" class="p-16">
-                        <p class="text-2xl">
+                <div class="content rounded-b-xl bg-white border-l border-r border-b border-[#FFBD47] pt-4 border-t">
+                    <div x-show="tab == 'tab1'" class="xl:p-16 p-6">
+                        <p class="xl:text-2xl text-lg">
                             En DDG aceptamos PayPal, Western Union y MoneyGram; generamos la orden de pago para que
                             usted la complete; tenga en cuenta que PayPal incluye una tarifa adicional.
                         </p>
-                        <div class="flex justify-between w-full mt-10">
-                            <img src="/assets/icons/svg/paymet-methos/paypal.svg" alt="">
-                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt="">
-                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt="">
+                        <div class="flex flex-col sm:flex-row justify-between w-full xl:mt-10 mt-6 gap-4">
+                            <img src="/assets/icons/svg/paymet-methos/paypal.svg" alt=""
+                                class="h-8 sm:h-auto object-contain">
+                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt=""
+                                class="h-8 sm:h-auto object-contain">
+                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt=""
+                                class="h-8 sm:h-auto object-contain">
                         </div>
                     </div>
-                    <div x-show="tab == 'tab2'" class="p-16">
-                        <p class="text-2xl">
+                    <div x-show="tab == 'tab2'" class="xl:p-16 p-6">
+                        <p class="xl:text-2xl text-lg">
                             En DDG utilizamos AnyDesk, TeamViewer y UltraViewer para instalaciones remotas; solo
                             conéctese a Internet y nos encargaremos del resto de forma rápida, segura y sin
                             complicaciones.
                         </p>
-                        <div class="flex justify-between w-full mt-10">
-                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt="">
-                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt="">
-                            <img src="/assets/icons/svg/remote-tools/ultraviewer.svg" alt="">
+                        <div class="flex flex-col sm:flex-row justify-between w-full xl:mt-10 mt-6 gap-4">
+                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt=""
+                                class="h-8 sm:h-auto object-contain">
+                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt=""
+                                class="h-8 sm:h-auto object-contain">
+                            <img src="/assets/icons/svg/remote-tools/ultraviewer.svg" alt=""
+                                class="h-8 sm:h-auto object-contain">
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </section>
@@ -851,42 +858,45 @@ if (isset($_SESSION['usuario_id'])) {
     </main>
     <!-- FOOTER -->
     <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
-        <div class="py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-4 gap-16">
-            <div>
-                <img src="/assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-start h-min w-[275px]" />
-                <div class="grid grid-cols-5 gap-4 mt-7 border-b border-gray-500 border-solid pb-6 ">
+        <div
+            class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
+            <div class="text-center sm:text-left">
+                <img src="/assets/icons/Logotipo.svg" alt=""
+                    class="mx-auto sm:mx-0 block flex items-start h-min w-[200px] md:w-[275px]" />
+                <div
+                    class="grid grid-cols-5 gap-3 md:gap-4 mt-5 md:mt-7 border-b border-gray-500 border-solid pb-6 max-w-[250px] mx-auto sm:mx-0">
                     <div
-                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
                         <img src="/assets/icons/svg/social/fb.svg" alt="">
                     </div>
                     <div
-                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
                         <img src="/assets/icons/svg/social/ig.svg" alt="">
                     </div>
                     <div
-                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
                         <img src="/assets/icons/svg/social/telegram.svg" alt="">
                     </div>
                     <div
-                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
                         <img src="/assets/icons/svg/social/wsp.svg" alt="">
                     </div>
                     <div
-                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[40px] rounded-full flex items-center justify-center">
+                        class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
                         <img src="/assets/icons/svg/social/email.svg" alt="">
                     </div>
                 </div>
-                <p class="text-xl max-w-[435px] mt-6 text-center text-balance">
+                <p class="text-lg md:text-xl max-w-[435px] mt-4 md:mt-6 text-center sm:text-left mx-auto sm:mx-0">
                     Catálogo con más de <span class="font-extrabold">200 Softwares!</span>
                 </p>
                 <a href="#"
-                    class="btn-secondary w-full rounded-lg block mt-5 font-extrabold text-xl text-center py-3 hover:brightness-110 transition-all easy-in-out duration-200">
+                    class="btn-secondary w-full rounded-lg block mt-4 md:mt-5 font-extrabold text-lg md:text-xl text-center py-2 md:py-3 hover:brightness-110 transition-all easy-in-out duration-200">
                     Ver catálogo
                 </a>
             </div>
-            <div>
-                <h2 class="text-2xl font-extrabold">Mapa del sitio </h2>
-                <ul class="flex flex-col gap-5 mt-4 text-lg">
+            <div class="mt-8 sm:mt-0">
+                <h2 class="text-xl md:text-2xl font-extrabold text-center sm:text-left">Mapa del sitio</h2>
+                <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-center sm:text-left">
                     <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Inicio</a>
                     </li>
                     <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sobre nosotros</a>
@@ -899,9 +909,9 @@ if (isset($_SESSION['usuario_id'])) {
                             vendidas</a></li>
                 </ul>
             </div>
-            <div>
-                <h2 class="text-2xl font-extrabold">Ayuda </h2>
-                <ul class="flex flex-col gap-5 mt-4 text-lg">
+            <div class="mt-8 lg:mt-0">
+                <h2 class="text-xl md:text-2xl font-extrabold text-center sm:text-left">Ayuda</h2>
+                <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-center sm:text-left">
                     <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Iniciar sesión</a>
                     </li>
                     <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Registrarse</a>
@@ -913,15 +923,15 @@ if (isset($_SESSION['usuario_id'])) {
                     <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">How to buy</a></li>
                 </ul>
             </div>
-            <div>
-                <h2 class="text-2xl font-extrabold">Recursos </h2>
-                <ul class="flex flex-col gap-5 mt-4 text-lg">
-                    <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Términos y
-                            condiciones</a>
-                    </li>
-                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Política de
-                            privacidad</a>
-                    </li>
+            <div class="mt-8 lg:mt-0">
+                <h2 class="text-xl md:text-2xl font-extrabold text-center sm:text-left">Recursos</h2>
+                <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-center sm:text-left"></ul>
+                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Términos y
+                        condiciones</a>
+                </li>
+                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Política de
+                        privacidad</a>
+                </li>
                 </ul>
             </div>
         </div>
