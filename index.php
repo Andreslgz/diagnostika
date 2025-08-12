@@ -227,7 +227,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 class="block text-gray-600 py-2 pr-4 pl-3 border-b border-gray-100 lg:hover:bg-white lg:border-0 lg:hover:text-blue-700 lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center">Tienda</a>
                         </li>
                         <li class="lg:h-full lg:flex lg:items-center xl:py-3">
-                            <a href="#"
+                            <a href="/../pages/contacto.php"
                                 class="block text-gray-600 py-2 pr-4 pl-3 border-b border-gray-100 lg:hover:bg-white lg:border-0 lg:hover:text-blue-700 lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center">Contacto</a>
                         </li>
                     </ul>
@@ -1266,10 +1266,9 @@ if (isset($_SESSION['usuario_id'])) {
     </div>
     <!-- DRAWER -->
     <div id="drawer-right-example"
-        class="fixed top-0 right-0 z-40 h-screen px-4 py-10 overflow-y-auto transition-transform translate-x-full btn-secondary w-80"
+        class="fixed top-0 right-0 z-40 h-screen px-4 py-10 overflow-y-auto transition-transform translate-x-full btn-secondary w-[450px]"
         tabindex="-1" aria-labelledby="drawer-right-label">
-        <div
-            class="flex flex-col items-center w-full max-w-sm mx-auto p-4 rounded-xl border border-gray-200 bg-white/90 shadow-md backdrop-blur-sm">
+        <div class="flex flex-col items-center w-full  ">
 
             <?php if (isset($_SESSION['usuario_id'])): ?>
                 <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
@@ -1320,7 +1319,7 @@ if (isset($_SESSION['usuario_id'])) {
                     </button>
                     <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                         data-active-tab="register"
-                        class="text-gray-700 border border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
+                        class="text-gray-700 border bg-white border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
                         type="button">
                         Registro
                     </button>
@@ -1330,31 +1329,80 @@ if (isset($_SESSION['usuario_id'])) {
             <!-- Carrito -->
             <div class="w-full">
                 <?php if (!empty($_SESSION['carrito'])): ?>
-                    <ul
-                        class="divide-y divide-gray-200 max-h-64 overflow-y-auto rounded-lg border border-gray-100 bg-gray-50 p-2">
+                    <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg p-2">
                         <?php $total = 0; ?>
-                        <?php foreach ($_SESSION['carrito'] as $item): ?>
+                        <?php foreach ($_SESSION['carrito'] as $index => $item): ?>
                             <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
                             <?php $total += $subtotal; ?>
-                            <li class="py-2 flex justify-between items-center hover:bg-white rounded-md px-2">
-                                <div>
-                                    <p class="font-medium text-slate-700"><?php echo $item['nombre']; ?></p>
-                                    <p class="text-xs text-slate-500">Cantidad: <?php echo $item['cantidad']; ?></p>
+                            <li class="relative bg-white rounded-xl  p-4 h-full flex items-center gap-3">
+                                <!-- Imagen del producto con borde -->
+                                <div class="flex-shrink-0">
+                                    <div class="w-[85px] h-[85px] ">
+                                        <img src="/assets/images/carritoProducto.png"
+                                            alt="<?php echo htmlspecialchars($item['nombre']); ?>"
+                                            class="w-full h-full object-cover">
+                                    </div>
                                 </div>
-                                <span class="text-indigo-600 font-semibold">$<?php echo number_format($subtotal, 2); ?></span>
+
+                                <!-- Contenido derecho -->
+                                <div class="flex-grow flex flex-col justify-between h-full py-1 gap-6">
+                                    <!-- Parte superior: Nombre y botón cerrar -->
+                                    <div class="flex items-start justify-between">
+                                        <h3 class="font-semibold text-gray-800 text-base uppercase tracking-wide">
+                                            <?php echo htmlspecialchars($item['nombre']); ?>
+                                        </h3>
+                                        <button onclick="removeItem(<?php echo $index; ?>)"
+                                            class="text-gray-600 hover:text-gray-800 transition-colors ml-2">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Parte inferior: Precio y controles -->
+                                    <div class="flex items-center justify-between">
+                                        <!-- Precio -->
+                                        <span class="text-xl font-semibold text-gray-800">
+                                            USD. <?php echo number_format($subtotal, 2); ?>
+                                        </span>
+
+                                        <!-- Controles de cantidad -->
+                                        <div class="flex items-center border border-gray-300 rounded-md">
+                                            <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
+                                                class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-xl font-medium">
+                                                −
+                                            </button>
+                                            <span
+                                                class="w-12 text-center text-gray-800 font-medium text-lg border-x border-gray-300">
+                                                <?php echo $item['cantidad']; ?>
+                                            </span>
+                                            <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
+                                                class="w-6 h-6 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-xl font-medium">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
                             </li>
                         <?php endforeach; ?>
                     </ul>
 
-                    <div class="mt-3 border-t pt-3">
+                    <div class="border-t pt-4 mt-4">
                         <div class="flex justify-between items-center mb-3">
-                            <span class="font-bold text-slate-800">Total:</span>
-                            <span class="text-green-600 font-bold text-lg">$<?php echo number_format($total, 2); ?></span>
+                            <span class="font-bold text-xl">Total:</span>
+                            <span class="text-white font-bold text-xl">$<?php echo number_format($total, 2); ?></span>
                         </div>
                         <a href="carrito.php"
-                            class="block w-full text-center bg-indigo-500 hover:bg-indigo-600 text-white py-2 rounded-full font-medium transition-colors">
-                            Ver carrito
+                            class="block w-full text-center btn-primary rounded-lg py-3 text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
+                            Ir al Carrito
                         </a>
+                        <button
+                            class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg py-3 text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
+                            type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
+                            Seguir viendo
+                        </button>
                     </div>
                 <?php else: ?>
                     <p
@@ -1374,6 +1422,78 @@ if (isset($_SESSION['usuario_id'])) {
         <span class="block" id="alertaTexto"></span>
     </div>
 
+    <!-- Botones flotantes -->
+    <!-- <div class="fixed bottom-5 right-5 flex flex-col items-end gap-6">
+        <img src="/assets/icons/svg/WhatsAppChat.svg" alt="" class="w-16 h-16 cursor-pointer">
+        <img src="/assets/images/chatLogo.png" alt="" class="w-[200px] h-full cursor-pointer" id="chatBotTrigger">
+    </div> -->
+
+    <!-- Chatbot Flotante -->
+    <div id="chatbotContainer"
+        class="hidden fixed bottom-5 right-5 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 z-50 flex-col overflow-hidden">
+        <!-- Header del Chatbot -->
+        <div class="bg-gradient-to-r from-amber-400 to-amber-500 px-4 py-3 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
+                    <span class="text-amber-500 text-sm font-bold">🤖</span>
+                </div>
+                <div>
+                    <h3 class="text-white font-semibold text-sm">Asistente Virtual</h3>
+                    <p class="text-amber-100 text-xs">En línea</p>
+                </div>
+            </div>
+            <button id="closeChatbot" class="text-white hover:text-amber-100 transition-colors">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Área de mensajes -->
+        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-3">
+            <!-- Mensaje inicial del bot -->
+            <div class="flex items-start gap-2">
+                <div class="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span class="text-white text-xs">🤖</span>
+                </div>
+                <div class="bg-white rounded-lg rounded-tl-none px-3 py-2 shadow-sm max-w-xs">
+                    <p class="text-sm text-gray-800">¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input de mensaje -->
+        <div class="border-t bg-white p-3">
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="Escribe tu mensaje..."
+                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent">
+                <button id="sendMessage"
+                    class="bg-amber-400 hover:bg-amber-500 text-white px-3 py-2 rounded-lg transition-colors flex items-center justify-center">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <!-- Indicador de escritura -->
+        <div id="typingIndicator" class="hidden px-4 py-2 bg-gray-50">
+            <div class="flex items-center gap-2">
+                <div class="w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center">
+                    <span class="text-white text-xs">🤖</span>
+                </div>
+                <div class="flex gap-1">
+                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
+                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
+                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
+                </div>
+                <span class="text-xs text-gray-500">Escribiendo...</span>
+            </div>
+        </div>
+    </div>
+
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
@@ -1383,6 +1503,89 @@ if (isset($_SESSION['usuario_id'])) {
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
+    <!-- Debug Script para Chatbot -->
+    <script>
+        console.log('🔍 Debug Script Loaded');
+
+        document.addEventListener("DOMContentLoaded", function () {
+            console.log('🔍 DOM Content Loaded');
+
+            // Verificar elementos
+            const chatTrigger = document.getElementById("chatBotTrigger");
+            const chatContainer = document.getElementById("chatbotContainer");
+            const closeButton = document.getElementById("closeChatbot");
+
+            console.log('🔍 Chat Trigger:', chatTrigger);
+            console.log('🔍 Chat Container:', chatContainer);
+            console.log('🔍 Close Button:', closeButton);
+
+            if (chatTrigger && chatContainer) {
+                console.log('✅ All elements found, setting up chatbot');
+
+                // Función para abrir chatbot
+                function openChatbot() {
+                    console.log('🚀 Opening chatbot');
+                    chatContainer.classList.remove("hidden");
+                    chatContainer.style.display = "flex";
+                }
+
+                // Función para cerrar chatbot
+                function closeChatbot() {
+                    console.log('🚀 Closing chatbot');
+                    chatContainer.classList.add("hidden");
+                    chatContainer.style.display = "none";
+                }
+
+                // Event listener para abrir
+                chatTrigger.addEventListener("click", function (e) {
+                    console.log('🖱️ Chat trigger clicked!');
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openChatbot();
+                });
+
+                // Event listener para cerrar
+                if (closeButton) {
+                    closeButton.addEventListener("click", function (e) {
+                        console.log('🖱️ Close button clicked!');
+                        e.preventDefault();
+                        e.stopPropagation();
+                        closeChatbot();
+                    });
+                }
+
+                // Agregar hover effect
+                chatTrigger.addEventListener("mouseenter", function () {
+                    chatTrigger.style.transform = "scale(1.05)";
+                    chatTrigger.style.transition = "transform 0.2s ease";
+                });
+
+                chatTrigger.addEventListener("mouseleave", function () {
+                    chatTrigger.style.transform = "scale(1)";
+                });
+
+                console.log('✅ Chatbot setup complete');
+
+            } else {
+                console.error('❌ Required elements not found');
+                if (!chatTrigger) console.error('❌ Chat trigger not found');
+                if (!chatContainer) console.error('❌ Chat container not found');
+            }
+        });
+    </script>
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/689b7043b5ccf2192652acfd/1j2fit24i';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
 </body>
 
 </html>

@@ -803,3 +803,223 @@ window.FAQUtils = {
     };
   },
 };
+
+/* ============================================
+   CHATBOT FUNCTIONALITY - Funcionalidad del Chatbot
+   ============================================ */
+
+// Chatbot - Sistema de chat flotante simulado
+document.addEventListener("DOMContentLoaded", function () {
+  initializeChatbot();
+});
+
+function initializeChatbot() {
+  console.log("Initializing Chatbot...");
+
+  const chatTrigger = document.getElementById("chatBotTrigger");
+  const chatContainer = document.getElementById("chatbotContainer");
+  const closeChatbot = document.getElementById("closeChatbot");
+  const sendButton = document.getElementById("sendMessage");
+  const chatInput = document.getElementById("chatInput");
+  const chatMessages = document.getElementById("chatMessages");
+  const typingIndicator = document.getElementById("typingIndicator");
+
+  if (!chatTrigger || !chatContainer) {
+    console.warn("Chatbot elements not found");
+    return;
+  }
+
+  // Abrir chatbot
+  chatTrigger.addEventListener("click", function () {
+    console.log("Opening chatbot");
+    chatContainer.classList.remove("hidden");
+    chatContainer.classList.add("animate-chat-slide-in");
+    setTimeout(() => {
+      chatInput.focus();
+    }, 100);
+  });
+
+  // Cerrar chatbot
+  closeChatbot.addEventListener("click", function () {
+    console.log("Closing chatbot");
+    chatContainer.classList.remove("animate-chat-slide-in");
+    setTimeout(() => {
+      chatContainer.classList.add("hidden");
+    }, 300);
+  });
+
+  // Enviar mensaje
+  function sendMessage() {
+    const message = chatInput.value.trim();
+    if (!message) return;
+
+    // Agregar mensaje del usuario
+    addUserMessage(message);
+    chatInput.value = "";
+
+    // Simular respuesta del bot
+    setTimeout(() => {
+      showTypingIndicator();
+      setTimeout(() => {
+        hideTypingIndicator();
+        addBotResponse(message);
+      }, 1500);
+    }, 500);
+  }
+
+  // Event listeners para enviar mensaje
+  sendButton.addEventListener("click", sendMessage);
+
+  chatInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      sendMessage();
+    }
+  });
+
+  // Funciones auxiliares del chatbot
+  function addUserMessage(message) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "flex items-start gap-2 justify-end chatbot-message";
+    messageDiv.innerHTML = `
+      <div class="bg-amber-400 text-white rounded-lg rounded-tr-none px-3 py-2 shadow-sm max-w-xs">
+        <p class="text-sm">${escapeHtml(message)}</p>
+      </div>
+      <div class="w-6 h-6 bg-gray-300 rounded-full flex items-center justify-center flex-shrink-0">
+        <span class="text-gray-600 text-xs">👤</span>
+      </div>
+    `;
+    chatMessages.appendChild(messageDiv);
+    scrollToBottom();
+  }
+
+  function addBotResponse(userMessage) {
+    const response = generateBotResponse(userMessage);
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "flex items-start gap-2 chatbot-message";
+    messageDiv.innerHTML = `
+      <div class="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0">
+        <span class="text-white text-xs">🤖</span>
+      </div>
+      <div class="bg-white rounded-lg rounded-tl-none px-3 py-2 shadow-sm max-w-xs">
+        <p class="text-sm text-gray-800">${response}</p>
+      </div>
+    `;
+    chatMessages.appendChild(messageDiv);
+    scrollToBottom();
+  }
+
+  function showTypingIndicator() {
+    typingIndicator.classList.remove("hidden");
+    scrollToBottom();
+  }
+
+  function hideTypingIndicator() {
+    typingIndicator.classList.add("hidden");
+  }
+
+  function scrollToBottom() {
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  // Generador de respuestas del bot (simulado)
+  function generateBotResponse(userMessage) {
+    const message = userMessage.toLowerCase();
+
+    // Respuestas relacionadas con software y productos
+    if (message.includes("software") || message.includes("programa")) {
+      return "¡Perfecto! Tenemos más de 200 softwares disponibles en nuestro catálogo. ¿Hay algún tipo específico que te interese? 💻";
+    }
+
+    if (
+      message.includes("precio") ||
+      message.includes("costo") ||
+      message.includes("cuanto")
+    ) {
+      return "Los precios varían según el software. Te recomiendo revisar nuestro catálogo o contactar a nuestro equipo de ventas para cotizaciones personalizadas. 💰";
+    }
+
+    if (
+      message.includes("descuento") ||
+      message.includes("oferta") ||
+      message.includes("promocion")
+    ) {
+      return "¡Excelente pregunta! Tenemos promociones especiales regularmente. Te sugiero suscribirte a nuestro newsletter para estar al día. 🎉";
+    }
+
+    if (
+      message.includes("instalacion") ||
+      message.includes("instalar") ||
+      message.includes("como usar")
+    ) {
+      return "Proporcionamos guías de instalación detalladas y soporte técnico para todos nuestros productos. ¿Necesitas ayuda con algún software en particular? 🛠️";
+    }
+
+    if (
+      message.includes("contacto") ||
+      message.includes("telefono") ||
+      message.includes("email")
+    ) {
+      return "Puedes contactarnos a través de WhatsApp, nuestro formulario de contacto, o visita la sección de contacto en el sitio web. ¡Estamos aquí para ayudarte! 📞";
+    }
+
+    if (
+      message.includes("horario") ||
+      message.includes("atencion") ||
+      message.includes("cuando")
+    ) {
+      return "Nuestro equipo está disponible de lunes a viernes de 9:00 AM a 6:00 PM. Para consultas urgentes, puedes usar WhatsApp. ⏰";
+    }
+
+    if (
+      message.includes("licencia") ||
+      message.includes("legal") ||
+      message.includes("original")
+    ) {
+      return "Todos nuestros softwares son completamente legales y con licencias originales. Garantizamos la autenticidad de cada producto. ✅";
+    }
+
+    if (
+      message.includes("hola") ||
+      message.includes("buenos") ||
+      message.includes("saludos")
+    ) {
+      return "¡Hola! 😊 Es un placer atenderte. ¿En qué puedo ayudarte hoy? Puedo ayudarte con información sobre nuestros productos, precios, o cualquier consulta que tengas.";
+    }
+
+    if (
+      message.includes("gracias") ||
+      message.includes("perfecto") ||
+      message.includes("excelente")
+    ) {
+      return "¡De nada! Me alegra poder ayudarte. Si tienes más preguntas, no dudes en preguntarme. ¡Estoy aquí para eso! 😊";
+    }
+
+    if (
+      message.includes("adios") ||
+      message.includes("chao") ||
+      message.includes("hasta luego")
+    ) {
+      return "¡Hasta luego! Que tengas un excelente día. Recuerda que estoy aquí cuando me necesites. 👋";
+    }
+
+    // Respuesta por defecto
+    const defaultResponses = [
+      "Interesante pregunta. ¿Podrías ser más específico? Estoy aquí para ayudarte con cualquier consulta sobre nuestros productos. 🤔",
+      "Entiendo tu consulta. Te recomiendo revisar nuestro catálogo o contactar directamente a nuestro equipo de ventas para más información detallada. 📋",
+      "¡Gracias por tu pregunta! Para brindarte la mejor respuesta, ¿podrías contarme más detalles sobre lo que necesitas? 💡",
+      "Estoy aquí para ayudarte. Puedo asistirte con información sobre software, precios, instalación y más. ¿Qué te interesa saber? 🚀",
+    ];
+
+    return defaultResponses[
+      Math.floor(Math.random() * defaultResponses.length)
+    ];
+  }
+
+  console.log("Chatbot initialized successfully");
+}
