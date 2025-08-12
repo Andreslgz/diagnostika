@@ -46,6 +46,7 @@ if (isset($_SESSION['usuario_id'])) {
         $favoritos_usuario = $favoritos; // ya es array de IDs
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -83,10 +84,29 @@ if (isset($_SESSION['usuario_id'])) {
     <!-- TOP HEADER -->
     <section class="bg-black xl:py-1.5 py-0.5 overflow-hidden" id="top-header">
         <div class="marquee-container">
-            <p class="text-white font-semibold marquee-text xl:text-base text-xs">
-                $50 off your first purchase • Free shipping on orders over $100 • 30%
-                discount on selected items • Limited time offer
-            </p>
+            <?php
+            // Asumiendo que ya tienes $database (Medoo) inicializado
+
+            // Trae 1 registro activo (el más reciente)
+            $marquesina = $database->get("marquesina", ["mq_tit", "mq_url"], [
+                "mq_est" => "activo",
+                "ORDER"  => ["mq_id" => "DESC"]
+            ]);
+
+            if ($marquesina && !empty($marquesina["mq_tit"])) {
+                $titulo = htmlspecialchars($marquesina["mq_tit"], ENT_QUOTES, 'UTF-8');
+                $href   = !empty($marquesina["mq_url"]) ? $marquesina["mq_url"] : '#';
+                $href   = htmlspecialchars($href, ENT_QUOTES, 'UTF-8');
+            ?>
+                <p class="text-white font-semibold marquee-text xl:text-base text-xs">
+                    <a href="<?= $href ?>" class="hover:underline"><?= $titulo ?></a>
+                </p>
+            <?php
+            } else {
+                // Sin registros: no mostramos nada (o pon un fallback si quieres)
+                // echo '<p class="text-white font-semibold marquee-text xl:text-base text-xs">No hay promociones activas por ahora.</p>';
+            }
+            ?>
         </div>
     </section>
     <!-- HEADER - NAVBAR -->
@@ -220,15 +240,31 @@ if (isset($_SESSION['usuario_id'])) {
         <section id="image-carousel" class="splide" aria-label="Beautiful Images">
             <div class="splide__track xl:h-[85vh] h-[70vh]">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <img src="assets/images/hero1.jpg" alt="" class="" />
-                    </li>
-                    <li class="splide__slide">
-                        <img src="assets/images/hero2.jpg" alt="" class="" />
-                    </li>
-                    <li class="splide__slide">
-                        <img src="assets/images/hero3.jpg" alt="" class="" />
-                    </li>
+                    <?php
+                    // Traer todas las imágenes activas ordenadas por ID descendente
+                    $sliders = $database->select("slider", "sl_img", [
+                        "sl_est" => "activo",
+                        "ORDER"  => ["sl_id" => "DESC"]
+                    ]);
+
+                    if ($sliders && count($sliders) > 0) {
+                        foreach ($sliders as $img) {
+                            $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
+                    ?>
+                            <li class="splide__slide">
+                                <img src="uploads/slider/<?= $imagen ?>" alt="Slide" class="" />
+                            </li>
+                        <?php
+                        }
+                    } else {
+                        // Fallback si no hay imágenes activas
+                        ?>
+                        <li class="splide__slide">
+                            <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="" />
+                        </li>
+                    <?php
+                    }
+                    ?>
                 </ul>
             </div>
         </section>
@@ -447,7 +483,8 @@ if (isset($_SESSION['usuario_id'])) {
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
                                 <h2 class="font-bold text-lg md:text-xl">Soporte técnico especializado</h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    Le apoyamos antes, durante y después de la instalación con asistencia remota para
+                                    Le apoyamos antes, durante y después de la instalación con asistencia remota
+                                    para
                                     responder a sus preguntas y ayudarle a trabajar con confianza.
                                 </p>
                             </div>
@@ -460,7 +497,8 @@ if (isset($_SESSION['usuario_id'])) {
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
                                 <h2 class="font-bold text-lg md:text-xl">Cobertura global y soporte inmediato</h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    Asistimos a técnicos y mecánicos de todo el mundo con soporte rápido por WhatsApp y
+                                    Asistimos a técnicos y mecánicos de todo el mundo con soporte rápido por
+                                    WhatsApp y
                                     Telegram. Estés donde estés, te tenemos cubierto.
                                 </p>
                             </div>
@@ -474,7 +512,8 @@ if (isset($_SESSION['usuario_id'])) {
                                 <h2 class="font-bold text-lg md:text-xl">Instalación de software de diagnóstico
                                     profesional</h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    Convertimos su portátil en una potente herramienta para el diagnóstico de camiones y
+                                    Convertimos su portátil en una potente herramienta para el diagnóstico de
+                                    camiones y
                                     maquinaria pesada. El software se entrega instalado, activado y listo para usar.
                                 </p>
                             </div>
@@ -713,7 +752,8 @@ if (isset($_SESSION['usuario_id'])) {
                                     <blockquote class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
                                         "El software de diagnóstico VOLVO PTT llegó perfectamente instalado y
                                         configurado. La instalación remota fue impecable y el soporte técnico
-                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo de
+                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo
+                                        de
                                         manera profesional."
                                     </blockquote>
 
@@ -761,7 +801,8 @@ if (isset($_SESSION['usuario_id'])) {
                                     <blockquote class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
                                         "El software de diagnóstico VOLVO PTT llegó perfectamente instalado y
                                         configurado. La instalación remota fue impecable y el soporte técnico
-                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo de
+                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo
+                                        de
                                         manera profesional."
                                     </blockquote>
 
@@ -803,8 +844,10 @@ if (isset($_SESSION['usuario_id'])) {
                     <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="px-6 py-5 bg-gray-50 border-t border-gray-100">
                             <p class="text-gray-700 leading-relaxed">
-                                Cada software incluye una lista detallada de interfaces compatibles en su descripción.
-                                Además, nuestro equipo técnico puede asesorarte sobre la compatibilidad específica de tu
+                                Cada software incluye una lista detallada de interfaces compatibles en su
+                                descripción.
+                                Además, nuestro equipo técnico puede asesorarte sobre la compatibilidad específica
+                                de tu
                                 equipo. Contamos con software para las principales marcas como Launch, Autel, OTC y
                                 muchas más.
                             </p>
@@ -899,12 +942,15 @@ if (isset($_SESSION['usuario_id'])) {
                 <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-center sm:text-left">
                     <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Inicio</a>
                     </li>
-                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sobre nosotros</a>
+                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sobre
+                            nosotros</a>
                     </li>
-                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Software</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Software</a>
+                    </li>
                     <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">El software más
                             reciente</a></li>
-                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Paquetes</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Paquetes</a>
+                    </li>
                     <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Las marcas más
                             vendidas</a></li>
                 </ul>
@@ -920,7 +966,8 @@ if (isset($_SESSION['usuario_id'])) {
                             frecuentes</a></li>
                     <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Cómo ganar más
                             monedas</a></li>
-                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">How to buy</a></li>
+                    <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">How to buy</a>
+                    </li>
                 </ul>
             </div>
             <div class="mt-8 lg:mt-0">
@@ -981,7 +1028,8 @@ if (isset($_SESSION['usuario_id'])) {
                                 <form class="space-y-4" id="login-form" action="login.php" method="POST">
                                     <div>
                                         <label for="input-group-1"
-                                            class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Tu correo
+                                            class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Tu
+                                            correo
                                             electrónico</label>
                                         <div class="relative mb-6">
                                             <div
@@ -1207,7 +1255,8 @@ if (isset($_SESSION['usuario_id'])) {
                 <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
                     <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
                         <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
-                        <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de inicio
+                        <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de
+                            inicio
                             de sesión.</p>
                         <div class="flex justify-end gap-3">
                             <button id="cancelLogout"
