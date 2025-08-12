@@ -644,6 +644,11 @@ if (isset($_SESSION['usuario_id'])) {
                             conéctese a Internet y nos encargaremos del resto de forma rápida, segura y sin
                             complicaciones.
                         </p>
+                        <div class="flex justify-between w-full mt-10">
+                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt="">
+                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt="">
+                            <img src="/assets/icons/svg/remote-tools/ultraviewer.svg" alt="">
+                        </div>
                     </div>
 
 
