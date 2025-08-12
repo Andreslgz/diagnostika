@@ -216,24 +216,24 @@ if (isset($_SESSION['usuario_id'])) {
         </nav>
     </header>
     <main>
-        <section class="xl:py-20 py-14 px-4 mx-auto max-w-screen-2xl overflow-hidden">
-            <div class="p-16 border border-gray-400 border-solid rounded-3xl">
-                <h1 class="text-3xl font-bold mb-10">
+        <section class="xl:py-20 py-8 sm:py-10 md:py-14 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+            <div class="p-4 sm:p-8 md:p-12 lg:p-16 border border-gray-400 border-solid rounded-3xl">
+                <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-6 sm:mb-8 md:mb-10">
                     ¡Póngase en contacto con nosotros!
                 </h1>
                 <form action="">
-                    <div class="grid grid-cols-2 gap-20">
-                        <div class="flex flex-col gap-5">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-10 md:gap-14 lg:gap-20">
+                        <div class="flex flex-col gap-4 sm:gap-5">
                             <div>
                                 <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Tus
                                     nombres y apellidos</label>
                                 <div class="relative">
                                     <input name="nombre_completo" type="text"
-                                        class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
+                                        class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="Juan Pérez" required />
                                 </div>
                             </div>
-                            <div class="grid md:grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label
                                         class="block mb-2 text-sm xl:text-base font-medium text-gray-900">País</label>
@@ -260,7 +260,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     electrónico</label>
                                 <div class="relative">
                                     <input name="email" type="email"
-                                        class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
+                                        class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                         placeholder="juan.perez@example.com" required />
                                 </div>
                             </div>
@@ -268,13 +268,13 @@ if (isset($_SESSION['usuario_id'])) {
                         <div>
                             <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Mensaje</label>
                             <textarea name="mensaje"
-                                class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  p-2.5"
-                                rows="10" placeholder="Escribe tu mensaje aquí..." required>
-                            </textarea>
+                                class="border border-gray-400 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                rows="6 sm:rows-8 md:rows-10" placeholder="Escribe tu mensaje aquí..." required>
+                    </textarea>
                         </div>
                     </div>
                     <button
-                        class="mx-auto text-xl px-40 shadow-lg mt-10 block py-2.5 rounded-lg btn-secondary hover:brightness-110 transition-all ease-in-out duration-200">
+                        class="mx-auto text-base sm:text-lg md:text-xl px-12 sm:px-20 md:px-30 lg:px-40 shadow-lg mt-6 sm:mt-8 md:mt-10 block py-2.5 rounded-lg btn-secondary hover:brightness-110 transition-all ease-in-out duration-200">
                         Enviar
                     </button>
                 </form>
@@ -282,42 +282,43 @@ if (isset($_SESSION['usuario_id'])) {
         </section>
 
         <section
-            class="xl:py-5 py-14 px-4 mx-auto max-w-screen-xl overflow-hidden grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-8 md:gap-8">
+            class="xl:py-0 py-8 px-4 mx-auto max-w-screen-xl overflow-hidden grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8 mb-12 md:mb-24">
             <div
-                class="bg-cards  border border-solid border-gray-400 flex flex-col items-center justify-center p-8 rounded-3xl gap-6">
-                <img src="/assets/icons/contact/1.svg" alt="">
-                <div class="flex w-full items-center justify-center flex-col gap-1.5">
-                    <h2 class="font-extrabold text-6xl">
+                class="bg-cards border border-solid border-gray-400 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 rounded-3xl gap-3 sm:gap-4 md:gap-6">
+                <img src="/assets/icons/contact/1.svg" alt="" class="w-12 h-12 sm:w-14 sm:h-14 md:w-auto md:h-auto">
+                <div class="flex w-full items-center justify-center flex-col gap-1 sm:gap-1.5">
+                    <h2 class="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                         24/7
                     </h2>
-                    <p class=" text-3xl">Soporte</p>
+                    <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl">Soporte</p>
                 </div>
-                <p class="text-center text-white text-2xl">
-                    We're always ready to help you solve issues and keep your tools running.
+                <p class="text-center text-white text-sm sm:text-base md:text-lg lg:text-2xl">
+                    Siempre estamos listos para ayudarlo a resolver problemas y mantener sus herramientas funcionando.
                 </p>
             </div>
             <div
-                class="bg-cards  border border-solid border-gray-400 flex flex-col items-center justify-center p-8 rounded-3xl gap-6">
-                <img src="/assets/icons/contact/2.svg" alt="">
-                <div class="flex w-full items-center justify-center flex-col gap-1.5">
-                    <h2 class="font-extrabold text-6xl">
+                class="bg-cards border border-solid border-gray-400 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 rounded-3xl gap-3 sm:gap-4 md:gap-6">
+                <img src="/assets/icons/contact/2.svg" alt="" class="w-12 h-12 sm:w-14 sm:h-14 md:w-auto md:h-auto">
+                <div class="flex w-full items-center justify-center flex-col gap-1 sm:gap-1.5">
+                    <h2 class="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                         1 Año
                     </h2>
-                    <p class=" text-3xl">De Garantía</p>
+                    <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl">De Garantía</p>
                 </div>
-                <p class="text-center text-white text-2xl">
-                    Garantía de 1 año. Solucionamos cualquier problema de software sin coste adicional. </p>
+                <p class="text-center text-white text-sm sm:text-base md:text-lg lg:text-2xl">
+                    Garantía de 1 año. Solucionamos cualquier problema de software sin coste adicional.
+                </p>
             </div>
             <div
-                class="bg-cards  border border-solid border-gray-400 flex flex-col items-center justify-center p-8 rounded-3xl gap-6">
-                <img src="/assets/icons/contact/3.svg" alt="">
-                <div class="flex w-full items-center justify-center flex-col gap-1.5">
-                    <h2 class="font-extrabold text-6xl">
+                class="bg-cards border border-solid border-gray-400 flex flex-col items-center justify-center p-4 sm:p-6 md:p-8 rounded-3xl gap-3 sm:gap-4 md:gap-6">
+                <img src="/assets/icons/contact/3.svg" alt="" class="w-12 h-12 sm:w-14 sm:h-14 md:w-auto md:h-auto">
+                <div class="flex w-full items-center justify-center flex-col gap-1 sm:gap-1.5">
+                    <h2 class="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
                         Cobertura
                     </h2>
-                    <p class=" text-3xl">Global</p>
+                    <p class="text-lg sm:text-xl md:text-2xl lg:text-3xl">Global</p>
                 </div>
-                <p class="text-center text-white text-2xl">
+                <p class="text-center text-white text-sm sm:text-base md:text-lg lg:text-2xl">
                     Asistimos a clientes en cualquier parte del mundo, de forma remota y confiable.
                 </p>
             </div>
