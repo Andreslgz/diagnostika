@@ -316,12 +316,6 @@ body.overflow-hidden {
   background-color: transparent;
 }
 
-.bg-statistics-2 {
-  /* background: url("../assets/icons/estadisticas/TEXTURA.png") no-repeat; */
-  background: linear-gradient(to bottom, #ffffff 0%, #d9d9d9 100%);
-  background-size: contain;
-}
-
 /* Testimonials Carousel Styles */
 #testimonials-carousel .splide__slide {
   display: flex;
@@ -840,4 +834,14 @@ body.overflow-hidden {
   .faq-icon {
     display: none;
   }
+}
+
+.bg-statistics-2 {
+  /* bg-gradient-to-b from-white */
+  background: url("/assets/images/textura1.png"),
+    linear-gradient(to bottom, #ffffff 0%, #d9d9d9 100%);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: scroll;
 }

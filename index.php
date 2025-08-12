@@ -432,46 +432,48 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
         </section>
         <!-- STATITICS 2 -->
-        <section class="my-20 bg-statistics-2 bg-gradient-to-b from-white to-[#D9D9D9]">
-            <div class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
-                <img src="assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-center h-full w-[440px]" />
-                <div class="grid grid-cols-2 mt-16">
-                    <img src="assets/images/estadisticas_crop.png" alt="" class="w-full h-full">
-                    <div class="flex flex-col gap-8">
-                        <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
+        <section class="my-10 md:my-20 bg-statistics-2 to-[#D9D9D9] overflow-hidden">
+            <div class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+                <img src="assets/icons/Logotipo.svg" alt="" class="mx-auto block w-[220px] md:w-[320px] lg:w-[440px]" />
+                <div class="grid grid-cols-1 lg:grid-cols-2 mt-8 md:mt-16 gap-6 lg:gap-0">
+                    <img src="assets/images/estadisticas_crop.png" alt=""
+                        class="w-full h-auto object-contain mx-auto max-w-md lg:max-w-full">
+                    <div class="flex flex-col gap-4 md:gap-6 lg:gap-8">
+                        <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
-                                class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
-                                <img src="assets/icons/estadisticas/1.svg" alt="">
+                                class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="assets/icons/estadisticas/1.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
-                            <div class="flex-1 flex flex-col">
-                                <h2 class="font-bold text-xl">Soporte técnico especializado</h2>
-                                <p class="text-gray-900">
+                            <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
+                                <h2 class="font-bold text-lg md:text-xl">Soporte técnico especializado</h2>
+                                <p class="text-gray-900 text-sm md:text-base">
                                     Le apoyamos antes, durante y después de la instalación con asistencia remota para
                                     responder a sus preguntas y ayudarle a trabajar con confianza.
                                 </p>
                             </div>
                         </div>
-                        <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
+                        <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
-                                class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
-                                <img src="assets/icons/estadisticas/2.svg" alt="">
+                                class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="assets/icons/estadisticas/2.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
-                            <div class="flex-1 flex flex-col">
-                                <h2 class="font-bold text-xl">Cobertura global y soporte inmediato</h2>
-                                <p class="text-gray-900">
+                            <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
+                                <h2 class="font-bold text-lg md:text-xl">Cobertura global y soporte inmediato</h2>
+                                <p class="text-gray-900 text-sm md:text-base">
                                     Asistimos a técnicos y mecánicos de todo el mundo con soporte rápido por WhatsApp y
                                     Telegram. Estés donde estés, te tenemos cubierto.
                                 </p>
                             </div>
                         </div>
-                        <div class="btn-primary p-4 rounded-xl flex items-center gap-4">
+                        <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
-                                class="btn-secondary size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
-                                <img src="assets/icons/estadisticas/3.svg" alt="">
+                                class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
+                                <img src="assets/icons/estadisticas/3.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
-                            <div class="flex-1 flex flex-col">
-                                <h2 class="font-bold text-xl">Instalación de software de diagnóstico profesional</h2>
-                                <p class="text-gray-900">
+                            <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
+                                <h2 class="font-bold text-lg md:text-xl">Instalación de software de diagnóstico
+                                    profesional</h2>
+                                <p class="text-gray-900 text-sm md:text-base">
                                     Convertimos su portátil en una potente herramienta para el diagnóstico de camiones y
                                     maquinaria pesada. El software se entrega instalado, activado y listo para usar.
                                 </p>
@@ -479,34 +481,32 @@ if (isset($_SESSION['usuario_id'])) {
                         </div>
                     </div>
                 </div>
-                <div class=" max-w-6xl mx-auto mt-20">
+                <div class="max-w-6xl mx-auto mt-10 md:mt-20">
                     <div
-                        class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-gray-800 overflow-hidden">
-                        <div class="py-5 px-8 text-center">
-                            <h2 class="text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
+                        class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-800 overflow-hidden">
+                        <div class="py-5 px-4 md:px-8 text-center">
+                            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
                                 123K<span class="text-blue-600">+</span>
                             </h2>
-                            <p class="text-xl lg:text-2xl text-gray-600 font-bold">
+                            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 font-bold">
                                 Installations
                             </p>
                         </div>
 
-                        <div class="py-5 px-8 text-center">
-
-                            <h2 class="text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
+                        <div class="py-5 px-4 md:px-8 text-center">
+                            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
                                 60<span class="text-blue-600">+</span>
                             </h2>
-                            <p class="text-xl lg:text-2xl text-gray-600 font-bold">
+                            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 font-bold">
                                 Cities
                             </p>
-
                         </div>
 
-                        <div class="py-5 px-8 text-center">
-                            <h2 class="text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
+                        <div class="py-5 px-4 md:px-8 text-center">
+                            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
                                 10K<span class="text-blue-600">+</span>
                             </h2>
-                            <p class="text-xl lg:text-2xl text-gray-600 font-bold">
+                            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 font-bold">
                                 Clients
                             </p>
                         </div>
@@ -850,7 +850,7 @@ if (isset($_SESSION['usuario_id'])) {
         </section>
     </main>
     <!-- FOOTER -->
-    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)]">
+    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
         <div class="py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-4 gap-16">
             <div>
                 <img src="/assets/icons/Logotipo.svg" alt="" class="mx-auto block flex items-start h-min w-[275px]" />
