@@ -244,13 +244,13 @@ if (isset($_SESSION['usuario_id'])) {
                     </form>
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-0 lg:mt-0 lg:h-full">
                         <li class="lg:h-full lg:flex lg:items-center btn-secondary xl:py-3">
-                            <a href="#"
-<<<<<<< Updated upstream
+                            <a href="#" <<<<<<< Updated upstream
                                 class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio</a>
-=======
-                                class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio
-                                123</a>
->>>>>>> Stashed changes
+                            =======
+                            class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6
+                            lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio
+                            123</a>
+                            >>>>>>> Stashed changes
                         </li>
                         <li class="lg:h-full lg:flex lg:items-center xl:py-3">
                             <a href="#"
@@ -659,6 +659,48 @@ if (isset($_SESSION['usuario_id'])) {
                 </div>
             </div>
         </section>
+        <!-- METODO DE PAGO Y HERRAMIENTAS -->
+
+        <div class="container mx-auto p-4 mb-4" x-data="{ tab: 'tab1' }">
+            <h2 class="text-2xl font-bold">Tabs</h2>
+            <ul class="flex border-b mt-6">
+                <li class="-mb-px mr-1">
+                    <a class="inline-block rounded-t py-2 px-4 font-semibold hover:text-blue-800" href="#"
+                        :class="{ 'bg-white text-blue-700 border-l border-t border-r': tab == 'tab1'}"
+                        @click.prevent="tab = 'tab1'">Tab 1</a>
+                </li>
+                <li class="-mb-px mr-1">
+                    <a class="inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#"
+                        :class="{ 'bg-white text-blue-700 border-l border-t border-r': tab == 'tab2'}"
+                        @click.prevent="tab = 'tab2'">Tab 2</a>
+                </li>
+                <li class="-mb-px mr-1">
+                    <a class="inline-block py-2 px-4 text-blue-500 hover:text-blue-800 font-semibold" href="#"
+                        :class="{ 'bg-white text-blue-700 border-l border-t border-r': tab == 'tab3'}"
+                        @click.prevent="tab = 'tab3'">Tab 3</a>
+                </li>
+            </ul>
+            <div class="content bg-white px-4 py-4 border-l border-r border-b pt-4">
+                <div x-show="tab == 'tab1'">
+                    Tab1 content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sunt, consectetur
+                    eos quod perferendis mollitia consequuntur natus, porro molestiae qui iusto deserunt rerum tempore
+                    voluptatum itaque. Ad, nisi esse cum quidem consequuntur ullam obcaecati.
+                </div>
+                <div x-show="tab == 'tab2'">
+                    Tab2 content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sunt, consectetur
+                    eos quod perferendis mollitia consequuntur natus, porro molestiae qui iusto deserunt rerum tempore
+                    voluptatum itaque. Ad, nisi esse cum quidem consequuntur ullam obcaecati.
+                </div>
+                <div x-show="tab == 'tab3'">
+                    Tab3 content. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nesciunt sunt, consectetur
+                    eos quod perferendis mollitia consequuntur natus, porro molestiae qui iusto deserunt rerum tempore
+                    voluptatum itaque. Ad, nisi esse cum quidem consequuntur ullam obcaecati.
+                </div>
+
+            </div>
+        </div>
+
+
         <!-- TESTIMONIALS -->
         <section class="py-20 px-4 mx-auto max-w-screen-2xl " data-aos="fade-up">
             <div class="text-start mb-10">
@@ -1283,6 +1325,8 @@ if (isset($_SESSION['usuario_id'])) {
     </script>
     <script src="scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
 </body>
 
 </html>
