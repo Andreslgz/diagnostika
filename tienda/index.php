@@ -220,8 +220,7 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="mx-auto max-w-screen-2xl px-4 2xl:px-0">
                 <div class="mb-4 items-end justify-between sm:flex md:mb-8">
                     <div class="mb-4 sm:mb-0">
-
-                        <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-2xl">Nuestros Productos y paquetes
+                        <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-4xl">Nuestros Productos y paquetes
                         </h2>
                     </div>
                     <div class="flex items-center space-x-4">
@@ -294,9 +293,9 @@ if (isset($_SESSION['usuario_id'])) {
                         </div> -->
                     </div>
                 </div>
-                <div class="gap-6 lg:flex">
+                <div class="gap-6 lg:flex ">
 
-                    <div class="w-[350px]">
+                    <div class="w-[350px] lg:flex hidden flex-col">
                         <h1 class="text-2xl font-bold mb-6">Filtros</h1>
                         <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
                             <header class="flex items-center justify-between">
@@ -430,21 +429,55 @@ if (isset($_SESSION['usuario_id'])) {
                     <!-- Right content -->
                     <div class="w-full ">
                         <div class="flex items-center justify-between w-full mb-5">
-                            <div>
-                                Cards
+                            <div class="flex gap-6">
+                                <div
+                                    class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
+                                    <p>Filtro 1</p>
+                                    <svg class="w-4 h-4 text-gray-800 " aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                    </svg>
+
+                                </div>
+                                <div
+                                    class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
+                                    <p>Filtro 2</p>
+                                    <svg class="w-4 h-4 text-gray-800 " aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                    </svg>
+
+                                </div>
+                                <div
+                                    class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
+                                    <p>Filtro 3</p>
+                                    <svg class="w-4 h-4 text-gray-800 " aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
+                                    </svg>
+
+                                </div>
                             </div>
                             <div>
                                 <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
                                     class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
-                                    <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2"
                                             d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
                                     </svg>
                                     Sort by
-                                    <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" fill="none" viewBox="0 0 24 24">
+                                    <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                        viewBox="0 0 24 24">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                             stroke-width="2" d="m19 9-7 7-7-7" />
                                     </svg>
@@ -489,701 +522,273 @@ if (isset($_SESSION['usuario_id'])) {
                             </div>
                         </div>
                         <!-- Product Cards -->
-                        <div class="grid gap-4 sm:grid-cols-2">
-                            <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
-                                <div class="relative">
-                                    <div class="h-64 p-6">
-                                        <a href="#">
-                                            <img class="h-auto max-h-full w-full dark:hidden"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-light.svg"
-                                                alt="watch image" />
-                                            <img class="hidden h-auto max-h-full w-full dark:block"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/apple-watch-dark.svg"
-                                                alt="watch image" />
-                                        </a>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0 p-1.5">
-                                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-9"
-                                            class="rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-700 ">
-                                            <span class="sr-only"> Add to Favorites </span>
-                                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                            </svg>
-                                        </button>
-                                        <div id="tooltip-add-to-favorites-9" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block w-[132px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-600"
-                                            data-popper-placement="top">
-                                            Add to favorites
-                                            <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-6 p-6">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">Apple
-                                            Watch SE - Gen 3</a>
-
-                                        <p class="text-2xl font-extrabold leading-tight text-gray-900 ">
-                                            $299</p>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="mb-2 flex items-center gap-2">
-                                                <label for="sizes"
-                                                    class="flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                                                    Display size
-                                                    <button data-tooltip-target="display-size-desc-1"
-                                                        data-tooltip-trigger="hover"
-                                                        class="text-gray-400 hover:text-gray-900 dark:text-gray-500 ">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="display-size-desc-1" role="tooltip"
-                                                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 ">
-                                                        Choose display size
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <select id="sizes"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>Choose a size</option>
-                                                <option value="20">20mm</option>
-                                                <option value="38">38mm</option>
-                                                <option value="40">40mm</option>
-                                                <option value="45">45mm</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="product-color-1"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">
-                                                Color </label>
-                                            <select id="product-color-1"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option>Choose a color</option>
-                                                <option value="WH">Gray</option>
-                                                <option value="BK">Black</option>
-                                                <option value="GR">Gold</option>
-                                                <option value="BL">Blue</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button type="button"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                        <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                            <div
+                                class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                <div class="flex justify-end -mb-1">
+                                    <button type="button" class="favorito-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                         </svg>
-                                        Add to cart
                                     </button>
-
-                                    <div class="flex items-center gap-2">
-                                        <svg class="h-5 w-5 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                        </svg>
-                                        <p class="text-sm font-normal text-gray-500 ">Estimated
-                                            Delivery <span class="font-medium text-gray-900 ">Jun 23 -
-                                                Jun 24</span></p>
-                                    </div>
+                                </div>
+                                <img src="https://placehold.co/600x400/png" alt="Producto ejemplo"
+                                    class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                <p
+                                    class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">
+                                    Nombre del producto ejemplo
+                                </p>
+                                <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">
+                                    USD 99.99
+                                </p>
+                                <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                    <button
+                                        class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/carrito.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Agregar al carrito
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Previsualizar
+                                        </p>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
-                                <div class="relative">
-                                    <div class="h-64 p-6">
-                                        <a href="#">
-                                            <img class="h-auto max-h-full w-full dark:hidden"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-light.svg"
-                                                alt="playstation image" />
-                                            <img class="hidden h-auto max-h-full w-full dark:block"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ps5-dark.svg"
-                                                alt="playstation image" />
-                                        </a>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0 p-1.5">
-                                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-10"
-                                            class="rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-700 ">
-                                            <span class="sr-only"> Add to Favorites </span>
-                                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                            </svg>
-                                        </button>
-                                        <div id="tooltip-add-to-favorites-10" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block w-[132px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-600"
-                                            data-popper-placement="top">
-                                            Add to favorites
-                                            <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-6 p-6">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">PlayStation®5
-                                            Console – 1TB</a>
-
-                                        <p class="text-2xl font-extrabold leading-tight text-gray-900 ">
-                                            $599</p>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="mb-2 flex items-center gap-2">
-                                                <label for="storage-size"
-                                                    class="flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                                                    Storage
-                                                    <button data-tooltip-target="storage-size-desc-1"
-                                                        data-tooltip-trigger="hover"
-                                                        class="text-gray-400 hover:text-gray-900 dark:text-gray-500 ">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="storage-size-desc-1" role="tooltip"
-                                                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 ">
-                                                        Choose storage size
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <select id="storage-size"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>512GB</option>
-                                                <option value="1">1TB</option>
-                                                <option value="2">2TB</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="product-color-2"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">
-                                                Color </label>
-                                            <select id="product-color-2"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>Gray</option>
-                                                <option value="WH">White</option>
-                                                <option value="Bk">Black</option>
-                                                <option value="RD">Red</option>
-                                                <option value="BL">Blue</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button type="button"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                            <div
+                                class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                <div class="flex justify-end -mb-1">
+                                    <button type="button" class="favorito-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                         </svg>
-                                        Add to cart
                                     </button>
-
-                                    <div class="flex items-center gap-2">
-                                        <svg class="h-5 w-5 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                        </svg>
-                                        <p class="text-sm font-normal text-gray-500 ">Estimated
-                                            Delivery <span class="font-medium text-gray-900 ">Tommorow</span></p>
-                                    </div>
+                                </div>
+                                <img src="https://placehold.co/600x400/png" alt="Producto ejemplo"
+                                    class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                <p
+                                    class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">
+                                    Nombre del producto ejemplo
+                                </p>
+                                <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">
+                                    USD 99.99
+                                </p>
+                                <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                    <button
+                                        class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/carrito.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Agregar al carrito
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Previsualizar
+                                        </p>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
-                                <div class="relative">
-                                    <div class="h-64 p-6">
-                                        <a href="#">
-                                            <img class="h-auto max-h-full w-full dark:hidden"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ipad-light.svg"
-                                                alt="ipad image" />
-                                            <img class="hidden h-auto max-h-full w-full dark:block"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/ipad-dark.svg"
-                                                alt="ipad image" />
-                                        </a>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0 p-1.5">
-                                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-11"
-                                            class="rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-700 ">
-                                            <span class="sr-only"> Add to Favorites </span>
-                                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                            </svg>
-                                        </button>
-                                        <div id="tooltip-add-to-favorites-11" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block w-[132px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-600"
-                                            data-popper-placement="top">
-                                            Add to favorites
-                                            <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-6 p-6">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">iPad
-                                            Pro 13-Inch (M4)</a>
-
-                                        <p class="text-2xl font-extrabold leading-tight text-gray-900 ">
-                                            $1,299</p>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="mb-2 flex items-center gap-2">
-                                                <label for="storage-size-2"
-                                                    class="flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                                                    Storage
-                                                    <button data-tooltip-target="storage-size-desc-2"
-                                                        data-tooltip-trigger="hover"
-                                                        class="text-gray-400 hover:text-gray-900 dark:text-gray-500 ">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="storage-size-desc-2" role="tooltip"
-                                                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 ">
-                                                        Choose storage size
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <select id="storage-size-2"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>512GB</option>
-                                                <option value="1">1TB</option>
-                                                <option value="2">2TB</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="product-color-3"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">
-                                                Color </label>
-                                            <select id="product-color-3"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option value="GR">Gray</option>
-                                                <option value="GD" selected>Gold</option>
-                                                <option value="Bk">Space Black</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button type="button"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                            <div
+                                class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                <div class="flex justify-end -mb-1">
+                                    <button type="button" class="favorito-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                         </svg>
-                                        Add to cart
                                     </button>
-
-                                    <div class="flex items-center gap-2">
-                                        <svg class="h-5 w-5 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                        </svg>
-                                        <p class="text-sm font-normal text-gray-500 ">Estimated
-                                            Delivery <span class="font-medium text-gray-900 ">Jul 2
-                                                2024</span></p>
-                                    </div>
+                                </div>
+                                <img src="https://placehold.co/600x400/png" alt="Producto ejemplo"
+                                    class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                <p
+                                    class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">
+                                    Nombre del producto ejemplo
+                                </p>
+                                <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">
+                                    USD 99.99
+                                </p>
+                                <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                    <button
+                                        class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/carrito.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Agregar al carrito
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Previsualizar
+                                        </p>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
-                                <div class="relative">
-                                    <div class="h-64 p-6">
-                                        <a href="#">
-                                            <img class="h-auto max-h-full w-full dark:hidden"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
-                                                alt="imac image" />
-                                            <img class="hidden h-auto max-h-full w-full dark:block"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
-                                                alt="imac image" />
-                                        </a>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0 p-1.5">
-                                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-12"
-                                            class="rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-700 ">
-                                            <span class="sr-only"> Add to Favorites </span>
-                                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                            </svg>
-                                        </button>
-                                        <div id="tooltip-add-to-favorites-12" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block w-[132px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-600"
-                                            data-popper-placement="top">
-                                            Add to favorites
-                                            <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-6 p-6">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">Apple
-                                            iMac 27", M3 Max</a>
-
-                                        <p class="text-2xl font-extrabold leading-tight text-gray-900 ">
-                                            $2,899</p>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="mb-2 flex items-center gap-2">
-                                                <label for="storage-size-3"
-                                                    class="flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                                                    Storage
-                                                    <button data-tooltip-target="storage-size-desc-3"
-                                                        data-tooltip-trigger="hover"
-                                                        class="text-gray-400 hover:text-gray-900 dark:text-gray-500 ">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="storage-size-desc-3" role="tooltip"
-                                                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 ">
-                                                        Choose storage size
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <select id="storage-size-3"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>512GB</option>
-                                                <option value="256">256GB</option>
-                                                <option value="1">1TB</option>
-                                                <option value="2">2TB</option>
-                                                <option value="4">4TB</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="product-color-4"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">
-                                                Color </label>
-                                            <select id="product-color-4"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option>Choose a color</option>
-                                                <option value="GR">Gray</option>
-                                                <option value="GD">Gold</option>
-                                                <option value="Bk">Space Black</option>
-                                                <option value="PU">Purple</option>
-                                                <option value="GR">Green</option>
-                                                <option value="PK">Pink</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button type="button"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                            <div
+                                class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                <div class="flex justify-end -mb-1">
+                                    <button type="button" class="favorito-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                         </svg>
-                                        Add to cart
                                     </button>
-
-                                    <div class="flex items-center gap-2">
-                                        <svg class="h-5 w-5 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                        </svg>
-                                        <p class="text-sm font-normal text-gray-500 ">Estimated
-                                            Delivery <span class="font-medium text-gray-900 ">Aug 14 -
-                                                Aug 15</span></p>
-                                    </div>
+                                </div>
+                                <img src="https://placehold.co/600x400/png" alt="Producto ejemplo"
+                                    class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                <p
+                                    class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">
+                                    Nombre del producto ejemplo
+                                </p>
+                                <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">
+                                    USD 99.99
+                                </p>
+                                <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                    <button
+                                        class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/carrito.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Agregar al carrito
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Previsualizar
+                                        </p>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
-                                <div class="relative">
-                                    <div class="h-64 p-6">
-                                        <a href="#">
-                                            <img class="h-auto max-h-full w-full dark:hidden"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/macbook-pro-light.svg"
-                                                alt="macbook pro image" />
-                                            <img class="hidden h-auto max-h-full w-full dark:block"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/macbook-pro-dark.svg"
-                                                alt="macbook pro image" />
-                                        </a>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0 p-1.5">
-                                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-13"
-                                            class="rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-700 ">
-                                            <span class="sr-only"> Add to Favorites </span>
-                                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                            </svg>
-                                        </button>
-                                        <div id="tooltip-add-to-favorites-13" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block w-[132px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-600"
-                                            data-popper-placement="top">
-                                            Add to favorites
-                                            <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-6 p-6">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">Apple
-                                            MacBook PRO M2 Max</a>
-
-                                        <p class="text-2xl font-extrabold leading-tight text-gray-900 ">
-                                            $4,999</p>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="mb-2 flex items-center gap-2">
-                                                <label for="storage-size-4"
-                                                    class="flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                                                    Storage
-                                                    <button data-tooltip-target="storage-size-desc-4"
-                                                        data-tooltip-trigger="hover"
-                                                        class="text-gray-400 hover:text-gray-900 dark:text-gray-500 ">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="storage-size-desc-4" role="tooltip"
-                                                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 ">
-                                                        Choose storage size
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <select id="storage-size-4"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>512GB</option>
-                                                <option value="256">256GB</option>
-                                                <option value="1">1TB</option>
-                                                <option value="2">2TB</option>
-                                                <option value="4">4TB</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="product-color-5"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">
-                                                Color </label>
-                                            <select id="product-color-5"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option>Choose a color</option>
-                                                <option value="GR">Gray</option>
-                                                <option value="GD">Gold</option>
-                                                <option value="Bk">Space Black</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button type="button"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                            <div
+                                class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                <div class="flex justify-end -mb-1">
+                                    <button type="button" class="favorito-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                         </svg>
-                                        Add to cart
                                     </button>
-
-                                    <div class="flex items-center gap-2">
-                                        <svg class="h-5 w-5 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                        </svg>
-                                        <p class="text-sm font-normal text-gray-500 ">Estimated
-                                            Delivery <span class="font-medium text-gray-900 ">Jul 2
-                                                2024</span></p>
-                                    </div>
+                                </div>
+                                <img src="https://placehold.co/600x400/png" alt="Producto ejemplo"
+                                    class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                <p
+                                    class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">
+                                    Nombre del producto ejemplo
+                                </p>
+                                <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">
+                                    USD 99.99
+                                </p>
+                                <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                    <button
+                                        class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/carrito.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Agregar al carrito
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Previsualizar
+                                        </p>
+                                    </button>
                                 </div>
                             </div>
-                            <div class="rounded-lg border border-gray-200 bg-white shadow-sm ">
-                                <div class="relative">
-                                    <div class="h-64 p-6">
-                                        <a href="#">
-                                            <img class="h-auto max-h-full w-full dark:hidden"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/iphone-light.svg"
-                                                alt="iphone image" />
-                                            <img class="hidden h-auto max-h-full w-full dark:block"
-                                                src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/iphone-dark.svg"
-                                                alt="iphone image" />
-                                        </a>
-                                    </div>
-
-                                    <div class="absolute right-0 top-0 p-1.5">
-                                        <button type="button" data-tooltip-target="tooltip-add-to-favorites-14"
-                                            class="rounded p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-900  dark:hover:bg-gray-700 ">
-                                            <span class="sr-only"> Add to Favorites </span>
-                                            <svg class="h-6 w-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                fill="none" viewBox="0 0 24 24">
-                                                <path stroke="currentColor" stroke-linecap="round"
-                                                    stroke-linejoin="round" stroke-width="2"
-                                                    d="M12 6C6.5 1 1 8 5.8 13l6.2 7 6.2-7C23 8 17.5 1 12 6Z" />
-                                            </svg>
-                                        </button>
-                                        <div id="tooltip-add-to-favorites-14" role="tooltip"
-                                            class="tooltip invisible absolute z-10 inline-block w-[132px] rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-gray-600"
-                                            data-popper-placement="top">
-                                            Add to favorites
-                                            <div class="tooltip-arrow" data-popper-arrow=""></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="space-y-6 p-6">
-                                    <div class="flex items-center justify-between space-x-4">
-                                        <a href="#"
-                                            class="text-lg font-semibold leading-tight text-gray-900 hover:underline ">Apple
-                                            iPhone 15 Pro Max</a>
-
-                                        <p class="text-2xl font-extrabold leading-tight text-gray-900 ">
-                                            $1,999</p>
-                                    </div>
-
-                                    <div class="grid grid-cols-2 gap-4">
-                                        <div>
-                                            <div class="mb-2 flex items-center gap-2">
-                                                <label for="storage-size-5"
-                                                    class="flex items-center gap-1 text-sm font-medium text-gray-900 ">
-                                                    Storage
-                                                    <button data-tooltip-target="storage-size-desc-5"
-                                                        data-tooltip-trigger="hover"
-                                                        class="text-gray-400 hover:text-gray-900 dark:text-gray-500 ">
-                                                        <svg class="h-4 w-4" aria-hidden="true"
-                                                            xmlns="http://www.w3.org/2000/svg" fill="currentColor"
-                                                            viewBox="0 0 24 24">
-                                                            <path fill-rule="evenodd"
-                                                                d="M2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10S2 17.523 2 12Zm9.408-5.5a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM10 10a1 1 0 1 0 0 2h1v3h-1a1 1 0 1 0 0 2h4a1 1 0 1 0 0-2h-1v-4a1 1 0 0 0-1-1h-2Z"
-                                                                clip-rule="evenodd" />
-                                                        </svg>
-                                                    </button>
-                                                    <div id="storage-size-desc-5" role="tooltip"
-                                                        class="tooltip invisible absolute z-10 inline-block rounded-lg bg-gray-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 ">
-                                                        Choose storage size
-                                                        <div class="tooltip-arrow" data-popper-arrow></div>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <select id="storage-size-5"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option selected>512GB</option>
-                                                <option value="256">256GB</option>
-                                                <option value="1">1TB</option>
-                                                <option value="2">2TB</option>
-                                            </select>
-                                        </div>
-
-                                        <div>
-                                            <label for="product-color-6"
-                                                class="mb-2 block text-sm font-medium text-gray-900 ">
-                                                Color </label>
-                                            <select id="product-color-6"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
-                                                <option>Choose a color</option>
-                                                <option value="GR">Gray</option>
-                                                <option value="GD">Gold</option>
-                                                <option value="Bk">Space Black</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <button type="button"
-                                        class="inline-flex w-full items-center justify-center rounded-lg bg-primary-700 px-5 py-2.5 text-sm font-medium  text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                                        <svg class="-ms-2 me-2 h-5 w-5" aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                            viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M4 4h1.5L8 16m0 0h8m-8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm8 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4Zm.75-3H7.5M11 7H6.312M17 4v6m-3-3h6" />
+                            <div
+                                class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                <div class="flex justify-end -mb-1">
+                                    <button type="button" class="favorito-btn">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor"
+                                            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                         </svg>
-                                        Add to cart
                                     </button>
-
-                                    <div class="flex items-center gap-2">
-                                        <svg class="h-5 w-5 text-gray-500 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M13 7h6l2 4m-8-4v8m0-8V6a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1v9h2m8 0H9m4 0h2m4 0h2v-4m0 0h-5m3.5 5.5a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Zm-10 0a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0Z" />
-                                        </svg>
-                                        <p class="text-sm font-normal text-gray-500 ">Estimated
-                                            Delivery <span class="font-medium text-gray-900 ">Jul 20 -
-                                                Jul 24</span></p>
-                                    </div>
+                                </div>
+                                <img src="https://placehold.co/600x400/png" alt="Producto ejemplo"
+                                    class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                <p
+                                    class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">
+                                    Nombre del producto ejemplo
+                                </p>
+                                <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">
+                                    USD 99.99
+                                </p>
+                                <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+                                    <button
+                                        class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/carrito.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Agregar al carrito
+                                        </p>
+                                    </button>
+                                    <button
+                                        class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
+                                        <div
+                                            class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+                                        </div>
+                                        <p>
+                                            Previsualizar
+                                        </p>
+                                    </button>
                                 </div>
                             </div>
+
+
                         </div>
                         <!-- Pagination -->
                         <nav class="mt-6 flex items-center justify-center sm:mt-8" aria-label="Page navigation example">
@@ -2107,146 +1712,146 @@ if (isset($_SESSION['usuario_id'])) {
         <div class="flex flex-col items-center w-full  ">
 
             <?php if (isset($_SESSION['usuario_id'])): ?>
-                        <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
+                <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
 
-                        <!-- Saludo -->
-                        <div class="text-center mb-4">
-                            <p class="text-lg font-semibold text-slate-900">
-                                👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
-                            </p>
-                            <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
+                <!-- Saludo -->
+                <div class="text-center mb-4">
+                    <p class="text-lg font-semibold text-slate-900">
+                        👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
+                    </p>
+                    <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
+                </div>
+
+                <!-- Botón cerrar sesión -->
+                <button type="button" id="logoutModalBtn"
+                    class="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400 focus:ring-offset-1 transition-colors mb-4">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
+                    </svg>
+                    <span>Cerrar sesión</span>
+                </button>
+
+                <!-- Modal -->
+                <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
+                    <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
+                        <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
+                        <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de
+                            inicio
+                            de sesión.</p>
+                        <div class="flex justify-end gap-3">
+                            <button id="cancelLogout"
+                                class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
+                            <a href="logout.php"
+                                class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600">Sí,
+                                salir</a>
                         </div>
-
-                        <!-- Botón cerrar sesión -->
-                        <button type="button" id="logoutModalBtn"
-                            class="cursor-pointer flex items-center justify-center gap-2 rounded-lg border border-gray-200 bg-white px-4 py-2 text-sm font-medium text-slate-600 shadow-sm hover:border-red-300 hover:bg-red-50 hover:text-red-600 focus:outline-none focus:ring-1 focus:ring-red-400 focus:ring-offset-1 transition-colors mb-4">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a2 2 0 01-2 2H7a2 2 0 01-2-2V7a2 2 0 012-2h4a2 2 0 012 2v1" />
-                            </svg>
-                            <span>Cerrar sesión</span>
-                        </button>
-
-                        <!-- Modal -->
-                        <div id="logoutModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50">
-                            <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-sm">
-                                <h2 class="text-lg font-semibold text-slate-900 mb-4">¿Cerrar sesión?</h2>
-                                <p class="text-sm text-slate-600 mb-6">Se cerrará tu sesión actual y volverás a la página de
-                                    inicio
-                                    de sesión.</p>
-                                <div class="flex justify-end gap-3">
-                                    <button id="cancelLogout"
-                                        class="px-4 py-2 text-sm font-medium text-gray-600 bg-gray-100 rounded-lg hover:bg-gray-200">Cancelar</button>
-                                    <a href="logout.php"
-                                        class="px-4 py-2 text-sm font-medium text-white bg-red-500 rounded-lg hover:bg-red-600">Sí,
-                                        salir</a>
-                                </div>
-                            </div>
-                        </div>
+                    </div>
+                </div>
 
             <?php else: ?>
-                        <!-- Botones login y registro -->
-                        <div class="flex gap-3 mb-4">
-                            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                                data-active-tab="login"
-                                class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
-                                type="button">
-                                Iniciar sesión
-                            </button>
-                            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
-                                data-active-tab="register"
-                                class="text-gray-700 border bg-white border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
-                                type="button">
-                                Registro
-                            </button>
-                        </div>
+                <!-- Botones login y registro -->
+                <div class="flex gap-3 mb-4">
+                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        data-active-tab="login"
+                        class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
+                        type="button">
+                        Iniciar sesión
+                    </button>
+                    <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        data-active-tab="register"
+                        class="text-gray-700 border bg-white border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
+                        type="button">
+                        Registro
+                    </button>
+                </div>
             <?php endif; ?>
 
             <!-- Carrito -->
             <div class="w-full">
                 <?php if (!empty($_SESSION['carrito'])): ?>
-                            <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg ">
-                                <?php $total = 0; ?>
-                                <?php foreach ($_SESSION['carrito'] as $index => $item): ?>
-                                            <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
-                                            <?php $total += $subtotal; ?>
-                                            <li class="relative bg-white rounded-xl  xl:p-4 p-2.5 h-full flex items-center xl:gap-3 gap-2">
-                                                <!-- Imagen del producto con borde -->
-                                                <div class="flex-shrink-0">
-                                                    <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
-                                                        <img src="/assets/images/carritoProducto.png"
-                                                            alt="<?php echo htmlspecialchars($item['nombre']); ?>"
-                                                            class="w-full h-full object-cover">
-                                                    </div>
-                                                </div>
-
-                                                <!-- Contenido derecho -->
-                                                <div class="flex-grow flex flex-col justify-between h-full py-1 xl:gap-6 gap-4">
-                                                    <!-- Parte superior: Nombre y botón cerrar -->
-                                                    <div class="flex items-start justify-between">
-                                                        <h3 class="font-semibold text-gray-800 xl:text-base text-sm uppercase tracking-wide">
-                                                            <?php echo htmlspecialchars($item['nombre']); ?>
-                                                        </h3>
-                                                        <button onclick="removeItem(<?php echo $index; ?>)"
-                                                            class="text-gray-600 hover:text-gray-800 transition-colors ml-2">
-                                                            <svg class="xl:w-6 xl:h-6 w-4 h-4" fill="none" stroke="currentColor"
-                                                                viewBox="0 0 24 24">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                    d="M6 18L18 6M6 6l12 12">
-                                                                </path>
-                                                            </svg>
-                                                        </button>
-                                                    </div>
-
-                                                    <!-- Parte inferior: Precio y controles -->
-                                                    <div class="flex items-center justify-between">
-                                                        <!-- Precio -->
-                                                        <span class="xl:text-xl text-sm font-semibold text-gray-800">
-                                                            USD. <?php echo number_format($subtotal, 2); ?>
-                                                        </span>
-
-                                                        <!-- Controles de cantidad -->
-                                                        <div class="flex items-center border border-gray-300 rounded-md">
-                                                            <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
-                                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
-                                                                −
-                                                            </button>
-                                                            <span
-                                                                class="xl:w-12 w-8 text-center text-gray-800 font-medium xl:text-lg text-base border-x border-gray-300">
-                                                                <?php echo $item['cantidad']; ?>
-                                                            </span>
-                                                            <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
-                                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
-                                                                +
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </li>
-                                <?php endforeach; ?>
-                            </ul>
-
-                            <div class="border-t pt-4 mt-4">
-                                <div class="flex justify-between items-center mb-3">
-                                    <span class="font-bold xl:text-xl">Total:</span>
-                                    <span class="text-white font-bold xl:text-xl">$<?php echo number_format($total, 2); ?></span>
+                    <ul class="space-y-3 max-h-[750px] overflow-y-auto rounded-lg ">
+                        <?php $total = 0; ?>
+                        <?php foreach ($_SESSION['carrito'] as $index => $item): ?>
+                            <?php $subtotal = $item['precio'] * $item['cantidad']; ?>
+                            <?php $total += $subtotal; ?>
+                            <li class="relative bg-white rounded-xl  xl:p-4 p-2.5 h-full flex items-center xl:gap-3 gap-2">
+                                <!-- Imagen del producto con borde -->
+                                <div class="flex-shrink-0">
+                                    <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
+                                        <img src="/assets/images/carritoProducto.png"
+                                            alt="<?php echo htmlspecialchars($item['nombre']); ?>"
+                                            class="w-full h-full object-cover">
+                                    </div>
                                 </div>
-                                <a href="carrito.php"
-                                    class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
-                                    Ir al Carrito
-                                </a>
-                                <button
-                                    class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
-                                    type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
-                                    Seguir viendo
-                                </button>
-                            </div>
+
+                                <!-- Contenido derecho -->
+                                <div class="flex-grow flex flex-col justify-between h-full py-1 xl:gap-6 gap-4">
+                                    <!-- Parte superior: Nombre y botón cerrar -->
+                                    <div class="flex items-start justify-between">
+                                        <h3 class="font-semibold text-gray-800 xl:text-base text-sm uppercase tracking-wide">
+                                            <?php echo htmlspecialchars($item['nombre']); ?>
+                                        </h3>
+                                        <button onclick="removeItem(<?php echo $index; ?>)"
+                                            class="text-gray-600 hover:text-gray-800 transition-colors ml-2">
+                                            <svg class="xl:w-6 xl:h-6 w-4 h-4" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M6 18L18 6M6 6l12 12">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Parte inferior: Precio y controles -->
+                                    <div class="flex items-center justify-between">
+                                        <!-- Precio -->
+                                        <span class="xl:text-xl text-sm font-semibold text-gray-800">
+                                            USD. <?php echo number_format($subtotal, 2); ?>
+                                        </span>
+
+                                        <!-- Controles de cantidad -->
+                                        <div class="flex items-center border border-gray-300 rounded-md">
+                                            <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
+                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
+                                                −
+                                            </button>
+                                            <span
+                                                class="xl:w-12 w-8 text-center text-gray-800 font-medium xl:text-lg text-base border-x border-gray-300">
+                                                <?php echo $item['cantidad']; ?>
+                                            </span>
+                                            <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
+                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">
+                                                +
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+
+                    <div class="border-t pt-4 mt-4">
+                        <div class="flex justify-between items-center mb-3">
+                            <span class="font-bold xl:text-xl">Total:</span>
+                            <span class="text-white font-bold xl:text-xl">$<?php echo number_format($total, 2); ?></span>
+                        </div>
+                        <a href="carrito.php"
+                            class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
+                            Ir al Carrito
+                        </a>
+                        <button
+                            class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
+                            type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
+                            Seguir viendo
+                        </button>
+                    </div>
                 <?php else: ?>
-                            <p
-                                class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
-                                <span class="text-2xl mb-1">🛒</span>
-                                <span class="font-medium">Tu carrito está vacío</span>
-                            </p>
+                    <p
+                        class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
+                        <span class="text-2xl mb-1">🛒</span>
+                        <span class="font-medium">Tu carrito está vacío</span>
+                    </p>
                 <?php endif; ?>
             </div>
         </div>
