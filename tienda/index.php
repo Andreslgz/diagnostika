@@ -109,7 +109,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 </svg>
                             </div>
                             <input type="search" id="search-bar"
-                                class="block py-2 px-4 pl-10 w-full btn-primary text-sm text-gray-900 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                class="block py-2 px-4 pl-10 w-full btn-blue text-sm text-gray-900 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
                                 placeholder="Busca tu producto" required />
                         </div>
                     </form>
@@ -226,7 +226,7 @@ if (isset($_SESSION['usuario_id'])) {
                     <div class="flex items-center space-x-4">
                         <button data-drawer-target="drawer-mobile-filter" data-drawer-show="drawer-mobile-filter"
                             aria-controls="drawer-mobile-filter" type="button"
-                            class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto lg:hidden">
+                            class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto lg:hidden">
                             <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-width="2"
@@ -240,7 +240,7 @@ if (isset($_SESSION['usuario_id'])) {
                             </svg>
                         </button>
                         <!-- <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
-                            class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
+                            class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
                             <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" fill="none" viewBox="0 0 24 24">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -466,7 +466,7 @@ if (isset($_SESSION['usuario_id'])) {
                             </div>
                             <div>
                                 <button id="sortDropdownButton2" data-dropdown-toggle="dropdownSort2" type="button"
-                                    class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
+                                    class="flex w-full items-center justify-center rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-100  sm:w-auto">
                                     <svg class="-ms-0.5 me-2 h-4 w-4" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -547,8 +547,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                     <button
                                         class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                        <div
-                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                        <div class="btn-blue size-[24px] items-center flex rounded-full justify-center">
                                             <img src="/assets/icons/tienda/carrito.svg" alt="">
                                         </div>
                                         <p>
@@ -591,8 +590,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                     <button
                                         class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                        <div
-                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                        <div class="btn-blue size-[24px] items-center flex rounded-full justify-center">
                                             <img src="/assets/icons/tienda/carrito.svg" alt="">
                                         </div>
                                         <p>
@@ -635,8 +633,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                     <button
                                         class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                        <div
-                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                        <div class="btn-blue size-[24px] items-center flex rounded-full justify-center">
                                             <img src="/assets/icons/tienda/carrito.svg" alt="">
                                         </div>
                                         <p>
@@ -679,8 +676,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                     <button
                                         class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                        <div
-                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                        <div class="btn-blue size-[24px] items-center flex rounded-full justify-center">
                                             <img src="/assets/icons/tienda/carrito.svg" alt="">
                                         </div>
                                         <p>
@@ -723,8 +719,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                     <button
                                         class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                        <div
-                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                        <div class="btn-blue size-[24px] items-center flex rounded-full justify-center">
                                             <img src="/assets/icons/tienda/carrito.svg" alt="">
                                         </div>
                                         <p>
@@ -767,8 +762,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                     <button
                                         class="btn-secondary flex flex-row gap-2 items-center justify-center w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                        <div
-                                            class="btn-primary size-[24px] items-center flex rounded-full justify-center">
+                                        <div class="btn-blue size-[24px] items-center flex rounded-full justify-center">
                                             <img src="/assets/icons/tienda/carrito.svg" alt="">
                                         </div>
                                         <p>
@@ -795,7 +789,7 @@ if (isset($_SESSION['usuario_id'])) {
                             <ul class="flex h-8 items-center -space-x-px text-sm">
                                 <li>
                                     <a href="#"
-                                        class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   dark:hover:bg-gray-700 ">
+                                        class="ms-0 flex h-8 items-center justify-center rounded-s-lg border border-e-0 border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">
                                         <span class="sr-only">Previous</span>
                                         <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -807,27 +801,27 @@ if (isset($_SESSION['usuario_id'])) {
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   dark:hover:bg-gray-700 ">1</a>
+                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">1</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   dark:hover:bg-gray-700 ">2</a>
+                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">2</a>
                                 </li>
                                 <li>
                                     <a href="#" aria-current="page"
-                                        class="z-10 flex h-8 items-center justify-center border border-primary-300 bg-primary-50 px-3 leading-tight text-primary-600 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700  dark:hover:bg-gray-700 ">3</a>
+                                        class="z-10 flex h-8 items-center justify-center border border-blue-300 bg-blue-50 px-3 leading-tight text-blue-600 hover:bg-blue-100 hover:text-blue-700   ">3</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   dark:hover:bg-gray-700 ">...</a>
+                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">...</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   dark:hover:bg-gray-700 ">100</a>
+                                        class="flex h-8 items-center justify-center border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">100</a>
                                 </li>
                                 <li>
                                     <a href="#"
-                                        class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   dark:hover:bg-gray-700 ">
+                                        class="flex h-8 items-center justify-center rounded-e-lg border border-gray-300 bg-white px-3 leading-tight text-gray-500 hover:bg-gray-100 hover:text-gray-700   ">
                                         <span class="sr-only">Next</span>
                                         <svg class="h-4 w-4 rtl:rotate-180" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
@@ -843,7 +837,7 @@ if (isset($_SESSION['usuario_id'])) {
                 </div>
                 <!-- Mobile Drawer -->
                 <form action="#" method="get" id="drawer-mobile-filter"
-                    class="fixed left-0 top-0 z-40 h-screen w-full max-w-sm -translate-x-full overflow-y-auto bg-white p-4 transition-transform dark:bg-gray-800"
+                    class="fixed left-0 top-0 z-40 h-screen w-full max-w-sm -translate-x-full overflow-y-auto bg-white p-4 transition-transform "
                     tabindex="-1" aria-labelledby="drawer-label">
                     <h5 id="drawer-label-2"
                         class="mb-4 inline-flex items-center text-base font-semibold uppercase text-gray-500 ">
@@ -867,7 +861,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     Product Brand
                                 </label>
                                 <select id="product-brand-2"
-                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    ">
+                                    class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500    ">
                                     <option selected value="apple">Apple</option>
                                     <option value="lg">LG</option>
                                     <option value="samsung">Samsung</option>
@@ -899,7 +893,7 @@ if (isset($_SESSION['usuario_id'])) {
                                             <label for="min-price-input"
                                                 class="mb-2 block text-sm font-medium text-gray-900 ">From</label>
                                             <input type="number" id="min-price-input" value="300" min="0" max="7000"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500     "
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500     "
                                                 placeholder="" required />
                                         </div>
 
@@ -907,7 +901,7 @@ if (isset($_SESSION['usuario_id'])) {
                                             <label for="max-price-input"
                                                 class="mb-2 block text-sm font-medium text-gray-900 ">To</label>
                                             <input type="number" id="max-price-input" value="3500" min="0" max="7000"
-                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500    "
+                                                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500    "
                                                 placeholder="" required />
                                         </div>
                                     </div>
@@ -920,14 +914,14 @@ if (isset($_SESSION['usuario_id'])) {
                                     <h6 class="mb-2 text-sm font-medium text-black ">Delivery method</h6>
                                     <div class="flex items-center">
                                         <input id="flowbox-2" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="flowbox-2" class="ms-2 text-sm font-medium text-gray-900 "> Flowbox
                                         </label>
                                     </div>
 
                                     <div class="flex items-center">
                                         <input id="pick-from-store-2" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="pick-from-store-2" class="ms-2 text-sm font-medium text-gray-900 ">
                                             Pick from
                                             the store </label>
@@ -935,7 +929,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                     <div class="flex items-center">
                                         <input id="courier-2" type="radio" name="delivery" value=""
-                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="courier-2" class="ms-2 text-sm font-medium text-gray-900 "> Fast
                                             courier </label>
                                     </div>
@@ -945,7 +939,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     <div class="space-y-2">
                                         <div class="flex items-center">
                                             <input id="five-stars" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                             <label for="five-stars" class="ml-2 flex items-center">
                                                 <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -992,7 +986,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="four-stars" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                             <label for="four-stars" class="ml-2 flex items-center">
                                                 <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -1026,7 +1020,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fifth star</title>
@@ -1039,7 +1033,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="three-stars" type="radio" value="" name="rating" checked
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                             <label for="three-stars" class="ml-2 flex items-center">
                                                 <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -1065,7 +1059,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fourth star</title>
@@ -1073,7 +1067,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fifth star</title>
@@ -1086,7 +1080,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="two-stars" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                             <label for="two-stars" class="ml-2 flex items-center">
                                                 <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -1104,7 +1098,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Third star</title>
@@ -1112,7 +1106,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fourth star</title>
@@ -1120,7 +1114,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fifth star</title>
@@ -1133,7 +1127,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="one-star" type="radio" value="" name="rating"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                             <label for="one-star" class="ml-2 flex items-center">
                                                 <svg aria-hidden="true" class="h-5 w-5 text-yellow-400"
                                                     fill="currentColor" viewBox="0 0 20 20"
@@ -1143,7 +1137,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Second star</title>
@@ -1151,7 +1145,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Third star</title>
@@ -1159,7 +1153,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fourth star</title>
@@ -1167,7 +1161,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                         d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z">
                                                     </path>
                                                 </svg>
-                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 dark:text-gray-500"
+                                                <svg aria-hidden="true" class="h-5 w-5 text-gray-300 "
                                                     fill="currentColor" viewBox="0 0 20 20"
                                                     xmlns="http://www.w3.org/2000/svg">
                                                     <title>Fifth star</title>
@@ -1190,7 +1184,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     <li class="w-full border-r border-gray-200 ">
                                         <div class="flex items-center pl-3">
                                             <input id="condition-all" type="radio" value="" name="list-radio" checked
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 " />
                                             <label for="condition-all"
                                                 class="ml-2 w-full py-3 text-sm font-medium text-gray-900 ">
                                                 All </label>
@@ -1199,7 +1193,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     <li class="w-full border-r border-gray-200 ">
                                         <div class="flex items-center pl-3">
                                             <input id="condition-new" type="radio" value="" name="list-radio"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 " />
                                             <label for="condition-new"
                                                 class="ml-2 w-full py-3 text-sm font-medium text-gray-900 ">
                                                 New </label>
@@ -1208,7 +1202,7 @@ if (isset($_SESSION['usuario_id'])) {
                                     <li class="w-full">
                                         <div class="flex items-center pl-3">
                                             <input id="condition-used" type="radio" value="" name="list-radio"
-                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500 dark:border-gray-500 dark:bg-gray-600 dark:ring-offset-gray-700 dark:focus:ring-primary-600" />
+                                                class="h-4 w-4 border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 " />
                                             <label for="condition-used"
                                                 class="ml-2 w-full py-3 text-sm font-medium text-gray-900 ">
                                                 Used </label>
@@ -1224,18 +1218,18 @@ if (isset($_SESSION['usuario_id'])) {
                                     <div class="space-y-2">
                                         <div class="flex items-center">
                                             <input id="blue" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
 
                                             <label for="blue"
                                                 class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
-                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-primary-600"></div>
+                                                <div class="mr-2 h-3.5 w-3.5 rounded-full bg-blue-600"></div>
                                                 Blue
                                             </label>
                                         </div>
 
                                         <div class="flex items-center">
                                             <input id="gray" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
 
                                             <label for="gray"
                                                 class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
@@ -1246,7 +1240,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="green" type="checkbox" value="" checked
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
 
                                             <label for="green"
                                                 class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
@@ -1257,7 +1251,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="pink" type="checkbox" value=""
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
 
                                             <label for="pink"
                                                 class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
@@ -1268,7 +1262,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                                         <div class="flex items-center">
                                             <input id="red" type="checkbox" value="" checked
-                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                                class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
 
                                             <label for="red"
                                                 class="ml-2 flex items-center text-sm font-medium text-gray-900 ">
@@ -1282,14 +1276,14 @@ if (isset($_SESSION['usuario_id'])) {
                                     <h6 class="mb-2 text-sm font-medium text-black ">Weight</h6>
                                     <div class="flex items-center">
                                         <input id="weight-6" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="weight-6" class="ms-2 text-sm font-medium text-gray-900 "> Under 1
                                             kg </label>
                                     </div>
 
                                     <div class="flex items-center">
                                         <input id="weight-7" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   "
+                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   "
                                             checked />
                                         <label for="weight-7" class="ms-2 text-sm font-medium text-gray-900 "> 1 kg to 5
                                             kg </label>
@@ -1297,21 +1291,21 @@ if (isset($_SESSION['usuario_id'])) {
 
                                     <div class="flex items-center">
                                         <input id="weight-8" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="weight-8" class="ms-2 text-sm font-medium text-gray-900 "> 5 kg to
                                             10 kg </label>
                                     </div>
 
                                     <div class="flex items-center">
                                         <input id="weight-9" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="weight-9" class="ms-2 text-sm font-medium text-gray-900 "> 10 kg to
                                             20 kg </label>
                                     </div>
 
                                     <div class="flex items-center">
                                         <input id="weight-10" type="checkbox" value=""
-                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-primary-600 focus:ring-2 focus:ring-primary-500   " />
+                                            class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500   " />
                                         <label for="weight-10" class="ms-2 text-sm font-medium text-gray-900 "> Over 20
                                             kg </label>
                                     </div>
@@ -1327,7 +1321,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <input type="radio" id="delivery-usa" name="delivery" value="delivery-usa"
                                             class="peer hidden" checked />
                                         <label for="delivery-usa"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600   dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500">
+                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
                                             <div class="block">
                                                 <div class="w-full text-base font-semibold">USA</div>
                                                 <div class="w-full text-sm">Delivery only for USA</div>
@@ -1338,7 +1332,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <input type="radio" id="delivery-europe" name="delivery" value="delivery-europe"
                                             class="peer hidden" />
                                         <label for="delivery-europe"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600   dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500">
+                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
                                             <div class="block">
                                                 <div class="w-full text-base font-semibold">Europe</div>
                                                 <div class="w-full text-sm">Delivery only for USA</div>
@@ -1349,7 +1343,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <input type="radio" id="delivery-asia" name="delivery" value="delivery-asia"
                                             class="peer hidden" checked />
                                         <label for="delivery-asia"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600   dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500">
+                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
                                             <div class="block">
                                                 <div class="w-full text-base font-semibold">Asia</div>
                                                 <div class="w-full text-sm">Delivery only for Asia</div>
@@ -1360,7 +1354,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <input type="radio" id="delivery-australia" name="delivery"
                                             value="delivery-australia" class="peer hidden" />
                                         <label for="delivery-australia"
-                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-primary-600 peer-checked:text-primary-600   dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:peer-checked:text-primary-500">
+                                            class="inline-flex w-full cursor-pointer items-center justify-between rounded-lg border border-gray-200 bg-white p-5 text-gray-500 hover:bg-gray-100 hover:text-gray-600 peer-checked:border-blue-600 peer-checked:text-blue-600   ">
                                             <div class="block">
                                                 <div class="w-full text-base font-semibold">Australia</div>
                                                 <div class="w-full text-sm">Delivery only for Australia</div>
@@ -1373,10 +1367,10 @@ if (isset($_SESSION['usuario_id'])) {
 
                         <div class="bottom-0 left-0 mt-6 flex w-full justify-center space-x-4 pb-4">
                             <button type="submit"
-                                class="w-full rounded-lg bg-primary-700 px-5 py-2 text-center text-sm font-medium text-white hover:bg-primary-800 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-800">Apply
+                                class="w-full rounded-lg bg-blue-700 px-5 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300">Apply
                                 filters</button>
                             <button type="reset"
-                                class="w-full rounded-lg border border-gray-200 bg-white px-5 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 ">Clear
+                                class="w-full rounded-lg border border-gray-200 bg-white px-5 py-2 text-sm font-medium text-gray-900 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:outline-none focus:ring-4 focus:ring-gray-200 ">Clear
                                 all</button>
                         </div>
                     </div>
@@ -1387,7 +1381,7 @@ if (isset($_SESSION['usuario_id'])) {
 
     </main>
     <!-- FOOTER -->
-    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
+    <footer class="btn-blue shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
         <div
             class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
             <div class="text-center sm:text-left">
