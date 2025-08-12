@@ -198,17 +198,17 @@ if (isset($_SESSION['usuario_id'])) {
                         </button>
                     </form>
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-0 lg:mt-0 lg:h-full">
-                        <li class="lg:h-full lg:flex lg:items-center btn-secondary xl:py-3">
+                        <li class="lg:h-full lg:flex lg:items-center xl:py-3">
                             <a href="#"
-                                class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Inicio</a>
+                                class="block text-gray-600 py-2 pr-4 pl-3 border-b border-gray-100 lg:hover:bg-white lg:border-0 lg:hover:text-blue-700 lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center">Inicio</a>
                         </li>
                         <li class="lg:h-full lg:flex lg:items-center xl:py-3">
                             <a href="#"
                                 class="block text-gray-600 py-2 pr-4 pl-3 border-b border-gray-100 lg:hover:bg-white lg:border-0 lg:hover:text-blue-700 lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center">Tienda</a>
                         </li>
-                        <li class="lg:h-full lg:flex lg:items-center xl:py-3">
+                        <li class="lg:h-full lg:flex lg:items-center btn-secondary xl:py-3">
                             <a href="#"
-                                class="block text-gray-600 py-2 pr-4 pl-3 border-b border-gray-100 lg:hover:bg-white lg:border-0 lg:hover:text-blue-700 lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center">Contacto</a>
+                                class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold text-white lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0">Contacto</a>
                         </li>
                     </ul>
                 </div>
