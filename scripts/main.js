@@ -405,6 +405,7 @@ document.querySelectorAll(".favorito-btn").forEach((btn) => {
   });
 });
 
+//Mostrar alerta de favoritos
 function mostrarAlerta(mensaje) {
   const alerta = document.getElementById("alertaFavorito");
   const texto = document.getElementById("alertaTexto");
