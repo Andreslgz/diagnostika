@@ -70,8 +70,7 @@
                             class="side-menu__label">Administradores</span><i class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li class="side-menu-label1"><a href="javascript:void(0)">Administradores</a></li>
-                        <li><a href="#" class="slide-item"> Agregar</a></li>
-                        <li><a href="#" class="slide-item"> Reporte</a></li>
+                        <li><a href="admin_usuarios.php" class="slide-item"> Reporte</a></li>
                     </ul>
                 </li>
 
@@ -81,7 +80,8 @@
                             class="angle fe fe-chevron-right"></i></a>
                     <ul class="slide-menu">
                         <li class="side-menu-label1"><a href="javascript:void(0)">Herramientas</a></li>
-                        <li><a href="#" class="slide-item"> Slider Principal</a></li>
+                        <li><a href="sliders.php" class="slide-item"> Slider Principal</a></li>
+                        <li><a href="marquesinas.php" class="slide-item"> Marquesinas</a></li>
                     </ul>
                 </li>
 

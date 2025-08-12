@@ -314,11 +314,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['confirmar_eliminar'])
                                                                 <?php foreach ($clientes as $c): ?>
                                                                 <tr>
                                                                     <td><?= $c['id_usuario'] ?></td>
-                                                                    <td><?= htmlspecialchars($c['nombre']) ?></td>
-                                                                    <td><?= htmlspecialchars($c['email']) ?></td>
-                                                                    <td><?= htmlspecialchars($c['telefono']) ?></td>
-                                                                    <td><?= htmlspecialchars($c['ciudad']) ?></td>
-                                                                    <td><?= date('d/m/Y H:i', strtotime($c['fecha_registro'])) ?>
+                                                                    <td><?= htmlspecialchars($c['nombre'] ?? '', ENT_QUOTES, 'UTF-8') ?>
+                                                                    </td>
+                                                                    <td><?= htmlspecialchars($c['email'] ?? '', ENT_QUOTES, 'UTF-8') ?>
+                                                                    </td>
+                                                                    <td><?= htmlspecialchars($c['telefono'] ?? '', ENT_QUOTES, 'UTF-8') ?>
+                                                                    </td>
+                                                                    <td><?= htmlspecialchars($c['ciudad'] ?? '', ENT_QUOTES, 'UTF-8') ?>
+                                                                    </td>
+                                                                    <td><?= date('d/m/Y', strtotime($c['fecha_registro'])) ?>
                                                                     </td>
                                                                     <td class="text-center align-middle">
                                                                         <div class="d-inline-flex gap-2">
