@@ -1013,13 +1013,13 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
             <div class="mt-8 lg:mt-0">
                 <h2 class="text-xl md:text-2xl font-extrabold text-center sm:text-left">Recursos</h2>
-                <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-center sm:text-left"></ul>
-                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Términos y
-                        condiciones</a>
-                </li>
-                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Política de
-                        privacidad</a>
-                </li>
+                <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-center sm:text-left">
+                    <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Términos y
+                            condiciones</a>
+                    </li>
+                    <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Política de
+                            privacidad</a>
+                    </li>
                 </ul>
             </div>
         </div>
