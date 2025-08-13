@@ -321,11 +321,84 @@ if (isset($_SESSION['usuario_id'])) {
                                     JUNIO 2025
                                 </p>
                             </div>
-                            <div class="mb-3">
-                                <p>
-                                    Buscar por fecha
-                                </p>
-                                <input type="date" class="border border-gray-300 rounded-lg p-2">
+                            <div class="mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
+                                <p class="font-medium mb-3 text-gray-700">Buscar por fecha</p>
+
+                                <!-- Opciones de filtrado -->
+                                <div class="flex flex-wrap gap-2 mb-4">
+                                    <button
+                                        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base"
+                                        data-filter="dia">
+                                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        Día
+                                    </button>
+                                    <button
+                                        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base active"
+                                        data-filter="mes">
+                                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        Mes
+                                    </button>
+                                    <button
+                                        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base"
+                                        data-filter="año">
+                                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        Año
+                                    </button>
+                                    <button
+                                        class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base"
+                                        data-filter="personalizado">
+                                        <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+                                            </path>
+                                        </svg>
+                                        Personalizado
+                                    </button>
+                                </div>
+
+                                <!-- Input de fecha dinámico -->
+                                <div id="dateInputContainer" class="flex flex-col sm:flex-row gap-3">
+                                    <select id="monthSelect" class="border border-gray-300 rounded-lg p-2 flex-1">
+                                        <option value="01">Enero</option>
+                                        <option value="02">Febrero</option>
+                                        <option value="03">Marzo</option>
+                                        <option value="04">Abril</option>
+                                        <option value="05">Mayo</option>
+                                        <option value="06" selected>Junio</option>
+                                        <option value="07">Julio</option>
+                                        <option value="08">Agosto</option>
+                                        <option value="09">Septiembre</option>
+                                        <option value="10">Octubre</option>
+                                        <option value="11">Noviembre</option>
+                                        <option value="12">Diciembre</option>
+                                    </select>
+                                    <select id="yearSelect"
+                                        class="border border-gray-300 rounded-lg p-2 w-full sm:w-32">
+                                        <option value="2023">2023</option>
+                                        <option value="2024">2024</option>
+                                        <option value="2025" selected>2025</option>
+                                    </select>
+                                    <button
+                                        class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                                        Buscar
+                                    </button>
+                                </div>
                             </div>
                         </div>
 
@@ -959,6 +1032,108 @@ if (isset($_SESSION['usuario_id'])) {
                 sideMenu.style.opacity = '0';
             }
         });
+
+        // Sistema de filtros
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const dateInputContainer = document.getElementById('dateInputContainer');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function () {
+                // Remover clase active de todos los botones
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Agregar clase active al botón clickeado
+                this.classList.add('active');
+
+                const filterType = this.dataset.filter;
+                updateDateInputs(filterType);
+            });
+        });
+
+        function updateDateInputs(filterType) {
+            let html = '';
+
+            switch (filterType) {
+                case 'dia':
+                    html = `
+                        <input type="date" class="border border-gray-300 rounded-lg p-2 flex-1" value="2025-06-01">
+                        <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Buscar
+                        </button>
+                    `;
+                    break;
+
+                case 'mes':
+                    html = `
+                        <select class="border border-gray-300 rounded-lg p-2 flex-1">
+                            <option value="01">Enero</option>
+                            <option value="02">Febrero</option>
+                            <option value="03">Marzo</option>
+                            <option value="04">Abril</option>
+                            <option value="05">Mayo</option>
+                            <option value="06" selected>Junio</option>
+                            <option value="07">Julio</option>
+                            <option value="08">Agosto</option>
+                            <option value="09">Septiembre</option>
+                            <option value="10">Octubre</option>
+                            <option value="11">Noviembre</option>
+                            <option value="12">Diciembre</option>
+                        </select>
+                        <select class="border border-gray-300 rounded-lg p-2 w-full sm:w-32">
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025" selected>2025</option>
+                        </select>
+                        <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Buscar
+                        </button>
+                    `;
+                    break;
+
+                case 'año':
+                    html = `
+                        <select class="border border-gray-300 rounded-lg p-2 flex-1">
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025" selected>2025</option>
+                            <option value="2026">2026</option>
+                        </select>
+                        <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Buscar
+                        </button>
+                    `;
+                    break;
+
+                case 'personalizado':
+                    html = `
+                        <div class="flex flex-col sm:flex-row gap-2 flex-1">
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm text-gray-600">Desde:</label>
+                                <input type="date" class="border border-gray-300 rounded-lg p-2" value="2025-01-01">
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <label class="text-sm text-gray-600">Hasta:</label>
+                                <input type="date" class="border border-gray-300 rounded-lg p-2" value="2025-06-30">
+                            </div>
+                        </div>
+                        <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Buscar
+                        </button>
+                    `;
+                    break;
+            }
+
+            dateInputContainer.innerHTML = html;
+
+            // Animación de entrada
+            dateInputContainer.style.opacity = '0';
+            setTimeout(() => {
+                dateInputContainer.style.transition = 'opacity 0.3s ease';
+                dateInputContainer.style.opacity = '1';
+            }, 10);
+        }
     </script>
 </body>
 
