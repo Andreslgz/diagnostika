@@ -251,7 +251,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 9 4-4-4-4" />
                             </svg>
-                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">Información personal</span>
+                            <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">Mis softwares</span>
                         </div>
                     </li>
                 </ol>
@@ -280,7 +280,7 @@ if (isset($_SESSION['usuario_id'])) {
                     <div class="col-span-1 lg:col-span-4 xl:col-span-3">
                         <div id="sideMenu"
                             class="border border-solid border-gray-300 rounded menu-transition overflow-hidden max-h-0 lg:max-h-none opacity-0 lg:opacity-100">
-                            <a href="./index.php"
+                            <a href="./informacionpersonal.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
                                 Información personal
                             </a>

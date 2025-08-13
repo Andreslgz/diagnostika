@@ -257,40 +257,221 @@ if (isset($_SESSION['usuario_id'])) {
             </nav>
 
         </section>
-        <section class="xl:pb-16 py-0 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+        <section class="xl:pb-16 py-4 md:py-6 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <div>
-                <h1 class="text-2xl font-extrabold">
+                <h1 class="text-xl md:text-2xl font-extrabold mb-4">
                     Mi cuenta
                 </h1>
-                <div class="grid grid-cols-12 mt-4">
-                    <div class="col-span-2 border border-solid border-gray-300 rounded">
-                        <a class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer"
-                            href="./informacionpersonal.php">
-                            Información personal
-                        </a>
-                        <a href="./misoftware.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Mis software
-                        </a>
-                        <a href="./estadoinstalaciones.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Estado de instalación
-                        </a>
-                        <a href="./miscupones.php"
-                            class=" p-3 btn-primary block border-b border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Mis cupones
-                        </a>
-                        <a href="./miscreditos.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Mis créditos
-                        </a>
-                        <a href="./productosguardados.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Productos guardados
-                        </a>
-                        <div class=" p-3  hover:bg-gray-200 hover:cursor-pointer">
-                            Cerrar sesión
+
+                <!-- Botón del menú móvil (visible solo en móviles) -->
+                <button id="mobileMenuToggle"
+                    class="lg:hidden w-full mb-4 p-3 btn-secondary text-white rounded-lg flex items-center justify-between">
+                    <span>Menú de navegación</span>
+                    <svg class="w-5 h-5 transform transition-transform" id="menuIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                        </path>
+                    </svg>
+                </button>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 mt-4 gap-4 lg:gap-10 xl:gap-20">
+                    <!-- Menú lateral - Responsive -->
+                    <div class="col-span-1 lg:col-span-4 xl:col-span-3">
+                        <div id="sideMenu"
+                            class="border border-solid border-gray-300 rounded menu-transition overflow-hidden max-h-0 lg:max-h-none opacity-0 lg:opacity-100">
+                            <a href="./informacionpersonal.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Información personal
+                            </a>
+                            <a href="./misoftware.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Mis software
+                            </a>
+                            <a href="./estadoinstalaciones.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Estado de instalación
+                            </a>
+                            <div class="p-3 btn-primary bg-blue-600 ">
+                                Mis cupones
+                            </div>
+                            <a href="./miscreditos.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Mis créditos
+                            </a>
+                            <a href="./productosguardados.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Productos guardados
+                            </a>
+                            <div
+                                class="p-3 hover:bg-gray-200 hover:cursor-pointer transition-colors text-red-600 font-medium">
+                                Cerrar sesión
+                            </div>
                         </div>
+                    </div>
+
+                    <!-- Contenido principal - Responsive -->
+                    <div class="col-span-1 lg:col-span-8 xl:col-span-9">
+                        <div>
+                            <div class="flex flex-col items-start sm:items-start">
+                                <h2 class="font-bold text-lg md:text-xl mb-1 sm:mb-1">
+                                    Mis cupones
+                                </h2>
+                                <p class="text-gray-700">
+                                    Los cupones vencidos se eliminan automáticamente después de 15 días
+                                </p>
+                            </div>
+
+                        </div>
+                        <div class=" grid xl:grid-cols-3 grid-cols-1 gap-10 mt-6">
+                            <div class="border-2 rounded-lg border-solid border-[#f7a615] ">
+                                <header class="btn-secondary xl:p-5 p-4">
+                                    <div class="flex flex-row items-end gap-2">
+                                        <p class="text-white xl:text-5xl text-4xl font-bold">
+                                            $100
+                                        </p>
+                                        <p class="text-xl font-bold">
+                                            Descuento
+                                        </p>
+                                    </div>
+                                    <p class="mt-1.5 text-lg">
+                                        Valid only on your first purchase
+                                    </p>
+                                </header>
+                                <div class="xl:p-5 p-4">
+                                    <ul class="text-sm text-gray-600 flex flex-col gap-1">
+                                        <li>
+                                            Maximum 1 installation
+                                        </li>
+                                        <li>
+                                            Maximum 1 software
+                                        </li>
+                                        <li>
+                                            You have 1 installation left
+                                        </li>
+                                        <li>
+                                            You have 1 installation left
+                                        </li>
+                                    </ul>
+                                    <p class="text-base text-gray-500 mt-2">
+                                        Valid until 18/08/2025
+                                    </p>
+                                </div>
+                                <div class="px-3 sm:px-4 md:px-5 pb-3 sm:pb-4 md:pb-5">
+                                    <button
+                                        class="coupon-code-btn w-full btn-secondary py-2 sm:py-2.5 rounded-lg font-bold text-sm sm:text-base tracking-wider code-button flex items-center justify-center gap-2"
+                                        data-enabled="true">
+                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        <span class="code-text">P7H2YRXUYJ5B</span>
+                                    </button>
+                                    <p class="text-xs text-gray-600 text-center mt-1.5">
+                                        Click para copiar código
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="border-2 rounded-lg border-solid border-[#f7a615] ">
+                                <header class="btn-secondary xl:p-5 p-4">
+                                    <div class="flex flex-row items-end gap-2">
+                                        <p class="text-white xl:text-5xl text-4xl font-bold">
+                                            5%
+                                        </p>
+                                        <p class="text-xl font-bold">
+                                            Descuento
+                                        </p>
+                                    </div>
+                                    <p class="mt-1.5 text-lg">
+                                        Valid only on your first purchase
+                                    </p>
+                                </header>
+                                <div class="xl:p-5 p-4">
+                                    <ul class="text-sm text-gray-600 flex flex-col gap-1">
+                                        <li>
+                                            Maximum 1 installation
+                                        </li>
+                                        <li>
+                                            Maximum 1 software
+                                        </li>
+                                        <li>
+                                            You have 1 installation left
+                                        </li>
+                                        <li>
+                                            You have 1 installation left
+                                        </li>
+                                    </ul>
+                                    <p class="text-base text-gray-500 mt-2">
+                                        Valid until 18/08/2025
+                                    </p>
+                                </div>
+                                <div class="px-3 sm:px-4 md:px-5 pb-3 sm:pb-4 md:pb-5">
+                                    <button
+                                        class="coupon-code-btn w-full btn-secondary py-2 sm:py-2.5 rounded-lg font-bold text-sm sm:text-base tracking-wider code-button flex items-center justify-center gap-2"
+                                        data-enabled="true">
+                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        <span class="code-text">P7H2YRXUYJ5B</span>
+                                    </button>
+                                    <p class="text-xs text-gray-600 text-center mt-1.5">
+                                        Click para copiar código
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="border-2 rounded-lg border-solid border-[#a7a7a6] ">
+                                <header class="bg-[#a7a7a6] xl:p-5 p-4">
+                                    <div class="flex flex-row items-end gap-2">
+                                        <p class="text-white xl:text-5xl text-4xl font-bold">
+                                            5%
+                                        </p>
+                                        <p class="text-xl font-bold">
+                                            Descuento
+                                        </p>
+                                    </div>
+                                    <p class="mt-1.5 text-lg">
+                                        Valid only on your first purchase
+                                    </p>
+                                </header>
+                                <div class="xl:p-5 p-4">
+                                    <ul class="text-sm text-gray-600 flex flex-col gap-1">
+                                        <li>
+                                            Maximum 1 installation
+                                        </li>
+                                        <li>
+                                            Maximum 1 software
+                                        </li>
+                                        <li>
+                                            You have 1 installation left
+                                        </li>
+                                        <li>
+                                            You have 1 installation left
+                                        </li>
+                                    </ul>
+                                    <p class="text-base text-gray-500 mt-2">
+                                        Valid until 18/08/2025
+                                    </p>
+                                </div>
+                                <div class="px-3 sm:px-4 md:px-5 pb-3 sm:pb-4 md:pb-5">
+                                    <button
+                                        class="coupon-code-btn w-full bg-[#a7a7a6] py-2 sm:py-2.5 rounded-lg font-bold text-sm sm:text-base tracking-wider code-button flex items-center justify-center gap-2"
+                                        data-enabled="false">
+                                        <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
+                                            </path>
+                                        </svg>
+                                        <span class="code-text">Cupón canjeado</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -792,6 +973,34 @@ if (isset($_SESSION['usuario_id'])) {
             background: linear-gradient(0deg, #8A8A89 0%, #C0C0C0 100%);
         }
     </style>
+    <script>
+        // Seleccionar todos los botones de cupón
+        document.querySelectorAll('.coupon-code-btn').forEach(button => {
+            button.addEventListener('click', function () {
+                // Solo funcionar si el cupón está habilitado
+                if (this.dataset.enabled === 'true') {
+                    const codeTextElement = this.querySelector('.code-text');
+                    const codeText = codeTextElement.textContent;
+
+                    // Copiar al portapapeles
+                    navigator.clipboard.writeText(codeText).then(() => {
+                        // Cambiar temporalmente el texto del botón
+                        const originalText = codeTextElement.textContent;
+                        codeTextElement.textContent = '¡Copiado!';
+                        this.classList.add('copied');
+
+                        // Restaurar después de 2 segundos
+                        setTimeout(() => {
+                            codeTextElement.textContent = originalText;
+                            this.classList.remove('copied');
+                        }, 2000);
+                    }).catch(err => {
+                        console.error('Error al copiar: ', err);
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
