@@ -479,7 +479,7 @@ if (isset($_SESSION['usuario_id'])) {
 
     </main>
     <!-- FOOTER -->
-    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
+    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden xl:mt-20 mt-14">
         <div
             class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
             <div class="text-center sm:text-left">
@@ -1000,6 +1000,29 @@ if (isset($_SESSION['usuario_id'])) {
                 }
             });
         });
+
+
+        // Toggle del menú móvil
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        let isMenuOpen = false;
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function () {
+                isMenuOpen = !isMenuOpen;
+
+                if (isMenuOpen) {
+                    sideMenu.style.maxHeight = sideMenu.scrollHeight + 'px';
+                    sideMenu.style.opacity = '1';
+                    menuIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    sideMenu.style.maxHeight = '0';
+                    sideMenu.style.opacity = '0';
+                    menuIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
     </script>
 </body>
 
