@@ -317,9 +317,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
                                     Órdenes de paquetes y software
                                 </h2>
-                                <p class="text-gray-500 text-lg">
-                                    JUNIO 2025
-                                </p>
+
                             </div>
                             <div class="mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
                                 <p class="font-medium mb-3 text-gray-700">Buscar por fecha</p>
@@ -406,94 +404,56 @@ if (isset($_SESSION['usuario_id'])) {
                             class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3">
                             <!-- Pedido Completado | Finalizado -->
                             <div>
-                                <header class="bg-[#00c016] text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                <header
+                                    class="bg-[#00c016] text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
                                     <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
                                     <p>Instalación completada</p>
                                 </header>
-                                <div class="p-5 flex flex-row items-center justify-start gap-6">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
-                                    <div class="flex flex-col items-start justify-start gap-3">
-                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="xl:size-[150px] size-[70px]">
+                                    <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
+                                        <p class="uppercase font-bold xl:text-xl text-sm">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha:
+                                            01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Categoria</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Pedido En proceso  -->
                             <div>
-                                <header class="bg-yellow-400 text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                <header
+                                    class="bg-yellow-400 text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
                                     <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
                                     <p>Instalación en proceso</p>
                                 </header>
-                                <div class="p-5 flex flex-row items-center justify-start gap-6">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
-                                    <div class="flex flex-col items-start justify-start gap-3">
-                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="xl:size-[150px] size-[70px]">
+                                    <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
+                                        <p class="uppercase font-bold xl:text-xl text-sm ">NOMBRE DEL PRODUCTO
+                                        </p>
+                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha:
+                                            01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Categoria</p>
                                     </div>
                                 </div>
                             </div>
                             <!-- Pedido fallido -->
                             <div>
-                                <header class="bg-red-600 text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                <header class="bg-red-600 text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
                                     <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
                                     <p>Instalación fallida</p>
                                 </header>
-                                <div class="p-5 flex flex-row items-center justify-start gap-6">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
-                                    <div class="flex flex-col items-start justify-start gap-3">
-                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="xl:size-[150px] size-[70px]">
+                                    <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
+                                        <p class="uppercase font-bold xl:text-xl text-sm">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha:
+                                            01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Categoria</p>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Pedido Completado | Finalizado -->
-                            <div>
-                                <header class="bg-[#00c016] text-white p-3 flex items-center gap-2 rounded-t-lg">
-                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
-                                    <p>Instalación completada</p>
-                                </header>
-                                <div class="p-5 flex flex-row items-center justify-start gap-6">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
-                                    <div class="flex flex-col items-start justify-start gap-3">
-                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Pedido En proceso  -->
-                            <div>
-                                <header class="bg-yellow-400 text-white p-3 flex items-center gap-2 rounded-t-lg">
-                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
-                                    <p>Instalación en proceso</p>
-                                </header>
-                                <div class="p-5 flex flex-row items-center justify-start gap-6">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
-                                    <div class="flex flex-col items-start justify-start gap-3">
-                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Pedido fallido -->
-                            <div>
-                                <header class="bg-red-600 text-white p-3 flex items-center gap-2 rounded-t-lg">
-                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
-                                    <p>Instalación fallida</p>
-                                </header>
-                                <div class="p-5 flex flex-row items-center justify-start gap-6">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
-                                    <div class="flex flex-col items-start justify-start gap-3">
-                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
