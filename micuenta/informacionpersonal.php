@@ -256,39 +256,139 @@ if (isset($_SESSION['usuario_id'])) {
             </nav>
 
         </section>
-        <section class="xl:pb-16 py-0 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+        <section class="xl:pb-16 py-4 md:py-6 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <div>
-                <h1 class="text-2xl font-extrabold">
+                <h1 class="text-xl md:text-2xl font-extrabold mb-4">
                     Mi cuenta
                 </h1>
-                <div class="grid grid-cols-12 mt-4">
-                    <div class="col-span-2 border border-solid border-gray-300 rounded">
-                        <div class=" p-3 btn-primary">
-                            Información personal
+
+                <!-- Botón del menú móvil (visible solo en móviles) -->
+                <button id="mobileMenuToggle"
+                    class="lg:hidden w-full mb-4 p-3 btn-secondary text-white rounded-lg flex items-center justify-between">
+                    <span>Menú de navegación</span>
+                    <svg class="w-5 h-5 transform transition-transform" id="menuIcon" fill="none" stroke="currentColor"
+                        viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 mt-4 gap-4 lg:gap-10 xl:gap-20">
+                    <!-- Menú lateral - Responsive -->
+                    <div class="col-span-1 lg:col-span-4 xl:col-span-3">
+                        <div id="sideMenu"
+                            class="border border-solid border-gray-300 rounded menu-transition overflow-hidden max-h-0 lg:max-h-none opacity-0 lg:opacity-100">
+                            <div class="p-3 btn-primary bg-blue-600 ">
+                                Información personal
+                            </div>
+                            <a href="./misoftware.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Mis software
+                            </a>
+                            <a href="./estadoinstalaciones.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Estado de instalación
+                            </a>
+                            <a href="./miscupones.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Mis cupones
+                            </a>
+                            <a href="./miscreditos.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Mis créditos
+                            </a>
+                            <a href="./productosguardados.php"
+                                class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
+                                Productos guardados
+                            </a>
+                            <div
+                                class="p-3 hover:bg-gray-200 hover:cursor-pointer transition-colors text-red-600 font-medium">
+                                Cerrar sesión
+                            </div>
                         </div>
-                        <a href="./misoftware.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Mis software
-                        </a>
-                        <a href="./estadoinstalaciones.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Estado de instalación
-                        </a>
-                        <a href="./miscupones.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Mis cupones
-                        </a>
-                        <a href="./miscreditos.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Mis créditos
-                        </a>
-                        <a href="./productosguardados.php"
-                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
-                            Productos guardados
-                        </a>
-                        <div class=" p-3  hover:bg-gray-200 hover:cursor-pointer">
-                            Cerrar sesión
+                    </div>
+
+                    <!-- Contenido principal - Responsive -->
+                    <div class="col-span-1 lg:col-span-8 xl:col-span-9">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                            <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
+                                Información personal
+                            </h2>
+                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full sm:w-auto">
+                                <button
+                                    class="flex flex-row gap-2 items-center justify-center py-2 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                        </path>
+                                    </svg>
+                                    <p class="text-sm md:text-base">
+                                        Editar información
+                                    </p>
+                                </button>
+                                <button
+                                    class="flex flex-row gap-2 items-center justify-center border border-solid border-gray-100 shadow-xl py-2 px-4 rounded-lg hover:bg-gray-50 bg-white transition-colors">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V2">
+                                        </path>
+                                    </svg>
+                                    <p class="text-sm md:text-base">
+                                        Guardar cambios
+                                    </p>
+                                </button>
+                            </div>
                         </div>
+
+                        <form action="" class="flex flex-col gap-4 max-w-full lg:max-w-[750px] mt-4">
+                            <div>
+                                <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
+                                    Tus nombres y apellidos
+                                </label>
+                                <div class="relative">
+                                    <input name="nombre_completo" type="text"
+                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="Juan Pérez" required />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
+                                        País
+                                    </label>
+                                    <select name="pais"
+                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        required>
+                                        <option value="">Elige un país</option>
+                                        <option value="Estados Unidos">Estados Unidos</option>
+                                        <option value="Perú">Perú</option>
+                                        <option value="Francia">Francia</option>
+                                        <option value="Alemania">Alemania</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
+                                        Teléfono
+                                    </label>
+                                    <input name="telefono" type="tel"
+                                        class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                        placeholder="123-456-7890" />
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
+                                    Correo electrónico
+                                </label>
+                                <div class="relative">
+                                    <input name="email" type="email"
+                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                        placeholder="juan.perez@example.com" required />
+                                </div>
+                            </div>
+
+
+                        </form>
                     </div>
                 </div>
             </div>
@@ -296,7 +396,7 @@ if (isset($_SESSION['usuario_id'])) {
 
     </main>
     <!-- FOOTER -->
-    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden">
+    <footer class="btn-primary shadow-[0_-5px_15px_0_rgba(0,0,0,0.13)] overflow-hidden mt-16 xl:mt-24">
         <div
             class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
             <div class="text-center sm:text-left">
@@ -425,7 +525,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <div class="relative mb-6">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                                <img src="assets/icons/svg/correo-electronico-input.svg" alt="" />
+                                                <img src="/../assets/icons/svg/correo-electronico-input.svg" alt="" />
                                             </div>
                                             <input name="email" type="text" id="input-group-1"
                                                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -439,7 +539,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <div class="relative mb-6">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 -ml-0.5 pointer-events-none">
-                                                <img src="assets/icons/svg/password-input.svg" alt="" />
+                                                <img src="/../assets/icons/svg/password-input.svg" alt="" />
                                             </div>
                                             <input type="password" name="password" id="input-group-2"
                                                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -492,7 +592,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                                <img src="assets/icons/svg/full-name-input.svg" alt="" />
+                                                <img src="/../assets/icons/svg/full-name-input.svg" alt="" />
                                             </div>
                                             <input name="nombre_completo" type="text"
                                                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -532,7 +632,8 @@ if (isset($_SESSION['usuario_id'])) {
                                             <div class="relative">
                                                 <div
                                                     class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                                    <img src="assets/icons/svg/correo-electronico-input.svg" alt="" />
+                                                    <img src="/../assets/icons/svg/correo-electronico-input.svg"
+                                                        alt="" />
                                                 </div>
                                                 <input name="email" type="email"
                                                     class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -556,7 +657,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                                <img src="assets/icons/svg/password-input.svg" alt="" />
+                                                <img src="/../assets/icons/svg/password-input.svg" alt="" />
                                             </div>
                                             <input name="password" type="password"
                                                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -569,7 +670,7 @@ if (isset($_SESSION['usuario_id'])) {
                                         <div class="relative">
                                             <div
                                                 class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                                <img src="assets/icons/svg/password-input.svg" alt="" />
+                                                <img src="/../assets/icons/svg/password-input.svg" alt="" />
                                             </div>
                                             <input name="password_confirm" type="password"
                                                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
@@ -607,7 +708,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                     <!-- Column 2: Static Image -->
                     <div class="hidden md:block">
-                        <img src="assets/images/auth.jpg" alt="Authentication"
+                        <img src="/../assets/images/auth.jpg" alt="Authentication"
                             class="w-full h-[750px] object-cover rounded-r-lg" />
                     </div>
                 </div>
@@ -790,6 +891,40 @@ if (isset($_SESSION['usuario_id'])) {
             background: linear-gradient(0deg, #8A8A89 0%, #C0C0C0 100%);
         }
     </style>
+    <script>
+        // Toggle del menú móvil
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const sideMenu = document.getElementById('sideMenu');
+        const menuIcon = document.getElementById('menuIcon');
+        let isMenuOpen = false;
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', function () {
+                isMenuOpen = !isMenuOpen;
+
+                if (isMenuOpen) {
+                    sideMenu.style.maxHeight = sideMenu.scrollHeight + 'px';
+                    sideMenu.style.opacity = '1';
+                    menuIcon.style.transform = 'rotate(180deg)';
+                } else {
+                    sideMenu.style.maxHeight = '0';
+                    sideMenu.style.opacity = '0';
+                    menuIcon.style.transform = 'rotate(0deg)';
+                }
+            });
+        }
+
+        // Asegurar que el menú esté visible en pantallas grandes
+        window.addEventListener('resize', function () {
+            if (window.innerWidth >= 1024) { // lg breakpoint
+                sideMenu.style.maxHeight = 'none';
+                sideMenu.style.opacity = '1';
+            } else if (!isMenuOpen) {
+                sideMenu.style.maxHeight = '0';
+                sideMenu.style.opacity = '0';
+            }
+        });
+    </script>
 </body>
 
 </html>
