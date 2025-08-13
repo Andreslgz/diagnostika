@@ -312,86 +312,116 @@ if (isset($_SESSION['usuario_id'])) {
 
                     <!-- Contenido principal - Responsive -->
                     <div class="col-span-1 lg:col-span-8 xl:col-span-9">
-                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-                            <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
-                                Información personal
-                            </h2>
-                            <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full sm:w-auto">
-                                <button
-                                    class="flex flex-row gap-2 items-center justify-center py-2 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                        </path>
-                                    </svg>
-                                    <p class="text-sm md:text-base">
-                                        Editar información
-                                    </p>
-                                </button>
-                                <button
-                                    class="flex flex-row gap-2 items-center justify-center border border-solid border-gray-100 shadow-xl py-2 px-4 rounded-lg hover:bg-gray-50 bg-white transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V2">
-                                        </path>
-                                    </svg>
-                                    <p class="text-sm md:text-base">
-                                        Guardar cambios
-                                    </p>
-                                </button>
+                        <div>
+                            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                                <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
+                                    Órdenes de paquetes y software
+                                </h2>
+                                <p class="text-gray-500 text-lg">
+                                    JUNIO 2025
+                                </p>
+                            </div>
+                            <div class="mb-3">
+                                <p>
+                                    Buscar por fecha
+                                </p>
+                                <input type="date" class="border border-gray-300 rounded-lg p-2">
                             </div>
                         </div>
 
-                        <form action="" class="flex flex-col gap-4 max-w-full lg:max-w-[750px] mt-4">
+                        <div
+                            class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3">
+                            <!-- Pedido Completado | Finalizado -->
                             <div>
-                                <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                    Tus nombres y apellidos
-                                </label>
-                                <div class="relative">
-                                    <input name="nombre_completo" type="text"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        placeholder="Juan Pérez" required />
+                                <header class="bg-[#00c016] text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+                                    <p>Instalación completada</p>
+                                </header>
+                                <div class="p-5 flex flex-row items-center justify-start gap-6">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
+                                    <div class="flex flex-col items-start justify-start gap-3">
+                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                <div>
-                                    <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                        País
-                                    </label>
-                                    <select name="pais"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        required>
-                                        <option value="">Elige un país</option>
-                                        <option value="Estados Unidos">Estados Unidos</option>
-                                        <option value="Perú">Perú</option>
-                                        <option value="Francia">Francia</option>
-                                        <option value="Alemania">Alemania</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                        Teléfono
-                                    </label>
-                                    <input name="telefono" type="tel"
-                                        class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="123-456-7890" />
-                                </div>
-                            </div>
-
+                            <!-- Pedido En proceso  -->
                             <div>
-                                <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                    Correo electrónico
-                                </label>
-                                <div class="relative">
-                                    <input name="email" type="email"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        placeholder="juan.perez@example.com" required />
+                                <header class="bg-yellow-400 text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+                                    <p>Instalación en proceso</p>
+                                </header>
+                                <div class="p-5 flex flex-row items-center justify-start gap-6">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
+                                    <div class="flex flex-col items-start justify-start gap-3">
+                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                    </div>
                                 </div>
                             </div>
-
-
-                        </form>
+                            <!-- Pedido fallido -->
+                            <div>
+                                <header class="bg-red-600 text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+                                    <p>Instalación fallida</p>
+                                </header>
+                                <div class="p-5 flex flex-row items-center justify-start gap-6">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
+                                    <div class="flex flex-col items-start justify-start gap-3">
+                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pedido Completado | Finalizado -->
+                            <div>
+                                <header class="bg-[#00c016] text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+                                    <p>Instalación completada</p>
+                                </header>
+                                <div class="p-5 flex flex-row items-center justify-start gap-6">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
+                                    <div class="flex flex-col items-start justify-start gap-3">
+                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pedido En proceso  -->
+                            <div>
+                                <header class="bg-yellow-400 text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+                                    <p>Instalación en proceso</p>
+                                </header>
+                                <div class="p-5 flex flex-row items-center justify-start gap-6">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
+                                    <div class="flex flex-col items-start justify-start gap-3">
+                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Pedido fallido -->
+                            <div>
+                                <header class="bg-red-600 text-white p-3 flex items-center gap-2 rounded-t-lg">
+                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+                                    <p>Instalación fallida</p>
+                                </header>
+                                <div class="p-5 flex flex-row items-center justify-start gap-6">
+                                    <img src="/assets/images/producto1.jpg" alt="" class="size-[150px]">
+                                    <div class="flex flex-col items-start justify-start gap-3">
+                                        <p class="uppercase font-bold text-xl">NOMBRE DEL PRODUCTO</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Fecha: 01/01/2025</p>
+                                        <p class="uppercase text-gray-400 font-bold text-lg">Categoria</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
