@@ -266,21 +266,26 @@ if (isset($_SESSION['usuario_id'])) {
                         <div class=" p-3 btn-primary">
                             Información personal
                         </div>
-                        <div class=" p-3 border-b border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
+                        <a href="./misoftware.php"
+                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
                             Mis software
-                        </div>
-                        <div class=" p-3  border-b border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
+                        </a>
+                        <a href="./estadoinstalaciones.php"
+                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
                             Estado de instalación
-                        </div>
-                        <div class=" p-3  border-b border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
+                        </a>
+                        <a href="./miscupones.php"
+                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
                             Mis cupones
-                        </div>
-                        <div class=" p-3  border-b border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
+                        </a>
+                        <a href="./miscreditos.php"
+                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
                             Mis créditos
-                        </div>
-                        <div class=" p-3  border-b border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
+                        </a>
+                        <a href="./productosguardados.php"
+                            class=" p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer">
                             Productos guardados
-                        </div>
+                        </a>
                         <div class=" p-3  hover:bg-gray-200 hover:cursor-pointer">
                             Cerrar sesión
                         </div>
