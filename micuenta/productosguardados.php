@@ -217,7 +217,7 @@ if (isset($_SESSION['usuario_id'])) {
     </header>
     <main>
 
-
+    
 
     </main>
     <!-- FOOTER -->
