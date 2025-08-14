@@ -1161,7 +1161,7 @@ function renderGridFromData(list = []) {
     const id = Number(p.id_producto || 0);
     const nombre = String(p.nombre || 'Producto');
     const precio = (Number(p.precio || 0)).toFixed(2);
-    const img = p.imagen ? BASE_DIR + /uploads/${p.imagen} : placeholder;
+    const img = p.imagen ? BASE_DIR + `/uploads/${p.imagen}` : placeholder;
 
     html += `
     <div class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
