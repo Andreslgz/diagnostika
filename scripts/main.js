@@ -1131,6 +1131,7 @@ document.addEventListener('click', async (ev) => {
 // Productos de la /tienda
 
 // ===== Config =====
+
 const ENDPOINT_LISTA = BASE_DIR + '/tienda/ajax_productos.php';
 const GRID_ID = 'productosGrid';
 const PAG_ID = 'paginacion';
