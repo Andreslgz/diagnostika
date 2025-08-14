@@ -1161,7 +1161,9 @@ function renderGridFromData(list = []) {
     const id = Number(p.id_producto || 0);
     const nombre = String(p.nombre || 'Producto');
     const precio = (Number(p.precio || 0)).toFixed(2);
-    const img = p.imagen ? `/uploads/${p.imagen}` : placeholder;
+    const img = p.imagen
+      ? BASE_DIR + `/uploads/${p.imagen}`
+      : placeholder;
 
     html += `
     <div class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
@@ -1353,14 +1355,14 @@ document.addEventListener('DOMContentLoaded', () => cargarProductos({ page: 1 })
 
 // Funcion envio tipo ajax para el form de contactenos
 
-(function() {
+(function () {
   const $ = sel => document.querySelector(sel);
 
-  const form   = $('#contactoForm');
-  const btn    = $('#btnEnviar');
+  const form = $('#contactoForm');
+  const btn = $('#btnEnviar');
   const boxMsg = $('#contactoMsg');
 
-  const showMsg = (html, ok=false) => {
+  const showMsg = (html, ok = false) => {
     boxMsg.innerHTML = html;
     boxMsg.className = 'mt-4 text-sm ' + (ok
       ? 'text-green-700 bg-green-100 border border-green-300 rounded p-3'
@@ -1368,11 +1370,11 @@ document.addEventListener('DOMContentLoaded', () => cargarProductos({ page: 1 })
   };
 
   const validate = () => {
-    const nombre  = $('#nombre_completo').value.trim();
-    const pais    = $('#pais').value.trim();
-    const email   = $('#email').value.trim();
+    const nombre = $('#nombre_completo').value.trim();
+    const pais = $('#pais').value.trim();
+    const email = $('#email').value.trim();
     const mensaje = $('#mensaje').value.trim();
-    const tel     = $('#telefono').value.trim();
+    const tel = $('#telefono').value.trim();
 
     if (!nombre || nombre.length < 2) return 'Ingresa tu nombre completo.';
     if (!pais) return 'Selecciona un país.';
@@ -1403,10 +1405,10 @@ document.addEventListener('DOMContentLoaded', () => cargarProductos({ page: 1 })
     showMsg('Enviando...', true);
 
     try {
-      const res  = await fetch(BASE_DIR + 'contacto_enviar.php', { method: 'POST', body: fd });
+      const res = await fetch(BASE_DIR + 'contacto_enviar.php', { method: 'POST', body: fd });
       const text = await res.text();
       let data;
-      try { data = JSON.parse(text); } catch(e){ data = null; }
+      try { data = JSON.parse(text); } catch (e) { data = null; }
 
       if (!res.ok || !data || data.ok !== true) {
         console.error('Respuesta servidor:', text);
