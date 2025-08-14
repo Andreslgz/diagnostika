@@ -1,6 +1,3 @@
-// Ruta Principal Base:
-
-const BASE_URL = window.location.origin + '/diagnotika';
 
 
 // Marquee functionality
