@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$url="https://diagnostika:8890";
+$url="https://mysistemaweb.com/diagnostika";
 $titulo="DIAGNOSTIKA DIESEL GLOBAL";
 
 use Medoo\Medoo;
