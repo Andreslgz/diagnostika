@@ -2,29 +2,29 @@
       <div
           class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-16">
           <div class="text-center sm:text-left flex flex-col items-center">
-              <img src="/assets/icons/Logotipo.svg" alt=""
+              <img src="<?php echo $url;?>/assets/icons/Logotipo.svg" alt=""
                   class="mx-auto sm:mx-0 block flex items-start h-min w-[200px] md:w-[275px]" />
               <div
                   class="grid grid-cols-5 gap-3 md:gap-4 mt-5 md:mt-7 border-b border-gray-500 border-solid pb-6 max-w-[250px] mx-auto sm:mx-0">
                   <div
                       class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
-                      <img src="/assets/icons/svg/social/fb.svg" alt="">
+                      <img src="<?php echo $url;?>/assets/icons/svg/social/fb.svg" alt="">
                   </div>
                   <div
                       class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
-                      <img src="/assets/icons/svg/social/ig.svg" alt="">
+                      <img src="<?php echo $url;?>/assets/icons/svg/social/ig.svg" alt="">
                   </div>
                   <div
                       class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
-                      <img src="/assets/icons/svg/social/telegram.svg" alt="">
+                      <img src="<?php echo $url;?>/assets/icons/svg/social/telegram.svg" alt="">
                   </div>
                   <div
                       class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
-                      <img src="/assets/icons/svg/social/wsp.svg" alt="">
+                      <img src="<?php echo $url;?>/assets/icons/svg/social/wsp.svg" alt="">
                   </div>
                   <div
                       class="bg-gradient-to-b from-[#DEDEDE] to-[#A7A7A6] p-1.5 size-[35px] md:size-[40px] rounded-full flex items-center justify-center">
-                      <img src="/assets/icons/svg/social/email.svg" alt="">
+                      <img src="<?php echo $url;?>/assets/icons/svg/social/email.svg" alt="">
                   </div>
               </div>
               <p
