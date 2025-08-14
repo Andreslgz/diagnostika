@@ -1,3 +1,8 @@
+// Ruta Principal Base:
+
+const BASE_URL = window.location.origin + '/diagnotika';
+
+
 // Marquee functionality
 document.addEventListener("DOMContentLoaded", function () {
   const marqueeContainer = document.querySelector(".marquee-container");
@@ -267,7 +272,7 @@ if (loginFormEl)
     const form = e.target;
     const formData = new FormData(form);
 
-    fetch("login.php", {
+    fetch(BASE_DIR + "/login.php", {
       method: "POST",
       body: formData,
     })
@@ -306,7 +311,7 @@ if (registerFormEl)
 
     const formData = new FormData(form);
     try {
-      const res = await fetch("register.php", {
+      const res = await fetch(BASE_DIR + "/register.php", {
         method: "POST",
         body: formData,
       });
@@ -369,7 +374,7 @@ document.querySelectorAll(".favorito-btn").forEach((btn) => {
     const id = this.dataset.id;
     const svg = this.querySelector("svg");
 
-    fetch("ajax_favorito.php", {
+    fetch(BASE_DIR + "/ajax_favorito.php", {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
@@ -1023,3 +1028,398 @@ function initializeChatbot() {
 
   console.log("Chatbot initialized successfully");
 }
+
+// Programacion para elmiinar el procuto del carrito / home
+const ENDPOINT = BASE_DIR + '/includes/carrito_acciones.php';
+
+// Función auxiliar para leer JSON de forma segura
+async function fetchJSON(url, options = {}) {
+  const res = await fetch(url, options);
+  const text = await res.text();
+
+  try {
+    return { okHTTP: res.ok, json: JSON.parse(text), raw: text };
+  } catch (e) {
+    return { okHTTP: res.ok, json: null, raw: text, parseError: e };
+  }
+}
+
+// Delegación de eventos: escucha clicks en botones .js-remove-item
+document.addEventListener('click', async (ev) => {
+  const btn = ev.target.closest('.js-remove-item');
+  if (!btn) return; // No es un click en el botón de eliminar
+
+  ev.preventDefault();
+
+  // Obtener nombre del producto para confirmación
+  const nombre = btn.getAttribute('aria-label')?.replace(/^Eliminar\s+/i, '') || 'este producto';
+  if (!confirm(`¿Eliminar "${nombre}" del carrito?`)) return;
+
+  // Obtener índice y/o id
+  const index = btn.dataset.index;
+  const id = btn.dataset.id || null;
+
+  // Mostrar spinner mientras procesa
+  const prevHTML = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = `<svg class="animate-spin xl:w-6 xl:h-6 w-4 h-4" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" stroke="currentColor" fill="none" stroke-width="4" opacity="0.25"></circle>
+    <path d="M4 12a8 8 0 0 1 8-8" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"></path>
+  </svg>`;
+
+  try {
+    // Preparar datos
+    const fd = new FormData();
+    if (id) {
+      fd.append('action', 'removeById');
+      fd.append('id', id);
+    } else {
+      fd.append('action', 'remove');
+      fd.append('index', index);
+    }
+
+    // Petición AJAX
+    const { okHTTP, json, raw, parseError } = await fetchJSON(ENDPOINT, { method: 'POST', body: fd });
+
+    if (!okHTTP) {
+      console.error('Error HTTP', raw);
+      alert('Error en la comunicación con el servidor.');
+      return;
+    }
+    if (!json) {
+      console.error('Respuesta no es JSON', parseError, raw);
+      alert('Respuesta inválida del servidor.');
+      return;
+    }
+    if (!json.ok) {
+      alert(json.msg || 'No se pudo eliminar el producto.');
+      return;
+    }
+
+    // Quitar producto del DOM
+    const li = btn.closest('[data-item]');
+    if (li) li.remove();
+
+    // Actualizar total
+    const totalEl = document.getElementById('totalCarrito');
+    if (totalEl && json.total_formatted) {
+      totalEl.textContent = json.total_formatted;
+    }
+
+    // Si carrito vacío, recargar
+    if ((json.items ?? 0) === 0) {
+      location.reload();
+      return;
+    }
+
+    // Reindexar data-index de los botones visibles
+    document.querySelectorAll('[data-item]').forEach((el, i) => {
+      el.setAttribute('data-item', i);
+      const delBtn = el.querySelector('.js-remove-item');
+      if (delBtn) delBtn.dataset.index = i;
+    });
+
+  } catch (err) {
+    console.error(err);
+    alert('Ocurrió un error al eliminar el producto.');
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = prevHTML;
+  }
+});
+
+// Productos de la /tienda
+
+// ===== Config =====
+const ENDPOINT_LISTA = BASE_DIR + '/tienda/ajax_productos.php';
+const GRID_ID = 'productosGrid';
+const PAG_ID = 'paginacion';
+const PAGE_SIZE = 12; // Debe coincidir con el backend
+
+// Utilidades
+const $ = (sel, ctx = document) => ctx.querySelector(sel);
+const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+
+// Renderiza tarjetas en el cliente con data[]
+function renderGridFromData(list = []) {
+  const placeholder = 'https://placehold.co/600x400/png';
+  let html = '';
+
+  if (!list.length) {
+    html = `
+      <div class="col-span-full">
+        <div class="flex flex-col items-center justify-center gap-2 p-8 text-center bg-gray-50 border border-dashed border-gray-300 rounded-lg">
+          <span class="text-3xl">🛍️</span>
+          <p class="text-gray-600">No se encontraron productos con los filtros seleccionados.</p>
+        </div>
+      </div>`;
+    return html;
+  }
+
+  for (const p of list) {
+    const id = Number(p.id_producto || 0);
+    const nombre = String(p.nombre || 'Producto');
+    const precio = (Number(p.precio || 0)).toFixed(2);
+    const img = p.imagen ? `/uploads/${p.imagen}` : placeholder;
+
+    html += `
+    <div class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+      <div class="flex justify-end -mb-1">
+        <button type="button" class="favorito-btn" data-id="${id}" aria-label="Marcar favorito">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+            stroke-width="1.5" stroke="currentColor"
+            class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
+          </svg>
+        </button>
+      </div>
+      <img src="${img}" alt="${nombre.replace(/"/g, '&quot;')}" loading="lazy" decoding="async"
+           class="w-full h-40 sm:h-40 lg:h-48 object-cover rounded-md"
+           onerror="this.onerror=null;this.src='${placeholder}';" />
+      <p class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">${nombre}</p>
+      <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">USD ${precio}</p>
+      <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
+
+      <form method="post">
+                                                    <input type="hidden" name="id_producto"
+                                                        value="${id}">
+                                                    <button type="submit" name="agregar_carrito"
+                                                        class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
+                                                        Agregar al carrito
+                                                    </button>
+                                                </form>
+
+
+
+        <button class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base preview"
+                data-id="${id}" aria-label="Previsualizar ${nombre}">
+          <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+            <img src="/assets/icons/tienda/previsualizar.svg" alt="">
+          </div>
+          <p>Previsualizar</p>
+        </button>
+      </div>
+    </div>`;
+  }
+  return html;
+}
+
+// Renderiza la paginación en el cliente
+function renderPagination(total, currentPage) {
+  const totalPages = Math.max(1, Math.ceil((Number(total) || 0) / PAGE_SIZE));
+  const current = Math.max(1, Number(currentPage) || 1);
+
+  let html = '<div class="flex items-center gap-2">';
+
+  const disabledPrev = current <= 1 ? 'disabled:opacity-50 disabled:cursor-not-allowed' : '';
+  html += `
+    <button data-page="${Math.max(1, current - 1)}"
+      class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledPrev}" ${(current <= 1) ? 'disabled' : ''}>
+      <svg class="w-4 h-4 sm:mr-2 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+      </svg>
+      <span class="hidden sm:inline font-medium">Anterior</span>
+    </button>`;
+
+  html += '<div class="flex items-center bg-gray-50 rounded-xl p-1 gap-1">';
+
+  const show = 3;
+  const start = Math.max(1, current - 1);
+  const end = Math.min(totalPages, start + show - 1);
+
+  if (start > 1) {
+    html += `<button data-page="1" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">1</button>`;
+    if (start > 2) {
+      html += `<div class="flex items-center px-2">
+        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+      </div>`;
+    }
+  }
+
+  for (let i = start; i <= end; i++) {
+    if (i === current) {
+      html += `<button class="relative flex items-center justify-center min-w-[40px] h-9 px-3 text-white btn-secondary rounded-lg font-semibold shadow-sm hover:shadow-md transition-all duration-200">${i}</button>`;
+    } else {
+      html += `<button data-page="${i}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">${i}</button>`;
+    }
+  }
+
+  if (end < totalPages) {
+    if (end < totalPages - 1) {
+      html += `<div class="flex items-center px-2">
+        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+        <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
+      </div>`;
+    }
+    html += `<button data-page="${totalPages}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">${totalPages}</button>`;
+  }
+
+  html += '</div>';
+
+  const disabledNext = current >= totalPages ? 'disabled:opacity-50 disabled:cursor-not-allowed' : '';
+  html += `
+    <button data-page="${Math.min(totalPages, current + 1)}"
+      class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledNext}" ${(current >= totalPages) ? 'disabled' : ''}>
+      <span class="hidden sm:inline font-medium">Siguiente</span>
+      <svg class="w-4 h-4 sm:ml-2 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+      </svg>
+    </button>`;
+
+  html += '</div>';
+  return html;
+}
+
+async function cargarProductos({ page = 1 } = {}) {
+  const grid = document.getElementById(GRID_ID);
+  const pag = document.getElementById(PAG_ID);
+  if (!grid || !pag) return;
+
+  const params = new URLSearchParams();
+  params.set('page', page);
+
+  $$('input[name="marca[]"]:checked').forEach(chk => params.append('marca[]', chk.value));
+  $$('input[name="anio[]"]:checked').forEach(chk => params.append('anio[]', chk.value));
+
+  let res, text, data;
+  try {
+    res = await fetch(ENDPOINT_LISTA, {
+      method: 'POST',
+      headers: { 'X-Requested-With': 'XMLHttpRequest' },
+      body: params
+    });
+    text = await res.text();
+    data = JSON.parse(text);
+  } catch (e) {
+    console.error('Error o JSON inválido:', e, text);
+    alert('Error al cargar productos.');
+    return;
+  }
+
+  if (!res.ok || !data?.ok) {
+    console.error('Respuesta de error:', data);
+    alert(data?.msg || 'No se pudo cargar la lista.');
+    return;
+  }
+
+  // 1) Si el backend ya envía HTML, úsalo
+  if (typeof data.grid_html === 'string' && data.grid_html.trim() !== '') {
+    grid.innerHTML = data.grid_html;
+  } else {
+    // 2) Si no envía HTML (tu caso), renderiza desde data[]
+    const lista = Array.isArray(data.data) ? data.data : [];
+    grid.innerHTML = renderGridFromData(lista);
+  }
+
+  // Paginación: usa la del server si existe; si no, calcula
+  if (typeof data.pagination_html === 'string' && data.pagination_html.trim() !== '') {
+    pag.innerHTML = data.pagination_html;
+  } else {
+    const total = Number(data.total || 0);
+    const current = Number(data.page || page || 1);
+    pag.innerHTML = renderPagination(total, current);
+  }
+
+  // Guarda crudos para otros usos (previsualizar, etc.)
+  window.__productosCrudos = Array.isArray(data.data) ? data.data : [];
+}
+
+// Delegación para paginación
+document.addEventListener('click', (ev) => {
+  const btn = ev.target.closest('button[data-page]');
+  if (!btn) return;
+  const pag = document.getElementById(PAG_ID);
+  if (!pag || !pag.contains(btn)) return;
+
+  ev.preventDefault();
+  const page = parseInt(btn.getAttribute('data-page'), 10) || 1;
+  cargarProductos({ page });
+});
+
+// Escuchar cambios en filtros
+document.addEventListener('change', (ev) => {
+  if (ev.target.matches('input[name="marca[]"], input[name="anio[]"]')) {
+    cargarProductos({ page: 1 });
+  }
+});
+
+// Primera carga
+document.addEventListener('DOMContentLoaded', () => cargarProductos({ page: 1 }));
+
+// Funcion envio tipo ajax para el form de contactenos
+
+(function() {
+  const $ = sel => document.querySelector(sel);
+
+  const form   = $('#contactoForm');
+  const btn    = $('#btnEnviar');
+  const boxMsg = $('#contactoMsg');
+
+  const showMsg = (html, ok=false) => {
+    boxMsg.innerHTML = html;
+    boxMsg.className = 'mt-4 text-sm ' + (ok
+      ? 'text-green-700 bg-green-100 border border-green-300 rounded p-3'
+      : 'text-red-700 bg-red-100 border border-red-300 rounded p-3');
+  };
+
+  const validate = () => {
+    const nombre  = $('#nombre_completo').value.trim();
+    const pais    = $('#pais').value.trim();
+    const email   = $('#email').value.trim();
+    const mensaje = $('#mensaje').value.trim();
+    const tel     = $('#telefono').value.trim();
+
+    if (!nombre || nombre.length < 2) return 'Ingresa tu nombre completo.';
+    if (!pais) return 'Selecciona un país.';
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Ingresa un correo válido.';
+    if (!mensaje || mensaje.length < 5) return 'Escribe un mensaje más detallado.';
+    if (tel && !/^[0-9+\-\s()]{6,20}$/.test(tel)) return 'Teléfono inválido.';
+
+    return null; // ok
+  };
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault();
+
+    // Validación cliente
+    const err = validate();
+    if (err) { showMsg(err, false); return; }
+
+    // Honeypot (si el bot lo llena, no enviamos)
+    const hp = document.getElementById('hp_field').value;
+    if (hp) { showMsg('Error de validación.', false); return; }
+
+    // Preparar FormData
+    const fd = new FormData(form);
+    fd.append('ajax', '1'); // pista para el servidor
+
+    btn.disabled = true;
+    btn.classList.add('opacity-60', 'cursor-not-allowed');
+    showMsg('Enviando...', true);
+
+    try {
+      const res  = await fetch(BASE_DIR + 'contacto_enviar.php', { method: 'POST', body: fd });
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); } catch(e){ data = null; }
+
+      if (!res.ok || !data || data.ok !== true) {
+        console.error('Respuesta servidor:', text);
+        showMsg(data?.msg || 'No se pudo enviar el mensaje. Intenta nuevamente.', false);
+      } else {
+        showMsg('¡Gracias! Tu mensaje fue enviado correctamente.', true);
+        form.reset();
+      }
+    } catch (e) {
+      console.error(e);
+      showMsg('Error de red. Verifica tu conexión.', false);
+    } finally {
+      btn.disabled = false;
+      btn.classList.remove('opacity-60', 'cursor-not-allowed');
+    }
+  });
+})();
