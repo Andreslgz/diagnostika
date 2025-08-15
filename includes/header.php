@@ -18,8 +18,8 @@
                             </svg>
                         </div>
                         <input type="search" id="search-bar"
-                            class="block py-2 px-4 pl-10 w-full btn-primary text-sm text-gray-900 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Busca tu producto" required />
+                            class="block py-2 px-4 pr-[420px] pl-10 w-full btn-primary text-sm text-gray-900 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                            placeholder="Busca tu producto aquí" required />
                     </div>
                 </form>
 
@@ -41,9 +41,23 @@
                 <?php endif; ?>
 
                 <?php if (isset($_SESSION['usuario_id'])): ?>
-                    <a href="<?php echo $url; ?>/micuenta/informacionpersonal.php">
-                        Ir a mi cuenta
-                    </a>
+                    <?php $usuarioMenu = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
+                    <div class="flex flex-row gap-2 items-center justify-center xl:mx-6">
+
+                        <img class="xl:size-[43px] size-[25px] " src="<?php echo $url; ?>/assets/icons/svg/userLog.svg"
+                            alt="">
+
+
+                        <div class="flex flex-col">
+                            <p class="xl:text-sm text-[11px] font-extrabold text-gray-500">
+                                <?php echo htmlspecialchars($usuarioMenu['nombre']); ?>
+                            </p>
+                            <a class="xl:text-sm text-[11px]  text-gray-500 text-nowrap underline underline-offset-4"
+                                href="<?php echo $url; ?>/micuenta/informacionpersonal.php">
+                                My account
+                            </a>
+                        </div>
+                    </div>
                 <?php endif; ?>
 
                 <button
