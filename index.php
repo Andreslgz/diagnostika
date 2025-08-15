@@ -1223,6 +1223,90 @@ if (isset($_SESSION['usuario_id'])) {
             console.log('Using new accordion system');
         }
     </script>
+    <div id="pop-up-modal" tabindex="-1" aria-hidden="true"
+        class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black bg-opacity-40">
+        <div class="relative p-4 w-full max-w-md max-h-full">
+            <div class="relative bg-white rounded-lg shadow ">
+                <div class="absolute top-2 right-2">
+                    <button type="button"
+                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                        id="close-pop-up-modal">
+                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                            viewBox="0 0 14 14">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                        </svg>
+                        <span class="sr-only">Cerrar modal</span>
+                    </button>
+                </div>
+                <div class="p-10 space-y-4 btn-primary">
+
+                    <h2 class="xl:text-3xl text-lg font-extrabold mx-auto text-center">
+                        Get <span class="text-[#f7a615]"> $50 off</span> your
+                        first installation
+                    </h2>
+                    <p class="text-base text-center">
+                        Sign up and get $50 off your first installation, plus updates, the latest releases, and news.
+                    </p>
+                    <form action="">
+                        <div>
+                            <label for="email-pop-up" class="block mb-2 text-sm font-bold uppercase text-gray-900 ">Sign
+                                up
+                                with
+                                your email
+                                <span class="text-red-500">*</span></label>
+                            <input type="email" id="email-pop-up"
+                                class=" border border-gray-400 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="you@example.com" required />
+                        </div>
+                        <div class="mt-14">
+                            <p class="text-gray-400 text-center text-xs">
+                                Terms and conditions apply
+                            </p>
+                            <button class="btn-secondary w-full block rounded-lg py-3 mt-1" type="submit">
+                                SIGN UP
+                            </button>
+                            <a href="#" target="_blank"
+                                class="mt-3 underline underline-offset-4 text-gray-800 text-center text-xs block">
+                                Terms and conditions
+                            </a>
+                        </div>
+                    </form>
+
+                    <button id="no-show-again" class="mt-3 text-gray-500 hover:text-gray-800 text-xs block mx-auto">
+                        No volver a mostrar
+                    </button>
+                </div>
+                <!-- <div class="flex items-center p-4 border-t border-gray-200 rounded-b ">
+                <button id="accept-pop-up-modal" type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">Aceptar</button>
+                </div> -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar el modal solo si no está la bandera en localStorage
+        document.addEventListener('DOMContentLoaded', function () {
+            var modal = document.getElementById('pop-up-modal');
+            var noShow = localStorage.getItem('noShowAgain');
+            if (!noShow && modal) {
+                modal.classList.remove('hidden');
+            } else if (modal) {
+                modal.classList.add('hidden');
+            }
+            // Botón cerrar (X)
+            document.getElementById('close-pop-up-modal')?.addEventListener('click', function () {
+                modal.classList.add('hidden');
+            });
+            // Botón "No volver a mostrar"
+            document.getElementById('no-show-again')?.addEventListener('click', function () {
+                modal.classList.add('hidden');
+                localStorage.setItem('noShowAgain', 'true');
+            });
+        });
+    </script>
 </body>
+
 
 </html>
