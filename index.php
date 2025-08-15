@@ -860,8 +860,33 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
         </section>
 
+        <!-- FORMAS DE PAGO SLIDER -->
+        <section class="xl:py-0 py-0 mx-auto my-10 xl:my-0  overflow-hidden">
+            <section id="formas-pago-carousel" class="splide" aria-label="Formas de Pago">
+                <div class="splide__track h-min">
+                    <ul class="splide__list">
+                        <!-- Slide 1 -->
+                        <li class="splide__slide">
+                            <img src="/assets/images/formasdepago/1.webp" alt="Formas de Pago - Opción 1"
+                                class="w-full h-auto object-contain rounded-lg" />
+                        </li>
+                        <!-- Slide 2 -->
+                        <li class="splide__slide">
+                            <img src="/assets/images/formasdepago/2.webp" alt="Formas de Pago - Opción 2"
+                                class="w-full h-auto object-contain rounded-lg" />
+                        </li>
+                        <!-- Slide 3 -->
+                        <li class="splide__slide">
+                            <img src="/assets/images/formasdepago/3.webp" alt="Formas de Pago - Opción 3"
+                                class="w-full h-auto object-contain rounded-lg" />
+                        </li>
+                    </ul>
+                </div>
+            </section>
+        </section>
+
         <!-- METODO DE PAGO Y HERRAMIENTAS -->
-        <section class="xl:py-20 py-8 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+        <!-- <section class="xl:py-20 py-8 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <div class="container mx-auto mb-4 shadow-xl rounded-b-xl" x-data="{ tab: 'tab1' }">
                 <ul class="flex w-full">
                     <li class="flex-1 -mb-px">
@@ -912,7 +937,7 @@ if (isset($_SESSION['usuario_id'])) {
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <!-- TESTIMONIALS -->
         <section class="xl:py-20 py-6 px-4 mx-auto max-w-screen-2xl ">

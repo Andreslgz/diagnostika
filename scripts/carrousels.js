@@ -17,6 +17,9 @@ export function initializeCarousels() {
   // Purchase process carousel (mobile only)
   initPurchaseProcessCarousel();
 
+  // Formas de pago carousel
+  initFormasPagoCarousel();
+
   // 🔁 Escucha cambios de breakpoint para alternar entre mobile/desktop
   const mqMD = window.matchMedia("(min-width: 768px)");
   const mqXL = window.matchMedia("(min-width: 1280px)");
@@ -199,6 +202,67 @@ function initPurchaseProcessCarousel() {
 }
 
 /** =========================
+ *  FORMAS DE PAGO CAROUSEL
+ *  ========================= */
+let formasPagoInstance = null;
+
+function initFormasPagoCarousel() {
+  const formasPagoCarousel = document.getElementById("formas-pago-carousel");
+
+  // Limpia cualquier instancia previa
+  if (formasPagoInstance) {
+    try {
+      formasPagoInstance.destroy(true);
+    } catch (_) {}
+    formasPagoInstance = null;
+  }
+
+  if (formasPagoCarousel) {
+    try {
+      formasPagoInstance = mountIfNotMounted("#formas-pago-carousel", {
+        type: "loop",
+        perPage: 1, // 1 imagen por vista
+        perMove: 1,
+        autoplay: true,
+        interval: 4000, // Cambia cada 4 segundos
+        pauseOnHover: true,
+        arrows: true,
+        pagination: false,
+        gap: 0,
+        padding: 0,
+        height: "auto",
+        fixedHeight: false,
+        lazyLoad: "nearby",
+        // Configuración responsive (mismo comportamiento en todas las pantallas)
+        breakpoints: {
+          1280: {
+            perPage: 1,
+          },
+          1024: {
+            perPage: 1,
+          },
+          768: {
+            perPage: 1,
+          },
+          640: {
+            perPage: 1,
+          },
+          480: {
+            perPage: 1,
+          },
+        },
+      });
+
+      console.log("Formas de pago carousel initialized successfully");
+    } catch (error) {
+      console.error("Error initializing formas de pago carousel:", error);
+    }
+  } else {
+    console.error("Formas de pago carousel element not found");
+  }
+}
+
+/** =========================
  *  SINCRONIZACIÓN HERO-STATISTICS
  *  ========================= */
 function syncStatisticsWithHero() {
@@ -334,6 +398,7 @@ export {
   initTestimonialsCarousel,
   initResponsiveStatistics,
   initPurchaseProcessCarousel,
+  initFormasPagoCarousel,
 };
 
 // Si necesitas reinicializar algún carrusel específico más tarde
@@ -353,6 +418,9 @@ export function reinitializeCarousel(carouselType) {
       break;
     case "purchase-process":
       initPurchaseProcessCarousel();
+      break;
+    case "formas-pago":
+      initFormasPagoCarousel();
       break;
     default:
       console.warn(`Unknown carousel type: ${carouselType}`);
