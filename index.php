@@ -596,7 +596,7 @@ if (isset($_SESSION['usuario_id'])) {
         <!-- PROCESO DE COMPRA -->
         <section class="xl:py-20 py-5 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <h2 class="uppercase font-extrabold xl:text-3xl text-xl md:text-2xl mb-8 md:mb-14 text-start">
-                PROCESO DE COMPRA
+                PURCHASE PROCESS
             </h2>
 
             <!-- VISTA DESKTOP (md:block hidden) - Grid original -->
@@ -660,7 +660,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
-                            Elige tu software o paquete
+                            Choose your software or package
                         </p>
                     </div>
 
@@ -672,7 +672,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
-                            Añade al carrito y completa tu compra
+                            Add to cart and complete your purchase
                         </p>
                     </div>
 
@@ -684,7 +684,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
-                            Envía tu número de pedido por WhatsApp
+                            Add to cart and complete your purchase
                         </p>
                     </div>
 
@@ -696,7 +696,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
-                            Realizar el pago
+                            Make the payment
                         </p>
                     </div>
 
@@ -709,7 +709,7 @@ if (isset($_SESSION['usuario_id'])) {
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
-                            Instalación remota
+                            Remote Installation
                         </p>
                     </div>
                 </div>
@@ -741,7 +741,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
-                                            Elige tu software o paquete
+                                            Choose your software or package
                                         </p>
                                     </div>
                                 </div>
@@ -768,7 +768,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
-                                            Añade al carrito y completa tu compra
+                                            Add to cart and complete your purchase
                                         </p>
                                     </div>
                                 </div>
@@ -795,7 +795,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
-                                            Envía tu número de pedido por WhatsApp
+                                            Add to cart and complete your purchase
                                         </p>
                                     </div>
                                 </div>
@@ -822,7 +822,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
-                                            Realizar el pago
+                                            Make the payment
                                         </p>
                                     </div>
                                 </div>
@@ -849,7 +849,7 @@ if (isset($_SESSION['usuario_id'])) {
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
-                                            Instalación remota
+                                            Remote Installation
                                         </p>
                                     </div>
                                 </div>
@@ -943,7 +943,7 @@ if (isset($_SESSION['usuario_id'])) {
         <section class="xl:py-20 py-6 px-4 mx-auto max-w-screen-2xl ">
             <div class="text-start xl:mb-10 mb-1">
                 <h2 class="uppercase font-extrabold xl:text-3xl text-base mb-4">
-                    Lo que dicen nuestros clientes
+                    What our customers say about us:
                 </h2>
             </div>
 
