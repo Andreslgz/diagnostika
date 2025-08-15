@@ -151,9 +151,9 @@ if (isset($_SESSION['usuario_id'])) {
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
                         <img src="assets/icons/banner/icon1.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
-                            <p class="font-bold xl:text-3xl text-lg">1 Año</p>
+                            <p class="font-bold xl:text-3xl text-lg">1 Year</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
-                                de garantia
+                                Warranty
                             </p>
                         </div>
                     </div>
@@ -162,16 +162,16 @@ if (isset($_SESSION['usuario_id'])) {
                         <div class="">
                             <p class="font-bold xl:text-3xl text-lg">24/7</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
-                                Soporte técnico
+                                Support
                             </p>
                         </div>
                     </div>
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
                         <img src="assets/icons/banner/icon3.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
-                            <p class="font-bold xl:text-3xl text-lg">Cobertura</p>
+                            <p class="font-bold xl:text-3xl text-lg">Global</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
-                                Global
+                                Coverage
                             </p>
                         </div>
                     </div>
@@ -180,7 +180,7 @@ if (isset($_SESSION['usuario_id'])) {
                         <div class="">
                             <p class="font-bold xl:text-3xl text-lg">123K +</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
-                                Instalaciones
+                                Installations
                             </p>
                         </div>
                     </div>
@@ -521,11 +521,10 @@ if (isset($_SESSION['usuario_id'])) {
                                 <img src="assets/icons/estadisticas/1.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
-                                <h2 class="font-bold text-lg md:text-xl">Soporte técnico especializado</h2>
+                                <h2 class="font-bold text-lg md:text-xl">Specialized Technical Support</h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    Le apoyamos antes, durante y después de la instalación con asistencia remota
-                                    para
-                                    responder a sus preguntas y ayudarle a trabajar con confianza.
+                                    We support you before, during, and after installation with remote assistance to
+                                    answer your questions and help you work with confidence.
                                 </p>
                             </div>
                         </div>
@@ -535,11 +534,10 @@ if (isset($_SESSION['usuario_id'])) {
                                 <img src="assets/icons/estadisticas/2.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
-                                <h2 class="font-bold text-lg md:text-xl">Cobertura global y soporte inmediato</h2>
+                                <h2 class="font-bold text-lg md:text-xl">Global Coverage and Immediate Support</h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    Asistimos a técnicos y mecánicos de todo el mundo con soporte rápido por
-                                    WhatsApp y
-                                    Telegram. Estés donde estés, te tenemos cubierto.
+                                    We assist technicians and mechanics worldwide with fast support via WhatsApp and
+                                    Telegram. Wherever you are, we’ve got you covered.
                                 </p>
                             </div>
                         </div>
@@ -549,12 +547,11 @@ if (isset($_SESSION['usuario_id'])) {
                                 <img src="assets/icons/estadisticas/3.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
-                                <h2 class="font-bold text-lg md:text-xl">Instalación de software de diagnóstico
-                                    profesional</h2>
+                                <h2 class="font-bold text-lg md:text-xl">Professional Diagnostic Software Installation
+                                </h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    Convertimos su portátil en una potente herramienta para el diagnóstico de
-                                    camiones y
-                                    maquinaria pesada. El software se entrega instalado, activado y listo para usar.
+                                    We turn your laptop into a powerful tool for diagnosing trucks and heavy machinery.
+                                    The software is delivered installed, activated, and ready to use.
                                 </p>
                             </div>
                         </div>
