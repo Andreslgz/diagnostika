@@ -882,60 +882,6 @@ if (isset($_SESSION['usuario_id'])) {
             </section>
         </section>
 
-        <!-- METODO DE PAGO Y HERRAMIENTAS -->
-        <!-- <section class="xl:py-20 py-8 px-4 mx-auto max-w-screen-2xl overflow-hidden">
-            <div class="container mx-auto mb-4 shadow-xl rounded-b-xl" x-data="{ tab: 'tab1' }">
-                <ul class="flex w-full">
-                    <li class="flex-1 -mb-px">
-                        <a class="block rounded-t-xl w-full text-center xl:py-3 py-2 xl:px-4 px-2 rounded-t border-t !border-l xl:font-extrabold font-bold xl:text-2xl text-base"
-                            href="#"
-                            :class="{ 'bg-white text-gray-900 font-extrabold border-l border-t-8 border-r border-[#FFBD47]': tab == 'tab1'}"
-                            @click.prevent="tab = 'tab1'">Método de pago</a>
-                    </li>
-                    <li class="flex-1 -mb-px">
-                        <a class="block rounded-t-xl w-full text-center xl:py-3 py-2 xl:px-4 px-2 rounded-t border-t !border-r xl:font-extrabold font-bold text-gray-500 xl:text-2xl text-base"
-                            href="#"
-                            :class="{ 'bg-white text-gray-900 font-extrabold border-t-8 border-l border-[#FFBD47]': tab == 'tab2'}"
-                            @click.prevent="tab = 'tab2'">
-                            <span class="hidden xl:inline">Herramientas de instalación remota</span>
-                            <span class="xl:hidden">Inst. remota</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="content rounded-b-xl bg-white border-l border-r border-b border-[#FFBD47] pt-4 border-t">
-                    <div x-show="tab == 'tab1'" class="xl:p-16 p-6">
-                        <p class="xl:text-2xl text-lg">
-                            En DDG aceptamos PayPal, Western Union y MoneyGram; generamos la orden de pago para que
-                            usted la complete; tenga en cuenta que PayPal incluye una tarifa adicional.
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-between w-full xl:mt-10 mt-6 gap-4">
-                            <img src="/assets/icons/svg/paymet-methos/paypal.svg" alt=""
-                                class="h-8 sm:h-auto object-contain">
-                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt=""
-                                class="h-8 sm:h-auto object-contain">
-                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt=""
-                                class="h-8 sm:h-auto object-contain">
-                        </div>
-                    </div>
-                    <div x-show="tab == 'tab2'" class="xl:p-16 p-6">
-                        <p class="xl:text-2xl text-lg">
-                            En DDG utilizamos AnyDesk, TeamViewer y UltraViewer para instalaciones remotas; solo
-                            conéctese a Internet y nos encargaremos del resto de forma rápida, segura y sin
-                            complicaciones.
-                        </p>
-                        <div class="flex flex-col sm:flex-row justify-between w-full xl:mt-10 mt-6 gap-4">
-                            <img src="/assets/icons/svg/paymet-methos/westernunion.svg" alt=""
-                                class="h-8 sm:h-auto object-contain">
-                            <img src="/assets/icons/svg/paymet-methos/moneygram.svg" alt=""
-                                class="h-8 sm:h-auto object-contain">
-                            <img src="/assets/icons/svg/remote-tools/ultraviewer.svg" alt=""
-                                class="h-8 sm:h-auto object-contain">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
-
         <!-- TESTIMONIALS -->
         <section class="xl:py-20 py-6 px-4 mx-auto max-w-screen-2xl ">
             <div class="text-start xl:mb-10 mb-1">
@@ -1089,77 +1035,6 @@ if (isset($_SESSION['usuario_id'])) {
         <span class="block" id="alertaTexto"></span>
     </div>
 
-    <!-- Botones flotantes -->
-    <!-- <div class="fixed bottom-5 right-5 flex flex-col items-end gap-6">
-        <img src="/assets/icons/svg/WhatsAppChat.svg" alt="" class="w-16 h-16 cursor-pointer">
-        <img src="/assets/images/chatLogo.png" alt="" class="w-[200px] h-full cursor-pointer" id="chatBotTrigger">
-    </div> -->
-
-    <!-- Chatbot Flotante -->
-    <div id="chatbotContainer"
-        class="hidden fixed bottom-5 right-5 w-80 h-96 bg-white rounded-lg shadow-2xl border border-gray-200 z-50 flex-col overflow-hidden">
-        <!-- Header del Chatbot -->
-        <div class="bg-gradient-to-r from-amber-400 to-amber-500 px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-3">
-                <div class="w-8 h-8 bg-white rounded-full flex items-center justify-center">
-                    <span class="text-amber-500 text-sm font-bold">🤖</span>
-                </div>
-                <div>
-                    <h3 class="text-white font-semibold text-sm">Asistente Virtual</h3>
-                    <p class="text-amber-100 text-xs">En línea</p>
-                </div>
-            </div>
-            <button id="closeChatbot" class="text-white hover:text-amber-100 transition-colors">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Área de mensajes -->
-        <div id="chatMessages" class="flex-1 p-4 overflow-y-auto bg-gray-50 space-y-3">
-            <!-- Mensaje inicial del bot -->
-            <div class="flex items-start gap-2">
-                <div class="w-6 h-6 bg-amber-400 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span class="text-white text-xs">🤖</span>
-                </div>
-                <div class="bg-white rounded-lg rounded-tl-none px-3 py-2 shadow-sm max-w-xs">
-                    <p class="text-sm text-gray-800">¡Hola! 👋 Soy tu asistente virtual. ¿En qué puedo ayudarte hoy?</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- Input de mensaje -->
-        <div class="border-t bg-white p-3">
-            <div class="flex gap-2">
-                <input type="text" id="chatInput" placeholder="Escribe tu mensaje..."
-                    class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 focus:border-transparent">
-                <button id="sendMessage"
-                    class="bg-amber-400 hover:bg-amber-500 text-white px-3 py-2 rounded-lg transition-colors flex items-center justify-center">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-                    </svg>
-                </button>
-            </div>
-        </div>
-
-        <!-- Indicador de escritura -->
-        <div id="typingIndicator" class="hidden px-4 py-2 bg-gray-50">
-            <div class="flex items-center gap-2">
-                <div class="w-4 h-4 bg-amber-400 rounded-full flex items-center justify-center">
-                    <span class="text-white text-xs">🤖</span>
-                </div>
-                <div class="flex gap-1">
-                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse"></div>
-                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
-                    <div class="w-2 h-2 bg-gray-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
-                </div>
-                <span class="text-xs text-gray-500">Escribiendo...</span>
-            </div>
-        </div>
-    </div>
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
