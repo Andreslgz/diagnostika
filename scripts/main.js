@@ -1,5 +1,3 @@
-
-
 // Marquee functionality
 document.addEventListener("DOMContentLoaded", function () {
   const marqueeContainer = document.querySelector(".marquee-container");
@@ -1027,7 +1025,7 @@ function initializeChatbot() {
 }
 
 // Programacion para elmiinar el procuto del carrito / home
-const ENDPOINT = BASE_DIR + '/includes/carrito_acciones.php';
+const ENDPOINT = BASE_DIR + "/includes/carrito_acciones.php";
 
 // Función auxiliar para leer JSON de forma segura
 async function fetchJSON(url, options = {}) {
@@ -1042,14 +1040,16 @@ async function fetchJSON(url, options = {}) {
 }
 
 // Delegación de eventos: escucha clicks en botones .js-remove-item
-document.addEventListener('click', async (ev) => {
-  const btn = ev.target.closest('.js-remove-item');
+document.addEventListener("click", async (ev) => {
+  const btn = ev.target.closest(".js-remove-item");
   if (!btn) return; // No es un click en el botón de eliminar
 
   ev.preventDefault();
 
   // Obtener nombre del producto para confirmación
-  const nombre = btn.getAttribute('aria-label')?.replace(/^Eliminar\s+/i, '') || 'este producto';
+  const nombre =
+    btn.getAttribute("aria-label")?.replace(/^Eliminar\s+/i, "") ||
+    "este producto";
   if (!confirm(`¿Eliminar "${nombre}" del carrito?`)) return;
 
   // Obtener índice y/o id
@@ -1068,37 +1068,40 @@ document.addEventListener('click', async (ev) => {
     // Preparar datos
     const fd = new FormData();
     if (id) {
-      fd.append('action', 'removeById');
-      fd.append('id', id);
+      fd.append("action", "removeById");
+      fd.append("id", id);
     } else {
-      fd.append('action', 'remove');
-      fd.append('index', index);
+      fd.append("action", "remove");
+      fd.append("index", index);
     }
 
     // Petición AJAX
-    const { okHTTP, json, raw, parseError } = await fetchJSON(ENDPOINT, { method: 'POST', body: fd });
+    const { okHTTP, json, raw, parseError } = await fetchJSON(ENDPOINT, {
+      method: "POST",
+      body: fd,
+    });
 
     if (!okHTTP) {
-      console.error('Error HTTP', raw);
-      alert('Error en la comunicación con el servidor.');
+      console.error("Error HTTP", raw);
+      alert("Error en la comunicación con el servidor.");
       return;
     }
     if (!json) {
-      console.error('Respuesta no es JSON', parseError, raw);
-      alert('Respuesta inválida del servidor.');
+      console.error("Respuesta no es JSON", parseError, raw);
+      alert("Respuesta inválida del servidor.");
       return;
     }
     if (!json.ok) {
-      alert(json.msg || 'No se pudo eliminar el producto.');
+      alert(json.msg || "No se pudo eliminar el producto.");
       return;
     }
 
     // Quitar producto del DOM
-    const li = btn.closest('[data-item]');
+    const li = btn.closest("[data-item]");
     if (li) li.remove();
 
     // Actualizar total
-    const totalEl = document.getElementById('totalCarrito');
+    const totalEl = document.getElementById("totalCarrito");
     if (totalEl && json.total_formatted) {
       totalEl.textContent = json.total_formatted;
     }
@@ -1110,15 +1113,14 @@ document.addEventListener('click', async (ev) => {
     }
 
     // Reindexar data-index de los botones visibles
-    document.querySelectorAll('[data-item]').forEach((el, i) => {
-      el.setAttribute('data-item', i);
-      const delBtn = el.querySelector('.js-remove-item');
+    document.querySelectorAll("[data-item]").forEach((el, i) => {
+      el.setAttribute("data-item", i);
+      const delBtn = el.querySelector(".js-remove-item");
       if (delBtn) delBtn.dataset.index = i;
     });
-
   } catch (err) {
     console.error(err);
-    alert('Ocurrió un error al eliminar el producto.');
+    alert("Ocurrió un error al eliminar el producto.");
   } finally {
     btn.disabled = false;
     btn.innerHTML = prevHTML;
@@ -1129,9 +1131,9 @@ document.addEventListener('click', async (ev) => {
 
 // ===== Config =====
 
-const ENDPOINT_LISTA = BASE_DIR + '/tienda/ajax_productos.php';
-const GRID_ID = 'productosGrid';
-const PAG_ID = 'paginacion';
+const ENDPOINT_LISTA = BASE_DIR + "/tienda/ajax_productos.php";
+const GRID_ID = "productosGrid";
+const PAG_ID = "paginacion";
 const PAGE_SIZE = 12; // Debe coincidir con el backend
 
 // Utilidades
@@ -1140,8 +1142,8 @@ const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
 // Renderiza tarjetas en el cliente con data[]
 function renderGridFromData(list = []) {
-  const placeholder = 'https://placehold.co/600x400/png';
-  let html = '';
+  const placeholder = "https://placehold.co/600x400/png";
+  let html = "";
 
   if (!list.length) {
     html = `
@@ -1156,8 +1158,8 @@ function renderGridFromData(list = []) {
 
   for (const p of list) {
     const id = Number(p.id_producto || 0);
-    const nombre = String(p.nombre || 'Producto');
-    const precio = (Number(p.precio || 0)).toFixed(2);
+    const nombre = String(p.nombre || "Producto");
+    const precio = Number(p.precio || 0).toFixed(2);
     const img = p.imagen ? BASE_DIR + `/uploads/${p.imagen}` : placeholder;
 
     html += `
@@ -1172,7 +1174,10 @@ function renderGridFromData(list = []) {
           </svg>
         </button>
       </div>
-      <img src="${img}" alt="${nombre.replace(/"/g, '&quot;')}" loading="lazy" decoding="async"
+      <img src="${img}" alt="${nombre.replace(
+      /"/g,
+      "&quot;"
+    )}" loading="lazy" decoding="async"
            class="w-full h-40 sm:h-40 lg:h-48 object-cover rounded-md"
            onerror="this.onerror=null;this.src='${placeholder}';" />
       <p class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">${nombre}</p>
@@ -1190,8 +1195,9 @@ function renderGridFromData(list = []) {
 
 
 
-        <button class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base preview"
-                data-id="${id}" aria-label="Previsualizar ${nombre}">
+       <button class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base preview"
+                data-id="${id}" 
+                aria-label="Previsualizar ${nombre}">
           <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
             <img src="/assets/icons/tienda/previsualizar.svg" alt="">
           </div>
@@ -1210,10 +1216,13 @@ function renderPagination(total, currentPage) {
 
   let html = '<div class="flex items-center gap-2">';
 
-  const disabledPrev = current <= 1 ? 'disabled:opacity-50 disabled:cursor-not-allowed' : '';
+  const disabledPrev =
+    current <= 1 ? "disabled:opacity-50 disabled:cursor-not-allowed" : "";
   html += `
     <button data-page="${Math.max(1, current - 1)}"
-      class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledPrev}" ${(current <= 1) ? 'disabled' : ''}>
+      class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledPrev}" ${
+    current <= 1 ? "disabled" : ""
+  }>
       <svg class="w-4 h-4 sm:mr-2 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
@@ -1256,19 +1265,24 @@ function renderPagination(total, currentPage) {
     html += `<button data-page="${totalPages}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">${totalPages}</button>`;
   }
 
-  html += '</div>';
+  html += "</div>";
 
-  const disabledNext = current >= totalPages ? 'disabled:opacity-50 disabled:cursor-not-allowed' : '';
+  const disabledNext =
+    current >= totalPages
+      ? "disabled:opacity-50 disabled:cursor-not-allowed"
+      : "";
   html += `
     <button data-page="${Math.min(totalPages, current + 1)}"
-      class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledNext}" ${(current >= totalPages) ? 'disabled' : ''}>
+      class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledNext}" ${
+    current >= totalPages ? "disabled" : ""
+  }>
       <span class="hidden sm:inline font-medium">Siguiente</span>
       <svg class="w-4 h-4 sm:ml-2 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
       </svg>
     </button>`;
 
-  html += '</div>';
+  html += "</div>";
   return html;
 }
 
@@ -1278,34 +1292,38 @@ async function cargarProductos({ page = 1 } = {}) {
   if (!grid || !pag) return;
 
   const params = new URLSearchParams();
-  params.set('page', page);
+  params.set("page", page);
 
-  $$('input[name="marca[]"]:checked').forEach(chk => params.append('marca[]', chk.value));
-  $$('input[name="anio[]"]:checked').forEach(chk => params.append('anio[]', chk.value));
+  $$('input[name="marca[]"]:checked').forEach((chk) =>
+    params.append("marca[]", chk.value)
+  );
+  $$('input[name="anio[]"]:checked').forEach((chk) =>
+    params.append("anio[]", chk.value)
+  );
 
   let res, text, data;
   try {
     res = await fetch(ENDPOINT_LISTA, {
-      method: 'POST',
-      headers: { 'X-Requested-With': 'XMLHttpRequest' },
-      body: params
+      method: "POST",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      body: params,
     });
     text = await res.text();
     data = JSON.parse(text);
   } catch (e) {
-    console.error('Error o JSON inválido:', e, text);
-    alert('Error al cargar productos.');
+    console.error("Error o JSON inválido:", e, text);
+    alert("Error al cargar productos.");
     return;
   }
 
   if (!res.ok || !data?.ok) {
-    console.error('Respuesta de error:', data);
-    alert(data?.msg || 'No se pudo cargar la lista.');
+    console.error("Respuesta de error:", data);
+    alert(data?.msg || "No se pudo cargar la lista.");
     return;
   }
 
   // 1) Si el backend ya envía HTML, úsalo
-  if (typeof data.grid_html === 'string' && data.grid_html.trim() !== '') {
+  if (typeof data.grid_html === "string" && data.grid_html.trim() !== "") {
     grid.innerHTML = data.grid_html;
   } else {
     // 2) Si no envía HTML (tu caso), renderiza desde data[]
@@ -1314,7 +1332,10 @@ async function cargarProductos({ page = 1 } = {}) {
   }
 
   // Paginación: usa la del server si existe; si no, calcula
-  if (typeof data.pagination_html === 'string' && data.pagination_html.trim() !== '') {
+  if (
+    typeof data.pagination_html === "string" &&
+    data.pagination_html.trim() !== ""
+  ) {
     pag.innerHTML = data.pagination_html;
   } else {
     const total = Number(data.total || 0);
@@ -1327,97 +1348,119 @@ async function cargarProductos({ page = 1 } = {}) {
 }
 
 // Delegación para paginación
-document.addEventListener('click', (ev) => {
-  const btn = ev.target.closest('button[data-page]');
+document.addEventListener("click", (ev) => {
+  const btn = ev.target.closest("button[data-page]");
   if (!btn) return;
   const pag = document.getElementById(PAG_ID);
   if (!pag || !pag.contains(btn)) return;
 
   ev.preventDefault();
-  const page = parseInt(btn.getAttribute('data-page'), 10) || 1;
+  const page = parseInt(btn.getAttribute("data-page"), 10) || 1;
   cargarProductos({ page });
 });
 
 // Escuchar cambios en filtros
-document.addEventListener('change', (ev) => {
+document.addEventListener("change", (ev) => {
   if (ev.target.matches('input[name="marca[]"], input[name="anio[]"]')) {
     cargarProductos({ page: 1 });
   }
 });
 
 // Primera carga
-document.addEventListener('DOMContentLoaded', () => cargarProductos({ page: 1 }));
+document.addEventListener("DOMContentLoaded", () =>
+  cargarProductos({ page: 1 })
+);
 
 // Funcion envio tipo ajax para el form de contactenos
 
 (function () {
-  const $ = sel => document.querySelector(sel);
+  const $ = (sel) => document.querySelector(sel);
 
-  const form = $('#contactoForm');
-  const btn = $('#btnEnviar');
-  const boxMsg = $('#contactoMsg');
+  const form = $("#contactoForm");
+  const btn = $("#btnEnviar");
+  const boxMsg = $("#contactoMsg");
 
   const showMsg = (html, ok = false) => {
     boxMsg.innerHTML = html;
-    boxMsg.className = 'mt-4 text-sm ' + (ok
-      ? 'text-green-700 bg-green-100 border border-green-300 rounded p-3'
-      : 'text-red-700 bg-red-100 border border-red-300 rounded p-3');
+    boxMsg.className =
+      "mt-4 text-sm " +
+      (ok
+        ? "text-green-700 bg-green-100 border border-green-300 rounded p-3"
+        : "text-red-700 bg-red-100 border border-red-300 rounded p-3");
   };
 
   const validate = () => {
-    const nombre = $('#nombre_completo').value.trim();
-    const pais = $('#pais').value.trim();
-    const email = $('#email').value.trim();
-    const mensaje = $('#mensaje').value.trim();
-    const tel = $('#telefono').value.trim();
+    const nombre = $("#nombre_completo").value.trim();
+    const pais = $("#pais").value.trim();
+    const email = $("#email").value.trim();
+    const mensaje = $("#mensaje").value.trim();
+    const tel = $("#telefono").value.trim();
 
-    if (!nombre || nombre.length < 2) return 'Ingresa tu nombre completo.';
-    if (!pais) return 'Selecciona un país.';
-    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return 'Ingresa un correo válido.';
-    if (!mensaje || mensaje.length < 5) return 'Escribe un mensaje más detallado.';
-    if (tel && !/^[0-9+\-\s()]{6,20}$/.test(tel)) return 'Teléfono inválido.';
+    if (!nombre || nombre.length < 2) return "Ingresa tu nombre completo.";
+    if (!pais) return "Selecciona un país.";
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+      return "Ingresa un correo válido.";
+    if (!mensaje || mensaje.length < 5)
+      return "Escribe un mensaje más detallado.";
+    if (tel && !/^[0-9+\-\s()]{6,20}$/.test(tel)) return "Teléfono inválido.";
 
     return null; // ok
   };
 
-  form.addEventListener('submit', async (ev) => {
+  form.addEventListener("submit", async (ev) => {
     ev.preventDefault();
 
     // Validación cliente
     const err = validate();
-    if (err) { showMsg(err, false); return; }
+    if (err) {
+      showMsg(err, false);
+      return;
+    }
 
     // Honeypot (si el bot lo llena, no enviamos)
-    const hp = document.getElementById('hp_field').value;
-    if (hp) { showMsg('Error de validación.', false); return; }
+    const hp = document.getElementById("hp_field").value;
+    if (hp) {
+      showMsg("Error de validación.", false);
+      return;
+    }
 
     // Preparar FormData
     const fd = new FormData(form);
-    fd.append('ajax', '1'); // pista para el servidor
+    fd.append("ajax", "1"); // pista para el servidor
 
     btn.disabled = true;
-    btn.classList.add('opacity-60', 'cursor-not-allowed');
-    showMsg('Enviando...', true);
+    btn.classList.add("opacity-60", "cursor-not-allowed");
+    showMsg("Enviando...", true);
 
     try {
-      const res = await fetch(BASE_DIR + 'contacto_enviar.php', { method: 'POST', body: fd });
+      const res = await fetch(BASE_DIR + "contacto_enviar.php", {
+        method: "POST",
+        body: fd,
+      });
       const text = await res.text();
       let data;
-      try { data = JSON.parse(text); } catch (e) { data = null; }
+      try {
+        data = JSON.parse(text);
+      } catch (e) {
+        data = null;
+      }
 
       if (!res.ok || !data || data.ok !== true) {
-        console.error('Respuesta servidor:', text);
-        showMsg(data?.msg || 'No se pudo enviar el mensaje. Intenta nuevamente.', false);
+        console.error("Respuesta servidor:", text);
+        showMsg(
+          data?.msg || "No se pudo enviar el mensaje. Intenta nuevamente.",
+          false
+        );
       } else {
-        showMsg('¡Gracias! Tu mensaje fue enviado correctamente.', true);
+        showMsg("¡Gracias! Tu mensaje fue enviado correctamente.", true);
         form.reset();
       }
     } catch (e) {
       console.error(e);
-      showMsg('Error de red. Verifica tu conexión.', false);
+      showMsg("Error de red. Verifica tu conexión.", false);
     } finally {
       btn.disabled = false;
-      btn.classList.remove('opacity-60', 'cursor-not-allowed');
+      btn.classList.remove("opacity-60", "cursor-not-allowed");
     }
   });
 })();

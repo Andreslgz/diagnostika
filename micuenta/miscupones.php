@@ -468,6 +468,9 @@ if (isset($_SESSION['usuario_id'])) {
                                         </svg>
                                         <span class="code-text">Cupón canjeado</span>
                                     </button>
+                                    <p class="text-xs text-gray-600 text-center mt-1.5">
+                                        Este cupon se borrará en 15 días
+                                    </p>
                                 </div>
                             </div>
                         </div>
