@@ -138,7 +138,7 @@
                             $<?php echo number_format($total, 2); ?>
                         </span>
                     </div>
-                    <a href="carrito.php"
+                    <a href="/tienda/carrito.php"
                         class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
                         Ir al Carrito
                     </a>
