@@ -19,7 +19,7 @@
                         </div>
                         <input type="search" id="search-bar"
                             class="block py-2 px-4 pr-[420px] pl-10 w-full btn-primary text-sm text-gray-900 rounded-full border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Busca tu producto aquí" required />
+                            placeholder="Search for your product" required />
                     </div>
                 </form>
 
@@ -29,13 +29,13 @@
                         data-active-tab="login"
                         class="bg-black text-white rounded-lg px-3 py-1 text-nowrap xl:mr-3 cursor-pointer xl:text-base text-sm"
                         type="button">
-                        Iniciar sesión
+                        Log In
                     </button>
                     <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                         data-active-tab="register"
-                        class="text-gray-500 border border-solid border-gray-500 rounded-lg px-3 py-1 cursor-pointer hidden lg:inline-block"
+                        class="text-gray-500 border text-nowrap border-solid border-gray-500 rounded-lg px-3 py-1 cursor-pointer hidden lg:inline-block"
                         type="button">
-                        Registro
+                        Sign Up
                     </button>
 
                 <?php endif; ?>
@@ -70,7 +70,7 @@
                     </div>
                 </button>
 
-                <div class="hidden z-50 my-4 w-48 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
+                <!-- <div class="hidden z-50 my-4 w-48 text-base list-none bg-white rounded divide-y divide-gray-100 shadow"
                     id="language-dropdown">
                     <ul class="py-1" role="none">
                         <li>
@@ -84,7 +84,7 @@
                             </a>
                         </li>
                     </ul>
-                </div>
+                </div> -->
                 <button data-collapse-toggle="mobile-menu-search" type="button"
                     class="inline-flex items-center p-2 ml-1 text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
                     aria-controls="mobile-menu-search" aria-expanded="false">
@@ -141,7 +141,7 @@
                         class="lg:h-full lg:flex lg:items-center xl:py-3 <?php echo isActive('/') ? 'btn-secondary' : ''; ?>">
                         <a href="<?php echo $url; ?>"
                             class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0 <?php echo isActive('/') ? 'text-white' : 'text-gray-600 lg:hover:bg-white lg:hover:text-blue-700'; ?>">
-                            Inicio
+                            Home
                         </a>
                     </li>
 
@@ -149,7 +149,7 @@
                         class="lg:h-full lg:flex lg:items-center xl:py-3 <?php echo isActive('/tienda') ? 'btn-secondary' : ''; ?>">
                         <a href="<?php echo $url; ?>/tienda"
                             class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0 <?php echo isActive('/tienda') ? 'text-white' : 'text-gray-600 lg:hover:bg-white lg:hover:text-blue-700'; ?>">
-                            Tienda
+                            Shop
                         </a>
                     </li>
 
@@ -157,7 +157,7 @@
                         class="lg:h-full lg:flex lg:items-center xl:py-3 <?php echo isActive('/pages/contacto.php') ? 'btn-secondary' : ''; ?>">
                         <a href="<?php echo $url; ?>/pages/contacto.php"
                             class="block py-2 pr-4 pl-3 border-b border-gray-100 font-semibold lg:px-6 lg:py-5 lg:h-full lg:flex lg:items-center lg:border-0 <?php echo isActive('/pages/contacto.php') ? 'text-white' : 'text-gray-600 lg:hover:bg-white lg:hover:text-blue-700'; ?>">
-                            Contacto
+                            Contact
                         </a>
                     </li>
                 </ul>

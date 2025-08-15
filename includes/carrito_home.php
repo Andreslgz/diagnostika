@@ -9,9 +9,9 @@
             <!-- Saludo -->
             <div class="text-center mb-4">
                 <p class="text-lg font-semibold text-slate-900">
-                    👋 Hola <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
+                    👋 Hello <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
                 </p>
-                <p class="text-sm text-slate-500">Bienvenido(a) de nuevo</p>
+                <p class="text-sm text-slate-500">Welcome back</p>
             </div>
 
             <!-- Botón cerrar sesión -->
@@ -48,13 +48,13 @@
                     data-active-tab="login"
                     class="bg-black text-white rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-800 transition-colors"
                     type="button">
-                    Iniciar sesión
+                    Log In
                 </button>
                 <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
                     data-active-tab="register"
                     class="text-gray-700 border bg-white border-gray-300 rounded-lg px-4 py-2 text-sm font-medium shadow hover:bg-gray-100 transition-colors"
                     type="button">
-                    Registro
+                    Sign Up
                 </button>
             </div>
         <?php endif; ?>
@@ -140,19 +140,21 @@
                     </div>
                     <a href="/tienda/carrito.php"
                         class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
-                        Ir al Carrito
+                        Go to Cart
                     </a>
                     <button
                         class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
                         type="button" data-drawer-hide="drawer-right-example" aria-controls="drawer-right-example">
-                        Seguir viendo
+                        Continue Shopping
                     </button>
                 </div>
             <?php else: ?>
                 <p
                     class="flex flex-col items-center justify-center text-center text-gray-500 text-sm mb-3 bg-gray-50 border border-dashed border-gray-300 rounded-lg p-4 shadow-sm">
                     <span class="text-2xl mb-1">🛒</span>
-                    <span class="font-medium">Tu carrito está vacío</span>
+                    <span class="font-medium">
+                        Your cart is empty
+                    </span>
                 </p>
             <?php endif; ?>
         </div>
