@@ -342,75 +342,75 @@ if (isset($_SESSION['usuario_id'])) {
 
         <!-- BANNERS -->
         <section class="px-4 mx-auto max-w-screen-2xl overflow-hidden">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 h-[300px] xl:h-auto">
                 <!-- Banner 1 -->
-                <div class="relative">
-                    <div class="flex flex-col md:flex-row">
+                <div class="relative h-full">
+                    <div class="flex flex-row  ">
                         <!-- Contenido -->
-                        <div class="btn-secondary w-full md:w-[30%] h-auto xl:rounded-l-lg rounded-t-lg p-4 md:p-4">
+                        <div
+                            class="btn-secondary xl:w-[32%] w-[51%] h-auto rounded-l-lg xl:p-4 p-2.5 flex flex-col justify-end">
                             <img src="assets/icons/banner/banner1.svg" alt=""
-                                class="size-[80px] md:size-[125px] mx-auto md:mx-0" />
-                            <p class="text-xl md:text-2xl font-extrabold text-banner-1 text-center md:text-left mt-2">
-                                En la carretera
+                                class="xl:size-[125px] size-[35px] mx-0" />
+                            <p class="xl:text-2xl text-sm font-extrabold text-banner-1 text-left ">
+                                On Highway
                             </p>
-                            <p class="text-white text-base md:text-lg font-semibold text-center md:text-left">Paquete
-                            </p>
+                            <p class="text-white xl:text-lg text-xs font-semibold text-left">Package</p>
                             <button
-                                class="mt-3 md:mt-5 btn-primary rounded-lg px-4 md:px-8 py-2 uppercase font-bold text-sm md:text-base flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 mx-auto md:mx-0">
-                                Ver Todo
-                                <img src="assets/icons/svg/tabler--chevron-right.svg" alt="" />
+                                class="xl:mt-5 mt-2 text-nowrap w-full text-center btn-primary rounded-lg xl:px-8 xl:py-2 py-1 uppercase xl:font-bold semibold xl:text-base text-xs flex items-center xl:gap-2 cursor-pointer justify-center hover:underline underline-offset-4 mx-auto">
+                                Add to CART
                             </button>
                         </div>
                         <!-- Imagen -->
-                        <div class="w-full md:w-[70%] h-[200px] md:h-auto image-anime rounded-r-lg">
+                        <div class="xl:w-[70%] w-full h-auto image-anime rounded-r-lg">
                             <img src="assets/images/banner1.jpg" alt=""
-                                class="w-full h-full object-cover rounded-b-xl md:rounded-b-none md:rounded-r-xl" />
+                                class="w-full h-full object-cover  rounded-r-xl" />
                         </div>
                     </div>
                     <!-- Badge -->
-                    <div class="absolute top-2 right-2 md:top-0 md:right-0 flex scale-75 md:scale-100 origin-top-right">
-                        <div class="btn-secondary px-3 md:px-4 py-1 font-extrabold text-2xl md:text-4xl rounded-l-lg">
+                    <div class="absolute top-0 right-0 flex scale-100 origin-top-right">
+                        <div class="btn-secondary xl:px-4 px-2 xl:py-1 py-0.5 font-extrabold xl:text-4xl ">
                             +
                         </div>
                         <div
-                            class="btn-primary px-3 md:px-5 py-1 flex items-center italic font-bold text-xs md:text-base ">
-                            100 Programas incluidos
+                            class="btn-primary xl:px-5 px-3 xl:py-1 py-0.5 flex items-center italic font-bold xl:text-base text-xs">
+                            100 SOFTWARES INCLUIDE
                         </div>
                     </div>
                 </div>
-
-                <!-- Banner 2 -->
-                <div class="relative">
-                    <div class="flex flex-col md:flex-row">
+                <div class="relative ">
+                    <div class="flex flex-row h-full">
                         <!-- Contenido -->
-                        <div class="bg-banner2 w-full md:w-[30%] h-auto xl:rounded-l-lg rounded-t-lg p-4 md:p-4">
-                            <img src="assets/icons/banner/banner1.svg" alt=""
-                                class="size-[80px] md:size-[125px] mx-auto md:mx-0" />
-                            <p class="text-xl md:text-2xl font-extrabold text-banner-1 text-center md:text-left mt-2">
-                                En la carretera
+                        <div
+                            class="bg-banner2 xl:w-[32%] w-[51%] h-auto rounded-l-lg xl:p-4 p-2.5 flex flex-col justify-end">
+                            <div class="flex gap-4 items-center ">
+                                <img src="assets/icons/banner/banner2.svg" alt=""
+                                    class="xl:size-[75px] block size-[45px] mx-0 border-r pr-4 border-gray-500" />
+                                <img src="assets/icons/banner/banner3.svg" alt=""
+                                    class="xl:size-[75px] block size-[30px] mx-0" />
+                            </div>
+                            <p class="xl:text-2xl text-sm font-extrabold text-banner-1 text-left xl:mt-4">
+                                Off Highway
                             </p>
-                            <p class="text-white text-base md:text-lg font-semibold text-center md:text-left">Paquete
-                            </p>
+                            <p class="text-white xl:text-lg text-xs font-semibold text-left">Package</p>
                             <button
-                                class="mt-3 md:mt-5 btn-primary rounded-lg px-4 md:px-8 py-2 uppercase font-bold text-sm md:text-base flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 mx-auto md:mx-0">
-                                Ver Todo
-                                <img src="assets/icons/svg/tabler--chevron-right.svg" alt="" />
+                                class="xl:mt-5 mt-2 text-nowrap w-full text-center btn-primary rounded-lg xl:px-8 xl:py-2 py-1 uppercase xl:font-bold semibold xl:text-base text-xs flex items-center xl:gap-2 cursor-pointer justify-center hover:underline underline-offset-4 mx-auto">
+                                Add to CART
                             </button>
                         </div>
                         <!-- Imagen -->
-                        <div class="w-full md:w-[70%] h-[200px] md:h-auto image-anime">
+                        <div class="xl:w-[70%] w-full h-auto image-anime rounded-r-lg">
                             <img src="assets/images/banner2.jpg" alt=""
-                                class="w-full h-full object-cover rounded-b-xl md:rounded-b-none md:rounded-r-xl" />
+                                class="w-full h-full object-cover  rounded-r-xl" />
                         </div>
                     </div>
                     <!-- Badge -->
-                    <div class="absolute top-2 right-2 md:top-0 md:right-0 flex scale-75 md:scale-100 origin-top-right">
-                        <div class="btn-secondary px-3 md:px-4 py-1 font-extrabold text-2xl md:text-4xl">
+                    <div class="absolute top-0 right-0 flex scale-100 origin-top-right">
+                        <div class="btn-secondary xl:px-4 px-2 xl:py-1 py-0.5 font-extrabold xl:text-4xl ">
                             +
                         </div>
                         <div
-                            class="btn-primary px-3 md:px-5 py-1 flex items-center italic font-bold text-xs md:text-base">
-                            100 Programas incluidos
+                            class="btn-primary xl:px-5 px-3 xl:py-1 py-0.5 flex items-center italic font-bold xl:text-base text-xs">
+                            100 SOFTWARES INCLUIDE
                         </div>
                     </div>
                 </div>
