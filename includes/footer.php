@@ -37,49 +37,46 @@
             </a>
         </div>
         <div class="mt-4 sm:mt-0">
-            <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Mapa del sitio</h2>
+            <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Site Map</h2>
             <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-left sm:text-left">
-                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Inicio</a>
+                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Home</a>
                 </li>
-                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sobre
-                        nosotros</a>
+                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">About
+                        Us</a>
                 </li>
                 <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Software</a>
                 </li>
-                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">El software más
-                        reciente</a></li>
-                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Paquetes</a>
+                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Latest Software</a></li>
+                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Packages</a>
                 </li>
-                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Las marcas más
-                        vendidas</a></li>
+                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Best Selling Brands</a>
+                </li>
             </ul>
         </div>
         <div class="mt-4 lg:mt-0">
-            <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Ayuda</h2>
+            <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Help</h2>
             <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-left sm:text-left">
-                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Iniciar sesión</a>
+                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Log In</a>
                 </li>
-                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Registrarse</a>
+                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sign Up</a>
                 </li>
-                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Preguntas
-                        frecuentes</a></li>
+                <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Frequently Asked
+                        Questions</a></li>
                 <li><button data-modal-toggle="como_ganar_monedas_modal" data-modal-target="como_ganar_monedas_modal"
                         class="text-gray-900 hover:underline underline-offset-4 bg-transparent border-none p-0 cursor-pointer"
-                        type="button">Cómo
-                        ganar más
-                        monedas</button></li>
+                        type="button">
+                        <span>How to earn more coins</span>
+                    </button></li>
                 <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">How to buy</a>
                 </li>
             </ul>
         </div>
         <div class="mt-4 lg:mt-0">
-            <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Recursos</h2>
+            <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Resources</h2>
             <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-left sm:text-left">
-                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Términos y
-                        condiciones</a>
+                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Terms and Conditions</a>
                 </li>
-                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Política de
-                        privacidad</a>
+                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Privacy Policy</a>
                 </li>
             </ul>
         </div>
