@@ -245,10 +245,10 @@ if (isset($_SESSION['usuario_id'])) {
 
         <!-- PRODUCTS -->
         <section data-aos="fade-up">
-            <div class="xl:py-20 py-14 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+            <div class="xl:py-20 py-10 px-4 mx-auto max-w-screen-2xl overflow-hidden">
                 <div
                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 w-full gap-4 sm:gap-0">
-                    <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg">
+                    <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-base">
                         Most in-demand software </h2>
                     <a href="<?php echo rtrim($baseDir, '/'); ?>/tienda"
                         class="btn-primary rounded px-4 sm:px-6 lg:px-8 py-2 uppercase font-bold text-sm sm:text-base xl:text-lg flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 self-start sm:self-auto">
@@ -311,29 +311,29 @@ if (isset($_SESSION['usuario_id'])) {
                         </div>
                     </section>
                 </div>
-                <section class="mx-auto max-w-screen-xl  grid xl:grid-cols-6 grid-cols-2 xl:gap-6 gap-8 mt-12">
+                <section class="mx-auto max-w-screen-xl  grid xl:grid-cols-6 grid-cols-3 xl:gap-6 gap-4 mt-12">
                     <div
-                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
+                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5">
                         <img src="assets/images/logos/logo1.svg" alt="" />
                     </div>
                     <div
-                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
+                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5">
                         <img src="assets/images/logos/logo2.svg" alt="" />
                     </div>
                     <div
-                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
+                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5">
                         <img src="assets/images/logos/logo3.svg" alt="" />
                     </div>
                     <div
-                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
+                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5">
                         <img src="assets/images/logos/logo4.svg" alt="" />
                     </div>
                     <div
-                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
+                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5">
                         <img src="assets/images/logos/logo5.svg" alt="" />
                     </div>
                     <div
-                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
+                        class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5">
                         <img src="assets/images/logos/logo6.svg" alt="" />
                     </div>
                 </section>
