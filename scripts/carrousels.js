@@ -194,6 +194,7 @@ function initProductsCarousel() {
         autoplay: false,
         pauseOnHover: true,
         arrows: true,
+
         pagination: false,
         breakpoints: {
           1024: {

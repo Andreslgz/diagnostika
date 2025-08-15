@@ -422,9 +422,99 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
                 <img src="assets/icons/Logotipo.svg" alt="" class="mx-auto block w-[220px] md:w-[320px] lg:w-[440px]" />
                 <div class="grid grid-cols-1 lg:grid-cols-2 mt-8 md:mt-16 gap-6 lg:gap-0">
+                    <div class="grid grid-cols-1 xl:hidden gap-8">
+                        <div class="mx-auto overflow-hidden">
+                            <div class="flex justify-between items-center cursor-pointer " onclick="toggleAccordion()">
+                                <div
+                                    class="btn-secondary w-[55px] h-[55px] rounded-full flex items-center justify-center flex-shrink-0">
+                                    <img src="assets/icons/estadisticas/1.svg" alt="" class="w-[70%]">
+                                </div>
+                                <div class="flex-1 mx-4">
+                                    <h2 class="font-bold text-base">
+                                        Specialized Technical Support
+                                    </h2>
+                                </div>
+                                <div>
+                                    <svg class="w-6 h-6 text-gray-500 arrow-transition" id="arrow" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="accordion-content" id="accordionContent">
+                                <div class="pl-[75px] pr-[20px]">
+                                    <div class="text-gray-900 space-y-3 text-xs">
+                                        <p>We support you before, during, and after installation with remote assistance
+                                            to
+                                            answer your questions and help you work with confidence.</p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mx-auto overflow-hidden">
+                            <div class="flex justify-between items-center cursor-pointer " onclick="toggleAccordion()">
+                                <div
+                                    class="btn-secondary w-[55px] h-[55px] rounded-full flex items-center justify-center flex-shrink-0">
+                                    <img src="assets/icons/estadisticas/2.svg" alt="" class="w-[70%]">
+                                </div>
+                                <div class="flex-1 mx-4">
+                                    <h2 class="font-bold text-base">
+                                        Global Coverage and immediate support
+                                    </h2>
+                                </div>
+                                <div>
+                                    <svg class="w-6 h-6 text-gray-500 arrow-transition" id="arrow" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="accordion-content" id="accordionContent">
+                                <div class="pl-[75px] pr-[20px]">
+                                    <div class="text-gray-900 space-y-3 text-xs">
+                                        <p>We assist technicians and mechanics worldwide with fast support via WhatsApp
+                                            and Telegram. Wherever you are, we’ve got you covered.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mx-auto overflow-hidden">
+                            <div class="flex justify-between items-center cursor-pointer " onclick="toggleAccordion()">
+                                <div
+                                    class="btn-secondary w-[55px] h-[55px] rounded-full flex items-center justify-center flex-shrink-0">
+                                    <img src="assets/icons/estadisticas/3.svg" alt="" class="w-[70%]">
+                                </div>
+                                <div class="flex-1 mx-4">
+                                    <h2 class="font-bold text-base">
+                                        Professional Diagnostic Software Installation
+                                    </h2>
+                                </div>
+                                <div>
+                                    <svg class="w-6 h-6 text-gray-500 arrow-transition" id="arrow" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 9l-7 7-7-7"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <div class="accordion-content" id="accordionContent">
+                                <div class="pl-[75px] pr-[20px]">
+                                    <div class="text-gray-900 space-y-3 text-xs">
+                                        <p>We turn your laptop into a powerful tool for diagnosing trucks and heavy
+                                            machinery. The software is delivered installed, activated, and ready to use.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <img src="assets/images/estadisticas_crop.png" alt=""
                         class="w-full h-auto object-contain mx-auto max-w-md lg:max-w-full">
-                    <div class="flex flex-col gap-4 md:gap-6 lg:gap-8">
+                    <div class="xl:flex hidden flex-col gap-4 md:gap-6 lg:gap-8">
                         <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
                                 class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
@@ -1060,6 +1150,97 @@ if (isset($_SESSION['usuario_id'])) {
         })();
     </script>
     <!--End of Tawk.to Script-->
+    <style>
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .accordion-content.active {
+            max-height: 300px;
+        }
+
+        .arrow-transition {
+            transition: transform 0.3s ease;
+        }
+
+        .arrow-transition.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Buscar todos los acordeones
+            const accordionContainers = document.querySelectorAll('.grid.grid-cols-1.xl\\:hidden .mx-auto');
+
+            // Aplicar el CSS necesario
+            const style = document.createElement('style');
+            style.textContent = `
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.active {
+            max-height: 200px;
+        }
+        
+        .arrow-transition {
+            transition: transform 0.3s ease;
+        }
+        
+        .arrow-transition.rotated {
+            transform: rotate(180deg);
+        }
+    `;
+            document.head.appendChild(style);
+
+            // Configurar cada acordeón
+            accordionContainers.forEach((container, index) => {
+                const header = container.querySelector('.flex.justify-between.items-center');
+                const content = container.querySelector('.accordion-content');
+                const arrow = container.querySelector('svg');
+
+                // Remover onclick del HTML
+                if (header) {
+                    header.removeAttribute('onclick');
+                }
+
+                // Abrir el primero por defecto
+                if (index === 0) {
+                    content.classList.add('active');
+                    arrow.classList.add('rotated');
+                }
+
+                // Agregar event listener
+                if (header) {
+                    header.addEventListener('click', function () {
+                        // Cerrar todos los demás acordeones
+                        accordionContainers.forEach((otherContainer, otherIndex) => {
+                            if (otherIndex !== index) {
+                                const otherContent = otherContainer.querySelector('.accordion-content');
+                                const otherArrow = otherContainer.querySelector('svg');
+                                otherContent.classList.remove('active');
+                                otherArrow.classList.remove('rotated');
+                            }
+                        });
+
+                        // Toggle el acordeón actual
+                        content.classList.toggle('active');
+                        arrow.classList.toggle('rotated');
+                    });
+                }
+            });
+        });
+
+        // Función global para compatibilidad (en caso de que se llame desde el HTML)
+        function toggleAccordion() {
+            // Esta función ya no se necesita, pero la dejamos por compatibilidad
+            console.log('Using new accordion system');
+        }
+    </script>
 </body>
 
 </html>
