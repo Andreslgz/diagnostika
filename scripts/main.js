@@ -1,95 +1,98 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Hero carousel
-  const heroCarousel = document.getElementById("image-carousel");
-  if (heroCarousel) {
-    new Splide("#image-carousel", {
-      type: "loop",
-      autoplay: true,
-      interval: 5000,
-      pauseOnHover: true,
-      arrows: true,
-      pagination: true,
-      cover: true,
-      height: "85vh",
-    }).mount();
-  }
+import { initializeCarousels } from "./carrousels.js";
 
-  // Products carousel
-  const productsCarousel = document.getElementById("products-carousel");
-  if (productsCarousel) {
-    new Splide("#products-carousel", {
-      type: "loop",
-      perPage: 4,
-      perMove: 1,
-      gap: "0.1rem",
-      autoplay: false,
-      pauseOnHover: true,
-      arrows: true,
-      pagination: false,
-      breakpoints: {
-        1024: {
-          perPage: 3,
-          gap: "1.1rem",
-        },
-        768: {
-          perPage: 2,
-          gap: "1rem",
-        },
-        640: {
-          perPage: 1,
-          gap: "1rem",
-        },
-      },
-    }).mount();
-  }
+// document.addEventListener("DOMContentLoaded", function () {
+//   // Hero carousel
+//   const heroCarousel = document.getElementById("image-carousel");
+//   if (heroCarousel) {
+//     new Splide("#image-carousel", {
+//       type: "loop",
+//       autoplay: true,
+//       interval: 5000,
+//       pauseOnHover: true,
+//       arrows: true,
+//       pagination: true,
+//       cover: true,
+//       height: "85vh",
+//     }).mount();
+//   }
 
-  // Testimonials carousel
-  const testimonialsCarousel = document.getElementById("testimonials-carousel");
-  if (testimonialsCarousel) {
-    try {
-      new Splide("#testimonials-carousel", {
-        type: "loop",
-        perPage: 4,
-        perMove: 1,
-        gap: "1.5rem",
-        autoplay: true,
-        interval: 4000,
-        pauseOnHover: true,
-        arrows: true,
-        pagination: true,
-        focus: "center",
-        trimSpace: false,
-        breakpoints: {
-          1280: {
-            perPage: 3,
-            gap: "1.2rem",
-          },
-          1024: {
-            perPage: 2,
-            gap: "1rem",
-          },
-          768: {
-            perPage: 1,
-            gap: "1rem",
-            focus: "center",
-          },
-          640: {
-            perPage: 1,
-            gap: "0.8rem",
-            focus: "center",
-          },
-        },
-      }).mount();
-      console.log("Testimonials carousel initialized successfully");
-    } catch (error) {
-      console.error("Error initializing testimonials carousel:", error);
-    }
-  } else {
-    console.error("Testimonials carousel element not found");
-  }
-});
+//   // Products carousel
+//   const productsCarousel = document.getElementById("products-carousel");
+//   if (productsCarousel) {
+//     new Splide("#products-carousel", {
+//       type: "loop",
+//       perPage: 4,
+//       perMove: 1,
+//       gap: "0.1rem",
+//       autoplay: false,
+//       pauseOnHover: true,
+//       arrows: true,
+//       pagination: false,
+//       breakpoints: {
+//         1024: {
+//           perPage: 3,
+//           gap: "1.1rem",
+//         },
+//         768: {
+//           perPage: 2,
+//           gap: "1rem",
+//         },
+//         640: {
+//           perPage: 1,
+//           gap: "1rem",
+//         },
+//       },
+//     }).mount();
+//   }
+
+//   // Testimonials carousel
+//   const testimonialsCarousel = document.getElementById("testimonials-carousel");
+//   if (testimonialsCarousel) {
+//     try {
+//       new Splide("#testimonials-carousel", {
+//         type: "loop",
+//         perPage: 4,
+//         perMove: 1,
+//         gap: "1.5rem",
+//         autoplay: true,
+//         interval: 4000,
+//         pauseOnHover: true,
+//         arrows: true,
+//         pagination: true,
+//         focus: "center",
+//         trimSpace: false,
+//         breakpoints: {
+//           1280: {
+//             perPage: 3,
+//             gap: "1.2rem",
+//           },
+//           1024: {
+//             perPage: 2,
+//             gap: "1rem",
+//           },
+//           768: {
+//             perPage: 1,
+//             gap: "1rem",
+//             focus: "center",
+//           },
+//           640: {
+//             perPage: 1,
+//             gap: "0.8rem",
+//             focus: "center",
+//           },
+//         },
+//       }).mount();
+//       console.log("Testimonials carousel initialized successfully");
+//     } catch (error) {
+//       console.error("Error initializing testimonials carousel:", error);
+//     }
+//   } else {
+//     console.error("Testimonials carousel element not found");
+//   }
+// });
 
 // Modal tab functionality
+
 document.addEventListener("DOMContentLoaded", function () {
   const modalBody = document.getElementById("modal-body");
   const registerTab = document.getElementById("register-tab");

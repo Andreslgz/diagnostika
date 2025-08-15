@@ -88,7 +88,7 @@ if (isset($_SESSION['usuario_id'])) {
     <main>
 
         <!-- Hero -->
-        <section id="image-carousel" class="splide" aria-label="Beautiful Images">
+        <section id="image-carousel" class="splide hidden md:block" aria-label="Beautiful Images">
             <div class="splide__track xl:h-[85vh] h-[70vh]">
                 <ul class="splide__list">
                     <?php
@@ -119,6 +119,31 @@ if (isset($_SESSION['usuario_id'])) {
                 </ul>
             </div>
         </section>
+
+        <!-- Hero Mobile -->
+        <section id="image-carousel-mobile" class="splide md:hidden" aria-label="Beautiful Images (Mobile)">
+            <div class="splide__track h-[50vh]">
+                <ul class="splide__list">
+                    <?php if ($sliders && count($sliders) > 0): ?>
+                        <?php foreach ($sliders as $img):
+                            $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>
+                            <li class="splide__slide">
+                                <img src="uploads/slider/<?= $imagen ?>" alt="Slide Mobile"
+                                    class="w-full h-full object-cover" />
+                            </li>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <li class="splide__slide">
+                            <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen"
+                                class="w-full h-full object-cover" />
+                        </li>
+                    <?php endif; ?>
+                </ul>
+            </div>
+        </section>
+
+
+        <!-- HERO MOBILE -->
 
         <!-- STATISTICS -->
         <section class="bg-statistics">
@@ -891,6 +916,7 @@ if (isset($_SESSION['usuario_id'])) {
         AOS.init();
     </script>
     <script src="<?php echo $url; ?>/scripts/main.js"></script>
+    <script type="module" src="<?php echo $url; ?>/scripts/carrousels.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
