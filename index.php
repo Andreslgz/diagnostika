@@ -560,32 +560,31 @@ if (isset($_SESSION['usuario_id'])) {
                         </div>
                     </div>
                 </div>
-                <div class="max-w-6xl mx-auto mt-10 md:mt-20">
-                    <div
-                        class="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-gray-800 overflow-hidden">
-                        <div class="py-5 px-4 md:px-8 text-center">
-                            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
-                                123K<span class="text-blue-600">+</span>
+                <div class="xl:max-w-6xl mx-auto mt-16 xl:mb-0 mb-10 lg:mt-20">
+                    <div class="grid grid-cols-3 sm:grid-cols-3 divide-x divide-gray-800 overflow-hidden">
+                        <div class="py-0 px-4 md:px-8 text-center">
+                            <h2 class="text-xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 xl:mb-2">
+                                123K<span class="">+</span>
                             </h2>
-                            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 font-bold">
+                            <p class="text-xs lg:text-2xl text-gray-600 font-bold">
                                 Installations
                             </p>
                         </div>
 
-                        <div class="py-5 px-4 md:px-8 text-center">
-                            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
-                                60<span class="text-blue-600">+</span>
+                        <div class="py-0 px-4 md:px-8 text-center">
+                            <h2 class="text-xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 xl:mb-2">
+                                60<span class="">+</span>
                             </h2>
-                            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 font-bold">
+                            <p class="text-xs lg:text-2xl text-gray-600 font-bold">
                                 Cities
                             </p>
                         </div>
 
-                        <div class="py-5 px-4 md:px-8 text-center">
-                            <h2 class="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 mb-2">
-                                10K<span class="text-blue-600">+</span>
+                        <div class="py-0 px-4 md:px-8 text-center">
+                            <h2 class="text-xl md:text-6xl lg:text-8xl font-extrabold text-gray-800 xl:mb-2">
+                                10K<span class="">+</span>
                             </h2>
-                            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 font-bold">
+                            <p class="text-xs lg:text-2xl text-gray-600 font-bold">
                                 Clients
                             </p>
                         </div>
