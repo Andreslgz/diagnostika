@@ -101,11 +101,11 @@ if (isset($_SESSION['usuario_id'])) {
                     if ($sliders && count($sliders) > 0) {
                         foreach ($sliders as $img) {
                             $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
-                    ?>
+                            ?>
                             <li class="splide__slide">
                                 <img src="uploads/slider/<?= $imagen ?>" alt="Slide" class="" />
                             </li>
-                        <?php
+                            <?php
                         }
                     } else {
                         // Fallback si no hay imágenes activas
@@ -113,7 +113,7 @@ if (isset($_SESSION['usuario_id'])) {
                         <li class="splide__slide">
                             <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="" />
                         </li>
-                    <?php
+                        <?php
                     }
                     ?>
                 </ul>
@@ -181,7 +181,7 @@ if (isset($_SESSION['usuario_id'])) {
                 <div class="mx-auto max-w-screen-xl">
                     <!-- Products Carousel -->
                     <section id="products-carousel" class="splide" aria-label="Featured Products">
-                        <div class="splide__track">
+                        <div class="splide__track h-[61vh]">
                             <ul class="splide__list">
                                 <?php foreach ($productos as $prod): ?>
                                     <li
@@ -231,7 +231,7 @@ if (isset($_SESSION['usuario_id'])) {
                         </div>
                     </section>
                 </div>
-                <section class="mx-auto max-w-screen-xl mt-6 grid xl:grid-cols-6 grid-cols-2 xl:gap-6 gap-8 mt-10">
+                <section class="mx-auto max-w-screen-xl  grid xl:grid-cols-6 grid-cols-2 xl:gap-6 gap-8 mt-12">
                     <div
                         class="brands-bg rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg">
                         <img src="assets/images/logos/logo1.svg" alt="" />
@@ -609,7 +609,7 @@ if (isset($_SESSION['usuario_id'])) {
 
             <section id="testimonials-carousel" class="splide" aria-label="Testimonios de clientes">
                 <div class="splide__track pb-6 pt-3">
-                    <ul class="splide__list ">
+                    <ul class="splide__list h-[51vh]">
                         <li class="splide__slide">
                             <div
                                 class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between min-h-[320px]">
@@ -890,7 +890,7 @@ if (isset($_SESSION['usuario_id'])) {
     <script>
         AOS.init();
     </script>
-    <script src="<?php echo $url;?>/scripts/main.js"></script>
+    <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
@@ -898,7 +898,7 @@ if (isset($_SESSION['usuario_id'])) {
     <script>
         console.log('🔍 Debug Script Loaded');
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             console.log('🔍 DOM Content Loaded');
 
             // Verificar elementos
@@ -928,7 +928,7 @@ if (isset($_SESSION['usuario_id'])) {
                 }
 
                 // Event listener para abrir
-                chatTrigger.addEventListener("click", function(e) {
+                chatTrigger.addEventListener("click", function (e) {
                     console.log('🖱️ Chat trigger clicked!');
                     e.preventDefault();
                     e.stopPropagation();
@@ -937,7 +937,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                 // Event listener para cerrar
                 if (closeButton) {
-                    closeButton.addEventListener("click", function(e) {
+                    closeButton.addEventListener("click", function (e) {
                         console.log('🖱️ Close button clicked!');
                         e.preventDefault();
                         e.stopPropagation();
@@ -946,12 +946,12 @@ if (isset($_SESSION['usuario_id'])) {
                 }
 
                 // Agregar hover effect
-                chatTrigger.addEventListener("mouseenter", function() {
+                chatTrigger.addEventListener("mouseenter", function () {
                     chatTrigger.style.transform = "scale(1.05)";
                     chatTrigger.style.transition = "transform 0.2s ease";
                 });
 
-                chatTrigger.addEventListener("mouseleave", function() {
+                chatTrigger.addEventListener("mouseleave", function () {
                     chatTrigger.style.transform = "scale(1)";
                 });
 
@@ -968,7 +968,7 @@ if (isset($_SESSION['usuario_id'])) {
     <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
             Tawk_LoadStart = new Date();
-        (function() {
+        (function () {
             var s1 = document.createElement("script"),
                 s0 = document.getElementsByTagName("script")[0];
             s1.async = true;
