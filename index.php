@@ -989,7 +989,7 @@ if (isset($_SESSION['usuario_id'])) {
         <!-- FAQ -->
         <section class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden" data-aos="fade-up">
             <div class="text-start xl:mb-12 mb-5">
-                <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
+                <h2 class="uppercase font-extrabold xl:text-3xl text-base mb-4">
                     Frequently Asked Questions:
                 </h2>
             </div>
@@ -998,8 +998,8 @@ if (isset($_SESSION['usuario_id'])) {
                 <!-- FAQ Item 1 -->
                 <div class="faq-item border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <button
-                        class="faq-header w-full px-6 py-5 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
-                        <h3 class="text-lg font-bold text-gray-900 pr-4">
+                        class="faq-header w-full xl:px-6 px-3 xl:py-5 py-3 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
+                        <h3 class="xl:text-lg text-sm xl:font-bold text-semibold text-gray-900 xl:pr-4">
                             ¿Cómo sé si el software es compatible con mi interfaz?
                         </h3>
                         <div class="faq-icon flex-shrink-0 transform transition-transform duration-300 ease-in-out">
@@ -1011,7 +1011,7 @@ if (isset($_SESSION['usuario_id'])) {
                     </button>
                     <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="px-6 py-5 bg-gray-50 border-t border-gray-100">
-                            <p class="text-gray-700 leading-relaxed">
+                            <p class="text-gray-700 xl:text-base text-xs leading-relaxed">
                                 Cada software incluye una lista detallada de interfaces compatibles en su
                                 descripción.
                                 Además, nuestro equipo técnico puede asesorarte sobre la compatibilidad específica
@@ -1026,9 +1026,9 @@ if (isset($_SESSION['usuario_id'])) {
                 <!-- FAQ Item 2 -->
                 <div class="faq-item border border-gray-200 rounded-lg overflow-hidden shadow-sm">
                     <button
-                        class="faq-header w-full px-6 py-5 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
-                        <h3 class="text-lg font-bold text-gray-900 pr-4">
-                            ¿Qué incluye la compra del software?
+                        class="faq-header w-full xl:px-6 px-3 xl:py-5 py-3 text-left flex items-center justify-between bg-white hover:bg-gray-50 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-opacity-50">
+                        <h3 class="xl:text-lg text-sm xl:font-bold text-semibold text-gray-900 xl:pr-4">
+                            ¿Qué métodos de pago aceptan?
                         </h3>
                         <div class="faq-icon flex-shrink-0 transform transition-transform duration-300 ease-in-out">
                             <svg class="w-6 h-6 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -1039,31 +1039,13 @@ if (isset($_SESSION['usuario_id'])) {
                     </button>
                     <div class="faq-content max-h-0 overflow-hidden transition-all duration-500 ease-in-out">
                         <div class="px-6 py-5 bg-gray-50 border-t border-gray-100">
-                            <p class="text-gray-700 leading-relaxed mb-3">
-                                Tu compra incluye:
+                            <p class="text-gray-700 xl:text-base text-xs leading-relaxed">
+                                Aceptamos PayPal, Western Union y MoneyGram. Al realizar tu compra, puedes elegir el
+                                método que prefieras y te enviaremos las instrucciones para completar el pago.
                             </p>
-                            <ul class="text-gray-700 space-y-2">
-                                <li class="flex items-start">
-                                    <span class="text-amber-500 mr-2">•</span>
-                                    Software completo con todas las funciones
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-amber-500 mr-2">•</span>
-                                    Manual de instalación paso a paso
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-amber-500 mr-2">•</span>
-                                    Soporte técnico especializado
-                                </li>
-                                <li class="flex items-start">
-                                    <span class="text-amber-500 mr-2">•</span>
-                                    Actualizaciones por tiempo determinado
-                                </li>
-                            </ul>
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 

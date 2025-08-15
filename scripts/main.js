@@ -1,98 +1,3 @@
-import { initializeCarousels } from "./carrousels.js";
-
-// document.addEventListener("DOMContentLoaded", function () {
-//   // Hero carousel
-//   const heroCarousel = document.getElementById("image-carousel");
-//   if (heroCarousel) {
-//     new Splide("#image-carousel", {
-//       type: "loop",
-//       autoplay: true,
-//       interval: 5000,
-//       pauseOnHover: true,
-//       arrows: true,
-//       pagination: true,
-//       cover: true,
-//       height: "85vh",
-//     }).mount();
-//   }
-
-//   // Products carousel
-//   const productsCarousel = document.getElementById("products-carousel");
-//   if (productsCarousel) {
-//     new Splide("#products-carousel", {
-//       type: "loop",
-//       perPage: 4,
-//       perMove: 1,
-//       gap: "0.1rem",
-//       autoplay: false,
-//       pauseOnHover: true,
-//       arrows: true,
-//       pagination: false,
-//       breakpoints: {
-//         1024: {
-//           perPage: 3,
-//           gap: "1.1rem",
-//         },
-//         768: {
-//           perPage: 2,
-//           gap: "1rem",
-//         },
-//         640: {
-//           perPage: 1,
-//           gap: "1rem",
-//         },
-//       },
-//     }).mount();
-//   }
-
-//   // Testimonials carousel
-//   const testimonialsCarousel = document.getElementById("testimonials-carousel");
-//   if (testimonialsCarousel) {
-//     try {
-//       new Splide("#testimonials-carousel", {
-//         type: "loop",
-//         perPage: 4,
-//         perMove: 1,
-//         gap: "1.5rem",
-//         autoplay: true,
-//         interval: 4000,
-//         pauseOnHover: true,
-//         arrows: true,
-//         pagination: true,
-//         focus: "center",
-//         trimSpace: false,
-//         breakpoints: {
-//           1280: {
-//             perPage: 3,
-//             gap: "1.2rem",
-//           },
-//           1024: {
-//             perPage: 2,
-//             gap: "1rem",
-//           },
-//           768: {
-//             perPage: 1,
-//             gap: "1rem",
-//             focus: "center",
-//           },
-//           640: {
-//             perPage: 1,
-//             gap: "0.8rem",
-//             focus: "center",
-//           },
-//         },
-//       }).mount();
-//       console.log("Testimonials carousel initialized successfully");
-//     } catch (error) {
-//       console.error("Error initializing testimonials carousel:", error);
-//     }
-//   } else {
-//     console.error("Testimonials carousel element not found");
-//   }
-// });
-
-// Modal tab functionality
-
 document.addEventListener("DOMContentLoaded", function () {
   const modalBody = document.getElementById("modal-body");
   const registerTab = document.getElementById("register-tab");
@@ -412,7 +317,6 @@ document.addEventListener("DOMContentLoaded", function () {
       }, 300);
     });
   }
-  s;
 });
 
 /* ============================================
@@ -423,7 +327,11 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   // Usar un timeout para asegurar que todo el DOM esté completamente cargado
   setTimeout(() => {
-    initializeFAQ();
+    if (typeof initializeFAQ === "function") {
+      initializeFAQ();
+    } else {
+      console.warn("initializeFAQ no está definida");
+    }
   }, 100);
 });
 
@@ -448,12 +356,10 @@ function initializeFAQ() {
     return;
   }
 
-  // Delegación: permitir clic en todo el item FAQ
+  // Delegación: permitir clic en el header del FAQ
   faqContainer.addEventListener("click", function (e) {
-    const item = e.target.closest(".faq-item");
-    if (!item || !faqContainer.contains(item)) return;
-    const header = item.querySelector(".faq-header");
-    if (!header) return;
+    const header = e.target.closest(".faq-header");
+    if (!header || !faqContainer.contains(header)) return;
     const headers = Array.from(document.querySelectorAll(".faq-header"));
     const index = headers.indexOf(header);
     if (index === -1) return;
@@ -490,6 +396,10 @@ function initializeFAQ() {
     header.setAttribute("tabindex", "0");
     header.setAttribute("aria-expanded", "false");
     header.setAttribute("aria-controls", `faq-content-${index}`);
+
+    if (header.tagName === "BUTTON" && !header.hasAttribute("type")) {
+      header.setAttribute("type", "button");
+    }
 
     // Agregar ID al contenido para accesibilidad
     const content = header.nextElementSibling;
@@ -551,64 +461,52 @@ function handleFAQToggle(header, index) {
 }
 
 function openFAQ(faqItem, header, content, icon) {
-  console.log(
-    "Opening FAQ:",
-    faqItem.querySelector("h3")?.textContent?.substring(0, 30) + "..."
-  );
-
-  // Agregar clase activa
+  // Activar estado
   faqItem.classList.add("active");
-
-  // Actualizar aria-expanded
   header.setAttribute("aria-expanded", "true");
 
-  // Calcular altura del contenido
-  const contentInner = content.querySelector("div");
-  if (!contentInner) {
-    console.error("Content inner div not found");
-    return;
-  }
-
-  // Resetear el max-height para calcular la altura real
-  content.style.maxHeight = "none";
-  const targetHeight = contentInner.scrollHeight;
+  // Preparar animación: partir de 0
+  content.style.overflow = "hidden";
   content.style.maxHeight = "0px";
 
   // Forzar reflow
+  // eslint-disable-next-line no-unused-expressions
   content.offsetHeight;
 
-  // Animar apertura
+  // Altura objetivo del propio contenedor
+  const targetHeight = content.scrollHeight;
+
+  // Animar
   requestAnimationFrame(() => {
     content.style.maxHeight = targetHeight + "px";
   });
 
-  // Añadir clase de animación
-  setTimeout(() => {
-    content.classList.add("faq-open");
-  }, 10);
-
-  console.log(`FAQ opened with height: ${targetHeight}px`);
+  // Al terminar la transición, dejar auto para contenidos dinámicos
+  const onEnd = (e) => {
+    if (e.propertyName === "max-height") {
+      content.style.maxHeight = "none";
+      content.removeEventListener("transitionend", onEnd);
+    }
+  };
+  content.addEventListener("transitionend", onEnd);
 }
 
 function closeFAQ(faqItem, header, content, icon) {
-  console.log(
-    "Closing FAQ:",
-    faqItem.querySelector("h3")?.textContent?.substring(0, 30) + "..."
-  );
+  // Si estaba en 'auto', fija altura actual antes de colapsar
+  if (getComputedStyle(content).maxHeight === "none") {
+    content.style.maxHeight = content.scrollHeight + "px";
+    // Forzar reflow
+    // eslint-disable-next-line no-unused-expressions
+    content.offsetHeight;
+  }
 
-  // Remover clase activa
-  faqItem.classList.remove("active");
-
-  // Actualizar aria-expanded
-  header.setAttribute("aria-expanded", "false");
-
-  // Animar cierre
+  // Colapsar
+  content.style.overflow = "hidden";
   content.style.maxHeight = "0px";
 
-  // Remover clase de animación
-  content.classList.remove("faq-open");
-
-  console.log("FAQ closed");
+  // Estado
+  faqItem.classList.remove("active");
+  header.setAttribute("aria-expanded", "false");
 }
 
 function closeAllFAQs() {
