@@ -142,13 +142,12 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
         </section>
 
-
-        <!-- HERO MOBILE -->
-
         <!-- STATISTICS -->
         <section class="bg-statistics">
-            <div class="py-6 px-4 xl:px-0 mx-auto max-w-screen-2xl gap-10 overflow-hidden">
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-4" data-aos="fade-up">
+            <div class="xl:py-6 py-2 px-4 xl:px-0 mx-auto max-w-screen-2xl gap-10 overflow-hidden">
+
+                <!-- Desktop Grid (md+) -->
+                <div class="hidden md:grid grid-cols-4 gap-4" data-aos="fade-up" id="statistics-grid">
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
                         <img src="assets/icons/banner/icon1.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
@@ -186,6 +185,61 @@ if (isset($_SESSION['usuario_id'])) {
                         </div>
                     </div>
                 </div>
+
+                <!-- Mobile Carousel (< md) -->
+                <div class="splide block md:hidden relative" id="statistics-carousel" data-aos="fade-up">
+                    <div class="splide__track h-min">
+                        <ul class="splide__list">
+                            <li class="splide__slide">
+                                <div class="grid grid-cols-2 gap-3 ">
+                                    <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
+                                        <img src="assets/icons/banner/icon1.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <div class="flex-1">
+                                            <p class="font-bold text-lg leading-tight">1 Año</p>
+                                            <p class="text-sm font-medium text-nowrap">
+                                                de garantia
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
+                                        <img src="assets/icons/banner/icon2.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <div class="flex-1">
+                                            <p class="font-bold text-lg leading-tight">24/7</p>
+                                            <p class="text-sm font-medium text-nowrap">
+                                                Soporte técnico
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="splide__slide">
+                                <div class="grid grid-cols-2 gap-3 py-2">
+                                    <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
+                                        <img src="assets/icons/banner/icon3.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <div class="flex-1">
+                                            <p class="font-bold text-lg leading-tight">Cobertura</p>
+                                            <p class="text-sm font-medium text-nowrap">
+                                                Global
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
+                                        <img src="assets/icons/banner/icon4.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <div class="flex-1">
+                                            <p class="font-bold text-lg leading-tight">123K +</p>
+                                            <p class="text-sm font-medium text-nowrap">
+                                                Instalaciones
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+
             </div>
         </section>
 
@@ -195,31 +249,30 @@ if (isset($_SESSION['usuario_id'])) {
                 <div
                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 w-full gap-4 sm:gap-0">
                     <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg">
-                        El software más demandado
-                    </h2>
+                        Most in-demand software </h2>
                     <a href="<?php echo rtrim($baseDir, '/'); ?>/tienda"
                         class="btn-primary rounded px-4 sm:px-6 lg:px-8 py-2 uppercase font-bold text-sm sm:text-base xl:text-lg flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 self-start sm:self-auto">
-                        Ver Todo
+                        SEE ALL
                         <img src="assets/icons/svg/tabler--chevron-right.svg" alt="" />
                     </a>
                 </div>
                 <div class="mx-auto max-w-screen-xl">
                     <!-- Products Carousel -->
                     <section id="products-carousel" class="splide" aria-label="Featured Products">
-                        <div class="splide__track h-[61vh]">
+                        <div class="splide__track xl:h-[61vh] h-[47vh]">
                             <ul class="splide__list">
                                 <?php foreach ($productos as $prod): ?>
                                     <li
-                                        class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2 sm:!pr-4 lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
+                                        class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2  lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
                                         <div
-                                            class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                            class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-2 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
                                             <div class="flex justify-end -mb-1">
                                                 <button type="button" class="favorito-btn"
                                                     data-id="<?php echo $prod['id_producto']; ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         fill="<?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
+                                                        class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                                     </svg>
@@ -227,12 +280,12 @@ if (isset($_SESSION['usuario_id'])) {
                                             </div>
                                             <img src="<?php echo !empty($prod['imagen']) ? 'uploads/' . $prod['imagen'] : 'https://placehold.co/600x400/png'; ?>"
                                                 alt="<?php echo htmlspecialchars($prod['nombre']); ?>"
-                                                class="w-full h-40 sm:h-40 lg:h-48 object-fit rounded-md" />
+                                                class="w-full h-36 sm:h-36 lg:h-48 object-fit rounded-md" />
                                             <p
-                                                class="inline font-semibold text-sm sm:text-base lg:text-xl text-balance leading-tight uppercase">
+                                                class="inline font-semibold text-base lg:text-xl text-balance leading-tight uppercase">
                                                 <?php echo htmlspecialchars($prod['nombre']); ?>
                                             </p>
-                                            <p class="inline text-lg sm:text-xl lg:text-2xl uppercase font-bold">
+                                            <p class="inline text-base lg:text-2xl uppercase font-bold">
                                                 USD <?php echo number_format($prod['precio'], 2); ?>
                                             </p>
                                             <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
@@ -240,13 +293,15 @@ if (isset($_SESSION['usuario_id'])) {
                                                     <input type="hidden" name="id_producto"
                                                         value="<?php echo $prod['id_producto']; ?>">
                                                     <button type="submit" name="agregar_carrito"
-                                                        class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                                        Agregar al carrito
+                                                        class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-xs sm:text-base">
+                                                        <span class="">
+                                                            Add to Cart
+                                                        </span>
                                                     </button>
                                                 </form>
                                                 <button
-                                                    class="inline border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base">
-                                                    Previsualizar
+                                                    class="inline border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-xs sm:text-base">
+                                                    Preview
                                                 </button>
                                             </div>
                                         </div>

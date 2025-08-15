@@ -2,9 +2,7 @@
 export function initializeCarousels() {
   console.log("Initializing carousels...");
 
-  // ⬇️ Cambia esta línea:
-  // initHeroCarousel();
-  // ⬇️ Por esta:
+  // Hero responsive
   initResponsiveHero();
 
   // Products carousel
@@ -13,21 +11,26 @@ export function initializeCarousels() {
   // Testimonials carousel
   initTestimonialsCarousel();
 
+  // Statistics carousel (mobile only)
+  initResponsiveStatistics();
+
   // 🔁 Escucha cambios de breakpoint para alternar entre mobile/desktop
   const mqMD = window.matchMedia("(min-width: 768px)");
   const mqXL = window.matchMedia("(min-width: 1280px)");
   if (mqMD.addEventListener) {
     mqMD.addEventListener("change", initResponsiveHero);
     mqXL.addEventListener("change", initResponsiveHero);
+    mqMD.addEventListener("change", initResponsiveStatistics);
   } else {
     // Safari viejo
     mqMD.addListener(initResponsiveHero);
     mqXL.addListener(initResponsiveHero);
+    mqMD.addListener(initResponsiveStatistics);
   }
 }
 
 /** =========================
- *  HERO RESPONSIVE (nuevo)
+ *  HELPER FUNCTIONS
  *  ========================= */
 function mountIfNotMounted(selector, options) {
   const el = document.querySelector(selector);
@@ -45,14 +48,11 @@ function mountIfNotMounted(selector, options) {
   return inst;
 }
 
+/** =========================
+ *  HERO RESPONSIVE
+ *  ========================= */
 let heroInstance = null;
 
-/**
- * Monta SOLO el Hero visible según tus breakpoints:
- * - Mobile: < 768px  => #image-carousel-mobile (50vh)
- * - Desktop: >= 1280px => #image-carousel (85vh)
- * - Entre 768px y 1279px, según tu HTML, NO hay hero visible (se destruye si existía)
- */
 function initResponsiveHero() {
   const isMD = window.matchMedia("(min-width: 768px)").matches;
   const isXL = window.matchMedia("(min-width: 1280px)").matches;
@@ -94,10 +94,64 @@ function initResponsiveHero() {
     });
     console.log("Hero mobile mounted");
   } else {
-    // No hay hero visible en este rango (md–lg) con tu configuración actual
     console.log("Hero oculto en este breakpoint (md–xl sin xl).");
   }
+
+  // 🔄 Sincronizar statistics con hero si ambos están activos
+  syncStatisticsWithHero();
 }
+
+/** =========================
+ *  STATISTICS RESPONSIVE
+ *  ========================= */
+let statisticsInstance = null;
+
+function initResponsiveStatistics() {
+  const isMD = window.matchMedia("(min-width: 768px)").matches;
+
+  // Limpia cualquier instancia previa
+  if (statisticsInstance) {
+    try {
+      statisticsInstance.destroy(true);
+    } catch (_) {}
+    statisticsInstance = null;
+  }
+
+  // Solo montar en mobile (< md)
+  if (!isMD && document.getElementById("statistics-carousel")) {
+    statisticsInstance = mountIfNotMounted("#statistics-carousel", {
+      type: "loop",
+      autoplay: true,
+      interval: 5000, // Mismo interval que el hero para sincronización
+      pauseOnHover: true,
+      arrows: false, // Flechas activadas
+      pagination: true,
+      perPage: 1,
+      perMove: 1,
+      gap: 0,
+      padding: 0,
+      height: "auto", // Altura automática para ser más compacto
+      fixedHeight: false,
+    });
+    console.log("Statistics carousel mounted (mobile)");
+
+    // 🔄 Sincronizar con hero después de montar
+    syncStatisticsWithHero();
+  } else {
+    console.log("Statistics usando grid estático (desktop)");
+  }
+}
+
+/** =========================
+ *  SINCRONIZACIÓN HERO-STATISTICS
+ *  ========================= */
+function syncStatisticsWithHero() {
+  // Sincronización eliminada: ahora ambos sliders funcionan de forma independiente
+}
+
+/** =========================
+ *  OTROS CARRUSELES
+ *  ========================= */
 
 /**
  * Inicializa el carrusel principal (Hero) - (se mantiene por compatibilidad, ya no se llama)
@@ -137,7 +191,6 @@ function initProductsCarousel() {
         type: "loop",
         perPage: 4,
         perMove: 1,
-        gap: "0.1rem",
         autoplay: false,
         pauseOnHover: true,
         arrows: true,
@@ -145,15 +198,12 @@ function initProductsCarousel() {
         breakpoints: {
           1024: {
             perPage: 3,
-            gap: "1.1rem",
           },
           768: {
             perPage: 2,
-            gap: "1rem",
           },
           640: {
-            perPage: 1,
-            gap: "1rem",
+            perPage: 2,
           },
         },
       }).mount();
@@ -216,20 +266,32 @@ function initTestimonialsCarousel() {
   }
 }
 
+/** =========================
+ *  EXPORTS Y UTILIDADES
+ *  ========================= */
+
 // También puedes exportar funciones individuales si las necesitas
-export { initHeroCarousel, initProductsCarousel, initTestimonialsCarousel };
+export {
+  initHeroCarousel,
+  initProductsCarousel,
+  initTestimonialsCarousel,
+  initResponsiveStatistics,
+};
 
 // Si necesitas reinicializar algún carrusel específico más tarde
 export function reinitializeCarousel(carouselType) {
   switch (carouselType) {
     case "hero":
-      initResponsiveHero(); // ⬅️ usa el responsive
+      initResponsiveHero();
       break;
     case "products":
       initProductsCarousel();
       break;
     case "testimonials":
       initTestimonialsCarousel();
+      break;
+    case "statistics":
+      initResponsiveStatistics();
       break;
     default:
       console.warn(`Unknown carousel type: ${carouselType}`);
@@ -242,6 +304,20 @@ export function destroyCarousel(selector) {
   if (element && element.splide) {
     element.splide.destroy();
     console.log(`Carousel ${selector} destroyed`);
+  }
+}
+
+// Función para pausar/reanudar sincronización
+export function toggleSync(enable = true) {
+  if (enable) {
+    syncStatisticsWithHero();
+    console.log("✅ Sincronización activada");
+  } else {
+    // Remover event listeners sería más complejo, pero puedes pausar autoplay
+    if (statisticsInstance) {
+      statisticsInstance.Components.Autoplay.pause();
+    }
+    console.log("⏸️ Sincronización pausada");
   }
 }
 
