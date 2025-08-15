@@ -96,7 +96,7 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t border-gray-200">
                     <h3 class="text-xl font-semibold text-gray-900">
-                        Cómo ganar más monedas
+                        How to earn more coins
                     </h3>
                     <button type="button"
                         class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
@@ -110,20 +110,15 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <div class="p-4 md:p-5 space-y-4">
-                    <p class="text-base leading-relaxed text-gray-500">
-                        Existen varias formas de ganar más monedas en nuestra plataforma para que puedas acceder a más
-                        software y recursos.
-                    </p>
-                    <p class="text-base leading-relaxed text-gray-500">
-                        Puedes obtener monedas realizando compras, participando en promociones especiales, refiriendo a
-                        amigos, o completando ciertas acciones dentro de la plataforma.
-                    </p>
+                <div class="">
+                    <img src="<?php echo $url; ?>/assets/images/comoganarmonedas.jpg" alt="">
                 </div>
                 <!-- Modal footer -->
                 <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b">
                     <button data-modal-hide="como_ganar_monedas_modal" type="button"
-                        class="text-white btn-secondary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">Entendido</button>
+                        class="text-white btn-secondary hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        Understood
+                    </button>
 
                 </div>
             </div>
