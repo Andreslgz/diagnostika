@@ -681,15 +681,19 @@ $anios = $database->select(
         </div>
     </div>
 
-    <!-- SCRIPTS -->
+    <!-- SCRIPTS en este orden -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+    <script>AOS.init();</script>
+
+    <!-- Splide.js DEBE ir antes del modal script -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
+
     <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="<?php echo $url; ?>/scripts/previsualizar_modal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
     <style>
         .bg-cards {
             background: linear-gradient(0deg, #A7A7A6 0%, #DEDEDE 100%);
@@ -697,6 +701,269 @@ $anios = $database->select(
 
         .bg-cards:hover {
             background: linear-gradient(0deg, #8A8A89 0%, #C0C0C0 100%);
+        }
+
+        /* ============================================
+   ESTILOS PARA MODAL CON SPLIDE.JS
+   ============================================ */
+
+        /* Estilos personalizados para Splide en el modal */
+        .modal-carousel-arrows {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+        }
+
+        .modal-carousel-arrow {
+            background: rgba(0, 0, 0, 0.5) !important;
+            border: none !important;
+            border-radius: 50% !important;
+            width: 44px !important;
+            height: 44px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: all 0.3s ease !important;
+            backdrop-filter: blur(4px);
+            opacity: 0;
+            pointer-events: auto;
+        }
+
+        .modal-carousel-arrow:hover {
+            background: rgba(0, 0, 0, 0.7) !important;
+            transform: translateY(-50%) scale(1.1) !important;
+        }
+
+        .modal-carousel-arrow:disabled {
+            opacity: 0.3 !important;
+        }
+
+        .modal-carousel-arrow svg {
+            fill: white !important;
+            width: 20px !important;
+            height: 20px !important;
+        }
+
+        .modal-carousel-prev {
+            left: 12px !important;
+        }
+
+        .modal-carousel-next {
+            right: 12px !important;
+        }
+
+        /* Mostrar controles al hacer hover en el contenedor */
+        .product-carousel-container:hover .modal-carousel-arrow {
+            opacity: 1;
+        }
+
+        /* Estilos para el carrusel principal */
+        #product-carousel .splide__track {
+            border-radius: 0.75rem;
+            /* rounded-xl */
+            overflow: hidden;
+        }
+
+        #product-carousel .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Estilos para thumbnails */
+        #product-thumbnails .splide__slide {
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            cursor: pointer;
+        }
+
+        #product-thumbnails .splide__slide.is-active {
+            opacity: 1;
+        }
+
+        #product-thumbnails .splide__slide:hover {
+            opacity: 0.8;
+        }
+
+        #product-thumbnails .splide__slide img {
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        #product-thumbnails .splide__slide.is-active img {
+            border: 2px solid #f59e0b;
+            /* amber-500 */
+            box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2);
+        }
+
+        /* Controles de cantidad */
+        .quantity-decrease,
+        .quantity-increase {
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+        }
+
+        .quantity-decrease:hover,
+        .quantity-increase:hover {
+            background-color: #f3f4f6;
+        }
+
+        #product-quantity {
+            border: none;
+            outline: none;
+            text-align: center;
+            font-weight: 500;
+            background: transparent;
+        }
+
+        #product-quantity:focus {
+            background-color: #f9fafb;
+        }
+
+        /* Descripción técnica expandible */
+        .tech-description-toggle {
+            transition: all 0.2s ease;
+        }
+
+        .tech-description-arrow {
+            transition: transform 0.2s ease;
+        }
+
+        .tech-description-content {
+            transition: max-height 0.3s ease-out;
+            overflow: hidden;
+        }
+
+        /* Animaciones del modal */
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95) translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        #modal_previsualizar .relative.bg-white {
+            animation: modalSlideIn 0.3s ease-out;
+        }
+
+        /* Loading animation mejorada */
+        .loading-spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .modal-carousel-arrow {
+                width: 36px !important;
+                height: 36px !important;
+            }
+
+            .modal-carousel-arrow svg {
+                width: 16px !important;
+                height: 16px !important;
+            }
+
+            #modal_previsualizar .relative.p-4 {
+                max-width: 95vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .modal-carousel-arrow {
+                width: 32px !important;
+                height: 32px !important;
+            }
+
+            .modal-carousel-arrow svg {
+                width: 14px !important;
+                height: 14px !important;
+            }
+
+            #product-thumbnails {
+                margin-top: 0.75rem !important;
+            }
+        }
+
+        /* Mejoras de accesibilidad */
+        .modal-carousel-arrow:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        .tech-description-toggle:focus {
+            outline: 2px solid #3b82f6;
+            outline-offset: 2px;
+        }
+
+        /* Efectos visuales adicionales */
+        .product-image-overlay {
+            background: linear-gradient(to bottom,
+                    transparent 0%,
+                    transparent 60%,
+                    rgba(0, 0, 0, 0.1) 100%);
+            transition: opacity 0.3s ease;
+        }
+
+        /* Personalización adicional de Splide */
+        .splide__pagination {
+            bottom: 0.5rem !important;
+        }
+
+        .splide__pagination__page {
+            background: rgba(255, 255, 255, 0.5) !important;
+            border: 1px solid rgba(255, 255, 255, 0.8) !important;
+        }
+
+        .splide__pagination__page.is-active {
+            background: #f59e0b !important;
+            /* amber-500 */
+            border-color: #f59e0b !important;
+        }
+
+        /* Estados del carrusel */
+        .splide.is-initialized {
+            visibility: visible;
+        }
+
+        .splide:not(.is-initialized) {
+            visibility: hidden;
+        }
+
+        /* Smooth transitions para slides */
+        .splide__slide {
+            transition: opacity 0.3s ease;
+        }
+
+        /* Indicador de múltiples imágenes */
+        .multiple-images-indicator {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            backdrop-filter: blur(4px);
+            z-index: 5;
         }
     </style>
 </body>
