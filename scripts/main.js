@@ -837,7 +837,7 @@ function renderGridFromData(list = []) {
                                                         value="${id}">
                                                     <button type="submit" name="agregar_carrito"
                                                         class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                                        Agregar al carrito
+                                                        BUY NOW
                                                     </button>
                                                 </form>
 
@@ -849,7 +849,7 @@ function renderGridFromData(list = []) {
           <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
             <img src="/assets/icons/tienda/previsualizar.svg" alt="">
           </div>
-          <p>Previsualizar</p>
+          <p>PREVIEW</p>
         </button>
       </div>
     </div>`;

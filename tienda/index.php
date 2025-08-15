@@ -113,13 +113,18 @@ $anios = $database->select(
     <?php require_once __DIR__ . '/../includes/header.php'; ?>
 
     <main>
+        <!-- banner -->
+        <section>
+            <img src="/assets/images/bannerTienda.webp" class="xl:flex hidden w-full" alt="">
+            <img src="/assets/images/bannerTiendaMobile.webp" class="xl:hidden flex w-full" alt="">
+        </section>
         <section class="py-8 antialiased  md:py-12">
             <div class="mx-auto max-w-screen-2xl px-4 2xl:px-0">
                 <div class="mb-4 items-end justify-between sm:flex md:mb-8">
-                    <div class="mb-4 sm:mb-0">
+                    <!-- <div class="mb-4 sm:mb-0">
                         <h2 class="mt-3 text-xl font-semibold text-gray-900 sm:text-4xl">Nuestros Productos y paquetes
                         </h2>
-                    </div>
+                    </div> -->
                     <div class="flex items-center space-x-4">
                         <button data-drawer-target="drawer-mobile-filter" data-drawer-show="drawer-mobile-filter"
                             aria-controls="drawer-mobile-filter" type="button"
@@ -193,11 +198,11 @@ $anios = $database->select(
                 <div class="gap-6 lg:flex ">
 
                     <div class="w-[350px] lg:flex hidden flex-col">
-                        <h1 class="text-2xl font-bold mb-6">Filtros</h1>
+                        <h1 class="text-2xl font-bold mb-6">FILTERS</h1>
                         <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
                             <header class="flex items-center justify-between">
                                 <p>
-                                    Marca de Software
+                                    BRAND SOFTWARE
                                 </p>
                                 <button class="" type="button">
                                     <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
@@ -225,7 +230,7 @@ $anios = $database->select(
                                             </label>
                                         <?php endforeach; ?>
                                     <?php else: ?>
-                                        <p class="text-sm text-gray-500">No hay marcas registradas</p>
+                                        <p class="text-sm text-gray-500">There are no brands registered</p>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -233,7 +238,7 @@ $anios = $database->select(
                         <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
                             <header class="flex items-center justify-between">
                                 <p>
-                                    Año
+                                    YEAR
                                 </p>
                                 <button class="" type="button">
                                     <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
@@ -261,7 +266,7 @@ $anios = $database->select(
                                             </label>
                                         <?php endforeach; ?>
                                     <?php else: ?>
-                                        <p class="text-sm text-gray-500">No hay años registrados</p>
+                                        <p class="text-sm text-gray-500">There are no years registered</p>
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -331,10 +336,10 @@ $anios = $database->select(
                         </div>
                         -->
 
-                        <button
+                        <!-- <button
                             class="w-full btn-secondary py-2.5 mt-3 rounded-lg font-bold text-lg  transition-all duration-200 easy-in-out">
                             Aplicar filtros
-                        </button>
+                        </button> -->
                     </div>
                     <!-- Right content -->
                     <div class="w-full ">
