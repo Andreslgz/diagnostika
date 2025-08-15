@@ -14,6 +14,9 @@ export function initializeCarousels() {
   // Statistics carousel (mobile only)
   initResponsiveStatistics();
 
+  // Purchase process carousel (mobile only)
+  initPurchaseProcessCarousel();
+
   // 🔁 Escucha cambios de breakpoint para alternar entre mobile/desktop
   const mqMD = window.matchMedia("(min-width: 768px)");
   const mqXL = window.matchMedia("(min-width: 1280px)");
@@ -21,11 +24,13 @@ export function initializeCarousels() {
     mqMD.addEventListener("change", initResponsiveHero);
     mqXL.addEventListener("change", initResponsiveHero);
     mqMD.addEventListener("change", initResponsiveStatistics);
+    mqMD.addEventListener("change", initPurchaseProcessCarousel);
   } else {
     // Safari viejo
     mqMD.addListener(initResponsiveHero);
     mqXL.addListener(initResponsiveHero);
     mqMD.addListener(initResponsiveStatistics);
+    mqMD.addListener(initPurchaseProcessCarousel);
   }
 }
 
@@ -139,6 +144,57 @@ function initResponsiveStatistics() {
     syncStatisticsWithHero();
   } else {
     console.log("Statistics usando grid estático (desktop)");
+  }
+}
+
+/** =========================
+ *  PURCHASE PROCESS CAROUSEL (MOBILE ONLY)
+ *  ========================= */
+let purchaseProcessInstance = null;
+
+function initPurchaseProcessCarousel() {
+  const isMD = window.matchMedia("(min-width: 768px)").matches;
+
+  // Limpia cualquier instancia previa
+  if (purchaseProcessInstance) {
+    try {
+      purchaseProcessInstance.destroy(true);
+    } catch (_) {}
+    purchaseProcessInstance = null;
+  }
+
+  // Solo montar en mobile (< md)
+  if (!isMD && document.getElementById("purchase-process-carousel")) {
+    purchaseProcessInstance = mountIfNotMounted("#purchase-process-carousel", {
+      type: "loop",
+      autoplay: true,
+      interval: 4000,
+      pauseOnHover: true,
+      arrows: true,
+      pagination: false,
+      perPage: 2, // 2 slides por vista
+      perMove: 1,
+      gap: "1rem",
+      padding: {
+        left: "1rem",
+        right: "1rem",
+      },
+      height: "auto",
+      fixedHeight: false,
+      breakpoints: {
+        480: {
+          perPage: 2, // En pantallas muy pequeñas, 1 slide por vista
+          gap: "0.5rem",
+          padding: {
+            left: "0.5rem",
+            right: "0.5rem",
+          },
+        },
+      },
+    });
+    console.log("Purchase process carousel mounted (mobile)");
+  } else {
+    console.log("Purchase process usando grid estático (desktop)");
   }
 }
 
@@ -277,6 +333,7 @@ export {
   initProductsCarousel,
   initTestimonialsCarousel,
   initResponsiveStatistics,
+  initPurchaseProcessCarousel,
 };
 
 // Si necesitas reinicializar algún carrusel específico más tarde
@@ -293,6 +350,9 @@ export function reinitializeCarousel(carouselType) {
       break;
     case "statistics":
       initResponsiveStatistics();
+      break;
+    case "purchase-process":
+      initPurchaseProcessCarousel();
       break;
     default:
       console.warn(`Unknown carousel type: ${carouselType}`);

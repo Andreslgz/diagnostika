@@ -599,116 +599,263 @@ if (isset($_SESSION['usuario_id'])) {
                 PROCESO DE COMPRA
             </h2>
 
-            <!-- Grid de imágenes con números -->
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-3 w-full">
-                <div class="relative">
-                    <div
-                        class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
-                        <p>1</p>
+            <!-- VISTA DESKTOP (md:block hidden) - Grid original -->
+            <div class="hidden md:block">
+                <!-- Grid de imágenes con números -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-3 w-full">
+                    <div class="relative">
+                        <div
+                            class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
+                            <p>1</p>
+                        </div>
+                        <div class="image-anime">
+                            <img src="assets/images/procesocompra/1.jpg" alt="" class="aspect-square object-cover" />
+                        </div>
                     </div>
-                    <div class="image-anime">
-                        <img src="assets/images/procesocompra/1.jpg" alt="" class="aspect-square object-cover " />
+                    <div class="relative">
+                        <div
+                            class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
+                            <p>2</p>
+                        </div>
+                        <div class="image-anime">
+                            <img src="assets/images/procesocompra/2.jpg" alt="" class="aspect-square object-cover" />
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
+                            <p>3</p>
+                        </div>
+                        <div class="image-anime">
+                            <img src="assets/images/procesocompra/3.jpg" alt="" class="aspect-square object-cover" />
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div
+                            class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
+                            <p>4</p>
+                        </div>
+                        <div class="image-anime">
+                            <img src="assets/images/procesocompra/4.jpg" alt="" class="aspect-square object-cover" />
+                        </div>
+                    </div>
+                    <div class="relative col-span-2 md:col-span-1 mx-auto w-full max-w-[200px] md:max-w-none">
+                        <div
+                            class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
+                            <p>5</p>
+                        </div>
+                        <div class="image-anime">
+                            <img src="assets/images/procesocompra/5.jpg" alt="" class="aspect-square object-cover" />
+                        </div>
                     </div>
                 </div>
-                <div class="relative">
+
+                <!-- Grid de iconos y descripciones -->
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-3 justify-items-center w-full mt-10">
+                    <!-- Paso 1 -->
+                    <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
+                        <div
+                            class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                            <img src="assets/icons/procesocompra/1.svg"
+                                class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
+                        </div>
+                        <p class="text-center text-sm md:text-xl font-bold text-balance">
+                            Elige tu software o paquete
+                        </p>
+                    </div>
+
+                    <!-- Paso 2 -->
+                    <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
+                        <div
+                            class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                            <img src="assets/icons/procesocompra/2.svg"
+                                class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
+                        </div>
+                        <p class="text-center text-sm md:text-xl font-bold text-balance">
+                            Añade al carrito y completa tu compra
+                        </p>
+                    </div>
+
+                    <!-- Paso 3 -->
+                    <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
+                        <div
+                            class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                            <img src="assets/icons/procesocompra/3.svg"
+                                class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
+                        </div>
+                        <p class="text-center text-sm md:text-xl font-bold text-balance">
+                            Envía tu número de pedido por WhatsApp
+                        </p>
+                    </div>
+
+                    <!-- Paso 4 -->
+                    <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
+                        <div
+                            class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                            <img src="assets/icons/procesocompra/4.svg"
+                                class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
+                        </div>
+                        <p class="text-center text-sm md:text-xl font-bold text-balance">
+                            Realizar el pago
+                        </p>
+                    </div>
+
+                    <!-- Paso 5 -->
                     <div
-                        class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
-                        <p>2</p>
-                    </div>
-                    <div class="image-anime">
-                        <img src="assets/images/procesocompra/2.jpg" alt="" class="aspect-square object-cover " />
-                    </div>
-                </div>
-                <div class="relative">
-                    <div
-                        class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
-                        <p>3</p>
-                    </div>
-                    <div class="image-anime">
-                        <img src="assets/images/procesocompra/3.jpg" alt="" class="aspect-square object-cover " />
-                    </div>
-                </div>
-                <div class="relative">
-                    <div
-                        class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
-                        <p>4</p>
-                    </div>
-                    <div class="image-anime">
-                        <img src="assets/images/procesocompra/4.jpg" alt="" class="aspect-square object-cover " />
-                    </div>
-                </div>
-                <div class="relative col-span-2 md:col-span-1 mx-auto w-full max-w-[200px] md:max-w-none">
-                    <div
-                        class="absolute z-50 btn-secondary -top-[15px] md:-top-[25px] left-[10px] md:left-[15px] px-3 md:px-4 py-1 font-extrabold text-xl md:text-3xl aspect-square flex items-center">
-                        <p>5</p>
-                    </div>
-                    <div class="image-anime">
-                        <img src="assets/images/procesocompra/5.jpg" alt="" class="aspect-square object-cover " />
+                        class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px] col-span-2 md:col-span-1 mx-auto">
+                        <div
+                            class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
+                            <img src="assets/icons/procesocompra/5.svg"
+                                class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
+                        </div>
+                        <p class="text-center text-sm md:text-xl font-bold text-balance">
+                            Instalación remota
+                        </p>
                     </div>
                 </div>
             </div>
 
-            <!-- Grid de iconos y descripciones -->
-            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-3 justify-items-center w-full mt-10">
-                <!-- Paso 1 -->
-                <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
-                    <div
-                        class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/1.svg"
-                            class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
-                    </div>
-                    <p class="text-center text-sm md:text-xl font-bold text-balance">
-                        Elige tu software o paquete
-                    </p>
-                </div>
+            <!-- VISTA MOBILE (block md:hidden) - Carrusel -->
+            <div class="block md:hidden !overflow-visible">
+                <div id="purchase-process-carousel" class="splide">
+                    <div class="splide__track h-min pt-5">
+                        <ul class="splide__list ">
+                            <!-- Slide 1 -->
+                            <li class="splide__slide !overflow-visible">
+                                <div class="flex flex-col items-center gap-6 !overflow-visible">
+                                    <!-- Imagen con número flotante -->
+                                    <div class="relative w-full max-w-[180px]">
+                                        <div
+                                            class="absolute z-50 btn-secondary -top-[15px] left-[10px] px-3 py-1 font-extrabold text-xl aspect-square flex items-center">
+                                            <p>1</p>
+                                        </div>
+                                        <div class="image-anime">
+                                            <img src="assets/images/procesocompra/1.jpg" alt=""
+                                                class="aspect-square object-cover w-full" />
+                                        </div>
+                                    </div>
+                                    <!-- Círculo con icono y texto -->
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
+                                            <img src="assets/icons/procesocompra/1.svg"
+                                                class="w-[60px] h-[60px] mx-auto" alt="" />
+                                        </div>
+                                        <p class="text-center text-sm font-bold text-balance max-w-[120px]">
+                                            Elige tu software o paquete
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
 
-                <!-- Paso 2 -->
-                <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
-                    <div
-                        class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/2.svg"
-                            class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
-                    </div>
-                    <p class="text-center text-sm md:text-xl font-bold text-balance">
-                        Añade al carrito y completa tu compra
-                    </p>
-                </div>
+                            <!-- Slide 2 -->
+                            <li class="splide__slide">
+                                <div class="flex flex-col items-center gap-6">
+                                    <!-- Imagen con número flotante -->
+                                    <div class="relative w-full max-w-[180px]">
+                                        <div
+                                            class="absolute z-50 btn-secondary -top-[15px] left-[10px] px-3 py-1 font-extrabold text-xl aspect-square flex items-center">
+                                            <p>2</p>
+                                        </div>
+                                        <div class="image-anime">
+                                            <img src="assets/images/procesocompra/2.jpg" alt=""
+                                                class="aspect-square object-cover w-full" />
+                                        </div>
+                                    </div>
+                                    <!-- Círculo con icono y texto -->
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
+                                            <img src="assets/icons/procesocompra/2.svg"
+                                                class="w-[60px] h-[60px] mx-auto" alt="" />
+                                        </div>
+                                        <p class="text-center text-sm font-bold text-balance max-w-[120px]">
+                                            Añade al carrito y completa tu compra
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
 
-                <!-- Paso 3 -->
-                <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
-                    <div
-                        class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/3.svg"
-                            class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
-                    </div>
-                    <p class="text-center text-sm md:text-xl font-bold text-balance">
-                        Envía tu número de pedido por WhatsApp
-                    </p>
-                </div>
+                            <!-- Slide 3 -->
+                            <li class="splide__slide">
+                                <div class="flex flex-col items-center gap-6">
+                                    <!-- Imagen con número flotante -->
+                                    <div class="relative w-full max-w-[180px]">
+                                        <div
+                                            class="absolute z-50 btn-secondary -top-[15px] left-[10px] px-3 py-1 font-extrabold text-xl aspect-square flex items-center">
+                                            <p>3</p>
+                                        </div>
+                                        <div class="image-anime">
+                                            <img src="assets/images/procesocompra/3.jpg" alt=""
+                                                class="aspect-square object-cover w-full" />
+                                        </div>
+                                    </div>
+                                    <!-- Círculo con icono y texto -->
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
+                                            <img src="assets/icons/procesocompra/3.svg"
+                                                class="w-[60px] h-[60px] mx-auto" alt="" />
+                                        </div>
+                                        <p class="text-center text-sm font-bold text-balance max-w-[120px]">
+                                            Envía tu número de pedido por WhatsApp
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
 
-                <!-- Paso 4 -->
-                <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
-                    <div
-                        class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/4.svg"
-                            class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
-                    </div>
-                    <p class="text-center text-sm md:text-xl font-bold text-balance">
-                        Realizar el pago
-                    </p>
-                </div>
+                            <!-- Slide 4 -->
+                            <li class="splide__slide">
+                                <div class="flex flex-col items-center gap-6">
+                                    <!-- Imagen con número flotante -->
+                                    <div class="relative w-full max-w-[180px]">
+                                        <div
+                                            class="absolute z-50 btn-secondary -top-[15px] left-[10px] px-3 py-1 font-extrabold text-xl aspect-square flex items-center">
+                                            <p>4</p>
+                                        </div>
+                                        <div class="image-anime">
+                                            <img src="assets/images/procesocompra/4.jpg" alt=""
+                                                class="aspect-square object-cover w-full" />
+                                        </div>
+                                    </div>
+                                    <!-- Círculo con icono y texto -->
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
+                                            <img src="assets/icons/procesocompra/4.svg"
+                                                class="w-[60px] h-[60px] mx-auto" alt="" />
+                                        </div>
+                                        <p class="text-center text-sm font-bold text-balance max-w-[120px]">
+                                            Realizar el pago
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
 
-                <!-- Paso 5 - Se centra en mobile -->
-                <div
-                    class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px] col-span-2 md:col-span-1 mx-auto">
-                    <div
-                        class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                        <img src="assets/icons/procesocompra/5.svg"
-                            class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
+                            <!-- Slide 5 -->
+                            <li class="splide__slide">
+                                <div class="flex flex-col items-center gap-6">
+                                    <!-- Imagen con número flotante -->
+                                    <div class="relative w-full max-w-[180px]">
+                                        <div
+                                            class="absolute z-50 btn-secondary -top-[15px] left-[10px] px-3 py-1 font-extrabold text-xl aspect-square flex items-center">
+                                            <p>5</p>
+                                        </div>
+                                        <div class="image-anime">
+                                            <img src="assets/images/procesocompra/5.jpg" alt=""
+                                                class="aspect-square object-cover w-full" />
+                                        </div>
+                                    </div>
+                                    <!-- Círculo con icono y texto -->
+                                    <div class="flex flex-col items-center gap-3">
+                                        <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
+                                            <img src="assets/icons/procesocompra/5.svg"
+                                                class="w-[60px] h-[60px] mx-auto" alt="" />
+                                        </div>
+                                        <p class="text-center text-sm font-bold text-balance max-w-[120px]">
+                                            Instalación remota
+                                        </p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
-                    <p class="text-center text-sm md:text-xl font-bold text-balance">
-                        Instalación remota
-                    </p>
                 </div>
             </div>
         </section>
@@ -769,100 +916,56 @@ if (isset($_SESSION['usuario_id'])) {
 
         <!-- TESTIMONIALS -->
         <section class="xl:py-20 py-6 px-4 mx-auto max-w-screen-2xl ">
-            <div class="text-start mb-10">
-                <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
+            <div class="text-start xl:mb-10 mb-1">
+                <h2 class="uppercase font-extrabold xl:text-3xl text-base mb-4">
                     Lo que dicen nuestros clientes
                 </h2>
-
             </div>
 
             <section id="testimonials-carousel" class="splide" aria-label="Testimonios de clientes">
                 <div class="splide__track pb-6 pt-3">
-                    <ul class="splide__list h-[51vh]">
+                    <ul class="splide__list xl:h-[51vh] h-[30vh]">
                         <li class="splide__slide">
                             <div
-                                class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between min-h-[320px]">
+                                class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between xl:min-h-[320px] h-auto">
                                 <div class="flex-1">
                                     <div class="flex items-center gap-1 mb-4">
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                        <svg class="xl:w-5 xl:h-5 w-3 h-3 text-yellow-400 fill-current"
+                                            viewBox="0 0 20 20">
                                             <path
                                                 d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                        <svg class="xl:w-5 xl:h-5 w-3 h-3 text-yellow-400 fill-current"
+                                            viewBox="0 0 20 20">
                                             <path
                                                 d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                        <svg class="xl:w-5 xl:h-5 w-3 h-3 text-yellow-400 fill-current"
+                                            viewBox="0 0 20 20">
                                             <path
                                                 d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                        <svg class="xl:w-5 xl:h-5 w-3 h-3 text-yellow-400 fill-current"
+                                            viewBox="0 0 20 20">
                                             <path
                                                 d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                                         </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
+                                        <svg class="xl:w-5 xl:h-5 w-3 h-3 text-yellow-400 fill-current"
+                                            viewBox="0 0 20 20">
                                             <path
                                                 d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
                                         </svg>
                                     </div>
 
                                     <div class="flex items-center gap-4 mb-4 mt-2">
-                                        <img src="/assets/images/testimonial.png" class="size-[53px]" alt="">
-                                        <p class="font-bold text-xl">
+                                        <img src="/assets/images/testimonial.png" class="xl:size-[53px] size-[45px]"
+                                            alt="">
+                                        <p class="font-bold xl:text-xl text-base">
                                             Jhon Doe
                                         </p>
                                     </div>
 
-                                    <blockquote class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
-                                        "El software de diagnóstico VOLVO PTT llegó perfectamente instalado y
-                                        configurado. La instalación remota fue impecable y el soporte técnico
-                                        excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo
-                                        de
-                                        manera profesional."
-                                    </blockquote>
-
-                                    <div class="flex items-center gap-2 justify-end">
-                                        <p>País:</p>
-                                        <img src="/assets/icons/svg/peru_flag.svg" alt="" class="w-[20px] h-auto">
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="splide__slide">
-                            <div
-                                class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between min-h-[320px]">
-                                <div class="flex-1">
-                                    <div class="flex items-center gap-1 mb-4">
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                        <svg class="w-5 h-5 text-yellow-400 fill-current" viewBox="0 0 20 20">
-                                            <path
-                                                d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                                        </svg>
-                                    </div>
-
-                                    <div class="flex items-center gap-4 mb-4 mt-2">
-                                        <img src="/assets/images/testimonial.png" class="size-[53px]" alt="">
-                                        <p class="font-bold text-xl">
-                                            Carlos Sánchez
-                                        </p>
-                                    </div>
-
-                                    <blockquote class="text-gray-700 text-base md:text-lg leading-relaxed mb-6">
+                                    <blockquote class="text-gray-700 xl:text-lg text-xs leading-relaxed xl:mb-6 mb-2">
                                         "El software de diagnóstico VOLVO PTT llegó perfectamente instalado y
                                         configurado. La instalación remota fue impecable y el soporte técnico
                                         excepcional. Ahora puedo diagnosticar cualquier problema en camiones Volvo
@@ -1135,7 +1238,7 @@ if (isset($_SESSION['usuario_id'])) {
         });
     </script>
     <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         var Tawk_API = Tawk_API || {},
             Tawk_LoadStart = new Date();
         (function () {
@@ -1147,7 +1250,8 @@ if (isset($_SESSION['usuario_id'])) {
             s1.setAttribute('crossorigin', '*');
             s0.parentNode.insertBefore(s1, s0);
         })();
-    </script>
+    </script> -->
+    <script src="//code.tidio.co/o6wmaxvuxzaa1ojsayha7m3vay3qlr2g.js" async></script>
     <!--End of Tawk.to Script-->
     <style>
         .accordion-content {
