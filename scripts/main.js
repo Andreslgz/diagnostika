@@ -1,31 +1,53 @@
-// Marquee functionality
 document.addEventListener("DOMContentLoaded", function () {
   const marqueeContainer = document.querySelector(".marquee-container");
-  const marqueeText = document.querySelector(".marquee-text");
+  const marqueeWrapper = document.querySelector(".marquee-wrapper");
+  const marqueeTexts = document.querySelectorAll(".marquee-text");
 
-  if (marqueeContainer && marqueeText) {
-    // Calculate animation duration based on text length for consistent speed
-    const textLength = marqueeText.scrollWidth;
-    const containerWidth = marqueeContainer.offsetWidth;
-    const duration = (textLength + containerWidth) / 50; // Adjust speed factor as needed
+  if (marqueeContainer && marqueeWrapper && marqueeTexts.length > 0) {
+    function adjustSpeed() {
+      // Calcula el ancho del contenido
+      const textWidth = marqueeTexts[0].offsetWidth + 50; 
+      const containerWidth = marqueeContainer.offsetWidth;
 
-    marqueeText.style.animationDuration = duration + "s";
+      const pixelsPerSecond = 100; 
 
-    // Add smooth pause/resume on hover
+      // Calcula la duración basada en la velocidad deseada
+      const duration = textWidth / pixelsPerSecond;
+
+      // Aplica la nueva duración
+      marqueeWrapper.style.animationDuration = duration + "s";
+
+      // Si el texto es muy corto, duplica más veces para llenar el espacio
+      if (textWidth < containerWidth) {
+        const timesNeeded = Math.ceil(containerWidth / textWidth) + 2;
+        const currentTexts = marqueeWrapper.innerHTML;
+        let newContent = "";
+
+        for (let i = 0; i < timesNeeded; i++) {
+          newContent += currentTexts;
+        }
+
+        marqueeWrapper.innerHTML = newContent;
+      }
+    }
+
+    // Ajusta la velocidad inicial
+    adjustSpeed();
+
+    // Reajusta en cambio de tamaño de ventana
+    let resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(adjustSpeed, 250);
+    });
+
+    // Pausa/reanuda en hover (ya manejado por CSS, pero podemos añadir efectos adicionales)
     marqueeContainer.addEventListener("mouseenter", function () {
-      marqueeText.style.animationPlayState = "paused";
+      marqueeWrapper.style.animationPlayState = "paused";
     });
 
     marqueeContainer.addEventListener("mouseleave", function () {
-      marqueeText.style.animationPlayState = "running";
-    });
-
-    // Restart animation on window resize
-    window.addEventListener("resize", function () {
-      const newTextLength = marqueeText.scrollWidth;
-      const newContainerWidth = marqueeContainer.offsetWidth;
-      const newDuration = (newTextLength + newContainerWidth) / 50;
-      marqueeText.style.animationDuration = newDuration + "s";
+      marqueeWrapper.style.animationPlayState = "running";
     });
   }
 });

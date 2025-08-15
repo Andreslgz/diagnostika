@@ -1,4 +1,4 @@
-<section class="bg-black xl:py-1.5 py-0.5 overflow-hidden" id="top-header">
+<section class="bg-black xl:py-1 py-0.5 overflow-hidden" id="top-header">
     <div class="marquee-container">
         <?php
         // Asumiendo que ya tienes $database (Medoo) inicializado
