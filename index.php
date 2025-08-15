@@ -1239,7 +1239,7 @@ if (isset($_SESSION['usuario_id'])) {
                         <span class="sr-only">Cerrar modal</span>
                     </button>
                 </div>
-                <div class="p-10 space-y-4 btn-primary">
+                <div class="xl:p-10 p-8 space-y-4 btn-primary">
 
                     <h2 class="xl:text-3xl text-lg font-extrabold mx-auto text-center">
                         Get <span class="text-[#f7a615]"> $50 off</span> your
