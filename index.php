@@ -60,6 +60,7 @@ if (isset($_SESSION['usuario_id'])) {
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="styles/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
 </head>
 
 <body>
@@ -243,6 +244,164 @@ if (isset($_SESSION['usuario_id'])) {
             </div>
         </section>
 
+        <!-- Main modal -->
+        <div id="product-details-modal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+            <div class="relative p-4 w-full max-w-4xl max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow-sm">
+                    <!-- Modal header -->
+                    <div class="p-4 md:p-5 border-b rounded-t btn-secondary  border-gray-200">
+                        <div class="flex items-center justify-between ">
+                            <h3 class="xl:text-xl text-sm font-semibold">
+
+                                CUMMINS QUICKSERVER PARTS AND SERVICE
+                            </h3>
+                            <button type="button"
+                                class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
+                                data-modal-hide="product-details-modal">
+                                <svg class="xl:w-4 w-2.5 xl:h-4 h-2.5" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                                <span class="sr-only">Close modal</span>
+                            </button>
+                        </div>
+                        <p class="text-white xl:text-lg text-sm xl:mt-8 mt-3">
+                            CUMMINS
+                        </p>
+                    </div>
+                    <!-- Modal body -->
+                    <div class="xl:p-8 p-5 grid xl:grid-cols-2 grid-cols-1 xl:gap-10 gap-4 w-full">
+
+                        <div class="max-w-2xl mx-auto ">
+                            <section aria-label="Galería de imágenes">
+                                <!-- Imagen principal -->
+                                <div class="relative mb-4 overflow-hidden border border-gray-200 bg-white">
+                                    <div class="aspect-square">
+                                        <img id="mainImage"
+                                            src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
+                                            alt="Imagen principal"
+                                            class="h-full  w-full object-cover transition-opacity duration-300"
+                                            loading="eager" decoding="async" draggable="false" />
+                                    </div>
+                                </div>
+
+                                <!-- Carrusel de miniaturas -->
+                                <div class="relative">
+                                    <!-- Gradientes laterales para indicar overflow -->
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent">
+                                    </div>
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent">
+                                    </div>
+
+                                    <div class="flex items-center gap-2">
+                                        <!-- Flecha izquierda -->
+                                        <button id="prev"
+                                            class="shrink-0 rounded-md bg-gray-800 text-white px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                                            aria-label="Desplazar miniaturas a la izquierda"
+                                            title="Anterior">&#10094;</button>
+
+                                        <!-- Miniaturas -->
+                                        <div id="thumbs"
+                                            class="relative flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2"
+                                            role="listbox" aria-label="Miniaturas">
+                                            <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
+                                                alt="Miniatura 1"
+                                                class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
+                                                loading="lazy" decoding="async" tabindex="0" />
+                                            <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
+                                                alt="Miniatura 2"
+                                                class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
+                                                loading="lazy" decoding="async" tabindex="0" />
+                                            <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
+                                                alt="Miniatura 3"
+                                                class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
+                                                loading="lazy" decoding="async" tabindex="0" />
+                                            <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
+                                                alt="Miniatura 4"
+                                                class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
+                                                loading="lazy" decoding="async" tabindex="0" />
+                                            <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
+                                                alt="Miniatura 5"
+                                                class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
+                                                loading="lazy" decoding="async" tabindex="0" />
+                                        </div>
+
+                                        <!-- Flecha derecha -->
+                                        <button id="next"
+                                            class="shrink-0 rounded-md bg-gray-800 text-white px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                                            aria-label="Desplazar miniaturas a la derecha"
+                                            title="Siguiente">&#10095;</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="w-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex flex-row justify-between items-center w-full">
+                                    <p class="xl:text-3xl text-lg text-nowrap font-bold">
+                                        USD 70.00
+                                    </p>
+
+                                    <div class="relative mt-2 flex max-w-32 items-center justify-end">
+                                        <button type="button" id="decrement-button"
+                                            data-input-counter-decrement="quantity-input-1"
+                                            class="xl:h-10 h-8 rounded-s-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ">
+                                            <svg class="h-3 w-3 text-gray-900 " aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                            </svg>
+                                        </button>
+                                        <input type="text" id="quantity-input-1" data-input-counter
+                                            data-input-counter-min="1" data-input-counter-max="50"
+                                            aria-describedby="helper-text-explanation"
+                                            class="block xl:h-10 h-8 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                                            placeholder="99" value="5" required />
+                                        <button type="button" id="increment-button"
+                                            data-input-counter-increment="quantity-input-1"
+                                            class="xl:h-10 h-8 rounded-e-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ">
+                                            <svg class="h-3 w-3 text-gray-900 " aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                </div>
+                                <textarea rows="8" name="product-description" id="product-description"
+                                    class="mt-4  block w-full border border-gray-300 rounded-lg p-2"
+                                    placeholder="Enter product description...">technical description</textarea>
+                            </div>
+                            <div class="flex flex-col gap-4 xl:mt-0 mt-4">
+                                <button
+                                    class="btn-secondary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">
+                                    ADD TO CART
+                                </button>
+                                <a href="#"
+                                    class="block text-center btn-primary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">MORE
+                                    DETAILS</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal footer -->
+                    <!-- <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b ">
+                        <button data-modal-hide="product-details-modal" type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">I
+                            accept</button>
+                        <button data-modal-hide="product-details-modal" type="button"
+                            class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 ">Decline</button>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+
         <!-- PRODUCTS -->
         <section data-aos="fade-up">
             <div class="xl:py-20 py-10 px-4 mx-auto max-w-screen-2xl overflow-hidden">
@@ -299,7 +458,8 @@ if (isset($_SESSION['usuario_id'])) {
                                                         </span>
                                                     </button>
                                                 </form>
-                                                <button
+                                                <button data-modal-target="product-details-modal"
+                                                    data-modal-toggle="product-details-modal" type="button"
                                                     class="inline border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-xs sm:text-base">
                                                     Preview
                                                 </button>
@@ -445,7 +605,8 @@ if (isset($_SESSION['usuario_id'])) {
                             <div class="accordion-content" id="accordionContent">
                                 <div class="pl-[75px] pr-[20px]">
                                     <div class="text-gray-900 space-y-3 text-xs">
-                                        <p>We support you before, during, and after installation with remote assistance
+                                        <p>We support you before, during, and after installation with remote
+                                            assistance
                                             to
                                             answer your questions and help you work with confidence.</p>
 
@@ -476,7 +637,8 @@ if (isset($_SESSION['usuario_id'])) {
                             <div class="accordion-content" id="accordionContent">
                                 <div class="pl-[75px] pr-[20px]">
                                     <div class="text-gray-900 space-y-3 text-xs">
-                                        <p>We assist technicians and mechanics worldwide with fast support via WhatsApp
+                                        <p>We assist technicians and mechanics worldwide with fast support via
+                                            WhatsApp
                                             and Telegram. Wherever you are, we’ve got you covered.</p>
                                     </div>
                                 </div>
@@ -505,7 +667,8 @@ if (isset($_SESSION['usuario_id'])) {
                                 <div class="pl-[75px] pr-[20px]">
                                     <div class="text-gray-900 space-y-3 text-xs">
                                         <p>We turn your laptop into a powerful tool for diagnosing trucks and heavy
-                                            machinery. The software is delivered installed, activated, and ready to use.
+                                            machinery. The software is delivered installed, activated, and ready to
+                                            use.
                                         </p>
                                     </div>
                                 </div>
@@ -547,10 +710,12 @@ if (isset($_SESSION['usuario_id'])) {
                                 <img src="assets/icons/estadisticas/3.svg" alt="" class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
-                                <h2 class="font-bold text-lg md:text-xl">Professional Diagnostic Software Installation
+                                <h2 class="font-bold text-lg md:text-xl">Professional Diagnostic Software
+                                    Installation
                                 </h2>
                                 <p class="text-gray-900 text-sm md:text-base">
-                                    We turn your laptop into a powerful tool for diagnosing trucks and heavy machinery.
+                                    We turn your laptop into a powerful tool for diagnosing trucks and heavy
+                                    machinery.
                                     The software is delivered installed, activated, and ready to use.
                                 </p>
                             </div>
@@ -1306,6 +1471,96 @@ if (isset($_SESSION['usuario_id'])) {
             });
         });
     </script>
+    <script>
+        const mainImage = document.getElementById('mainImage');
+        const thumbsContainer = document.getElementById('thumbs');
+        const thumbnails = Array.from(document.querySelectorAll('.thumb'));
+        const prevBtn = document.getElementById('prev');
+        const nextBtn = document.getElementById('next');
+        let current = 0;
+
+        function setActive(index, { focusThumb = false } = {}) {
+            if (index < 0 || index >= thumbnails.length) return;
+
+            // Transición de la imagen principal
+            mainImage.style.opacity = '0';
+            const nextSrc = thumbnails[index].src;
+            const nextAlt = thumbnails[index].alt.replace('Miniatura', 'Imagen');
+            setTimeout(() => {
+                mainImage.src = nextSrc;
+                mainImage.alt = nextAlt;
+                mainImage.style.opacity = '1';
+            }, 150);
+
+            // Estilo activo en miniaturas
+            thumbnails.forEach((img, i) => {
+                img.classList.toggle('ring-2', i === index);
+                img.classList.toggle('ring-orange-500', i === index);
+                img.classList.toggle('ring-offset-2', i === index);
+                img.setAttribute('aria-selected', i === index ? 'true' : 'false');
+            });
+
+            // Centrar miniatura activa
+            thumbnails[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+            if (focusThumb) thumbnails[index].focus({ preventScroll: true });
+
+            current = index;
+        }
+
+        // Estado de flechas según scroll disponible
+        function updateArrowState() {
+            const { scrollLeft, clientWidth, scrollWidth } = thumbsContainer;
+            prevBtn.disabled = scrollLeft <= 0;
+            nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
+        }
+
+        // Click en miniaturas
+        thumbnails.forEach((img, i) => {
+            img.addEventListener('click', () => setActive(i));
+            img.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActive(i);
+                }
+            });
+        });
+
+        // Botones de desplazamiento del carrusel de miniaturas
+        prevBtn.addEventListener('click', () => {
+            thumbsContainer.scrollBy({ left: -Math.max(thumbsContainer.clientWidth * 0.6, 120), behavior: 'smooth' });
+        });
+        nextBtn.addEventListener('click', () => {
+            thumbsContainer.scrollBy({ left: Math.max(thumbsContainer.clientWidth * 0.6, 120), behavior: 'smooth' });
+        });
+
+        // Actualizar estado de flechas al hacer scroll o redimensionar
+        thumbsContainer.addEventListener('scroll', updateArrowState);
+        window.addEventListener('resize', updateArrowState);
+
+        // Navegación por teclado para cambiar imagen principal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight') setActive(Math.min(current + 1, thumbnails.length - 1));
+            if (e.key === 'ArrowLeft') setActive(Math.max(current - 1, 0));
+            if (e.key === 'Home') setActive(0, { focusThumb: true });
+            if (e.key === 'End') setActive(thumbnails.length - 1, { focusThumb: true });
+        });
+
+        // Inicializar
+        setActive(0);
+        updateArrowState();
+    </script>
+
+    <style>
+        /* Ocultar scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </body>
 
 
