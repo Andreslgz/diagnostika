@@ -41,7 +41,7 @@
                 <?php endif; ?>
 
                 <?php if (isset($_SESSION['usuario_id'])): ?>
-                    <a href="<?php echo $url; ?>/mi-cuenta">
+                    <a href="<?php echo $url; ?>/micuenta/informacionpersonal.php">
                         Ir a mi cuenta
                     </a>
                 <?php endif; ?>
