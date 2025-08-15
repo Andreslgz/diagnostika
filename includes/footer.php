@@ -56,9 +56,12 @@
         <div class="mt-4 lg:mt-0">
             <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Help</h2>
             <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-left sm:text-left">
-                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Log In</a>
+                <li><button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        data-active-tab="login" class="text-gray-900 hover:underline underline-offset-4">Log In</button>
                 </li>
-                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Sign Up</a>
+                <li><button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal"
+                        data-active-tab="register" class="text-gray-900 hover:underline underline-offset-4">Sign
+                        Up</button>
                 </li>
                 <li><a href="#pricing" class="text-gray-900 hover:underline underline-offset-4">Frequently Asked
                         Questions</a></li>
