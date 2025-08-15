@@ -798,7 +798,7 @@ if (isset($_SESSION['usuario_id'])) {
         <section class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden" data-aos="fade-up">
             <div class="text-start xl:mb-12 mb-5">
                 <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-lg mb-4">
-                    Preguntas frecuentes
+                    Frequently Asked Questions:
                 </h2>
             </div>
 
