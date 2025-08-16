@@ -39,6 +39,7 @@
                                     Hola, <span class="font-extrabold">amigo</span>!
                                 </h4>
                             </div>
+                            
                             <form class="space-y-4" id="login-form" action="login.php" method="POST">
                                 <div>
                                     <label for="input-group-1"
@@ -100,6 +101,7 @@
                                 </div>
 
                             </form>
+
                         </div>
 
                         <!-- Register Form -->

@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$url = "http://localhost";
+$url = "https://diagnostika:8890";
 $titulo = "DIAGNOSTIKA DIESEL GLOBAL";
 
 use Medoo\Medoo;
@@ -16,5 +16,5 @@ $database = new Medoo([
 
 ?>
 <script>
-    const BASE_DIR = "<?php echo $url; ?>";
+    window.BASE_DIR = <?php echo json_encode($url); ?>;
 </script>

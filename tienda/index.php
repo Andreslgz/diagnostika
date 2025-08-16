@@ -2,38 +2,6 @@
 session_start();
 require_once __DIR__ . '/../includes/db.php';
 
-// Inicializar carrito si no existe
-if (!isset($_SESSION['carrito'])) {
-    $_SESSION['carrito'] = [];
-}
-
-// Si se agrega al carrito
-if (isset($_POST['agregar_carrito'])) {
-    $id = intval($_POST['id_producto']);
-    if (isset($_SESSION['carrito'][$id])) {
-        $_SESSION['carrito'][$id]['cantidad']++;
-    } else {
-        $prod = $database->get('productos', '*', ['id_producto' => $id]);
-        if ($prod) {
-            $_SESSION['carrito'][$id] = [
-                'nombre' => $prod['nombre'],
-                'precio' => $prod['precio'],
-                'imagen' => $prod['imagen'],
-                'cantidad' => 1
-            ];
-        }
-    }
-    // ✅ Agregar mensaje de confirmación
-    $_SESSION['mensaje_carrito'] = "✅ Producto añadido al carrito correctamente";
-    header("Location: index.php");
-    exit;
-}
-
-$productos = $database->select('productos', '*', [
-    "ORDER" => ["id_producto" => "DESC"],
-    "LIMIT" => 12
-]);
-
 $favoritos_usuario = [];
 
 if (isset($_SESSION['usuario_id'])) {
@@ -199,6 +167,9 @@ $anios = $database->select(
 
                     <div class="w-[350px] lg:flex hidden flex-col">
                         <h1 class="text-2xl font-bold mb-6">FILTERS</h1>
+                        
+                        <div id="filters-panel">
+                        
                         <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
                             <header class="flex items-center justify-between">
                                 <p>
@@ -271,6 +242,8 @@ $anios = $database->select(
                                 </div>
                             </div>
                         </div>
+
+                                    </div>
                         <!-- 
                         <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
                             <header class="flex items-center justify-between">
@@ -347,36 +320,8 @@ $anios = $database->select(
                             class="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full mb-5 gap-4 lg:gap-0">
                             <!-- Filtros aplicados -->
                             <div class="flex gap-2 lg:gap-6 flex-wrap">
-                                <div
-                                    class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
-                                    <p>Filtro 1</p>
-                                    <svg class="w-4 h-4 text-gray-800 " aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                                    </svg>
-                                </div>
-                                <div
-                                    class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
-                                    <p>Filtro 2</p>
-                                    <svg class="w-4 h-4 text-gray-800 " aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                                    </svg>
-                                </div>
-                                <div
-                                    class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300">
-                                    <p>Filtro 3</p>
-                                    <svg class="w-4 h-4 text-gray-800 " aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" />
-                                    </svg>
-                                </div>
+                               <div id="active-filters" class="flex gap-2 lg:gap-6 flex-wrap"></div>
+                               
                             </div>
 
                             <!-- Botón de ordenar -->

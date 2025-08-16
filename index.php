@@ -2,32 +2,11 @@
 session_start();
 require_once __DIR__ . '/includes/db.php';
 
-// Inicializar carrito si no existe
-if (!isset($_SESSION['carrito'])) {
-    $_SESSION['carrito'] = [];
-}
+error_reporting(E_ALL);
 
-// Si se agrega al carrito
-if (isset($_POST['agregar_carrito'])) {
-    $id = intval($_POST['id_producto']);
-    if (isset($_SESSION['carrito'][$id])) {
-        $_SESSION['carrito'][$id]['cantidad']++;
-    } else {
-        $prod = $database->get('productos', '*', ['id_producto' => $id]);
-        if ($prod) {
-            $_SESSION['carrito'][$id] = [
-                'nombre' => $prod['nombre'],
-                'precio' => $prod['precio'],
-                'imagen' => $prod['imagen'],
-                'cantidad' => 1
-            ];
-        }
-    }
-    // ✅ Agregar mensaje de confirmación
-    $_SESSION['mensaje_carrito'] = "✅ Producto añadido al carrito correctamente";
-    header("Location: index.php");
-    exit;
-}
+// Mostrar errores en pantalla
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
 
 $productos = $database->select('productos', '*', [
     "ORDER" => ["id_producto" => "DESC"],
@@ -45,6 +24,16 @@ if (isset($_SESSION['usuario_id'])) {
         $favoritos_usuario = $favoritos; // ya es array de IDs
     }
 }
+
+$sliders = $database->select("slider", "sl_img", [
+    "sl_est" => "activo",
+    "ORDER" => ["sl_id" => "DESC"]
+]);
+
+$sliders_mov = $database->select("slider", "sl_img_mov", [
+    "sl_est" => "activo",
+    "ORDER" => ["sl_id" => "DESC"]
+]);
 
 ?>
 <!DOCTYPE html>
@@ -93,20 +82,16 @@ if (isset($_SESSION['usuario_id'])) {
             <div class="splide__track xl:h-[85vh] h-[70vh]">
                 <ul class="splide__list">
                     <?php
-                    // Traer todas las imágenes activas ordenadas por ID descendente
-                    $sliders = $database->select("slider", "sl_img", [
-                        "sl_est" => "activo",
-                        "ORDER" => ["sl_id" => "DESC"]
-                    ]);
+
 
                     if ($sliders && count($sliders) > 0) {
                         foreach ($sliders as $img) {
                             $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
-                            ?>
+                    ?>
                             <li class="splide__slide">
                                 <img src="uploads/slider/<?= $imagen ?>" alt="Slide" class="" />
                             </li>
-                            <?php
+                        <?php
                         }
                     } else {
                         // Fallback si no hay imágenes activas
@@ -114,7 +99,7 @@ if (isset($_SESSION['usuario_id'])) {
                         <li class="splide__slide">
                             <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="" />
                         </li>
-                        <?php
+                    <?php
                     }
                     ?>
                 </ul>
@@ -125,18 +110,16 @@ if (isset($_SESSION['usuario_id'])) {
         <section id="image-carousel-mobile" class="splide md:hidden" aria-label="Beautiful Images (Mobile)">
             <div class="splide__track h-[50vh]">
                 <ul class="splide__list">
-                    <?php if ($sliders && count($sliders) > 0): ?>
-                        <?php foreach ($sliders as $img):
-                            $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>
+                    <?php if (!empty($sliders_mov)): ?>
+                        <?php foreach ($sliders_mov as $img): ?>
+                            <?php $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>
                             <li class="splide__slide">
-                                <img src="uploads/slider/<?= $imagen ?>" alt="Slide Mobile"
-                                    class="w-full h-full object-cover" />
+                                <img src="uploads/slider/<?= $imagen ?>" alt="Slide Mobile" class="w-full h-full object-cover">
                             </li>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <li class="splide__slide">
-                            <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen"
-                                class="w-full h-full object-cover" />
+                            <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="w-full h-full object-cover">
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -243,6 +226,7 @@ if (isset($_SESSION['usuario_id'])) {
 
             </div>
         </section>
+        
         <!-- PRODUCTS -->
         <section data-aos="fade-up">
             <div class="xl:py-20 py-10 px-4 mx-auto max-w-screen-2xl overflow-hidden">
@@ -262,45 +246,48 @@ if (isset($_SESSION['usuario_id'])) {
                         <div class="splide__track xl:h-[61vh] h-[47vh]">
                             <ul class="splide__list">
                                 <?php foreach ($productos as $prod): ?>
-                                    <li
-                                        class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2  lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
-                                        <div
-                                            class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-2 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                    <li class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2 lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
+                                        <div class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-2 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+
                                             <div class="flex justify-end -mb-1">
-                                                <button type="button" class="favorito-btn"
-                                                    data-id="<?php echo $prod['id_producto']; ?>">
+                                                <button type="button" class="favorito-btn" data-id="<?= (int)$prod['id_producto']; ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                        fill="<?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
+                                                        fill="<?= in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                                                        class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 <?php echo in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
+                                                        class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 <?= in_array($prod['id_producto'], $favoritos_usuario) ? 'text-red-600' : 'text-gray-600'; ?>">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
                                                     </svg>
                                                 </button>
                                             </div>
-                                            <img src="<?php echo !empty($prod['imagen']) ? 'uploads/' . $prod['imagen'] : 'https://placehold.co/600x400/png'; ?>"
-                                                alt="<?php echo htmlspecialchars($prod['nombre']); ?>"
-                                                class="w-full h-36 sm:h-36 lg:h-48 object-fit rounded-md" />
-                                            <p
-                                                class="inline font-semibold text-base lg:text-xl text-balance leading-tight uppercase">
-                                                <?php echo htmlspecialchars($prod['nombre']); ?>
+
+                                            <img src="<?= !empty($prod['imagen']) ? 'uploads/' . $prod['imagen'] : 'https://placehold.co/600x400/png'; ?>"
+                                                alt="<?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                class="w-full h-36 sm:h-36 lg:h-48 object-cover rounded-md" />
+
+                                            <p class="inline font-semibold text-base lg:text-xl text-balance leading-tight uppercase">
+                                                <?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?>
                                             </p>
+
                                             <p class="inline text-base lg:text-2xl uppercase font-bold">
-                                                USD <?php echo number_format($prod['precio'], 2); ?>
+                                                USD <?= number_format((float)$prod['precio'], 2); ?>
                                             </p>
+
                                             <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
-                                                <form method="post">
-                                                    <input type="hidden" name="id_producto"
-                                                        value="<?php echo $prod['id_producto']; ?>">
-                                                    <button type="submit" name="agregar_carrito"
-                                                        class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-xs sm:text-base">
-                                                        <span class="">
-                                                            Add to Cart
-                                                        </span>
-                                                    </button>
-                                                </form>
-                                                <button data-modal-target="product-details-modal"
-                                                    data-modal-toggle="product-details-modal" type="button"
+                                                <!-- Botón AJAX: agregar al carrito -->
+                                                <button
+                                                    type="button"
+                                                    class="btn-secondary add-to-cart inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-xs sm:text-base"
+                                                    data-id="<?= (int)$prod['id_producto']; ?>"
+                                                    data-qty="1"
+                                                    aria-label="Añadir <?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?> al carrito">
+                                                    <span>Añadir al carrito</span>
+                                                </button>
+
+                                                <button
+                                                    data-modal-target="product-details-modal"
+                                                    data-modal-toggle="product-details-modal"
+                                                    type="button"
                                                     class="inline border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-xs sm:text-base">
                                                     Preview
                                                 </button>
@@ -1206,7 +1193,7 @@ if (isset($_SESSION['usuario_id'])) {
     <script>
         console.log('🔍 Debug Script Loaded');
 
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             console.log('🔍 DOM Content Loaded');
 
             // Verificar elementos
@@ -1236,7 +1223,7 @@ if (isset($_SESSION['usuario_id'])) {
                 }
 
                 // Event listener para abrir
-                chatTrigger.addEventListener("click", function (e) {
+                chatTrigger.addEventListener("click", function(e) {
                     console.log('🖱️ Chat trigger clicked!');
                     e.preventDefault();
                     e.stopPropagation();
@@ -1245,7 +1232,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                 // Event listener para cerrar
                 if (closeButton) {
-                    closeButton.addEventListener("click", function (e) {
+                    closeButton.addEventListener("click", function(e) {
                         console.log('🖱️ Close button clicked!');
                         e.preventDefault();
                         e.stopPropagation();
@@ -1254,12 +1241,12 @@ if (isset($_SESSION['usuario_id'])) {
                 }
 
                 // Agregar hover effect
-                chatTrigger.addEventListener("mouseenter", function () {
+                chatTrigger.addEventListener("mouseenter", function() {
                     chatTrigger.style.transform = "scale(1.05)";
                     chatTrigger.style.transition = "transform 0.2s ease";
                 });
 
-                chatTrigger.addEventListener("mouseleave", function () {
+                chatTrigger.addEventListener("mouseleave", function() {
                     chatTrigger.style.transform = "scale(1)";
                 });
 
@@ -1308,7 +1295,7 @@ if (isset($_SESSION['usuario_id'])) {
         }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Buscar todos los acordeones
             const accordionContainers = document.querySelectorAll('.grid.grid-cols-1.xl\\:hidden .mx-auto');
 
@@ -1354,7 +1341,7 @@ if (isset($_SESSION['usuario_id'])) {
 
                 // Agregar event listener
                 if (header) {
-                    header.addEventListener('click', function () {
+                    header.addEventListener('click', function() {
                         // Cerrar todos los demás acordeones
                         accordionContainers.forEach((otherContainer, otherIndex) => {
                             if (otherIndex !== index) {
@@ -1443,7 +1430,7 @@ if (isset($_SESSION['usuario_id'])) {
 
     <script>
         // Mostrar el modal solo si no está la bandera en localStorage
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             var modal = document.getElementById('pop-up-modal');
             var noShow = localStorage.getItem('noShowAgain');
             if (!noShow && modal) {
@@ -1452,11 +1439,11 @@ if (isset($_SESSION['usuario_id'])) {
                 modal.classList.add('hidden');
             }
             // Botón cerrar (X)
-            document.getElementById('close-pop-up-modal')?.addEventListener('click', function () {
+            document.getElementById('close-pop-up-modal')?.addEventListener('click', function() {
                 modal.classList.add('hidden');
             });
             // Botón "No volver a mostrar"
-            document.getElementById('no-show-again')?.addEventListener('click', function () {
+            document.getElementById('no-show-again')?.addEventListener('click', function() {
                 modal.classList.add('hidden');
                 localStorage.setItem('noShowAgain', 'true');
             });
@@ -1470,7 +1457,9 @@ if (isset($_SESSION['usuario_id'])) {
         const nextBtn = document.getElementById('next');
         let current = 0;
 
-        function setActive(index, { focusThumb = false } = {}) {
+        function setActive(index, {
+            focusThumb = false
+        } = {}) {
             if (index < 0 || index >= thumbnails.length) return;
 
             // Transición de la imagen principal
@@ -1492,15 +1481,25 @@ if (isset($_SESSION['usuario_id'])) {
             });
 
             // Centrar miniatura activa
-            thumbnails[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-            if (focusThumb) thumbnails[index].focus({ preventScroll: true });
+            thumbnails[index].scrollIntoView({
+                behavior: 'smooth',
+                inline: 'center',
+                block: 'nearest'
+            });
+            if (focusThumb) thumbnails[index].focus({
+                preventScroll: true
+            });
 
             current = index;
         }
 
         // Estado de flechas según scroll disponible
         function updateArrowState() {
-            const { scrollLeft, clientWidth, scrollWidth } = thumbsContainer;
+            const {
+                scrollLeft,
+                clientWidth,
+                scrollWidth
+            } = thumbsContainer;
             prevBtn.disabled = scrollLeft <= 0;
             nextBtn.disabled = scrollLeft + clientWidth >= scrollWidth - 1;
         }
@@ -1518,10 +1517,16 @@ if (isset($_SESSION['usuario_id'])) {
 
         // Botones de desplazamiento del carrusel de miniaturas
         prevBtn.addEventListener('click', () => {
-            thumbsContainer.scrollBy({ left: -Math.max(thumbsContainer.clientWidth * 0.6, 120), behavior: 'smooth' });
+            thumbsContainer.scrollBy({
+                left: -Math.max(thumbsContainer.clientWidth * 0.6, 120),
+                behavior: 'smooth'
+            });
         });
         nextBtn.addEventListener('click', () => {
-            thumbsContainer.scrollBy({ left: Math.max(thumbsContainer.clientWidth * 0.6, 120), behavior: 'smooth' });
+            thumbsContainer.scrollBy({
+                left: Math.max(thumbsContainer.clientWidth * 0.6, 120),
+                behavior: 'smooth'
+            });
         });
 
         // Actualizar estado de flechas al hacer scroll o redimensionar
@@ -1532,8 +1537,12 @@ if (isset($_SESSION['usuario_id'])) {
         document.addEventListener('keydown', (e) => {
             if (e.key === 'ArrowRight') setActive(Math.min(current + 1, thumbnails.length - 1));
             if (e.key === 'ArrowLeft') setActive(Math.max(current - 1, 0));
-            if (e.key === 'Home') setActive(0, { focusThumb: true });
-            if (e.key === 'End') setActive(thumbnails.length - 1, { focusThumb: true });
+            if (e.key === 'Home') setActive(0, {
+                focusThumb: true
+            });
+            if (e.key === 'End') setActive(thumbnails.length - 1, {
+                focusThumb: true
+            });
         });
 
         // Inicializar

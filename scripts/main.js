@@ -134,62 +134,150 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Logica para el login / via ajax....
 
-const loginFormEl = document.getElementById("login-form");
-if (loginFormEl)
-  loginFormEl.addEventListener("submit", function (e) {
+document.addEventListener("DOMContentLoaded", () => {
+  const loginFormEl = document.getElementById("login-form");
+  const errorBox = document.getElementById("login-error");
+
+  const showErr = (msg) => {
+    if (!errorBox) return;
+    errorBox.textContent = msg;
+    errorBox.classList.remove("hidden");
+  };
+  const hideErr = () => errorBox && errorBox.classList.add("hidden");
+
+  if (!loginFormEl) return;
+
+  loginFormEl.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const form = e.target;
-    const formData = new FormData(form);
+    // Base URL robusta: usa window.BASE_DIR o BASE_DIR si existen; si no, vacío (ruta relativa)
+    const base =
+      (typeof window !== "undefined" && window.BASE_DIR) ||
+      (typeof BASE_DIR !== "undefined" && BASE_DIR) ||
+      "";
+    const endpoint = (base ? base.replace(/\/$/, "") : "") + "/login.php";
 
-    fetch(BASE_DIR + "/login.php", {
-      method: "POST",
-      body: formData,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.success) {
-          window.location.href = data.redirect;
-        } else {
-          const errorDiv = document.getElementById("login-error");
-          errorDiv.textContent = data.message;
-          errorDiv.classList.remove("hidden");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
+    const formData = new FormData(loginFormEl);
+    const submitBtn = loginFormEl.querySelector('[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
+    try {
+      const res = await fetch(endpoint, {
+        method: "POST",
+        body: formData,                 // no setees Content-Type, el navegador lo hace
+        credentials: "same-origin",     // manda cookies/sesión
+        headers: {
+          "Accept": "application/json",
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        cache: "no-store"
       });
+
+      // Si el servidor redirige (p.ej. a /login o /), seguimos la redirección
+      if (res.redirected) {
+        window.location.href = res.url;
+        return;
+      }
+
+      // Parse tolerante a HTML colado antes/después del JSON
+      const text = await res.text();
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+
+      let data;
+      try {
+        // Intento directo
+        data = JSON.parse(text);
+      } catch {
+        // Extrae el bloque JSON principal si hubo HTML/JS alrededor
+        const s = text.indexOf("{");
+        const e2 = text.lastIndexOf("}");
+        if (s >= 0 && e2 >= s) {
+          data = JSON.parse(text.slice(s, e2 + 1));
+        } else {
+          throw new Error("Respuesta no válida: " + text.slice(0, 200));
+        }
+      }
+
+      if (data?.success) {
+        hideErr();
+        if (data.redirect) window.location.href = data.redirect;
+        else location.reload();
+      } else {
+        showErr(data?.message || "Correo o contraseña incorrectos.");
+      }
+    } catch (err) {
+      console.error(err);
+      showErr("Error de conexión con el servidor.");
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
+});
+
 
 //Logica para registrar al usuario
 
 const registerFormEl = document.getElementById("register-form");
-if (registerFormEl)
+
+if (registerFormEl) {
   registerFormEl.addEventListener("submit", async (e) => {
     e.preventDefault();
     const form = e.target;
 
-    // Validación rápida en cliente
+    // Validación rápida
     const pwd = form.querySelector('input[name="password"]').value.trim();
-    const pwd2 = form
-      .querySelector('input[name="password_confirm"]')
-      .value.trim();
-    if (pwd !== pwd2) {
-      showError("Las contraseñas no coinciden.");
-      return;
-    }
+    const pwd2 = form.querySelector('input[name="password_confirm"]').value.trim();
+    if (pwd !== pwd2) return showError("Las contraseñas no coinciden.");
 
-    const formData = new FormData(form);
+    // Construir endpoint con fallback si BASE_DIR no existe
+    const base =
+      (typeof window !== "undefined" && window.BASE_DIR) ||
+      (typeof BASE_DIR !== "undefined" && BASE_DIR) ||
+      "";
+    const endpoint = (base ? base.replace(/\/$/, "") : "") + "/register.php";
+
+    // UI: deshabilitar botón mientras envía (opcional)
+    const submitBtn = form.querySelector('[type="submit"]');
+    if (submitBtn) submitBtn.disabled = true;
+
     try {
-      const res = await fetch(BASE_DIR + "/register.php", {
+      const res = await fetch(endpoint, {
         method: "POST",
-        body: formData,
+        body: new FormData(form), // no pongas Content-Type, el navegador lo setea
+        credentials: "same-origin",
+        headers: {
+          "Accept": "application/json",
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        cache: "no-store",
       });
-      const data = await res.json();
+
+      // Manejo de redirecciones (p.ej., a login)
+      if (res.redirected) {
+        // Si tu backend redirige tras éxito, puedes seguir la redirección:
+        window.location.href = res.url;
+        return;
+      }
+
+      // Intentar parsear aun si el servidor metió HTML antes del JSON
+      const text = await res.text();
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+
+      let data;
+      const s = text.indexOf("{");
+      const e2 = text.lastIndexOf("}");
+      if (s >= 0 && e2 >= s) {
+        try {
+          data = JSON.parse(text.slice(s, e2 + 1));
+        } catch {
+          throw new Error("JSON inválido: " + text.slice(0, 200));
+        }
+      } else {
+        throw new Error("Respuesta no-JSON del servidor: " + text.slice(0, 200));
+      }
 
       if (data.success) {
         showSuccess(data.message || "¡Registro exitoso!");
-        // autologin: redirige según lo que diga el backend
         if (data.redirect) window.location.href = data.redirect;
         else form.reset();
       } else {
@@ -197,9 +285,14 @@ if (registerFormEl)
       }
     } catch (err) {
       console.error(err);
-      showError("Ocurrió un error inesperado. Inténtalo de nuevo.");
+      showError("Ocurrió un error: " + err.message);
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
     }
   });
+}
+
+
 
 function showError(msg) {
   const e = document.getElementById("register-error");
@@ -237,48 +330,58 @@ if (cancelLogoutEl)
   });
 
 //Logica de agregar a favoritos
+document.addEventListener("click", (e) => {
+  const btn = e.target.closest(".favorito-btn");
+  if (!btn) return;
+  e.preventDefault();
 
-document.querySelectorAll(".favorito-btn").forEach((btn) => {
-  btn.addEventListener("click", function (e) {
-    e.preventDefault();
-    const id = this.dataset.id;
-    const svg = this.querySelector("svg");
+  const id = btn.dataset.id;
+  const svg = btn.querySelector("svg");
+  if (!id) return console.error("favorito-btn sin data-id");
 
-    fetch(BASE_DIR + "/ajax_favorito.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: "id_producto=" + encodeURIComponent(id),
+  const base = (window.BASE_DIR ?? (typeof BASE_DIR !== "undefined" ? BASE_DIR : "")) || "";
+  const endpoint = (base ? base.replace(/\/$/, "") : "") + "/ajax_favorito.php";
+
+  fetch(endpoint, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+      "Accept": "application/json",
+      "X-Requested-With": "XMLHttpRequest"
+    },
+    body: new URLSearchParams({ id_producto: id }).toString(),
+    cache: "no-store",
+    credentials: "same-origin",
+  })
+    .then(async (res) => {
+      const text = await res.text();
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+      const s = text.indexOf("{"), e2 = text.lastIndexOf("}");
+      if (s >= 0 && e2 >= s) return JSON.parse(text.slice(s, e2 + 1));
+      throw new Error("Respuesta no-JSON del servidor: " + text.slice(0, 200));
     })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.auth === false) {
-          mostrarAlerta(
-            "Debes iniciar sesión para agregar productos a favoritos."
-          );
-          return;
+    .then((data) => {
+      if (data?.auth === false) {
+        return mostrarAlerta("Debes iniciar sesión para agregar productos a favoritos.");
+      }
+      if (data?.success) {
+        const marcar = !!data.favorito;
+        if (svg) {
+          svg.setAttribute("fill", marcar ? "red" : "none"); // o 'stroke' según tu icono
+          svg.classList.toggle("text-red-600", marcar);
+          svg.classList.toggle("text-black", !marcar);
         }
-
-        if (data.success) {
-          if (data.favorito) {
-            svg.setAttribute("fill", "red");
-            svg.classList.remove("text-black");
-            svg.classList.add("text-red-600");
-          } else {
-            svg.setAttribute("fill", "none");
-            svg.classList.remove("text-red-600");
-            svg.classList.add("text-black");
-          }
-        } else {
-          mostrarAlerta(data.message || "Ocurrió un error.");
-        }
-      })
-      .catch(() => {
-        mostrarAlerta("Error de conexión con el servidor.");
-      });
-  });
+        btn.classList.toggle("is-fav", marcar);
+      } else {
+        mostrarAlerta(data?.message || "Ocurrió un error.");
+      }
+    })
+    .catch((err) => {
+      console.error(err);
+      mostrarAlerta("Error: " + err.message);
+    });
 });
+
 
 //Mostrar alerta de favoritos
 function mostrarAlerta(mensaje) {
@@ -318,6 +421,204 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+// Agregar productos al carrito:
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".add-to-cart");
+  if (!btn) return;
+
+  e.preventDefault();
+
+  const id = btn.dataset.id;
+  const qty = parseInt(btn.dataset.qty || "1", 10) || 1;
+
+  if (!id) {
+    console.error("add-to-cart sin data-id");
+    return;
+  }
+
+  // Base URL: usa window.BASE_DIR o BASE_DIR; si no existen, usa relativo
+  const base =
+    (typeof window !== "undefined" && window.BASE_DIR) ||
+    (typeof BASE_DIR !== "undefined" && BASE_DIR) ||
+    "";
+  const endpoint = (base ? base.replace(/\/$/, "") : "") + "/tienda/ajax_carrito.php";
+
+  // UI: deshabilita mientras envía (opcional)
+  btn.disabled = true;
+
+  try {
+    const res = await fetch(endpoint, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest"
+      },
+      body: new URLSearchParams({
+        id_producto: id,
+        cantidad: String(qty)
+      }).toString(),
+      cache: "no-store"
+    });
+
+    const text = await res.text();
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+
+    // Parse tolerante por si el server imprime algo antes del JSON
+    let data;
+    try {
+      data = JSON.parse(text);
+    } catch {
+      const s = text.indexOf("{");
+      const e2 = text.lastIndexOf("}");
+      if (s >= 0 && e2 >= s) data = JSON.parse(text.slice(s, e2 + 1));
+      else throw new Error("Respuesta no-JSON del servidor: " + text.slice(0, 200));
+    }
+
+    if (data?.success) {
+      // Actualiza contador del carrito si existe en la UI
+      const badge = document.getElementById("cart-count");
+      if (badge && typeof data.cart_count !== "undefined") {
+        badge.textContent = data.cart_count;
+        badge.classList.remove("hidden");
+      }
+
+      // 🔄 refresca el bloque del mini-carrito
+      if (typeof refreshMiniCart === "function") {
+        await refreshMiniCart();
+      }
+
+      // Muestra toast/alert de éxito (ajusta a tu función)
+      if (typeof mostrarAlerta === "function") {
+        mostrarAlerta(data.message || "Producto añadido al carrito");
+      } else {
+        console.log(data.message || "Producto añadido al carrito");
+      }
+    } else {
+      const msg = data?.message || "No se pudo añadir al carrito.";
+      if (typeof mostrarAlerta === "function") mostrarAlerta(msg);
+      else alert(msg);
+    }
+  } catch (err) {
+    console.error(err);
+    if (typeof mostrarAlerta === "function") {
+      mostrarAlerta("Error de conexión con el servidor.");
+    } else {
+      alert("Error de conexión con el servidor.");
+    }
+  } finally {
+    btn.disabled = false;
+  }
+});
+
+//Refresca productos agregado en el carrito , lo que se muestra en la barra desplegable:
+
+async function refreshMiniCart() {
+  const container = document.getElementById('mini-cart');
+  if (!container) return;
+
+  const base =
+    (typeof window !== "undefined" && window.BASE_DIR) ||
+    (typeof BASE_DIR !== "undefined" && BASE_DIR) ||
+    "";
+
+  const url = (base ? base.replace(/\/$/, "") : "") + "/tienda/mini_cart_html.php";
+
+  try {
+    const res = await fetch(url, {
+      credentials: "same-origin",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      cache: "no-store"
+    });
+    const html = await res.text();
+    container.innerHTML = html;
+  } catch (e) {
+    console.error("No se pudo refrescar el mini-carrito", e);
+  }
+}
+
+// Update cantidad y total del carrito
+
+async function updateQuantity(index, delta) {
+  // Base URL: usa window.BASE_DIR o BASE_DIR; si no existen, usa relativo
+  const base =
+    (typeof window !== "undefined" && window.BASE_DIR) ||
+    (typeof BASE_DIR !== "undefined" && BASE_DIR) ||
+    "";
+  const endpoint = (base ? base.replace(/\/$/, "") : "") + "/tienda/ajax_carrito_update.php";
+
+  try {
+    const res = await fetch(endpoint, {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      },
+      body: new URLSearchParams({ index: String(index), delta: String(delta) }).toString(),
+      cache: 'no-store'
+    });
+
+    const text = await res.text();
+    if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
+
+    // Parse tolerante por si el servidor imprimiera algo extra
+    let data;
+    try { data = JSON.parse(text); }
+    catch {
+      const s = text.indexOf('{'); const e = text.lastIndexOf('}');
+      if (s >= 0 && e >= s) data = JSON.parse(text.slice(s, e + 1));
+      else throw new Error("Respuesta no-JSON del servidor: " + text.slice(0, 200));
+    }
+
+    if (!data?.success) {
+      (typeof mostrarAlerta === "function") ? mostrarAlerta(data?.message || 'No se pudo actualizar')
+        : alert(data?.message || 'No se pudo actualizar');
+      return;
+    }
+
+    // Si se eliminó el item
+    if (data.item_removed) {
+      const li = document.querySelector(`li[data-item="${index}"]`);
+      if (li) li.remove();
+      // Si el carrito quedó vacío, puedes refrescar el mini-carrito completo para mostrar el estado vacío
+      if (data.cart_empty && typeof refreshMiniCart === "function") {
+        await refreshMiniCart();
+        return;
+      }
+    } else {
+      // Actualizar cantidad
+      const qtySpan = document.getElementById(`qty-${index}`) || document.querySelector(`li[data-item="${index}"] [data-qty]`);
+      if (qtySpan) qtySpan.textContent = data.new_qty;
+
+      // Actualizar subtotal del ítem
+      const subSpan = document.getElementById(`subtotal-${index}`) || document.querySelector(`li[data-item="${index}"] [data-subtotal]`);
+      if (subSpan) subSpan.textContent = `USD. ${Number(data.item_subtotal).toFixed(2)}`;
+    }
+
+    // Actualizar total carrito
+    const totalEl = document.getElementById('totalCarrito');
+    if (totalEl) totalEl.textContent = `$${Number(data.cart_total).toFixed(2)}`;
+
+    // Actualizar badge de carrito (si tienes)
+    const badge = document.getElementById("cart-count");
+    if (badge && typeof data.cart_count !== "undefined") {
+      badge.textContent = data.cart_count;
+      if (data.cart_count > 0) badge.classList.remove("hidden");
+      else badge.classList.add("hidden");
+    }
+
+  } catch (err) {
+    console.error(err);
+    (typeof mostrarAlerta === "function") ? mostrarAlerta("Error de conexión con el servidor.")
+      : alert("Error de conexión con el servidor.");
+  }
+}
+
+
 
 /* ============================================
    FAQ FUNCTIONALITY - Funcionalidad de Preguntas Frecuentes
@@ -673,19 +974,140 @@ window.FAQUtils = {
 };
 
 // Programacion para elmiinar el procuto del carrito / home
-const ENDPOINT = BASE_DIR + "/includes/carrito_acciones.php";
 
-// Función auxiliar para leer JSON de forma segura
+async function refreshMiniCart() {
+  const container = document.getElementById("mini-cart");
+  if (!container) return;
+
+  // Ajusta la ruta si tu mini_cart_html.php vive en otra carpeta (p.ej. "/tienda/mini_cart_html.php")
+  const base = (typeof BASE_DIR !== "undefined" && BASE_DIR) ? BASE_DIR.replace(/\/$/, "") : "";
+ const url = __BASE_NORM__ + "/tienda/mini_cart_html.php";
+
+  try {
+    const res = await fetch(url, {
+      credentials: "same-origin",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      cache: "no-store",
+    });
+    const html = await res.text();
+    container.innerHTML = html;
+  } catch (err) {
+    console.error("No se pudo refrescar el mini-carrito", err);
+  }
+}
+
+// Click en eliminar (delegación)
+// Construye BASE robusto (window.BASE_DIR, BASE_DIR o relativo)
+const __BASE__ =
+  (typeof window !== "undefined" && window.BASE_DIR) ||
+  (typeof BASE_DIR !== "undefined" && BASE_DIR) ||
+  "";
+
+// Normaliza la base quitando el slash final
+const __BASE_NORM__ = __BASE__ ? __BASE__.replace(/\/$/, "") : "";
+
+// ENDPOINT a carrito_acciones.php
+const ENDPOINT = __BASE_NORM__ + "/includes/carrito_acciones.php";
+
+// Helper para JSON seguro (tu función)
 async function fetchJSON(url, options = {}) {
   const res = await fetch(url, options);
   const text = await res.text();
-
   try {
     return { okHTTP: res.ok, json: JSON.parse(text), raw: text };
   } catch (e) {
     return { okHTTP: res.ok, json: null, raw: text, parseError: e };
   }
 }
+
+// Refresca el fragmento del mini-carrito
+async function refreshMiniCart() {
+  const container = document.getElementById("mini-cart");
+  if (!container) return;
+  // ajusta ruta si tu archivo está en /tienda
+  const url = __BASE_NORM__ + "/tienda/mini_cart_html.php";
+  try {
+    const res = await fetch(url, {
+      credentials: "same-origin",
+      headers: { "X-Requested-With": "XMLHttpRequest" },
+      cache: "no-store",
+    });
+    const html = await res.text();
+    container.innerHTML = html;
+  } catch (err) {
+    console.error("No se pudo refrescar el mini-carrito", err);
+  }
+}
+
+// Delegación para eliminar
+document.addEventListener("click", async (e) => {
+  const removeBtn = e.target.closest(".js-remove-item");
+  if (!removeBtn) return;
+
+  e.preventDefault();
+
+  const indexAttr = removeBtn.dataset.index; // string
+  const idAttr = removeBtn.dataset.id || ""; // opcional
+  const index = Number(indexAttr);
+
+  if (!Number.isInteger(index) || index < 0) {
+    console.error("remove: data-index inválido:", indexAttr);
+    return;
+  }
+
+  removeBtn.disabled = true;
+
+  try {
+    const body = new URLSearchParams({
+      action: "remove",
+      index: String(index),
+      id: String(idAttr),
+    }).toString();
+
+    const { okHTTP, json, raw, parseError } = await fetchJSON(ENDPOINT, {
+      method: "POST",
+      credentials: "same-origin",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "Accept": "application/json",
+        "X-Requested-With": "XMLHttpRequest",
+      },
+      body,
+      cache: "no-store",
+    });
+
+    if (!okHTTP) {
+      console.error("HTTP:", raw);
+      throw new Error(`HTTP error`);
+    }
+    if (!json || json.success !== true) {
+      if (parseError) console.error("parseError:", parseError, raw);
+      const msg = (json && json.message) ? json.message : "No se pudo eliminar el producto.";
+      throw new Error(msg);
+    }
+
+    // ✅ refresca la UI del mini-carrito
+    await refreshMiniCart();
+
+    // Actualiza badge si el endpoint devuelve cart_count
+    if (typeof json.cart_count !== "undefined") {
+      const badge = document.getElementById("cart-count");
+      if (badge) {
+        badge.textContent = json.cart_count;
+        badge.classList.toggle("hidden", json.cart_count <= 0);
+      }
+    }
+  } catch (err) {
+    console.error(err);
+    if (typeof mostrarAlerta === "function") {
+      mostrarAlerta("Error al eliminar: " + err.message);
+    } else {
+      alert("Error al eliminar: " + err.message);
+    }
+  } finally {
+    removeBtn.disabled = false;
+  }
+});
 
 // Delegación de eventos: escucha clicks en botones .js-remove-item
 document.addEventListener("click", async (ev) => {
@@ -731,7 +1153,7 @@ document.addEventListener("click", async (ev) => {
 
     if (!okHTTP) {
       console.error("Error HTTP", raw);
-      alert("Error en la comunicación con el servidor.");
+     // alert("Error en la comunicación con el servidor.");
       return;
     }
     if (!json) {
@@ -775,6 +1197,147 @@ document.addEventListener("click", async (ev) => {
   }
 });
 
+//Filtros
+
+(function () {
+  const dbg = (...a) => console.debug('[filters]', ...a);
+
+  // Debounce helper
+  const debounce = (fn, ms = 100) => {
+    let t;
+    return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); };
+  };
+
+  // Tu recarga AJAX real
+  async function applyFilters() {
+    dbg('applyFilters() disparada');
+    // TODO: llama tu función de recarga de productos
+  }
+
+  // Escapar seguro
+  const esc = (s) => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+
+  // Lee valores marcados por nombre base (sin [])
+  const getCheckedValues = (name) =>
+    [...document.querySelectorAll(`input[name="${name}[]"]:checked`)].map(el => el.value);
+
+  let isRendering = false; // evita reentradas por observer
+
+  function renderActiveFilters() {
+    if (isRendering) return;
+    isRendering = true;
+
+    const container = document.getElementById('active-filters');
+    if (!container) { isRendering = false; return; }
+
+    const marcas = getCheckedValues('marca');
+    const anios  = getCheckedValues('anio');
+
+    let html = '';
+    for (const v of marcas) {
+      html += `
+        <div class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300"
+             data-type="marca" data-value="${esc(v)}" title="Quitar filtro">
+          <p>${esc(v)}</p>
+          <svg class="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M6 18 17.94 6M18 18 6.06 6"/>
+          </svg>
+        </div>`;
+    }
+    for (const v of anios) {
+      html += `
+        <div class="bg-gray-200 px-2 py-1 text-sm rounded-md flex items-center gap-2 cursor-pointer hover:bg-gray-300"
+             data-type="anio" data-value="${esc(v)}" title="Quitar filtro">
+          <p>${esc(v)}</p>
+          <svg class="w-4 h-4 text-gray-800" viewBox="0 0 24 24" fill="none">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M6 18 17.94 6M18 18 6.06 6"/>
+          </svg>
+        </div>`;
+    }
+
+    if (marcas.length + anios.length > 0) {
+      html += `
+        <button type="button" id="clear-all-filters"
+                class="bg-gray-800 text-white px-3 py-1 text-xs rounded-md hover:brightness-110">
+          Clear all
+        </button>`;
+    }
+
+    container.innerHTML = html;
+    isRendering = false;
+  }
+
+  // Quitar un filtro
+  function removeFilter(type, value) {
+    // CSS.escape fallback
+    const escCss = window.CSS && CSS.escape ? CSS.escape(value) : value.replace(/"/g, '\\"');
+    const sel = `input[name="${type}[]"][value="${escCss}"]`;
+    const input = document.querySelector(sel);
+    if (input && input.checked) {
+      input.checked = false;
+      input.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+  }
+
+  function clearAllFilters() {
+    document.querySelectorAll(
+      'input[name="marca[]"]:checked, input[name="anio[]"]:checked'
+    ).forEach(el => {
+      el.checked = false;
+      el.dispatchEvent(new Event('change', { bubbles: true }));
+    });
+  }
+
+  // Delegación: clic en chips
+  document.addEventListener('click', (e) => {
+    const chip = e.target.closest('#active-filters [data-type][data-value]');
+    if (chip) {
+      removeFilter(chip.getAttribute('data-type'), chip.getAttribute('data-value'));
+      return;
+    }
+    const clearBtn = e.target.closest('#clear-all-filters');
+    if (clearBtn) {
+      clearAllFilters();
+    }
+  });
+
+  // Cambios en checkboxes
+  const onFiltersChanged = debounce(() => {
+    renderActiveFilters();
+    applyFilters();
+  }, 80);
+
+  document.addEventListener('change', (e) => {
+    if (e.target.matches('input[name="marca[]"], input[name="anio[]"]')) {
+      onFiltersChanged();
+    }
+  });
+
+  // 🔒 OBSERVA SOLO EL PANEL DE FILTROS, NO EL BODY
+  const panel = document.getElementById('filters-panel');
+  if (panel && 'MutationObserver' in window) {
+    const mo = new MutationObserver((mutations) => {
+      // Si cambian inputs/labels dentro del panel, re-renderiza (debounce)
+      const relevant = mutations.some(m =>
+        (m.addedNodes && m.addedNodes.length) || (m.removedNodes && m.removedNodes.length)
+      );
+      if (relevant) onFiltersChanged();
+    });
+    mo.observe(panel, { childList: true, subtree: true });
+  }
+
+  // Render inicial
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', renderActiveFilters);
+  } else {
+    renderActiveFilters();
+  }
+})();
+
+
+
 // Productos de la /tienda
 
 // ===== Config =====
@@ -813,7 +1376,8 @@ function renderGridFromData(list = []) {
     html += `
     <div class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-3 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
       <div class="flex justify-end -mb-1">
-        <button type="button" class="favorito-btn" data-id="${id}" aria-label="Marcar favorito">
+        
+      <button type="button" class="favorito-btn" data-id="${id}" aria-label="Marcar favorito">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
             stroke-width="1.5" stroke="currentColor"
             class="w-7 h-7 sm:w-6 sm:h-6 transition-all duration-200 text-gray-600">
@@ -821,6 +1385,8 @@ function renderGridFromData(list = []) {
               d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
           </svg>
         </button>
+
+
       </div>
       <img src="${img}" alt="${nombre.replace(
       /"/g,
@@ -832,14 +1398,15 @@ function renderGridFromData(list = []) {
       <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">USD ${precio}</p>
       <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
 
-      <form method="post">
-                                                    <input type="hidden" name="id_producto"
-                                                        value="${id}">
-                                                    <button type="submit" name="agregar_carrito"
-                                                        class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base">
-                                                        BUY NOW
-                                                    </button>
-                                                </form>
+     
+      <!-- Botón Comprar (AJAX al carrito) -->
+      <button type="button"
+              class="btn-secondary inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-sm sm:text-base add-to-cart"
+              data-id="${id}"
+              data-qty="1">
+        BUY NOW
+      </button>
+                                               
 
 
 
@@ -868,9 +1435,8 @@ function renderPagination(total, currentPage) {
     current <= 1 ? "disabled:opacity-50 disabled:cursor-not-allowed" : "";
   html += `
     <button data-page="${Math.max(1, current - 1)}"
-      class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledPrev}" ${
-    current <= 1 ? "disabled" : ""
-  }>
+      class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledPrev}" ${current <= 1 ? "disabled" : ""
+    }>
       <svg class="w-4 h-4 sm:mr-2 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
       </svg>
@@ -921,9 +1487,8 @@ function renderPagination(total, currentPage) {
       : "";
   html += `
     <button data-page="${Math.min(totalPages, current + 1)}"
-      class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledNext}" ${
-    current >= totalPages ? "disabled" : ""
-  }>
+      class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disabledNext}" ${current >= totalPages ? "disabled" : ""
+    }>
       <span class="hidden sm:inline font-medium">Siguiente</span>
       <svg class="w-4 h-4 sm:ml-2 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -1019,8 +1584,12 @@ document.addEventListener("DOMContentLoaded", () =>
   cargarProductos({ page: 1 })
 );
 
-// Funcion envio tipo ajax para el form de contactenos
 
+
+
+
+
+// Funcion envio tipo ajax para el form de contactenos
 (function () {
   const $ = (sel) => document.querySelector(sel);
 
@@ -1112,3 +1681,5 @@ document.addEventListener("DOMContentLoaded", () =>
     }
   });
 })();
+
+
