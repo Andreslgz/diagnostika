@@ -15,6 +15,3 @@ $database = new Medoo([
 ]);
 
 ?>
-<script>
-    window.BASE_DIR = <?php echo json_encode($url); ?>;
-</script>

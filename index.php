@@ -234,7 +234,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-10 w-full gap-4 sm:gap-0">
                     <h2 class="uppercase font-extrabold xl:text-3xl lg:text-2xl md:text-xl text-base">
                         Most in-demand software </h2>
-                    <a href="<?php echo $url;?>/tienda"
+                    <a href="<?php echo $url; ?>/tienda"
                         class="btn-primary rounded px-4 sm:px-6 lg:px-8 py-2 uppercase font-bold text-sm sm:text-base xl:text-lg flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 self-start sm:self-auto">
                         SEE ALL
                         <img src="assets/icons/svg/tabler--chevron-right.svg" alt="" />
@@ -305,32 +305,32 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                 <!-- MARCAS -->
 
                 <section id="brands-grid"
-         data-endpoint="/ajax_productos.php"
-         class="mx-auto max-w-screen-xl grid xl:grid-cols-6 grid-cols-3 xl:gap-6 gap-4 mt-12">
-  <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="CAT">
-    <img src="assets/images/logos/logo1.svg" alt="CAT" />
-  </button>
-  <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="JCB">
-    <img src="assets/images/logos/logo2.svg" alt="JCB" />
-  </button>
-  <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="CUMMINS">
-    <img src="assets/images/logos/logo3.svg" alt="CUMMINS" />
-  </button>
-  <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="PACCAR">
-    <img src="assets/images/logos/logo4.svg" alt="PACCAR" />
-  </button>
-  <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="NOREGON">
-    <img src="assets/images/logos/logo5.svg" alt="NOREGON" />
-  </button>
-  <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="NEXIQ">
-    <img src="assets/images/logos/logo6.svg" alt="NEXIQ" />
-  </button>
-</section>
+                    data-endpoint="/ajax_productos.php"
+                    class="mx-auto max-w-screen-xl grid xl:grid-cols-6 grid-cols-3 xl:gap-6 gap-4 mt-12">
+                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="CAT">
+                        <img src="assets/images/logos/logo1.svg" alt="CAT" />
+                    </button>
+                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="JCB">
+                        <img src="assets/images/logos/logo2.svg" alt="JCB" />
+                    </button>
+                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="CUMMINS">
+                        <img src="assets/images/logos/logo3.svg" alt="CUMMINS" />
+                    </button>
+                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="PACCAR">
+                        <img src="assets/images/logos/logo4.svg" alt="PACCAR" />
+                    </button>
+                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="NOREGON">
+                        <img src="assets/images/logos/logo5.svg" alt="NOREGON" />
+                    </button>
+                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="NEXIQ">
+                        <img src="assets/images/logos/logo6.svg" alt="NEXIQ" />
+                    </button>
+                </section>
 
-<!-- El contenedor que recibe los <li> -->
-<ul id="productos-lista" class="splide__list">
-  <!-- tus <li> iniciales -->
-</ul>
+                <!-- El contenedor que recibe los <li> -->
+                <ul id="productos-lista" class="splide__list">
+                    <!-- tus <li> iniciales -->
+                </ul>
 
             </div>
         </section>

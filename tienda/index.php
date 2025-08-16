@@ -2,17 +2,6 @@
 session_start();
 require_once __DIR__ . '/../includes/db.php';
 
-$favoritos_usuario = [];
-
-if (isset($_SESSION['usuario_id'])) {
-    $favoritos = $database->select("favoritos", "id_producto", [
-        "id_usuario" => $_SESSION['usuario_id']
-    ]);
-
-    if ($favoritos) {
-        $favoritos_usuario = $favoritos; // ya es array de IDs
-    }
-}
 
 // Consulta: contar cuántos productos tiene cada marca
 $marcas = $database->select(

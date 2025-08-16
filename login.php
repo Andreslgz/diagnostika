@@ -50,7 +50,7 @@ if ($usuario && password_verify($password, $usuario['password_hash'])) {
     $_SESSION['usuario_id'] = (int)$usuario['id_usuario'];
 
     // Redirección según carrito
-    $redirectUrl = (!empty($_SESSION['carrito'])) ? 'checkout.php' : 'index.php';
+    $redirectUrl = (!empty($_SESSION['carrito'])) ? 'carrito.php' : 'index.php';
 
     http_response_code(200);
     echo json_encode([

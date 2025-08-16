@@ -2,75 +2,6 @@
 session_start();
 require_once __DIR__ . '/../includes/db.php';
 
-// Inicializar carrito si no existe
-if (!isset($_SESSION['carrito'])) {
-    $_SESSION['carrito'] = [];
-}
-
-// Si se agrega al carrito
-if (isset($_POST['agregar_carrito'])) {
-    $id = intval($_POST['id_producto']);
-    if (isset($_SESSION['carrito'][$id])) {
-        $_SESSION['carrito'][$id]['cantidad']++;
-    } else {
-        $prod = $database->get('productos', '*', ['id_producto' => $id]);
-        if ($prod) {
-            $_SESSION['carrito'][$id] = [
-                'nombre' => $prod['nombre'],
-                'precio' => $prod['precio'],
-                'imagen' => $prod['imagen'],
-                'cantidad' => 1
-            ];
-        }
-    }
-    // ✅ Agregar mensaje de confirmación
-    $_SESSION['mensaje_carrito'] = "✅ Producto añadido al carrito correctamente";
-    header("Location: index.php");
-    exit;
-}
-
-$productos = $database->select('productos', '*', [
-    "ORDER" => ["id_producto" => "DESC"],
-    "LIMIT" => 12
-]);
-
-$favoritos_usuario = [];
-
-if (isset($_SESSION['usuario_id'])) {
-    $favoritos = $database->select("favoritos", "id_producto", [
-        "id_usuario" => $_SESSION['usuario_id']
-    ]);
-
-    if ($favoritos) {
-        $favoritos_usuario = $favoritos; // ya es array de IDs
-    }
-}
-
-// Consulta: contar cuántos productos tiene cada marca
-$marcas = $database->select(
-    "caracteristicas_productos",
-    [
-        "marca",
-        "cantidad" => Medoo\Medoo::raw("COUNT(marca)")
-    ],
-    [
-        "GROUP" => "marca",
-        "ORDER" => ["marca" => "ASC"]
-    ]
-);
-
-// Consulta: contar cuántos productos tiene cada año
-$anios = $database->select(
-    "caracteristicas_productos",
-    [
-        "anio",
-        "cantidad" => Medoo\Medoo::raw("COUNT(anio)")
-    ],
-    [
-        "GROUP" => "anio",
-        "ORDER" => ["anio" => "DESC"] // Ordena de más reciente a más antiguo
-    ]
-);
 
 
 ?>
@@ -227,10 +158,10 @@ $anios = $database->select(
                                                 <div class="flex-shrink-0">
                                                     <div class="w-[80px] h-[80px]">
                                                         <img src="<?php
-                                                        echo !empty($item['imagen'])
-                                                            ? rtrim($url, '/') . '/uploads/' . htmlspecialchars($item['imagen'], ENT_QUOTES, 'UTF-8')
-                                                            : 'https://placehold.co/600x400/png';
-                                                        ?>" alt="<?php echo htmlspecialchars($item['nombre']); ?>"
+                                                                    echo !empty($item['imagen'])
+                                                                        ? rtrim($url, '/') . '/uploads/' . htmlspecialchars($item['imagen'], ENT_QUOTES, 'UTF-8')
+                                                                        : 'https://placehold.co/600x400/png';
+                                                                    ?>" alt="<?php echo htmlspecialchars($item['nombre']); ?>"
                                                             class="w-full h-full object-cover rounded-lg border border-gray-300">
                                                     </div>
                                                 </div>
@@ -248,7 +179,7 @@ $anios = $database->select(
                                                             class="js-remove-item text-gray-600 hover:text-red-600 transition-colors ml-2"
                                                             aria-label="Eliminar <?php echo htmlspecialchars($item['nombre']); ?>"
                                                             title="Eliminar" data-index="<?php echo $index; ?>" <?php if (!empty($item['id_producto'])): ?>
-                                                                data-id="<?php echo (int) $item['id_producto']; ?>" <?php endif; ?>>
+                                                            data-id="<?php echo (int) $item['id_producto']; ?>" <?php endif; ?>>
                                                             <svg class="w-5 h-5" fill="none" stroke="currentColor"
                                                                 viewBox="0 0 24 24" aria-hidden="true">
                                                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -265,21 +196,20 @@ $anios = $database->select(
                                                         </span>
 
                                                         <!-- Controles de cantidad -->
-                                                        <div
-                                                            class="flex items-center border border-gray-300 rounded-md bg-white">
+                                                        <div class="flex items-center border border-gray-300 rounded-md">
                                                             <button onclick="updateQuantity(<?php echo $index; ?>, -1)"
-                                                                class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-lg font-medium">
-                                                                −
-                                                            </button>
-                                                            <span
-                                                                class="w-12 text-center text-gray-800 font-medium text-base border-x border-gray-300 py-1">
-                                                                <?php echo $item['cantidad']; ?>
+                                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">−</button>
+
+                                                            <span class="xl:w-12 w-8 text-center text-gray-800 font-medium xl:text-lg text-base border-x border-gray-300"
+                                                                data-qty
+                                                                id="qty-<?php echo $index; ?>">
+                                                                <?php echo (int)$item['cantidad']; ?>
                                                             </span>
+
                                                             <button onclick="updateQuantity(<?php echo $index; ?>, 1)"
-                                                                class="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors text-lg font-medium">
-                                                                +
-                                                            </button>
+                                                                class="xl:w-6 xl:h-6 w-4 h-4 flex items-center justify-center text-gray-600 hover:bg-gray-100 transition-colors xl:text-xl font-medium">+</button>
                                                         </div>
+
                                                     </div>
                                                 </div>
                                             </div>
@@ -315,45 +245,40 @@ $anios = $database->select(
 
 
                     <div>
-                        <div class="flex justify-between items-center mt-4 w-full text-lg">
-                            <p>SUBTOTAL</p>
-                            <p>USD <?php echo number_format($total, 2); ?></p>
-                        </div>
-                        <div class="flex justify-between items-center mt-4 w-full text-lg">
-                            <p>DISCOUNTS APPLIED</p>
-                            <p>- USD <?php echo number_format($total, 2); ?></p>
-                        </div>
-                        <div class="flex justify-between items-center mt-4 w-full text-lg">
-                            <div>
-                                <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900 ">
-                                    Enter a gift card, voucher or promotional code </label>
-                                <div class="flex max-w-md items-center gap-4">
-                                    <input type="text" id="voucher"
-                                        class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 "
-                                        placeholder="" required />
-                                    <button type="button"
-                                        class="flex items-center justify-center rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 ">Apply</button>
-                                </div>
+                        <div id="order-summary">
+                            <div class="flex justify-between items-center mt-4 w-full text-lg">
+                                <p>SUBTOTAL</p>
+                                <p id="subtotalAmount">USD 0.00</p>
                             </div>
-                            <p>- USD <?php echo number_format($total, 2); ?></p>
-                        </div>
-                        <hr class="my-6 border-gray-400">
-                        <div class="flex justify-between items-center mt-4 w-full text-lg">
-                            <p class="font-bold">TOTAL</p>
-                            <p>USD <?php echo number_format($total, 2); ?></p>
-                        </div>
-                        <div class="mt-4 flex items-center gap-4">
-                            <img src="/assets/icons/svg/alert.svg" alt="">
-                            <p class="text-sm text-gray-400">
-                                Total before commissions generated by the following payment methods: PayPal, MoneyGram
-                                and Western Union
-                            </p>
-                        </div>
-                        <button class="btn-secondary rounded-lg shadow-lg w-full text-center py-2.5 mt-8 font-bold">
-                            PLACE AN ORDER!
-                        </button>
-                    </div>
 
+                            <div class="flex justify-between items-center mt-4 w-full text-lg">
+                                <p>DISCOUNTS APPLIED</p>
+                                <p id="discountsAppliedAmount">- USD 0.00</p>
+                            </div>
+
+                            <div class="flex justify-between items-center mt-4 w-full text-lg">
+                                <div>
+                                    <label for="voucher" class="mb-2 block text-sm font-medium text-gray-900">
+                                        Enter a gift card, voucher or promotional code
+                                    </label>
+                                    <div class="flex max-w-md items-center gap-4">
+                                        <input type="text" id="voucher" class="block w-full rounded-lg border p-2.5 text-sm" />
+                                        <button type="button" id="apply-voucher-btn" class="rounded-lg bg-blue-700 px-5 py-2.5 text-sm text-white">
+                                            Apply
+                                        </button>
+                                    </div>
+                                </div>
+                                <p id="voucherDiscountAmount">- USD 0.00</p>
+                            </div>
+
+                            <hr class="my-6 border-gray-400" />
+
+                            <div class="flex justify-between items-center mt-4">
+                                <span class="text-lg font-bold">TOTAL:</span>
+                                <span id="cart-total" class="text-lg font-bold text-gray-800">USD 0.00</span>
+                            </div>
+                        </div>
+                    </div>
 
                 </div>
             </div>
@@ -383,7 +308,9 @@ $anios = $database->select(
 
     <!-- SCRIPTS en este orden -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
+    <script>
+        AOS.init();
+    </script>
 
     <!-- Splide.js DEBE ir antes del modal script -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>

@@ -1,37 +1,45 @@
 <?php
-// declare(strict_types=1); // mejor desactivado mientras depuras
-
-//header('Content-Type: application/json; charset=utf-8');
+// mientras depuras puedes poner display_errors a '1'
 error_reporting(E_ALL);
-ini_set('display_errors', '0'); // para depurar pon '1' temporalmente
+ini_set('display_errors', '0');
 session_start();
 
-// Evita que cualquier salida previa rompa el JSON
-if (ob_get_level() === 0) { ob_start(); }
-@ob_clean();
+// Salida será SIEMPRE JSON
+header('Content-Type: application/json; charset=utf-8');
 
-require_once __DIR__ . '../../includes/db.php'; // verifica ruta
+// Evita que cualquier salida previa rompa el JSON
+while (ob_get_level() > 0) { @ob_end_clean(); }
+ob_start();
+
+// Conexión a BD (ajusta si tu estructura difiere)
+require_once __DIR__ . '/../includes/db.php';
 
 function out(array $arr, int $code = 200): void {
   http_response_code($code);
-  if (ob_get_length() !== false) { @ob_clean(); }
+  @ob_clean();
   echo json_encode($arr, JSON_UNESCAPED_UNICODE);
   exit;
 }
 
+// --- Favoritos del usuario actual ---
+$favoritos_usuario = [];
+if (!empty($_SESSION['usuario_id'] ?? null)) {
+  $favs = $database->select('favoritos', 'id_producto', [
+    'id_usuario' => (int)$_SESSION['usuario_id']
+  ]);
+  if (is_array($favs)) {
+    $favoritos_usuario = array_values(array_map('intval', $favs));
+  }
+}
+
 /**
- * Reemplaza placeholders :param por valores con comillas para depuración.
- * NO ejecutar el resultado; es solo para leerlo.
+ * Reemplaza placeholders :param por valores para depuración.
+ * (Solo lectura, no ejecutar el SQL resultante)
  */
 function buildDebugSQL(string $sql, array $params): string {
-  // Ordenar por longitud descendente para evitar que :m1 reemplace dentro de :m10
-  uksort($params, function($a, $b) { return strlen($b) <=> strlen($a); });
+  uksort($params, fn($a,$b) => strlen($b) <=> strlen($a));
   foreach ($params as $k => $v) {
-    if (is_numeric($v)) {
-      $rep = (string)$v;
-    } else {
-      $rep = "'" . addslashes((string)$v) . "'";
-    }
+    $rep = is_numeric($v) ? (string)$v : "'" . addslashes((string)$v) . "'";
     $sql = str_replace($k, $rep, $sql);
   }
   return $sql;
@@ -42,12 +50,11 @@ try {
     out(['ok' => false, 'msg' => 'Conexión no inicializada ($database)'], 500);
   }
 
-  // ---- DEBUG FLAG ----
+  // Flag de debug (GET/POST ?debug=1)
   $DEBUG = !empty($_POST['debug']) || !empty($_GET['debug']);
 
   // -------- Input --------
-  $page    = (int)($_POST['page'] ?? $_GET['page'] ?? 1);
-  $page    = max(1, $page);
+  $page    = max(1, (int)($_POST['page'] ?? $_GET['page'] ?? 1));
   $perPage = 12;
 
   // Filtros desde POST o GET
@@ -55,12 +62,11 @@ try {
   $anios   = $_POST['anio']  ?? $_GET['anio']  ?? [];
 
   // Normalizar arrays y limpiar vacíos
-  $marcas = array_values(array_filter((array)$marcas, function($v){ return $v !== '' && $v !== null; }));
-  $anios  = array_values(array_filter((array)$anios,  function($v){ return $v !== '' && $v !== null; }));
+  $marcas = array_values(array_filter((array)$marcas, fn($v) => $v !== '' && $v !== null));
+  $anios  = array_values(array_filter((array)$anios,  fn($v) => $v !== '' && $v !== null));
 
   $offset = ($page - 1) * $perPage;
-  $limit  = max(1, (int)$perPage);
-  $offset = max(0, (int)$offset);
+  $limit  = $perPage;
 
   // -------- Placeholders de filtros --------
   $params  = [];
@@ -93,7 +99,7 @@ try {
   if ($anioIn  !== '') $whereFilters[] = "c.anio  IN ($anioIn)";
   $filtersSQL = $whereFilters ? implode(' AND ', $whereFilters) : '1=1';
 
-  // -------- SQL base (estricto al filtrar) --------
+  // -------- SQL base --------
   if (empty($marcas) && empty($anios)) {
     // Sin filtros: todos los productos (incluye sin características)
     $sqlBase = "
@@ -102,7 +108,7 @@ try {
       WHERE 1=1
     ";
   } else {
-    // Con filtros: SOLO productos con características que coinciden
+    // Con filtros: solo productos con características que coinciden
     $sqlBase = "
       FROM productos p
       INNER JOIN caracteristicas_productos c ON c.id_producto = p.id_producto
@@ -119,6 +125,7 @@ try {
   }
   $rowTotal = $stmtTotal->fetch(PDO::FETCH_ASSOC) ?: ['total' => 0];
   $total    = (int)($rowTotal['total'] ?? 0);
+  $totalPages = max(1, (int)ceil($total / $perPage));
 
   // -------- Datos --------
   $sqlData = "
@@ -142,27 +149,28 @@ try {
     error_log('[PARAMS] ' . print_r($params, true));
   }
 
-  /// -------- Respuesta --------
-$payload = [
-  'ok'              => true,
-  'data'            => $productos,   // <- array crudo de productos
-  'total'           => $total,
-  'page'            => $current ?? $page,
-  'pages'           => $totalPages,
-  'grid_html'       => $cards,       // <- HTML renderizado del grid
-  'pagination_html' => $pagination   // <- HTML de la paginación
-];
-
-// Si activas ?debug=1, también te envío SQL ligado y params
-if (!empty($DEBUG)) {
-  $payload['debug'] = [
-    'sqlDataBound'  => buildDebugSQL($sqlData,  $params),
-    'sqlTotalBound' => buildDebugSQL($sqlTotal, $params),
-    'params'        => $params
+  // -------- Respuesta --------
+  $payload = [
+    'ok'              => true,
+    'data'            => $productos,
+    'total'           => $total,
+    'page'            => $page,
+    'pages'           => $totalPages,
+    'grid_html'       => '',    // si en algún momento envías HTML del grid, colócalo aquí
+    'pagination_html' => '',    // si envías HTML de paginación, aquí
+    'favorites'       => $favoritos_usuario,
   ];
-}
 
-out($payload);
+  // Si activas ?debug=1, también envío SQL ligado y params
+  if ($DEBUG) {
+    $payload['debug'] = [
+      'sqlDataBound'  => buildDebugSQL($sqlData,  $params),
+      'sqlTotalBound' => buildDebugSQL($sqlTotal, $params),
+      'params'        => $params
+    ];
+  }
+
+  out($payload);
 
 } catch (Throwable $e) {
   error_log('[ajax_productos] ' . $e->getMessage() . ' @ ' . $e->getFile() . ':' . $e->getLine());
@@ -170,9 +178,6 @@ out($payload);
     'ok'    => false,
     'msg'   => 'Error interno',
     'detail'=> $e->getMessage(),
-    'debug' => (!empty($_POST['debug']) || !empty($_GET['debug'])) ? [
-      'trace' => $e->getTrace()
-    ] : null
+    'debug' => (!empty($_POST['debug']) || !empty($_GET['debug'])) ? ['trace' => $e->getTrace()] : null
   ], 500);
 }
-?>
