@@ -121,59 +121,70 @@ $anios = $database->select(
                     <div>
                         <div class="flex justify-between w-full mb-5">
                             <h1 class="text-xl font-bold">
-                                Register
+                                <?php if (isset($_SESSION['usuario_id'])): ?>
+                                    <?php $usuarioActual = $database->get('usuarios', ['nombre'], ['id_usuario' => $_SESSION['usuario_id']]); ?>
+                                    Welcome back, <span
+                                        class="text-indigo-600"><?php echo htmlspecialchars($usuarioActual['nombre']); ?></span>!
+                                <?php else: ?>
+                                    Register
+                                <?php endif; ?>
                             </h1>
-                            <div class="flex flex-row gap-2 items-center justify-center">
-                                <p class="xl:text-base text-xs text-gray-700">Already have an account?</p>
-                                <button data-modal-target="authentication-modal"
-                                    data-modal-toggle="authentication-modal" data-active-tab="login"
-                                    class="font-semibold xl:text-base text-xs">
-                                    Sign In
-                                </button>
-                            </div>
+                            <?php if (!isset($_SESSION['usuario_id'])): ?>
+                                <div class="flex flex-row gap-2 items-center justify-center">
+                                    <p class="xl:text-base text-xs text-gray-700">Already have an account?</p>
+                                    <button data-modal-target="authentication-modal"
+                                        data-modal-toggle="authentication-modal" data-active-tab="login"
+                                        class="font-semibold xl:text-base text-xs">
+                                        Sign In
+                                    </button>
+                                </div>
+                            <?php endif; ?>
                         </div>
-                        <form action="" class="space-y-4">
-                            <div>
-                                <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Full
-                                    name</label>
-                                <div class="relative">
-                                    <input name="nombre_completo" type="text"
-                                        class="error:border-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        placeholder="Juan Pérez" required />
-                                </div>
-                            </div>
-                            <div class="grid md:grid-cols-2 gap-4">
+
+                        <?php if (!isset($_SESSION['usuario_id'])): ?>
+                            <form action="" class="space-y-4">
                                 <div>
-                                    <label
-                                        class="block mb-2 text-sm xl:text-base font-medium text-gray-900">País</label>
-                                    <select name="pais"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                        required>
-                                        <option value="">Elige un país</option>
-                                        <option value="Estados Unidos">Estados Unidos +1</option>
-                                        <option value="Perú">Perú +51</option>
-                                        <option value="Francia">Francia +33</option>
-                                        <option value="Alemania">Alemania +49</option>
-                                    </select>
+                                    <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Full
+                                        name</label>
+                                    <div class="relative">
+                                        <input name="nombre_completo" type="text"
+                                            class="error:border-red-500 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            placeholder="Juan Pérez" required />
+                                    </div>
+                                </div>
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label
+                                            class="block mb-2 text-sm xl:text-base font-medium text-gray-900">País</label>
+                                        <select name="pais"
+                                            class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            required>
+                                            <option value="">Elige un país</option>
+                                            <option value="Estados Unidos">Estados Unidos +1</option>
+                                            <option value="Perú">Perú +51</option>
+                                            <option value="Francia">Francia +33</option>
+                                            <option value="Alemania">Alemania +49</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label
+                                            class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Teléfono</label>
+                                        <input name="telefono" type="text"
+                                            class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+                                            placeholder="123-456-7890" />
+                                    </div>
                                 </div>
                                 <div>
-                                    <label
-                                        class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Teléfono</label>
-                                    <input name="telefono" type="text"
+                                    <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Email</label>
+                                    <input name="email" type="email"
                                         class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                        placeholder="123-456-7890" />
+                                        placeholder="ejemplo@correo.com" required />
                                 </div>
-                            </div>
-                            <div>
-                                <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Email</label>
-                                <input name="email" type="email"
-                                    class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-                                    placeholder="ejemplo@correo.com" required />
-                            </div>
-                            <button class="btn-primary w-full py-2.5 font-semibold text-center shadow-lg rounded-lg ">
-                                Register
-                            </button>
-                        </form>
+                                <button class="btn-primary w-full py-2.5 font-semibold text-center shadow-lg rounded-lg ">
+                                    Register
+                                </button>
+                            </form>
+                        <?php endif; ?>
                     </div>
                     <!-- CARRITO -->
                     <div class="mt-10">
