@@ -359,26 +359,7 @@ $anios = $database->select(
                                                 class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 Newest </a>
                                         </li>
-                                        <li>
-                                            <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                                                Increasing price </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                                                Decreasing price </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                                                No. reviews </a>
-                                        </li>
-                                        <li>
-                                            <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                                                Discount % </a>
-                                        </li>
+                                        
                                     </ul>
                                 </div>
                             </div>
@@ -389,11 +370,11 @@ $anios = $database->select(
 
                         <nav id="paginacion" class="flex items-center justify-center py-4 mt-12"
                             aria-label="Paginación"></nav>
-                        <!-- Indicador de página actual (mejor para móvil) -->
+                        <!-- Indicador de página actual (mejor para móvil) 
                         <div class="text-center mt-3 text-sm text-gray-600">
                             Página <span class="font-semibold text-gray-900">1</span> de <span
                                 class="font-semibold">68</span>
-                        </div>
+                        </div>-->
                     </div>
                 </div>
                 <!-- Mobile Drawer -->

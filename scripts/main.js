@@ -1197,6 +1197,137 @@ document.addEventListener("click", async (ev) => {
   }
 });
 
+
+//Productos Home / Filtro / Marcas
+
+// === 1) Función global para refrescar Splide ===
+function replaceSlidesAndRefresh(html) {
+  const list = document.getElementById('productos-lista');
+  if (!list) return;
+
+  // Inyecta el HTML de productos devuelto por AJAX
+  list.innerHTML = html;
+
+  if (window.splideInstance) {
+    try {
+      window.splideInstance.refresh();
+      window.splideInstance.go(0);
+      window.splideInstance.Components.Layout?.reposition?.();
+      window.dispatchEvent(new Event('resize'));
+    } catch (e) {
+      console.error("Error al refrescar Splide, remontando...", e);
+      try { window.splideInstance.destroy(true); } catch(_) {}
+      window.splideInstance = new Splide('#products-carousel', window.__splideOptions || {}).mount();
+      window.splideInstance.go(0);
+    }
+  }
+}
+
+// === 2) Inicialización de Splide ===
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('products-carousel');
+  if (!el) return;
+
+  const options = {
+    type: 'slide',
+    perPage: 4,
+    gap: '1rem',
+    pagination: false,
+    arrows: true,
+    breakpoints: {
+      1024: { perPage: 3 },
+      768:  { perPage: 2 },
+      480:  { perPage: 1 },
+    },
+  };
+
+  window.__splideOptions = options;
+  window.splideInstance  = new Splide('#products-carousel', options).mount();
+});
+
+// === 3) Ejemplo de uso en tu filtro de marca ===
+document.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".brand-tile");
+  if (!btn) return;
+
+  const marca = btn.dataset.brand;
+  const fd = new FormData();
+  fd.append("marca", marca);
+
+  const res = await fetch("ajax_productos.php", { method: "POST", body: fd });
+  const html = await res.text();
+
+  // ⬇️ Aquí llamas a la función
+  replaceSlidesAndRefresh(html);
+});
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  const grid = document.getElementById('brands-grid');
+  const list = document.getElementById('productos-lista');
+  if (!grid || !list) return;
+
+  // Usa el endpoint en raíz
+  const ENDPOINT = grid.getAttribute('data-endpoint') || '/ajax_productos.php';
+
+  let inFlight = false; // evita dobles cargas por doble click
+
+  async function cargarProductosPorMarca(marca) {
+    if (inFlight) return;
+    inFlight = true;
+
+    list.classList.add('opacity-50','pointer-events-none');
+
+    try {
+      const res = await fetch(ENDPOINT, {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+          'X-Requested-With': 'XMLHttpRequest',
+          'Accept': 'text/html'
+        },
+        body: new URLSearchParams({ marca, _t: Date.now() }).toString(),
+        cache: 'no-store'
+      });
+
+      const html = await res.text();
+      if (!res.ok) throw new Error(html.slice(0,200));
+
+      list.innerHTML = html;
+
+      // Si usas Splide:
+      if (window.splideInstance?.refresh) window.splideInstance.refresh();
+     
+
+    } catch (err) {
+      console.error(err);
+      alert('No se pudieron cargar productos para ' + marca);
+    } finally {
+      list.classList.remove('opacity-50','pointer-events-none');
+      inFlight = false;
+    }
+  }
+
+  // --- ÚNICO listener (elimina cualquier otro listener delegado que tuvieras) ---
+  grid.querySelectorAll('.brand-tile[data-brand]').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // evita burbujeo por si hay otros listeners arriba
+
+      const marca = btn.dataset.brand;
+      if (!marca) return;
+
+      // Marca activo
+      grid.querySelectorAll('.brand-tile').forEach(el => el.classList.remove('ring-2','ring-amber-500'));
+      btn.classList.add('ring-2','ring-amber-500');
+
+      cargarProductosPorMarca(marca);
+    }, { passive: true });
+  });
+});
+
 //Filtros
 
 (function () {
@@ -1280,6 +1411,7 @@ document.addEventListener("click", async (ev) => {
       input.dispatchEvent(new Event('change', { bubbles: true }));
     }
   }
+
 
   function clearAllFilters() {
     document.querySelectorAll(
@@ -1681,5 +1813,4 @@ document.addEventListener("DOMContentLoaded", () =>
     }
   });
 })();
-
 

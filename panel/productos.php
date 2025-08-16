@@ -358,32 +358,31 @@ $categorias = $database->select("categorias", [
                                                         <?php endif; ?>
 
                                                         <!-- Modal moderno para Características del Producto -->
-                                                        <div class="modal fade" id="modalCaracteristicas" tabindex="-1"
-                                                            aria-labelledby="modalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered modal-lg">
-                                                                <div class="modal-content border-0 shadow-lg rounded-4">
-                                                                    <div
-                                                                        class="modal-header bg-gradient bg-info text-white rounded-top-4 py-3 d-flex align-items-center justify-content-between">
-                                                                        <h5 class="modal-title fw-bold mb-0 d-flex align-items-center"
-                                                                            id="modalLabel">
-                                                                            <i class="fe fe-settings me-2 fs-4"></i>
-                                                                            Características del producto
-                                                                        </h5>
-                                                                        <button type="button"
-                                                                            class="btn btn-sm btn-outline-light d-flex align-items-center"
-                                                                            data-bs-dismiss="modal">
-                                                                            <i class="fe fe-x me-1"></i> Cerrar
-                                                                        </button>
-                                                                    </div>
-                                                                    <div class="modal-body p-0" id="modalBodyContent"
-                                                                        style="height: 80vh;">
-                                                                        <iframe id="iframeCaracteristicas" src=""
-                                                                            frameborder="0"
-                                                                            style="width: 100%; height: 100%; border: none;"></iframe>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
+                                                       <div class="modal fade" id="modalCaracteristicas" tabindex="-1"
+     aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content border-0 shadow-lg rounded-4" style="min-height:90vh;">
+      <div
+        class="modal-header bg-gradient bg-info text-white rounded-top-4 py-3 d-flex align-items-center justify-content-between">
+        <h5 class="modal-title fw-bold mb-0 d-flex align-items-center" id="modalLabel">
+          <i class="fe fe-settings me-2 fs-4"></i>
+          Características del producto
+        </h5>
+        <button type="button"
+                class="btn btn-sm btn-outline-light d-flex align-items-center"
+                data-bs-dismiss="modal">
+          <i class="fe fe-x me-1"></i> Cerrar
+        </button>
+      </div>
+      <div class="modal-body p-0" id="modalBodyContent">
+        <iframe id="iframeCaracteristicas"
+                src=""
+                frameborder="0"
+                style="width: 100%; height: 85vh; border: none;"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
 
 
                                                     </div>

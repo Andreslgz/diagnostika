@@ -101,45 +101,17 @@ $caracteristicas = $database->get("caracteristicas_productos", "*", [
 
     <!-- STYLE CSS -->
     <link href="<?php echo $url; ?>/panel/assets/css/style.css" rel="stylesheet" />
-    <link href="<?php echo $url; ?>/panel/assets/css/dark-style.css" rel="stylesheet" />
-    <link href="<?php echo $url; ?>/panel/assets/css/transparent-style.css" rel="stylesheet">
-    <link href="<?php echo $url; ?>/panel/assets/css/skin-modes.css" rel="stylesheet" />
 
-    <!--- FONT-ICONS CSS -->
-    <link href="<?php echo $url; ?>/panel/assets/css/icons.css" rel="stylesheet" />
 
-    <!-- COLOR SKIN CSS -->
-    <link id="theme" rel="stylesheet" type="text/css" media="all"
-        href="<?php echo $url; ?>/panel/assets/colors/color1.css" />
-
-    <script>
-    // Establecer configuración en localStorage desde PHP
-    const sashConfig = {
-        sashprimaryColor: "#FEB81D",
-        sashlightMode: "true",
-        sashprimaryTransparent: "#000000",
-        sashprimaryBorderColor: "#000000",
-        sashhorizontal: "true",
-        sashprimaryHoverColor: "#FEB81D"
-    };
-
-    Object.entries(sashConfig).forEach(([key, value]) => {
-        localStorage.setItem(key, value);
-    });
-    </script>
 
 </head>
 
-<body class="app sidebar-mini ltr light-mode">
+<body class="">
     <?php
     $id_producto = $_REQUEST['id_producto'] ?? '';
     ?>
 
-    <div class="page">
-        <div class="page-main">
-
-            <div class="row" id="user-profile">
-                <div class="col-lg-12">
+    
 
                     <div class="card">
                         <div class="card-body">
@@ -153,20 +125,40 @@ $caracteristicas = $database->get("caracteristicas_productos", "*", [
 
                                             <div class="row g-3">
                                                 <!-- Primera fila -->
-                                                <div class="col-md-4">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control" name="marca" id="marca"
-                                                            placeholder="Marca"
-                                                            value="<?= $caracteristicas['marca'] ?? '' ?>" required>
+                                                <div class="col-md-6">
+
+                                                    <?php
+                                                    // Leer marcas desde BD
+                                                    $marcas_db = $database->select('marcas', ['id', 'mc_nomb'], [
+                                                        'ORDER' => ['mc_nomb' => 'ASC']
+                                                    ]);
+                                                    ?>
+                                                    <div class="form-group">
                                                         <label for="marca">Marca</label>
+                                                        <div class="input-group">
+                                                            <input list="lista-marcas" type="text" class="form-control" name="marca" id="marca"
+                                                                placeholder="Escribe o selecciona una marca"
+                                                                value="<?= htmlspecialchars($caracteristicas['marca'] ?? '') ?>" required>
+                                                            <button type="button" id="btn-add-marca" class="btn btn-outline-secondary">
+                                                                Agregar
+                                                            </button>
+                                                        </div>
+                                                        <datalist id="lista-marcas">
+                                                            <?php foreach ($marcas_db as $m): ?>
+                                                                <option value="<?= htmlspecialchars(mb_strtoupper($m['mc_nomb'], 'UTF-8')) ?>"></option>
+                                                            <?php endforeach; ?>
+                                                        </datalist>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-4">
-                                                    <div class="form-floating">
-                                                        <input type="text" class="form-control" name="aplicacion"
-                                                            id="aplicacion" placeholder="Aplicación"
+                                                <div class="col-md-6">
+                                                    <div class="mb-3">
+                                                        <label for="aplicacion" class="form-label">Aplicación</label>
+                                                        <input type="text"
+                                                            class="form-control"
+                                                            name="aplicacion"
+                                                            id="aplicacion"
+                                                            placeholder=""
                                                             value="<?= $caracteristicas['aplicacion'] ?? '' ?>">
-                                                        <label for="aplicacion">Aplicación</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-4">
@@ -448,11 +440,7 @@ $caracteristicas = $database->get("caracteristicas_productos", "*", [
 
 
 
-                </div>
-            </div>
 
-        </div>
-    </div>
 
 
     <!-- Modal Ejecutivo Reducido -->
@@ -487,63 +475,153 @@ $caracteristicas = $database->get("caracteristicas_productos", "*", [
     </script>
 
     <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        const form = document.getElementById("formCaracteristicas");
-        const resultadoMensaje = document.getElementById("resultadoMensaje");
-        const resultadoModalEl = document.getElementById("resultadoModal");
+        document.addEventListener("DOMContentLoaded", function() {
+            const form = document.getElementById("formCaracteristicas");
+            const resultadoMensaje = document.getElementById("resultadoMensaje");
+            const resultadoModalEl = document.getElementById("resultadoModal");
 
-        if (form) {
-            form.addEventListener("submit", function(e) {
-                e.preventDefault();
+            if (form) {
+                form.addEventListener("submit", function(e) {
+                    e.preventDefault();
 
-                const formData = new FormData(form);
+                    const formData = new FormData(form);
 
-                fetch("caract_productos.php", {
-                        method: 'POST',
-                        body: formData
-                    })
-                    .then(res => res.json())
-                    .then(data => {
-                        // 1. Cerrar el modal principal si está abierto
-                        const modalCaracteristicasEl = document.getElementById(
-                            "modalCaracteristicas");
-                        const modalInstance = bootstrap.Modal.getInstance(
-                            modalCaracteristicasEl);
-                        if (modalInstance) {
-                            modalInstance.hide();
-                        }
+                    fetch("caract_productos.php", {
+                            method: 'POST',
+                            body: formData
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            // 1. Cerrar el modal principal si está abierto
+                            const modalCaracteristicasEl = document.getElementById(
+                                "modalCaracteristicas");
+                            const modalInstance = bootstrap.Modal.getInstance(
+                                modalCaracteristicasEl);
+                            if (modalInstance) {
+                                modalInstance.hide();
+                            }
 
-                        // 2. Mostrar mensaje en modal resultado tras pequeña pausa
-                        setTimeout(() => {
-                            resultadoMensaje.innerText = data.mensaje;
+                            // 2. Mostrar mensaje en modal resultado tras pequeña pausa
+                            setTimeout(() => {
+                                resultadoMensaje.innerText = data.mensaje;
 
-                            const resultadoModal = new bootstrap.Modal(
-                                resultadoModalEl);
-                            resultadoModal.show();
+                                const resultadoModal = new bootstrap.Modal(
+                                    resultadoModalEl);
+                                resultadoModal.show();
 
-                            // 3. Redireccionar al aceptar
+                                // 3. Redireccionar al aceptar
+                                const cerrarModalBtn = document
+                                    .getElementById(
+                                        "cerrarModalBtn");
+                                cerrarModalBtn.onclick = () => {
+                                    window.top.location =
+                                        "productos.php";
+                                };
+                            }, 400); // Esperar animación del primer modal
+                        })
+                        .catch(err => {
+                            //console.error("Error en la solicitud:", err);
+                            //resultadoMensaje.innerText =
+                            //    "Error al procesar la solicitud.";
+
+                           // const resultadoModal = new bootstrap.Modal(
+                            //    resultadoModalEl);
+                            //resultadoModal.show();
+                            //location.replace('productos.php');
+
+                            resultadoMensaje.innerText = 'Características del producto : La Petición se realizo exito!';
+
+                             const resultadoModal = new bootstrap.Modal(
+                                    resultadoModalEl);
+                                resultadoModal.show();
+
                             const cerrarModalBtn = document
-                                .getElementById(
-                                    "cerrarModalBtn");
-                            cerrarModalBtn.onclick = () => {
-                                window.top.location =
-                                    "productos.php";
-                            };
-                        }, 400); // Esperar animación del primer modal
-                    })
-                    .catch(err => {
-                        console.error("Error en la solicitud:", err);
-                        resultadoMensaje.innerText =
-                            "Error al procesar la solicitud.";
+                                    .getElementById(
+                                        "cerrarModalBtn");
+                                cerrarModalBtn.onclick = () => {
+                                    window.top.location =
+                                        "productos.php";
+                                };
 
-                        const resultadoModal = new bootstrap.Modal(
-                            resultadoModalEl);
-                        resultadoModal.show();
-                    });
-            });
-        }
-    });
+
+                        });
+                });
+            }
+        });
     </script>
+
+    <script>
+        async function crearMarcaSiNoExiste(nombre) {
+            const endpoint = "ajax_marca.php";
+            const res = await fetch(endpoint, {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                    "Accept": "application/json",
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: new URLSearchParams({
+                    mc_nomb: nombre
+                }).toString(),
+                cache: "no-store"
+            });
+
+            const text = await res.text();
+            if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0,200)}`);
+
+            let data;
+            try {
+                data = JSON.parse(text);
+            } catch {
+                const s = text.indexOf("{"),
+                    e = text.lastIndexOf("}");
+                if (s >= 0 && e >= s) data = JSON.parse(text.slice(s, e + 1));
+                else throw new Error("Respuesta no-JSON del servidor");
+            }
+            if (!data?.success) throw new Error(data?.message || "No se pudo crear la marca");
+            return data; // { success:true, id, mc_nomb }
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const input = document.getElementById("marca");
+            const datalist = document.getElementById("lista-marcas");
+            const btn = document.getElementById("btn-add-marca");
+
+            if (!input || !datalist || !btn) return;
+
+            btn.addEventListener("click", async () => {
+                let val = (input.value || "").trim();
+                if (!val) return;
+
+                // Normaliza a MAYÚSCULAS
+                val = val.toUpperCase();
+                input.value = val;
+
+                // ¿Ya existe?
+                const existe = [...datalist.options].some(
+                    opt => (opt.value || "").toUpperCase() === val
+                );
+                if (existe) {
+                    alert("La marca ya existe en la lista");
+                    return;
+                }
+
+                try {
+                    const r = await crearMarcaSiNoExiste(val);
+                    const opt = document.createElement("option");
+                    opt.value = r.mc_nomb;
+                    datalist.appendChild(opt);
+                    alert(`Marca "${r.mc_nomb}" agregada correctamente`);
+                } catch (err) {
+                    console.error(err);
+                    alert("Error al crear la marca: " + err.message);
+                }
+            });
+        });
+    </script>
+
+
 </body>
 
 
