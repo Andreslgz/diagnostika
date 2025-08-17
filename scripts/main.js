@@ -746,10 +746,13 @@ window.BASE_DIR = 'https://diagnostika:8890';
   // ================================
   const BASE = (typeof window.BASE_DIR !== 'undefined' ? window.BASE_DIR : (typeof BASE_DIR !== 'undefined' ? BASE_DIR : '')) || '';
   const ENDPOINT_LISTA = BASE.replace(/\/$/, '') + "/tienda/ajax_productos.php";
-  const GRID_ID = "productosGrid";
-  const PAG_ID  = "paginacion";
+  const GRID_ID  = "productosGrid";
+  const PAG_ID   = "paginacion";
   const PAGE_SIZE = 12;
   const PLACEHOLDER = "https://placehold.co/600x400/png";
+
+  // ===== Orden actual (default) =====
+  let currentOrder = "newest";
 
   // ================================
   // Helpers favoritos (expuestos)
@@ -804,15 +807,12 @@ window.BASE_DIR = 'https://diagnostika:8890';
       const id    = Number(p.id_producto || 0);
       const name  = String(p.nombre || "Producto");
       const price = Number(p.precio || 0).toFixed(2);
-      const img   = p.imagen_url
-        ? p.imagen_url
-        : (p.imagen ? (BASE.replace(/\/$/, '') + `/uploads/${p.imagen}`) : PLACEHOLDER);
+      const img   = p.imagen_url ? p.imagen_url
+                   : (p.imagen ? (BASE.replace(/\/$/, '') + `/uploads/${p.imagen}`) : PLACEHOLDER);
 
       const brand = p.marca || '';
       const desc  = p.descripcion || '';
-      const gal   = Array.isArray(p.gallery) && p.gallery.length ? p.gallery
-                   : (img ? [img] : [PLACEHOLDER]);
-
+      const gal   = Array.isArray(p.gallery) && p.gallery.length ? p.gallery : (img ? [img] : [PLACEHOLDER]);
       const isFav = favs.includes(id);
 
       html += `
@@ -822,7 +822,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
             <svg xmlns="http://www.w3.org/2000/svg"
                  fill="${isFav ? 'currentColor' : 'none'}"
                  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                 class="w-5 h-5 sm:w-6 sm:h-6 transition-all duración-200 ${isFav ? 'text-red-600' : 'text-gray-600'}">
+                 class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 ${isFav ? 'text-red-600' : 'text-gray-600'}">
               <path stroke-linecap="round" stroke-linejoin="round"
                     d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
             </svg>
@@ -942,6 +942,8 @@ window.BASE_DIR = 'https://diagnostika:8890';
       nextBtn._bound = true;
     }
 
+    updateArrows();
+
     // mostrar modal
     modal.classList.remove("hidden");
     modal.classList.add("flex");
@@ -992,7 +994,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     const disPrev = current <= 1 ? "disabled:opacity-50 disabled:cursor-not-allowed" : "";
     html += `
       <button data-page="${Math.max(1, current - 1)}"
-        class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duración-200 group ${disPrev}" ${current <= 1 ? "disabled" : ""}>
+        class="js-page-prev flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disPrev}" ${current <= 1 ? "disabled" : ""}>
         <svg class="w-4 h-4 sm:mr-2 group-hover:-translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
         </svg>
@@ -1005,7 +1007,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     const end = Math.min(totalPages, start + show - 1);
 
     if (start > 1) {
-      html += `<button data-page="1" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duración-200 border border-transparent hover:border-gray-200">1</button>`;
+      html += `<button data-page="1" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">1</button>`;
       if (start > 2) {
         html += `<div class="flex items-center px-2">
           <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
@@ -1017,8 +1019,8 @@ window.BASE_DIR = 'https://diagnostika:8890';
 
     for (let i = start; i <= end; i++) {
       html += (i === current)
-        ? `<button class="relative flex items-center justify-center min-w-[40px] h-9 px-3 text-white btn-secondary rounded-lg font-semibold shadow-sm hover:shadow-md transition-all duración-200">${i}</button>`
-        : `<button data-page="${i}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duración-200 border border-transparent hover:border-gray-200">${i}</button>`;
+        ? `<button class="relative flex items-center justify-center min-w-[40px] h-9 px-3 text-white btn-secondary rounded-lg font-semibold shadow-sm hover:shadow-md transition-all duration-200">${i}</button>`
+        : `<button data-page="${i}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">${i}</button>`;
     }
 
     if (end < totalPages) {
@@ -1029,7 +1031,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
           <span class="w-1 h-1 bg-gray-400 rounded-full mx-0.5"></span>
         </div>`;
       }
-      html += `<button data-page="${totalPages}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duración-200 border border-transparent hover:border-gray-200">${totalPages}</button>`;
+      html += `<button data-page="${totalPages}" class="flex items-center justify-center min-w-[40px] h-9 px-3 text-gray-700 bg-white rounded-lg hover:bg-gray-100 font-medium transition-all duration-200 border border-transparent hover:border-gray-200">${totalPages}</button>`;
     }
 
     html += "</div>";
@@ -1037,7 +1039,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     const disNext = current >= totalPages ? "disabled:opacity-50 disabled:cursor-not-allowed" : "";
     html += `
       <button data-page="${Math.min(totalPages, current + 1)}"
-        class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duración-200 group ${disNext}" ${current >= totalPages ? "disabled" : ""}>
+        class="js-page-next flex items-center justify-center px-2 sm:px-4 h-10 text-gray-600 bg-white border border-gray-300 rounded-xl hover:bg-gray-50 hover:border-gray-400 hover:shadow-sm transition-all duration-200 group ${disNext}" ${current >= totalPages ? "disabled" : ""}>
         <span class="hidden sm:inline font-medium">Siguiente</span>
         <svg class="w-4 h-4 sm:ml-2 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
@@ -1048,15 +1050,18 @@ window.BASE_DIR = 'https://diagnostika:8890';
   }
 
   // ================================
-  // Cargar productos (trae y pinta)
+  // Cargar productos (trae y pinta) + ORDENAMIENTO
   // ================================
-  async function cargarProductos({ page = 1 } = {}) {
+  async function cargarProductos({ page = 1, order = currentOrder } = {}) {
     const grid = document.getElementById(GRID_ID);
     const pag  = document.getElementById(PAG_ID);
     if (!grid || !pag) return;
 
+    currentOrder = order; // guardar el orden elegido
+
     const params = new URLSearchParams();
     params.set("page", page);
+    params.set("order", currentOrder); // 👈 enviar orden al servidor
     $$('input[name="marca[]"]:checked').forEach(chk => params.append("marca[]", chk.value));
     $$('input[name="anio[]"]:checked').forEach(chk => params.append("anio[]", chk.value));
 
@@ -1111,7 +1116,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     if (!pag || !pag.contains(btn)) return;
     ev.preventDefault();
     const p = parseInt(btn.getAttribute("data-page"), 10) || 1;
-    cargarProductos({ page: p });
+    cargarProductos({ page: p, order: currentOrder }); // mantener orden al paginar
   });
 
   // ================================
@@ -1119,15 +1124,33 @@ window.BASE_DIR = 'https://diagnostika:8890';
   // ================================
   document.addEventListener("change", (ev) => {
     if (ev.target.matches('input[name="marca[]"], input[name="anio[]"]')) {
-      cargarProductos({ page: 1 });
+      cargarProductos({ page: 1, order: currentOrder });
     }
+  });
+
+  // ================================
+  // Ordenamiento -> recarga
+  // (Anchors con data-order="newest|price_desc|price_asc|alpha")
+  // ================================
+  document.addEventListener("click", (ev) => {
+    const a = ev.target.closest('a[data-order]');
+    if (!a) return;
+    ev.preventDefault();
+
+    const ord = a.getAttribute('data-order') || 'newest';
+    // marcar activo (opcional)
+    document.querySelectorAll('a[data-order].is-active').forEach(el => el.classList.remove('is-active'));
+    a.classList.add('is-active');
+
+    cargarProductos({ page: 1, order: ord });
   });
 
   // ================================
   // Primera carga
   // ================================
-  document.addEventListener("DOMContentLoaded", () => cargarProductos({ page: 1 }));
+  document.addEventListener("DOMContentLoaded", () => cargarProductos({ page: 1, order: currentOrder }));
 })();
+
 
 // =====================================================
 // FAQ

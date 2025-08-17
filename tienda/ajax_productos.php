@@ -61,6 +61,26 @@ try {
   $marcas  = $_POST['marca'] ?? $_GET['marca'] ?? [];
   $anios   = $_POST['anio']  ?? $_GET['anio']  ?? [];
 
+  // --- Orden (GET/POST: order) ---
+  // Valores permitidos: '', 'newest', 'price_desc', 'price_asc', 'alpha'
+  $order       = strtolower(trim((string)($_POST['order'] ?? $_GET['order'] ?? '')));
+  $orderClause = "p.id_producto DESC"; // default = newest
+  switch ($order) {
+    case 'price_desc':
+      $orderClause = "p.precio DESC";
+      break;
+    case 'price_asc':
+      $orderClause = "p.precio ASC";
+      break;
+    case 'alpha':
+      $orderClause = "p.nombre ASC";
+      break;
+    case 'newest':
+    default:
+      $orderClause = "p.id_producto DESC";
+      break;
+  }
+
   // Normalizar arrays y limpiar vacíos
   $marcas = array_values(array_filter((array)$marcas, fn($v) => $v !== '' && $v !== null));
   $anios  = array_values(array_filter((array)$anios,  fn($v) => $v !== '' && $v !== null));
@@ -128,7 +148,7 @@ try {
   $totalPages = max(1, (int)ceil($total / $perPage));
 
   // -------- Datos --------
-  // Incluyo p.descripcion para que puedas usar data-desc en el botón Preview
+  // Incluyo p.descripcion para usar data-desc en el botón Preview
   $sqlData = "
     SELECT
       p.id_producto,
@@ -140,7 +160,7 @@ try {
       c.anio
     $sqlBase
     GROUP BY p.id_producto
-    ORDER BY p.id_producto DESC
+    ORDER BY $orderClause
     LIMIT $limit OFFSET $offset
   ";
   $stmtData = $database->query($sqlData, $params);
@@ -151,8 +171,6 @@ try {
   $productos = $stmtData->fetchAll(PDO::FETCH_ASSOC) ?: [];
 
   // -------- Adjuntar GALERÍA a cada producto --------
-  // Nota: esto hace 1 query por producto. Si te preocupa rendimiento,
-  // puedes traer todas las galerías en una sola consulta y agrupar en PHP.
   foreach ($productos as &$prod) {
     $idProd = (int)($prod['id_producto'] ?? 0);
 
@@ -188,13 +206,13 @@ try {
       }
     }
 
-    // Agrego campos “amigables” para el frontend
+    // Campos para el frontend
     $prod['imagen_url']  = $imagen_principal ?: '';
-    $prod['gallery']     = $galeria_full;                       // ← array listo para data-gallery
-    $prod['marca']       = $prod['marca'] ?? '';                // ← para data-brand
-    $prod['descripcion'] = $prod['descripcion'] ?? '';          // ← para data-desc
+    $prod['gallery']     = $galeria_full;              // array para data-gallery
+    $prod['marca']       = $prod['marca'] ?? '';       // data-brand
+    $prod['descripcion'] = $prod['descripcion'] ?? ''; // data-desc
   }
-  unset($prod); // buena práctica al usar referencias
+  unset($prod);
 
   // -------- Debug opcional --------
   if ($DEBUG) {
@@ -206,11 +224,11 @@ try {
   // -------- Respuesta --------
   $payload = [
     'ok'              => true,
-    'data'            => $productos,     // cada item trae: id_producto, nombre, precio, imagen, imagen_url, descripcion, marca, anio, gallery[]
+    'data'            => $productos,     // id_producto, nombre, precio, imagen, imagen_url, descripcion, marca, anio, gallery[]
     'total'           => $total,
     'page'            => $page,
     'pages'           => $totalPages,
-    'grid_html'       => '',             // si algún día envías HTML del grid, colócalo aquí
+    'grid_html'       => '',
     'pagination_html' => '',
     'favorites'       => $favoritos_usuario,
   ];

@@ -336,17 +336,36 @@ $anios = $database->select(
                                 <div id="dropdownSort2"
                                     class="z-50 hidden w-40 divide-y divide-gray-100 rounded-lg bg-white shadow "
                                     data-popper-placement="bottom">
-                                    <ul class="p-2 text-left text-sm font-medium text-gray-500 "
+                                    <ul id="ordenMenu" class="p-2 text-left text-sm font-medium text-gray-500 "
                                         aria-labelledby="sortDropdownButton">
+                                        
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                                                The most popular </a>
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                                                data-order="newest">
+                                                Newest
+                                            </a>
                                         </li>
                                         <li>
                                             <a href="#"
-                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
-                                                Newest </a>
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                                                data-order="price_desc">
+                                                Price: High to Low
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                                                data-order="price_asc">
+                                                Price: Low to High
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#"
+                                                class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"
+                                                data-order="alpha">
+                                                Alphabetically
+                                            </a>
                                         </li>
 
                                     </ul>
@@ -673,6 +692,17 @@ $anios = $database->select(
     <!-- Splide.js DEBE ir antes del modal script -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
+
+    <script>
+        document.addEventListener("click", (ev) => {
+  const link = ev.target.closest("#ordenMenu a[data-order]");
+  if (!link) return;
+  ev.preventDefault();
+
+  const selectedOrder = link.dataset.order || "newest";
+  cargarProductos({ page: 1, order: selectedOrder });
+});
+    </script>    
 
     <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
