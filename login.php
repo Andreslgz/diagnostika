@@ -3,8 +3,8 @@ declare(strict_types=1);
 
 // ⚠️ Este endpoint debe devolver SOLO JSON
 // Evita notices/HTML en la salida
-ini_set('display_errors', '0');
-ini_set('log_errors', '1');
+//ini_set('display_errors', '0');
+//ini_set('log_errors', '1');
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -50,7 +50,7 @@ if ($usuario && password_verify($password, $usuario['password_hash'])) {
     $_SESSION['usuario_id'] = (int)$usuario['id_usuario'];
 
     // Redirección según carrito
-    $redirectUrl = (!empty($_SESSION['carrito'])) ? 'carrito.php' : 'index.php';
+    $redirectUrl = (!empty($_SESSION['carrito'])) ? 'tienda/carrito.php' : 'index.php';
 
     http_response_code(200);
     echo json_encode([

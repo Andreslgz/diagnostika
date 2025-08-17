@@ -124,100 +124,180 @@ window.BASE_DIR = 'https://diagnostika:8890';
 // LOGIN / REGISTER (AJAX)
 // =====================================================
 (() => {
-  // LOGIN
+  // ===== Fallback utilidades (por si no existe window.App) =====
+  const App = window.App || (window.App = {});
+  App.baseNorm = App.baseNorm || (() => ((window.BASE_DIR ?? '').toString().replace(/\/$/, '')));
+  App.parseJSONSafe = App.parseJSONSafe || ((txt) => {
+    try { return JSON.parse(txt); } catch {
+      const s = txt.indexOf('{'), e = txt.lastIndexOf('}');
+      if (s > -1 && e > s) { try { return JSON.parse(txt.slice(s, e + 1)); } catch {} }
+      return null;
+    }
+  });
+
+  // Util para resolver URL absoluta a partir de action o fallback
+  function resolveEndpoint(form, fallbackPath) {
+    const raw = (form?.getAttribute('action') || '').trim();
+    if (raw) {
+      // Si el action ya es absoluto, úsalo; si es relativo, resuélvelo contra location
+      try { return new URL(raw, window.location.origin).toString(); } catch { /* ignora */ }
+    }
+    const base = (typeof App.baseNorm === 'function' ? App.baseNorm() : (window.BASE_DIR || '')).replace(/\/$/, '');
+    return base + fallbackPath;
+  }
+
+  // ====== LOGIN ======
   document.addEventListener("DOMContentLoaded", () => {
     const loginFormEl = document.getElementById("login-form");
-    const errorBox = document.getElementById("login-error");
-    const showErr = (msg) => { if (!errorBox) return; errorBox.textContent = msg; errorBox.classList.remove("hidden"); };
-    const hideErr = () => errorBox?.classList.add("hidden");
     if (!loginFormEl) return;
+
+    const errorBox = document.getElementById("login-error");
+    const showErr = (msg) => {
+      if (errorBox) {
+        errorBox.textContent = msg;
+        errorBox.classList.remove("hidden");
+        errorBox.setAttribute("role","alert");
+        errorBox.setAttribute("aria-live","polite");
+      } else {
+        alert(msg);
+      }
+    };
+    const hideErr = () => { if (errorBox) { errorBox.classList.add("hidden"); errorBox.textContent = ""; } };
+
+    let inFlightLogin = false;
 
     loginFormEl.addEventListener("submit", async (e) => {
       e.preventDefault();
-      const endpoint = (App.baseNorm() || "") + "/login.php";
+      if (inFlightLogin) return;
+      hideErr();
+
+      const endpoint = resolveEndpoint(loginFormEl, "/login.php");
       const formData = new FormData(loginFormEl);
       const submitBtn = loginFormEl.querySelector('[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
+      inFlightLogin = true;
 
       try {
+        // Timeout defensivo
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
         const res = await fetch(endpoint, {
           method: "POST",
           body: formData,
           credentials: "same-origin",
           headers: { "Accept": "application/json", "X-Requested-With": "XMLHttpRequest" },
-          cache: "no-store"
+          cache: "no-store",
+          signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
+
+        // Redirección directa (302/303)
         if (res.redirected) { window.location.href = res.url; return; }
 
         const text = await res.text();
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
         const data = App.parseJSONSafe(text);
 
-        if (data?.success) {
-          hideErr();
-          if (data.redirect) window.location.href = data.redirect; else location.reload();
+        if (!res.ok) {
+          // Muestra el mensaje del servidor si lo envía
+          const msg = (data?.message || data?.error || text || `HTTP ${res.status}`).toString();
+          console.error("Login error:", res.status, msg, { endpoint });
+          showErr(msg);
+          return;
+        }
+
+        // OK
+        if (data?.success || data?.ok) {
+          const to = data.redirect || data.url;
+          if (to) window.location.href = to;
+          else window.location.reload();
         } else {
           showErr(data?.message || "Correo o contraseña incorrectos.");
         }
       } catch (err) {
-        console.error(err);
-        showErr("Error de conexión con el servidor.");
+        console.error("Login fetch failed:", err);
+        showErr(err.name === "AbortError"
+          ? "Tiempo de espera agotado. Intenta nuevamente."
+          : "Error de conexión con el servidor.");
       } finally {
+        inFlightLogin = false;
         if (submitBtn) submitBtn.disabled = false;
       }
     });
   });
 
-  // REGISTER
-  const showError = (msg) => {
-    const e = document.getElementById("register-error");
-    const s = document.getElementById("register-success");
-    if (!e || !s) return;
-    s.classList.add("hidden"); e.textContent = msg; e.classList.remove("hidden");
-  };
-  const showSuccess = (msg) => {
-    const e = document.getElementById("register-error");
-    const s = document.getElementById("register-success");
-    if (!e || !s) return;
-    e.classList.add("hidden"); s.textContent = msg; s.classList.remove("hidden");
-  };
-
+  // ====== REGISTER ======
   const registerFormEl = document.getElementById("register-form");
   if (registerFormEl) {
+    const errBox = document.getElementById("register-error");
+    const okBox  = document.getElementById("register-success");
+    const showError = (msg) => {
+      if (errBox && okBox) { okBox.classList.add("hidden"); errBox.textContent = msg; errBox.classList.remove("hidden"); }
+      else alert(msg);
+    };
+    const showSuccess = (msg) => {
+      if (errBox && okBox) { errBox.classList.add("hidden"); okBox.textContent = msg; okBox.classList.remove("hidden"); }
+      else alert(msg);
+    };
+
+    let inFlightRegister = false;
+
     registerFormEl.addEventListener("submit", async (e) => {
       e.preventDefault();
+      if (inFlightRegister) return;
+
       const form = e.target;
-      const pwd = form.querySelector('input[name="password"]').value.trim();
-      const pwd2 = form.querySelector('input[name="password_confirm"]').value.trim();
+      const pwd = form.querySelector('input[name="password"]')?.value?.trim() ?? "";
+      const pwd2 = form.querySelector('input[name="password_confirm"]')?.value?.trim() ?? "";
       if (pwd !== pwd2) { showError("Las contraseñas no coinciden."); return; }
 
-      const endpoint = (App.baseNorm() || "") + "/register.php";
-      const submitBtn = form.querySelector('[type="submit"]'); submitBtn && (submitBtn.disabled = true);
+      const endpoint = resolveEndpoint(form, "/register.php");
+      const submitBtn = form.querySelector('[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+      inFlightRegister = true;
+
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 15000);
+
         const res = await fetch(endpoint, {
           method: "POST",
           body: new FormData(form),
           credentials: "same-origin",
           headers: { "Accept": "application/json", "X-Requested-With": "XMLHttpRequest" },
-          cache: "no-store"
+          cache: "no-store",
+          signal: controller.signal
         });
+
+        clearTimeout(timeoutId);
 
         if (res.redirected) { window.location.href = res.url; return; }
 
         const text = await res.text();
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
         const data = App.parseJSONSafe(text);
 
-        if (data.success) {
-          showSuccess(data.message || "¡Registro exitoso!");
-          if (data.redirect) window.location.href = data.redirect; else form.reset();
+        if (!res.ok) {
+          const msg = (data?.message || data?.error || text || `HTTP ${res.status}`).toString();
+          console.error("Register error:", res.status, msg, { endpoint });
+          showError(msg);
+          return;
+        }
+
+        if (data?.success || data?.ok) {
+          showSuccess(data?.message || "¡Registro exitoso!");
+          const to = data.redirect || data.url;
+          if (to) window.location.href = to; else form.reset();
         } else {
-          showError(data.message || "No pudimos crear tu cuenta.");
+          showError(data?.message || "No pudimos crear tu cuenta.");
         }
       } catch (err) {
-        console.error(err);
-        showError("Ocurrió un error: " + err.message);
+        console.error("Register fetch failed:", err);
+        showError(err.name === "AbortError"
+          ? "Tiempo de espera agotado. Intenta nuevamente."
+          : "Error de conexión con el servidor.");
       } finally {
+        inFlightRegister = false;
         if (submitBtn) submitBtn.disabled = false;
       }
     });
