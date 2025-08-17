@@ -1,12 +1,17 @@
 <?php
+// auth.php
 declare(strict_types=1);
+session_start();
 
-// ⚠️ Este endpoint debe devolver SOLO JSON
-// Evita notices/HTML en la salida
-//ini_set('display_errors', '0');
-//ini_set('log_errors', '1');
+// Si NO hay sesión, redirige a index.php
+if (empty($_SESSION['usuario_id'])) {
+  header('Location: /index.php');
+  exit;
+}
 
-header('Content-Type: application/json; charset=utf-8');
+// (Opcional) Cabeceras anti-cache en zonas privadas
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+header('Pragma: no-cache');
 
 // Por si algún include imprimió algo (BOM/espacios)
 while (ob_get_level() > 0) { ob_end_clean(); }

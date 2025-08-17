@@ -118,7 +118,59 @@ window.BASE_DIR = 'https://diagnostika:8890';
   });
 })();
 
+// UPDATE DATOS PERSONALES //
 
+(() => {
+  const form    = document.getElementById('profile-form');
+  const btnEdit = document.getElementById('btn-edit');
+  const btnSave = document.getElementById('btn-save');
+  const msgBox  = document.getElementById('profile-msg');
+
+  // Endpoint usando BASE_DIR global
+  const UPDATE_ENDPOINT = (window.BASE_DIR || "") + "/micuenta/update_profile.php";
+
+  function setMsg(text, ok=true) {
+    msgBox.textContent = text;
+    msgBox.classList.remove('hidden');
+    msgBox.classList.toggle('text-green-600', ok);
+    msgBox.classList.toggle('text-red-600', !ok);
+  }
+  function setDisabled(disabled) {
+    form.querySelectorAll('input, select').forEach(el => el.disabled = disabled);
+    btnSave.disabled = disabled;
+  }
+
+  // estado inicial
+  setDisabled(true);
+
+  btnEdit.addEventListener('click', () => {
+    setDisabled(false);
+    msgBox.classList.add('hidden');
+  });
+
+  btnSave.addEventListener('click', async () => {
+    const fd = new FormData(form);
+    btnSave.disabled = true;
+    try {
+      const res = await fetch(UPDATE_ENDPOINT, {
+        method: "POST",
+        body: fd,
+        credentials: "same-origin",
+        headers: {
+          "Accept":"application/json",
+          "X-Requested-With":"XMLHttpRequest"
+        }
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.message || "Error");
+      setMsg(data.message,true);
+      setDisabled(true);
+    } catch(err) {
+      setMsg(err.message,false);
+      btnSave.disabled = false;
+    }
+  });
+})();
 
 // =====================================================
 // LOGIN / REGISTER (AJAX)
@@ -303,7 +355,6 @@ window.BASE_DIR = 'https://diagnostika:8890';
     });
   }
 })();
-
 
 
 // =====================================================
