@@ -225,60 +225,7 @@ require_once __DIR__ . '/../auth.php';
                                 </div>
                             </div>
                         </div>
-
-                        <div
-                            class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3">
-                            <div>
-                                <header
-                                    class="bg-[#00c016] text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
-                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
-                                    <p>Instalación completada</p>
-                                </header>
-                                <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="xl:size-[150px] size-[70px]">
-                                    <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
-                                        <p class="uppercase font-bold xl:text-xl text-sm">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha:
-                                            01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Categoria</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <header
-                                    class="bg-[#00c016] text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
-                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
-                                    <p>Instalación completada</p>
-                                </header>
-                                <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="xl:size-[150px] size-[70px]">
-                                    <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
-                                        <p class="uppercase font-bold xl:text-xl text-sm">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha:
-                                            01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Categoria</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <header
-                                    class="bg-[#00c016] text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
-                                    <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
-                                    <p>Instalación completada</p>
-                                </header>
-                                <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
-                                    <img src="/assets/images/producto1.jpg" alt="" class="xl:size-[150px] size-[70px]">
-                                    <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
-                                        <p class="uppercase font-bold xl:text-xl text-sm">NOMBRE DEL PRODUCTO</p>
-                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha:
-                                            01/01/2025</p>
-                                        <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Categoria</p>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
+                        <div id="ordenes-container" class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3"></div>
                     </div>
                 </div>
             </div>
@@ -457,6 +404,269 @@ require_once __DIR__ . '/../auth.php';
             }, 10);
         }
     </script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ========= CONFIG =========
+  const BASE = (typeof window.BASE_DIR !== 'undefined' ? window.BASE_DIR : (typeof BASE_DIR !== 'undefined' ? BASE_DIR : '')) || '';
+  const ORDERS_ENDPOINT = BASE.replace(/\/$/, '') + '/micuenta/ajax_ordenes.php';
+
+  // ========= DOM =========
+  const filterButtons       = Array.from(document.querySelectorAll('.filter-btn'));
+  const dateInputContainer  = document.getElementById('dateInputContainer');
+  const ordersContainer     = document.getElementById('ordenes-container');
+
+  if (!ordersContainer) {
+    console.error('No existe #ordenes-container');
+    return;
+  }
+  if (!dateInputContainer) {
+    console.error('No existe #dateInputContainer');
+    return;
+  }
+
+  // ========= Helpers =========
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const fmtFecha = (s) => {
+    if (!s) return '';
+    const d = new Date(String(s).replace(' ', 'T')); // "YYYY-MM-DD HH:mm:ss" → "YYYY-MM-DDTHH:mm:ss"
+    return isNaN(d) ? s : d.toLocaleDateString(undefined, { day:'2-digit', month:'2-digit', year:'numeric' });
+  };
+
+  // ========= Estado =========
+  let currentFilter = (document.querySelector('.filter-btn.active')?.dataset.filter || 'mes').toLowerCase();
+
+  // ========= UI de inputs según filtro =========
+  function renderInputs(filter) {
+    switch (filter) {
+      case 'dia':
+        dateInputContainer.innerHTML = `
+          <input type="date" id="dayInput" class="border border-gray-300 rounded-lg p-2 flex-1" />
+          <button id="btnBuscar" class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Buscar</button>
+        `;
+        break;
+      case 'mes':
+        dateInputContainer.innerHTML = `
+          <select id="monthSelect" class="border border-gray-300 rounded-lg p-2 flex-1">
+            <option value="01">Enero</option><option value="02">Febrero</option><option value="03">Marzo</option>
+            <option value="04">Abril</option><option value="05">Mayo</option><option value="06" selected>Junio</option>
+            <option value="07">Julio</option><option value="08">Agosto</option><option value="09">Septiembre</option>
+            <option value="10">Octubre</option><option value="11">Noviembre</option><option value="12">Diciembre</option>
+          </select>
+          <select id="yearSelect" class="border border-gray-300 rounded-lg p-2 w-full sm:w-32">
+            <option value="2023">2023</option><option value="2024">2024</option><option value="2025" selected>2025</option>
+          </select>
+          <button id="btnBuscar" class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Buscar</button>
+        `;
+        break;
+      case 'año':
+      case 'ano': // por si el dataset viene sin tilde
+        dateInputContainer.innerHTML = `
+          <select id="yearOnly" class="border border-gray-300 rounded-lg p-2 w-full sm:w-40">
+            <option value="2023">2023</option><option value="2024">2024</option><option value="2025" selected>2025</option>
+          </select>
+          <button id="btnBuscar" class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Buscar</button>
+        `;
+        break;
+      case 'personalizado':
+        dateInputContainer.innerHTML = `
+          <input type="date" id="fromInput" class="border border-gray-300 rounded-lg p-2 flex-1" />
+          <input type="date" id="toInput"   class="border border-gray-300 rounded-lg p-2 flex-1" />
+          <button id="btnBuscar" class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">Buscar</button>
+        `;
+        break;
+    }
+
+    // Hook del botón Buscar
+    const btnBuscar = document.getElementById('btnBuscar');
+    if (btnBuscar) btnBuscar.addEventListener('click', (ev) => { ev.preventDefault(); fetchAndRender(); });
+  }
+
+  // ========= Construcción de params =========
+  function buildParams() {
+    const params = new URLSearchParams();
+    params.set('filter', currentFilter);
+
+    if (currentFilter === 'dia') {
+      const day = document.getElementById('dayInput')?.value?.trim();
+      if (day) params.set('day', day);
+    } else if (currentFilter === 'mes') {
+      const m = document.getElementById('monthSelect')?.value?.trim();
+      const y = document.getElementById('yearSelect')?.value?.trim();
+      if (m) params.set('month', m);
+      if (y) params.set('year', y);
+    } else if (currentFilter === 'año' || currentFilter === 'ano') {
+      const y = document.getElementById('yearOnly')?.value?.trim();
+      if (y) params.set('year', y);
+    } else if (currentFilter === 'personalizado') {
+      const from = document.getElementById('fromInput')?.value?.trim();
+      const to   = document.getElementById('toInput')?.value?.trim();
+      if (from) params.set('from', from);
+      if (to)   params.set('to', to);
+    }
+
+    return params;
+  }
+
+  // ========= Pintado =========
+  function renderOrders(list) {
+    if (!Array.isArray(list) || list.length === 0) {
+      ordersContainer.innerHTML = `
+        <div class="p-6 text-center text-gray-600 border border-dashed border-gray-300 rounded-lg">
+          No se encontraron órdenes con el filtro seleccionado.
+        </div>`;
+      return;
+    }
+
+    const html = list.map(row => {
+      const imgSrc = row.imagen
+        ? (BASE.replace(/\/$/,'') + '/uploads/' + String(row.imagen).replace(/^\/+/, ''))
+        : 'https://placehold.co/300x180/png';
+      return `
+      <div class="border border-solid border-gray-300 rounded-lg overflow-hidden">
+        <header class="bg-[#00c016] text-white xl:p-3 p-2 flex items-center gap-2">
+          <img src="/assets/icons/svg/icon-instalacion.svg" alt="" class="w-5 h-5">
+          <p class="font-medium">Instalación completada</p>
+        </header>
+        <div class="xl:p-5 p-3 flex items-center gap-4">
+          <img src="${esc(imgSrc)}" alt="${esc(row.nombre)}" class="xl:size-[150px] size-[70px] object-cover rounded">
+          <div class="flex flex-col gap-1">
+            <p class="uppercase font-bold xl:text-xl text-sm">${esc(row.nombre)}</p>
+            <p class="uppercase text-gray-500 font-semibold xl:text-sm text-xs">Fecha: ${esc(fmtFecha(row.fecha))}</p>
+            <p class="uppercase text-gray-500 font-semibold xl:text-sm text-xs">Marca: ${esc(row.marca ?? '—')}</p>
+            <p class="text-xs text-gray-400">#Orden: ${esc(row.id_orden)}</p>
+          </div>
+        </div>
+      </div>`;
+    }).join('');
+
+    ordersContainer.innerHTML = html;
+  }
+
+  // ========= Fetch =========
+  async function fetchAndRender() {
+    const params = buildParams();
+    ordersContainer.innerHTML = `<div class="p-6 text-center text-gray-500">Cargando...</div>`;
+
+    try {
+      const res = await fetch(ORDERS_ENDPOINT, {
+        method: 'POST',
+        headers: { 'X-Requested-With': 'XMLHttpRequest' },
+        body: params
+      });
+
+      const raw = await res.text();
+      console.log('[ORDERS raw]', raw);
+
+      let data = null;
+      try { data = JSON.parse(raw); } catch { /* intenta extraer JSON si hay BOM/debug */ 
+        const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+        if (s > -1 && e > s) { try { data = JSON.parse(raw.slice(s, e+1)); } catch {} }
+      }
+
+      if (!data || !res.ok || data.ok !== true) {
+        const msg = data?.message || `HTTP ${res.status}`;
+        throw new Error(msg);
+      }
+
+      renderOrders(data.data);
+    } catch (err) {
+      console.error('[ORDERS error]', err);
+      ordersContainer.innerHTML = `<div class="p-6 text-center text-red-600">Error al obtener órdenes: ${esc(err.message || 'desconocido')}</div>`;
+    }
+  }
+
+  // ========= Eventos de filtro =========
+  filterButtons.forEach(btn => {
+    btn.addEventListener('click', (ev) => {
+      ev.preventDefault();
+      filterButtons.forEach(b => b.classList.remove('active', 'border-blue-500'));
+      btn.classList.add('active', 'border-blue-500');
+      currentFilter = (btn.dataset.filter || 'mes').toLowerCase();
+      renderInputs(currentFilter);
+    });
+  });
+
+  // ========= Inicio =========
+  renderInputs(currentFilter);
+  // Si quieres lanzar una primera consulta automáticamente:
+  const firstSearchBtn = document.getElementById('btnBuscar');
+  if (firstSearchBtn) firstSearchBtn.click();
+});
+</script>
+
+<script>
+async function fetchJSON(url, init) {
+  const res  = await fetch(url, { headers: { "X-Requested-With":"XMLHttpRequest" }, ...init });
+  const text = await res.text();
+
+  // Intentar parsear JSON "seguro"
+  let data = null;
+  try {
+    data = JSON.parse(text);
+  } catch {
+    const s = text.indexOf('{'), e = text.lastIndexOf('}');
+    if (s > -1 && e > s) {
+      try { data = JSON.parse(text.slice(s, e + 1)); } catch {}
+    }
+  }
+
+  if (!data) {
+    // Muestra lo que vino realmente del server para depurar
+    throw new Error("Respuesta no válida del servidor:\n" + text.slice(0, 500));
+  }
+  if (!res.ok || data.ok === false || data.success === false) {
+    const msg = data.message || data.error || `HTTP ${res.status}`;
+    throw new Error(msg);
+  }
+  return data;
+}
+
+async function loadOrders(filter) {
+  const container = document.querySelector(".border.border-solid.border-gray-400");
+  const month = document.getElementById("monthSelect")?.value;
+  const year  = document.getElementById("yearSelect")?.value;
+
+  const params = new URLSearchParams({ filter });
+  if (filter === "mes") { params.append("month", month); params.append("year", year); }
+  // TODO: añade aquí día / año / personalizado si tienes inputs
+
+  try {
+    const url  = "ajax_ordenes.php?" + params.toString(); // verifica la ruta
+    const data = await fetchJSON(url);
+
+    renderOrders(data.data || []);
+  } catch (err) {
+    console.error(err);
+    container.innerHTML = `<pre class="text-red-600 whitespace-pre-wrap break-words">${(err.message||'Error').toString()}</pre>`;
+  }
+}
+
+function renderOrders(rows) {
+  const container = document.querySelector(".border.border-solid.border-gray-400");
+  if (!rows.length) { container.innerHTML = "<p class='text-gray-500'>No se encontraron órdenes.</p>"; return; }
+  container.innerHTML = rows.map(r => `
+    <div>
+      <header class="bg-[#00c016] text-white xl:p-3 p-1.5 flex items-center gap-2 rounded-t-lg">
+        <img src="/assets/icons/svg/icon-instalacion.svg" alt="">
+        <p>Instalación completada</p>
+      </header>
+      <div class="xl:p-5 p-3 flex flex-row items-center justify-start xl:gap-6 gap-3">
+        <img src="${r.imagen || ''}" class="xl:size-[150px] size-[70px]" />
+        <div class="flex flex-col items-start justify-start xl:gap-3 gap-1">
+          <p class="uppercase font-bold xl:text-xl text-sm">${r.nombre || ''}</p>
+          <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">Fecha: ${r.fecha || ''}</p>
+          <p class="uppercase text-gray-400 font-bold xl:text-lg text-sm">${r.marca || ''}</p>
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
+
+// Carga por defecto
+loadOrders("mes");
+</script>
+
 </body>
 
 </html>
