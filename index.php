@@ -8,8 +8,17 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 
-$productos = $database->select('productos', '*', [
-    "ORDER" => ["id_producto" => "DESC"],
+$productos = $database->select("productos(p)", [
+    "[>]caracteristicas_productos(c)" => ["p.id_producto" => "id_producto"]
+], [
+    "p.id_producto",
+    "p.nombre",
+    "p.precio",
+    "p.imagen",
+    "p.descripcion",
+    "c.marca"
+], [
+    "ORDER" => ["p.id_producto" => "DESC"],
     "LIMIT" => 12
 ]);
 
@@ -285,12 +294,56 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                                     <span>Añadir al carrito</span>
                                                 </button>
 
+                                                <?php
+                                                // Trae solo los nombres de archivo de la galería
+                                                $galeria = $database->select(
+                                                    "galeria_productos",
+                                                    "gal_img",
+                                                    [
+                                                        "id_producto" => (int)$prod["id_producto"],
+                                                        "gal_est"     => "activo",
+                                                        "ORDER"       => ["gal_id" => "DESC"]
+                                                    ]
+                                                );
+
+                                                // Prefija cada imagen con /uploads/
+                                                $galeria_full = array_map(
+                                                    fn($f) => '/uploads/' . ltrim((string)$f, '/'),
+                                                    is_array($galeria) ? $galeria : []
+                                                );
+
+                                                // Imagen principal del producto
+                                                $imagen_principal = !empty($prod['imagen'])
+                                                    ? '/uploads/' . ltrim((string)$prod['imagen'], '/')
+                                                    : null;
+
+                                                // Insertar primero la imagen principal (si existe)
+                                                if ($imagen_principal) {
+                                                    array_unshift($galeria_full, $imagen_principal);
+                                                }
+
+                                                // Convierte a JSON seguro para atributo HTML
+                                                $data_gallery = htmlspecialchars(
+                                                    json_encode($galeria_full, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE),
+                                                    ENT_QUOTES,
+                                                    'UTF-8'
+                                                );
+                                                ?>
+
                                                 <button
-                                                    data-modal-target="product-details-modal"
-                                                    data-modal-toggle="product-details-modal"
                                                     type="button"
-                                                    class="inline border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-xs sm:text-base">
-                                                    Preview
+                                                    class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base preview"
+                                                    data-id="<?= (int)$prod['id_producto']; ?>"
+                                                    data-name="<?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                    data-price="<?= number_format((float)$prod['precio'], 2, '.', ''); ?>"
+                                                    data-img="<?= !empty($prod['imagen']) ? '/uploads/' . $prod['imagen'] : ''; ?>"
+                                                    data-brand="<?= htmlspecialchars($prod['marca'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                                                    data-desc="<?= htmlspecialchars($prod['descripcion'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
+                                                    data-gallery='<?= $data_gallery; ?>'>
+                                                    <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                                        <img src="/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
+                                                    </div>
+                                                    <p>PREVIEW</p>
                                                 </button>
                                             </div>
                                         </div>
@@ -1035,148 +1088,107 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
         <span class="block" id="alertaTexto"></span>
     </div>
 
-    <!-- PRODUCT DETAILS MODAL | READY -->
     <div id="product-details-modal" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        class="hidden fixed inset-0 z-50 w-full h-full
+            justify-center items-center
+            overflow-y-auto overflow-x-hidden
+            bg-black/60 backdrop-blur-sm"> <!-- 👈 fondo oscuro + blur -->
         <div class="relative p-4 w-full max-w-4xl max-h-full">
-            <!-- Modal content -->
             <div class="relative bg-white rounded-lg shadow-sm">
-                <!-- Modal header -->
-                <div class="p-4 md:p-5 border-b rounded-t btn-secondary  border-gray-200">
-                    <div class="flex items-center justify-between ">
-                        <h3 class="xl:text-xl text-sm font-semibold">
-
-                            CUMMINS QUICKSERVER PARTS AND SERVICE
-                        </h3>
+                <!-- Header -->
+                <div class="p-4 md:p-5 border-b rounded-t btn-secondary border-gray-200">
+                    <div class="flex items-center justify-between">
+                        <h3 id="modal-product-name" class="xl:text-xl text-sm font-semibold">Producto</h3>
                         <button type="button"
-                            class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center "
-                            data-modal-hide="product-details-modal">
+                            class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                            data-modal-hide="product-details-modal" aria-label="Cerrar">
                             <svg class="xl:w-4 w-2.5 xl:h-4 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                 fill="none" viewBox="0 0 14 14">
                                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                     stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                             </svg>
-                            <span class="sr-only">Close modal</span>
                         </button>
                     </div>
-                    <p class="text-white xl:text-lg text-sm xl:mt-8 mt-3">
-                        CUMMINS
-                    </p>
+                    <p id="modal-product-brand" class="text-white xl:text-lg text-sm xl:mt-8 mt-3"></p>
                 </div>
-                <!-- Modal body -->
-                <div class="xl:p-8 p-5 grid xl:grid-cols-2 grid-cols-1 xl:gap-10 gap-4 w-full">
 
-                    <div class="max-w-2xl mx-auto ">
+                <!-- Body -->
+                <div class="xl:p-8 p-5 grid xl:grid-cols-2 grid-cols-1 xl:gap-10 gap-4 w-full">
+                    <!-- Galería -->
+                    <div class="max-w-2xl mx-auto">
                         <section aria-label="Galería de imágenes">
-                            <!-- Imagen principal -->
                             <div class="relative mb-4 overflow-hidden border border-gray-200 bg-white">
                                 <div class="aspect-square">
                                     <img id="mainImage"
-                                        src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
+                                        src="https://placehold.co/600x600/png"
                                         alt="Imagen principal"
-                                        class="h-full  w-full object-cover transition-opacity duration-300"
+                                        class="h-full w-full object-cover transition-opacity duration-300"
                                         loading="eager" decoding="async" draggable="false" />
                                 </div>
                             </div>
 
-                            <!-- Carrusel de miniaturas -->
                             <div class="relative">
-                                <!-- Gradientes laterales para indicar overflow -->
-                                <div
-                                    class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent">
-                                </div>
-                                <div
-                                    class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent">
-                                </div>
+                                <div class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
+                                <div class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
 
                                 <div class="flex items-center gap-2">
-                                    <!-- Flecha izquierda -->
                                     <button id="prev"
                                         class="shrink-0 rounded-md bg-gray-800 text-white px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-                                        aria-label="Desplazar miniaturas a la izquierda"
-                                        title="Anterior">&#10094;</button>
+                                        aria-label="Anterior">&#10094;</button>
 
-                                    <!-- Miniaturas -->
                                     <div id="thumbs"
                                         class="relative flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2"
-                                        role="listbox" aria-label="Miniaturas">
-                                        <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-1.jpg"
-                                            alt="Miniatura 1"
-                                            class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
-                                            loading="lazy" decoding="async" tabindex="0" />
-                                        <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-2.jpg"
-                                            alt="Miniatura 2"
-                                            class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
-                                            loading="lazy" decoding="async" tabindex="0" />
-                                        <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-3.jpg"
-                                            alt="Miniatura 3"
-                                            class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
-                                            loading="lazy" decoding="async" tabindex="0" />
-                                        <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-4.jpg"
-                                            alt="Miniatura 4"
-                                            class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
-                                            loading="lazy" decoding="async" tabindex="0" />
-                                        <img src="https://flowbite.s3.amazonaws.com/docs/gallery/square/image-5.jpg"
-                                            alt="Miniatura 5"
-                                            class="thumb w-20 h-20 object-cover  cursor-pointer border-2 border-transparent hover:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500 snap-start"
-                                            loading="lazy" decoding="async" tabindex="0" />
-                                    </div>
+                                        role="listbox" aria-label="Miniaturas"></div>
 
-                                    <!-- Flecha derecha -->
                                     <button id="next"
                                         class="shrink-0 rounded-md bg-gray-800 text-white px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
-                                        aria-label="Desplazar miniaturas a la derecha"
-                                        title="Siguiente">&#10095;</button>
+                                        aria-label="Siguiente">&#10095;</button>
                                 </div>
                             </div>
                         </section>
                     </div>
+
+                    <!-- Info -->
                     <div class="w-full flex flex-col justify-between">
                         <div>
                             <div class="flex flex-row justify-between items-center w-full">
-                                <p class="xl:text-3xl text-lg text-nowrap font-bold">
-                                    USD 70.00
-                                </p>
+                                <p id="modal-product-price" class="xl:text-3xl text-lg text-nowrap font-bold">USD 0.00</p>
 
                                 <div class="relative mt-2 flex max-w-32 items-center justify-end">
                                     <button type="button" id="decrement-button"
-                                        data-input-counter-decrement="quantity-input-1"
-                                        class="xl:h-10 h-8 rounded-s-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ">
-                                        <svg class="h-3 w-3 text-gray-900 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M1 1h16" />
+                                        class="xl:h-10 h-8 rounded-s-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                                        <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                         </svg>
                                     </button>
-                                    <input type="text" id="quantity-input-1" data-input-counter
-                                        data-input-counter-min="1" data-input-counter-max="50"
-                                        aria-describedby="helper-text-explanation"
+                                    <input type="text" id="quantity-input-1" data-input-counter data-input-counter-min="1" data-input-counter-max="50"
                                         class="block xl:h-10 h-8 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
-                                        placeholder="99" value="5" required />
+                                        value="1" />
                                     <button type="button" id="increment-button"
-                                        data-input-counter-increment="quantity-input-1"
-                                        class="xl:h-10 h-8 rounded-e-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100 ">
-                                        <svg class="h-3 w-3 text-gray-900 " aria-hidden="true"
-                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                                stroke-width="2" d="M9 1v16M1 9h16" />
+                                        class="xl:h-10 h-8 rounded-e-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                                        <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
                                         </svg>
                                     </button>
                                 </div>
-
                             </div>
-                            <textarea rows="8" name="product-description" id="product-description"
-                                class="mt-4  block w-full border border-gray-300 rounded-lg p-2"
-                                placeholder="Enter product description...">technical description</textarea>
+
+                            <p id="modal-product-description" class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
+                                Producto sin descripción.
+                                            </p>
+
+                            
                         </div>
+
                         <div class="flex flex-col gap-4 xl:mt-0 mt-4">
-                            <button
+                            <button id="modal-add-to-cart"
                                 class="btn-secondary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">
                                 ADD TO CART
                             </button>
-                            <a href="#"
-                                class="block text-center btn-primary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">MORE
-                                DETAILS</a>
+                            <a id="modal-more-details" href="#"
+                                class="block text-center btn-primary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">
+                                MORE DETAILS
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -1184,7 +1196,6 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
             </div>
         </div>
     </div>
-
 
     <!-- SCRIPTS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

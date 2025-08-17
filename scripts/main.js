@@ -844,6 +844,42 @@ document.addEventListener("click", async (e) => {
     return html;
   }
 
+  document.addEventListener("click", async (e) => {
+  const btn = e.target.closest(".preview");
+  if (!btn) return;
+
+  const modal = document.getElementById("product-details-modal");
+
+  // nombre, precio y marca
+  modal.querySelector("h3").textContent = btn.dataset.name;
+  modal.querySelector(".modal-marca").textContent = btn.dataset.marca;
+  modal.querySelector(".modal-precio").textContent = "USD " + btn.dataset.price;
+
+  // Galería
+  let gallery = [];
+  try {
+    gallery = JSON.parse(btn.dataset.gallery || "[]");
+  } catch (err) {}
+
+  const mainImg = modal.querySelector("#mainImage");
+  const thumbs  = modal.querySelector("#thumbs");
+  
+  if (gallery.length) {
+    mainImg.src = "/uploads/" + gallery[0]; // primera imagen
+    thumbs.innerHTML = gallery.map(img =>
+      `<img src="/uploads/${img}" 
+        class="thumb w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-orange-400"
+        onclick="document.getElementById('mainImage').src='/uploads/${img}'">`
+    ).join("");
+  } else {
+    mainImg.src = "https://placehold.co/600x400/png";
+    thumbs.innerHTML = "<p class='text-gray-500'>Sin imágenes adicionales</p>";
+  }
+
+  // Mostrar modal
+  modal.classList.remove("hidden");
+});
+
   // ================================
   // Render paginación (cliente)
   // ================================
@@ -1134,6 +1170,222 @@ document.addEventListener("click", async (e) => {
   };
 })();
 
+// Modal Preview Productos
+
+(() => {
+  const PLACEHOLDER_IMG = "https://placehold.co/600x600/png";
+  const BASE = (window.BASE_DIR || "").replace(/\/$/, "");
+
+  const $  = (sel, ctx=document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
+  const fmtUSD = (n) => 'USD ' + (Number(n||0)).toFixed(2);
+  const parseMaybeJSON = (v) => { try { return typeof v === 'string' ? JSON.parse(v) : (Array.isArray(v) ? v : null); } catch { return null; } };
+
+  // Elementos del modal
+  const modalEl   = document.getElementById("product-details-modal");
+  const nameEl    = document.getElementById("modal-product-name");
+  const brandEl   = document.getElementById("modal-product-brand");
+  const priceEl   = document.getElementById("modal-product-price");
+  const descEl    = document.getElementById("modal-product-description");
+  const mainImgEl = document.getElementById("mainImage");
+  const thumbsEl  = document.getElementById("thumbs");
+  const prevBtn   = document.getElementById("prev");
+  const nextBtn   = document.getElementById("next");
+  const qtyInput  = document.getElementById("quantity-input-1");
+  const decBtn    = document.getElementById("decrement-button");
+  const incBtn    = document.getElementById("increment-button");
+  const addBtn    = document.getElementById("modal-add-to-cart");
+  const moreLink  = document.getElementById("modal-more-details");
+
+  let currentProduct = null;
+  let gallery = [];
+  let idx = 0;
+  let lastFocus = null;
+
+  function lockScroll(){ document.documentElement.style.overflow='hidden'; }
+  function unlockScroll(){ document.documentElement.style.overflow=''; }
+
+  function openModal(){
+    lastFocus = document.activeElement;
+    modalEl.classList.remove('hidden');
+    modalEl.classList.add('flex');
+    modalEl.setAttribute('aria-hidden','false');
+    lockScroll();
+    const closeBtn = modalEl.querySelector('[data-modal-hide="product-details-modal"]') || modalEl.querySelector('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    closeBtn && closeBtn.focus({preventScroll:true});
+  }
+  function closeModal(){
+    modalEl.classList.add('hidden');
+    modalEl.classList.remove('flex');
+    modalEl.setAttribute('aria-hidden','true');
+    unlockScroll();
+    lastFocus && lastFocus.focus({preventScroll:true});
+  }
+
+  // Cerrar: backdrop
+  modalEl.addEventListener('click', (e) => { if (e.target === modalEl) closeModal(); });
+  // Cerrar: botón con data-modal-hide
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-modal-hide="product-details-modal"]');
+    if (btn) { e.preventDefault(); closeModal(); }
+  });
+  // Cerrar: ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) { e.preventDefault(); closeModal(); }
+  });
+
+  function renderGallery(imgs){
+    gallery = (imgs && imgs.length) ? imgs : [PLACEHOLDER_IMG];
+    idx = 0;
+    if (mainImgEl) mainImgEl.src = gallery[0];
+    if (thumbsEl) {
+      thumbsEl.innerHTML = gallery.map((src, i) => `
+        <img src="${src}" data-idx="${i}"
+             class="thumb w-20 h-20 object-cover cursor-pointer border-2 ${i===0?'border-orange-500':'border-transparent'} rounded"
+             alt="Miniatura ${i+1}" loading="lazy">
+      `).join('');
+    }
+    updateArrows();
+  }
+  function updateArrows(){
+    const many = gallery.length > 1;
+    if (prevBtn) prevBtn.disabled = !many || idx === 0;
+    if (nextBtn) nextBtn.disabled = !many || idx === gallery.length - 1;
+  }
+  function goTo(n){
+    if (n < 0 || n >= gallery.length) return;
+    idx = n;
+    if (mainImgEl) mainImgEl.src = gallery[idx];
+    $$('.thumb', thumbsEl).forEach((t,i) => {
+      t.classList.toggle('border-orange-500', i===idx);
+      t.classList.toggle('border-transparent', i!==idx);
+    });
+    updateArrows();
+  }
+  prevBtn && prevBtn.addEventListener('click', () => goTo(idx - 1));
+  nextBtn && nextBtn.addEventListener('click', () => goTo(idx + 1));
+  thumbsEl && thumbsEl.addEventListener('click', (e) => {
+    const t = e.target.closest('.thumb'); if (!t) return;
+    goTo(parseInt(t.dataset.idx,10) || 0);
+  });
+
+  // Cantidad
+  decBtn && decBtn.addEventListener('click', () => {
+    const v = Math.max(1, parseInt(qtyInput.value || "1", 10) - 1);
+    qtyInput.value = v;
+  });
+  incBtn && incBtn.addEventListener('click', () => {
+    const v = Math.max(1, parseInt(qtyInput.value || "1", 10) + 1);
+    qtyInput.value = v;
+  });
+
+  // Añadir al carrito (opcional)
+  addBtn && addBtn.addEventListener('click', async () => {
+    if (!currentProduct?.id) return;
+    const qty = Math.max(1, parseInt(qtyInput.value || "1", 10));
+    try {
+      const endpoint = (BASE ? BASE : "") + "/tienda/ajax_carrito.php";
+      const res = await fetch(endpoint, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
+          "Accept":"application/json",
+          "X-Requested-With":"XMLHttpRequest"
+        },
+        body: new URLSearchParams({ id_producto: String(currentProduct.id), cantidad: String(qty) }).toString(),
+        cache: "no-store"
+      });
+      const txt = await res.text();
+      let data; try { data = JSON.parse(txt); } catch {
+        const s = txt.indexOf("{"), e = txt.lastIndexOf("}");
+        data = (s>=0&&e>=s) ? JSON.parse(txt.slice(s,e+1)) : null;
+      }
+      if (!res.ok || !data?.success) throw new Error(data?.message || 'No se pudo agregar.');
+      if (typeof refreshMiniCart === "function") await refreshMiniCart();
+      const badge = document.getElementById("cart-count");
+      if (badge && typeof data.cart_count !== "undefined") {
+        badge.textContent = data.cart_count;
+        badge.classList.toggle("hidden", data.cart_count <= 0);
+      }
+      typeof mostrarAlerta === "function" && mostrarAlerta("Producto añadido al carrito");
+    } catch (err) {
+      console.error(err);
+      typeof mostrarAlerta === "function" ? mostrarAlerta("Error al añadir: " + err.message) : alert("Error al añadir: " + err.message);
+    }
+  });
+
+  // CLICK en botones .preview (sin data-modal-*)
+  document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.preview');
+    if (!btn) return;
+
+    lastFocus = btn;
+
+    const id    = parseInt(btn.dataset.id || "0", 10) || 0;
+    const name  = btn.dataset.name  || "";
+    const price = btn.dataset.price || "";
+    const img   = btn.dataset.img   || "";
+    const brand = btn.dataset.brand || "";
+    const desc  = btn.dataset.desc  || "";
+    const url   = btn.dataset.url   || "";
+    const galleryData = parseMaybeJSON(btn.dataset.gallery || "[]") || [];
+
+    // completar desde __productosCrudos si hace falta
+    let prod = { id, name, price, img, brand, desc, url, gallery: galleryData };
+    if ((!prod.name || !prod.price || !prod.img) && id && Array.isArray(window.__productosCrudos)) {
+      const found = window.__productosCrudos.find(p => Number(p.id_producto) === id);
+      if (found) {
+        prod.name  = prod.name  || found.nombre || "";
+        prod.price = prod.price || found.precio || "";
+        prod.img   = prod.img   || (found.imagen ? `/uploads/${found.imagen}` : "");
+        prod.brand = prod.brand || (found.marca || "");
+        prod.desc  = prod.desc  || (found.descripcion || "");
+        prod.url   = prod.url   || (found.url || "");
+        if ((!prod.gallery || !prod.gallery.length) && (found.gallery || found.imagen)) {
+          prod.gallery = found.gallery || (found.imagen ? [`/uploads/${found.imagen}`] : []);
+        }
+      }
+    }
+
+    const norm = (s) => !s ? "" : (/^https?:\/\//i.test(s) ? s : (BASE + (s.startsWith('/') ? s : '/'+s)));
+
+    currentProduct = {
+      id: prod.id,
+      name: prod.name,
+      price: prod.price,
+      img: norm(prod.img) || PLACEHOLDER_IMG,
+      brand: prod.brand,
+      desc: prod.desc,
+      url: prod.url ? norm(prod.url) : "",
+      gallery: Array.isArray(prod.gallery) && prod.gallery.length ? prod.gallery.map(norm) : [norm(prod.img) || PLACEHOLDER_IMG],
+    };
+
+    // Rellenar campos
+    if (nameEl)  nameEl.textContent  = currentProduct.name || "Producto";
+    if (brandEl) brandEl.textContent = currentProduct.brand || "";
+    if (priceEl) priceEl.textContent = fmtUSD(currentProduct.price || 0);
+    
+    // 💡 Soporta <div>/<p> (textContent) y <textarea> (value)
+if (descEl) {
+  if ('value' in descEl) {
+    // Si por alguna razón sigue siendo <textarea>
+    descEl.value = (currentProduct.desc || '').toString();
+  } else {
+    // <div> / <p> u otro contenedor de texto
+    descEl.textContent = (currentProduct.desc || '').toString();
+  }
+}
+
+    renderGallery(currentProduct.gallery);
+    if (moreLink) {
+      if (currentProduct.url) { moreLink.href = currentProduct.url; moreLink.classList.remove('pointer-events-none','opacity-60'); }
+      else { moreLink.href = "#"; moreLink.classList.add('pointer-events-none','opacity-60'); }
+    }
+
+    openModal();
+  });
+})();
 
 
 // =====================================================
@@ -1159,6 +1411,7 @@ document.addEventListener("click", async (e) => {
     const email   = $("#email").value.trim();
     const mensaje = $("#mensaje").value.trim();
     const tel     = $("#telefono").value.trim();
+
     if (!nombre || nombre.length < 2) return "Ingresa tu nombre completo.";
     if (!pais) return "Selecciona un país.";
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return "Ingresa un correo válido.";
@@ -1202,3 +1455,4 @@ document.addEventListener("click", async (e) => {
     }
   });
 })();
+
