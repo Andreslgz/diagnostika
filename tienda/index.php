@@ -156,83 +156,83 @@ $anios = $database->select(
 
                     <div class="w-[350px] lg:flex hidden flex-col">
                         <h1 class="text-2xl font-bold mb-6">FILTERS</h1>
-                        
-                        <div id="filters-panel">
-                        
-                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
-                            <header class="flex items-center justify-between">
-                                <p>
-                                    BRAND SOFTWARE
-                                </p>
-                                <button class="" type="button">
-                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m19 9-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </header>
-                            <div class="mt-1">
-                                <div class="flex flex-col gap-0.5">
-                                    <?php if (!empty($marcas)): ?>
-                                        <?php foreach ($marcas as $m): ?>
-                                            <label class="inline-flex items-center justify-between">
-                                                <span class="flex items-center">
-                                                    <input type="checkbox" class="form-checkbox" name="marca[]"
-                                                        value="<?php echo htmlspecialchars($m['marca']); ?>" />
-                                                    <span class="ml-2"><?php echo htmlspecialchars($m['marca']); ?></span>
-                                                </span>
-                                                <span
-                                                    class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-gray-100 rounded-full">
-                                                    <?php echo $m['cantidad']; ?>
-                                                </span>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <p class="text-sm text-gray-500">There are no brands registered</p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
-                            <header class="flex items-center justify-between">
-                                <p>
-                                    YEAR
-                                </p>
-                                <button class="" type="button">
-                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m19 9-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </header>
-                            <div class="mt-1">
-                                <div class="flex flex-col gap-0.5">
-                                    <?php if (!empty($anios)): ?>
-                                        <?php foreach ($anios as $a): ?>
-                                            <label class="inline-flex items-center justify-between">
-                                                <span class="flex items-center">
-                                                    <input type="checkbox" class="form-checkbox" name="anio[]"
-                                                        value="<?php echo htmlspecialchars($a['anio']); ?>" />
-                                                    <span class="ml-2"><?php echo htmlspecialchars($a['anio']); ?></span>
-                                                </span>
-                                                <span
-                                                    class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-gray-100 rounded-full">
-                                                    <?php echo $a['cantidad']; ?>
-                                                </span>
-                                            </label>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <p class="text-sm text-gray-500">There are no years registered</p>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
 
+                        <div id="filters-panel">
+
+                            <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                                <header class="flex items-center justify-between">
+                                    <p>
+                                        BRAND SOFTWARE
+                                    </p>
+                                    <button class="" type="button">
+                                        <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                </header>
+                                <div class="mt-1">
+                                    <div class="flex flex-col gap-0.5">
+                                        <?php if (!empty($marcas)): ?>
+                                            <?php foreach ($marcas as $m): ?>
+                                                <label class="inline-flex items-center justify-between">
+                                                    <span class="flex items-center">
+                                                        <input type="checkbox" class="form-checkbox" name="marca[]"
+                                                            value="<?php echo htmlspecialchars($m['marca']); ?>" />
+                                                        <span class="ml-2"><?php echo htmlspecialchars($m['marca']); ?></span>
+                                                    </span>
+                                                    <span
+                                                        class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-gray-100 rounded-full">
+                                                        <?php echo $m['cantidad']; ?>
+                                                    </span>
+                                                </label>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p class="text-sm text-gray-500">There are no brands registered</p>
+                                        <?php endif; ?>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
+                                <header class="flex items-center justify-between">
+                                    <p>
+                                        YEAR
+                                    </p>
+                                    <button class="" type="button">
+                                        <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
+                                            viewBox="0 0 24 24">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m19 9-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                </header>
+                                <div class="mt-1">
+                                    <div class="flex flex-col gap-0.5">
+                                        <?php if (!empty($anios)): ?>
+                                            <?php foreach ($anios as $a): ?>
+                                                <label class="inline-flex items-center justify-between">
+                                                    <span class="flex items-center">
+                                                        <input type="checkbox" class="form-checkbox" name="anio[]"
+                                                            value="<?php echo htmlspecialchars($a['anio']); ?>" />
+                                                        <span class="ml-2"><?php echo htmlspecialchars($a['anio']); ?></span>
+                                                    </span>
+                                                    <span
+                                                        class="ml-2 inline-flex items-center justify-center px-2 py-0.5 text-xs font-medium bg-gray-100 rounded-full">
+                                                        <?php echo $a['cantidad']; ?>
+                                                    </span>
+                                                </label>
+                                            <?php endforeach; ?>
+                                        <?php else: ?>
+                                            <p class="text-sm text-gray-500">There are no years registered</p>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                         <!-- 
                         <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
                             <header class="flex items-center justify-between">
@@ -309,8 +309,8 @@ $anios = $database->select(
                             class="flex flex-col lg:flex-row lg:items-center lg:justify-between w-full mb-5 gap-4 lg:gap-0">
                             <!-- Filtros aplicados -->
                             <div class="flex gap-2 lg:gap-6 flex-wrap">
-                               <div id="active-filters" class="flex gap-2 lg:gap-6 flex-wrap"></div>
-                               
+                                <div id="active-filters" class="flex gap-2 lg:gap-6 flex-wrap"></div>
+
                             </div>
 
                             <!-- Botón de ordenar -->
@@ -348,7 +348,7 @@ $anios = $database->select(
                                                 class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900">
                                                 Newest </a>
                                         </li>
-                                        
+
                                     </ul>
                                 </div>
                             </div>
@@ -366,6 +366,7 @@ $anios = $database->select(
                         </div>-->
                     </div>
                 </div>
+
                 <!-- Mobile Drawer -->
                 <form action="#" method="get" id="drawer-mobile-filter"
                     class="fixed left-0 top-0 z-40 h-screen w-full max-w-sm -translate-x-full overflow-y-auto bg-white p-4 transition-transform "
@@ -530,8 +531,118 @@ $anios = $database->select(
                         </div>
                     </div>
                 </form>
+
             </div>
         </section>
+
+        <div id="product-details-modal" tabindex="-1" aria-hidden="true"
+            class="hidden fixed inset-0 z-50 w-full h-full
+            justify-center items-center
+            overflow-y-auto overflow-x-hidden
+            bg-black/60 backdrop-blur-sm"> <!-- 👈 fondo oscuro + blur -->
+            <div class="relative p-4 w-full max-w-4xl max-h-full">
+                <div class="relative bg-white rounded-lg shadow-sm">
+                    <!-- Header -->
+                    <div class="p-4 md:p-5 border-b rounded-t btn-secondary border-gray-200">
+                        <div class="flex items-center justify-between">
+                            <h3 id="modal-product-name" class="xl:text-xl text-sm font-semibold">Producto</h3>
+                            <button type="button"
+                                class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                data-modal-hide="product-details-modal" aria-label="Cerrar">
+                                <svg class="xl:w-4 w-2.5 xl:h-4 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 14 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                </svg>
+                            </button>
+                        </div>
+                        <p id="modal-product-brand" class="text-white xl:text-lg text-sm xl:mt-8 mt-3"></p>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="xl:p-8 p-5 grid xl:grid-cols-2 grid-cols-1 xl:gap-10 gap-4 w-full">
+                        <!-- Galería -->
+                        <div class="max-w-2xl mx-auto">
+                            <section aria-label="Galería de imágenes">
+                                <div class="relative mb-4 overflow-hidden border border-gray-200 bg-white">
+                                    <div class="aspect-square">
+                                        <img id="mainImage"
+                                            src="https://placehold.co/600x600/png"
+                                            alt="Imagen principal"
+                                            class="h-full w-full object-cover transition-opacity duration-300"
+                                            loading="eager" decoding="async" draggable="false" />
+                                    </div>
+                                </div>
+
+                                <div class="relative">
+                                    <div class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
+                                    <div class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
+
+                                    <div class="flex items-center gap-2">
+                                        <button id="prev"
+                                            class="shrink-0 rounded-md bg-gray-800 text-white px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                                            aria-label="Anterior">&#10094;</button>
+
+                                        <div id="thumbs"
+                                            class="relative flex gap-2 overflow-x-auto scrollbar-hide scroll-smooth snap-x snap-mandatory py-2"
+                                            role="listbox" aria-label="Miniaturas"></div>
+
+                                        <button id="next"
+                                            class="shrink-0 rounded-md bg-gray-800 text-white px-3 py-2 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                                            aria-label="Siguiente">&#10095;</button>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
+                        <!-- Info -->
+                        <div class="w-full flex flex-col justify-between">
+                            <div>
+                                <div class="flex flex-row justify-between items-center w-full">
+                                    <p id="modal-product-price" class="xl:text-3xl text-lg text-nowrap font-bold">USD 0.00</p>
+
+                                    <div class="relative mt-2 flex max-w-32 items-center justify-end">
+                                        <button type="button" id="decrement-button"
+                                            class="xl:h-10 h-8 rounded-s-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                                            <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                            </svg>
+                                        </button>
+                                        <input type="text" id="quantity-input-1" data-input-counter data-input-counter-min="1" data-input-counter-max="50"
+                                            class="block xl:h-10 h-8 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
+                                            value="1" />
+                                        <button type="button" id="increment-button"
+                                            class="xl:h-10 h-8 rounded-e-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
+                                            <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
+                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <p id="modal-product-description" class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
+                                    Producto sin descripción.
+                                </p>
+
+
+                            </div>
+
+                            <div class="flex flex-col gap-4 xl:mt-0 mt-4">
+                                <button id="modal-add-to-cart"
+                                    class="btn-secondary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">
+                                    ADD TO CART
+                                </button>
+                                <a id="modal-more-details" href="#"
+                                    class="block text-center btn-primary w-full py-3 font-bold text-base xl:text-lg shadow xl:shadow-lg rounded-lg">
+                                    MORE DETAILS
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 
 
     </main>
@@ -544,8 +655,7 @@ $anios = $database->select(
     <!-- DRAWER -->
     <?php require_once __DIR__ . '/../includes/carrito_home.php'; ?>
 
-    <!-- MODAL PREVISUALIZAR -->
-    <?php require_once __DIR__ . '/../includes/modal_previsualizar.php'; ?>
+
 
     <div id="alertaFavorito"
         class="hidden fixed top-5 right-5 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded shadow z-50 text-sm"
@@ -554,63 +664,17 @@ $anios = $database->select(
         <span class="block" id="alertaTexto"></span>
     </div>
 
-    <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true"
-        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-        <div class="relative p-4 w-full max-w-2xl max-h-full">
-            <!-- Modal content -->
-            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-                <!-- Modal header -->
-                <div
-                    class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
-                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
-                        Static modal
-                    </h3>
-                    <button type="button"
-                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                        data-modal-hide="static-modal">
-                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 14 14">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                        </svg>
-                        <span class="sr-only">Close modal</span>
-                    </button>
-                </div>
-                <!-- Modal body -->
-                <div class="p-4 md:p-5 space-y-4">
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        With less than a month to go before the European Union enacts new consumer privacy laws for its
-                        citizens, companies around the world are updating their terms of service agreements to comply.
-                    </p>
-                    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
-                        The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25
-                        and is
-                        meant to ensure a common set of data rights in the European Union. It requires organizations to
-                        notify users as soon as possible of high-risk data breaches that could personally affect them.
-                    </p>
-                </div>
-                <!-- Modal footer -->
-                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                    <button data-modal-hide="static-modal" type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">I
-                        accept</button>
-                    <button data-modal-hide="static-modal" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
-                </div>
-            </div>
-        </div>
-    </div>
+
 
     <!-- SCRIPTS en este orden -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
+
 
     <!-- Splide.js DEBE ir antes del modal script -->
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
 
     <script src="<?php echo $url; ?>/scripts/main.js"></script>
-    <script src="<?php echo $url; ?>/scripts/previsualizar_modal.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
@@ -621,269 +685,6 @@ $anios = $database->select(
 
         .bg-cards:hover {
             background: linear-gradient(0deg, #8A8A89 0%, #C0C0C0 100%);
-        }
-
-        /* ============================================
-   ESTILOS PARA MODAL CON SPLIDE.JS
-   ============================================ */
-
-        /* Estilos personalizados para Splide en el modal */
-        .modal-carousel-arrows {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 10;
-        }
-
-        .modal-carousel-arrow {
-            background: rgba(0, 0, 0, 0.5) !important;
-            border: none !important;
-            border-radius: 50% !important;
-            width: 44px !important;
-            height: 44px !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            transition: all 0.3s ease !important;
-            backdrop-filter: blur(4px);
-            opacity: 0;
-            pointer-events: auto;
-        }
-
-        .modal-carousel-arrow:hover {
-            background: rgba(0, 0, 0, 0.7) !important;
-            transform: translateY(-50%) scale(1.1) !important;
-        }
-
-        .modal-carousel-arrow:disabled {
-            opacity: 0.3 !important;
-        }
-
-        .modal-carousel-arrow svg {
-            fill: white !important;
-            width: 20px !important;
-            height: 20px !important;
-        }
-
-        .modal-carousel-prev {
-            left: 12px !important;
-        }
-
-        .modal-carousel-next {
-            right: 12px !important;
-        }
-
-        /* Mostrar controles al hacer hover en el contenedor */
-        .product-carousel-container:hover .modal-carousel-arrow {
-            opacity: 1;
-        }
-
-        /* Estilos para el carrusel principal */
-        #product-carousel .splide__track {
-            border-radius: 0.75rem;
-            /* rounded-xl */
-            overflow: hidden;
-        }
-
-        #product-carousel .splide__slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Estilos para thumbnails */
-        #product-thumbnails .splide__slide {
-            opacity: 0.6;
-            transition: opacity 0.3s ease;
-            cursor: pointer;
-        }
-
-        #product-thumbnails .splide__slide.is-active {
-            opacity: 1;
-        }
-
-        #product-thumbnails .splide__slide:hover {
-            opacity: 0.8;
-        }
-
-        #product-thumbnails .splide__slide img {
-            border-radius: 0.5rem;
-            transition: all 0.2s ease;
-        }
-
-        #product-thumbnails .splide__slide.is-active img {
-            border: 2px solid #f59e0b;
-            /* amber-500 */
-            box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.2);
-        }
-
-        /* Controles de cantidad */
-        .quantity-decrease,
-        .quantity-increase {
-            transition: all 0.2s ease;
-            border: none;
-            background: none;
-        }
-
-        .quantity-decrease:hover,
-        .quantity-increase:hover {
-            background-color: #f3f4f6;
-        }
-
-        #product-quantity {
-            border: none;
-            outline: none;
-            text-align: center;
-            font-weight: 500;
-            background: transparent;
-        }
-
-        #product-quantity:focus {
-            background-color: #f9fafb;
-        }
-
-        /* Descripción técnica expandible */
-        .tech-description-toggle {
-            transition: all 0.2s ease;
-        }
-
-        .tech-description-arrow {
-            transition: transform 0.2s ease;
-        }
-
-        .tech-description-content {
-            transition: max-height 0.3s ease-out;
-            overflow: hidden;
-        }
-
-        /* Animaciones del modal */
-        @keyframes modalSlideIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95) translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: scale(1) translateY(0);
-            }
-        }
-
-        #modal_previsualizar .relative.bg-white {
-            animation: modalSlideIn 0.3s ease-out;
-        }
-
-        /* Loading animation mejorada */
-        .loading-spinner {
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 1024px) {
-            .modal-carousel-arrow {
-                width: 36px !important;
-                height: 36px !important;
-            }
-
-            .modal-carousel-arrow svg {
-                width: 16px !important;
-                height: 16px !important;
-            }
-
-            #modal_previsualizar .relative.p-4 {
-                max-width: 95vw;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .modal-carousel-arrow {
-                width: 32px !important;
-                height: 32px !important;
-            }
-
-            .modal-carousel-arrow svg {
-                width: 14px !important;
-                height: 14px !important;
-            }
-
-            #product-thumbnails {
-                margin-top: 0.75rem !important;
-            }
-        }
-
-        /* Mejoras de accesibilidad */
-        .modal-carousel-arrow:focus {
-            outline: 2px solid #3b82f6;
-            outline-offset: 2px;
-        }
-
-        .tech-description-toggle:focus {
-            outline: 2px solid #3b82f6;
-            outline-offset: 2px;
-        }
-
-        /* Efectos visuales adicionales */
-        .product-image-overlay {
-            background: linear-gradient(to bottom,
-                    transparent 0%,
-                    transparent 60%,
-                    rgba(0, 0, 0, 0.1) 100%);
-            transition: opacity 0.3s ease;
-        }
-
-        /* Personalización adicional de Splide */
-        .splide__pagination {
-            bottom: 0.5rem !important;
-        }
-
-        .splide__pagination__page {
-            background: rgba(255, 255, 255, 0.5) !important;
-            border: 1px solid rgba(255, 255, 255, 0.8) !important;
-        }
-
-        .splide__pagination__page.is-active {
-            background: #f59e0b !important;
-            /* amber-500 */
-            border-color: #f59e0b !important;
-        }
-
-        /* Estados del carrusel */
-        .splide.is-initialized {
-            visibility: visible;
-        }
-
-        .splide:not(.is-initialized) {
-            visibility: hidden;
-        }
-
-        /* Smooth transitions para slides */
-        .splide__slide {
-            transition: opacity 0.3s ease;
-        }
-
-        /* Indicador de múltiples imágenes */
-        .multiple-images-indicator {
-            position: absolute;
-            top: 12px;
-            right: 12px;
-            background: rgba(0, 0, 0, 0.6);
-            color: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-            backdrop-filter: blur(4px);
-            z-index: 5;
         }
     </style>
 </body>

@@ -17,7 +17,7 @@ require_once __DIR__ . '/../includes/db.php';
 function out(array $arr, int $code = 200): void {
   http_response_code($code);
   @ob_clean();
-  echo json_encode($arr, JSON_UNESCAPED_UNICODE);
+  echo json_encode($arr, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
   exit;
 }
 
@@ -128,8 +128,16 @@ try {
   $totalPages = max(1, (int)ceil($total / $perPage));
 
   // -------- Datos --------
+  // Incluyo p.descripcion para que puedas usar data-desc en el botón Preview
   $sqlData = "
-    SELECT p.id_producto, p.nombre, p.precio, p.imagen, c.marca, c.anio
+    SELECT
+      p.id_producto,
+      p.nombre,
+      p.precio,
+      p.imagen,
+      p.descripcion,
+      c.marca,
+      c.anio
     $sqlBase
     GROUP BY p.id_producto
     ORDER BY p.id_producto DESC
@@ -142,6 +150,52 @@ try {
   }
   $productos = $stmtData->fetchAll(PDO::FETCH_ASSOC) ?: [];
 
+  // -------- Adjuntar GALERÍA a cada producto --------
+  // Nota: esto hace 1 query por producto. Si te preocupa rendimiento,
+  // puedes traer todas las galerías en una sola consulta y agrupar en PHP.
+  foreach ($productos as &$prod) {
+    $idProd = (int)($prod['id_producto'] ?? 0);
+
+    // Trae solo los nombres de archivo de la galería
+    $galeria = $database->select(
+      "galeria_productos",
+      "gal_img",
+      [
+        "id_producto" => $idProd,
+        "gal_est"     => "activo",
+        "ORDER"       => ["gal_id" => "DESC"]
+      ]
+    );
+
+    // Prefija cada imagen con /uploads/
+    $galeria_full = array_map(
+      fn($f) => '/uploads/' . ltrim((string)$f, '/'),
+      is_array($galeria) ? $galeria : []
+    );
+
+    // Imagen principal del producto (primero en la lista)
+    $imagen_principal = !empty($prod['imagen'])
+      ? '/uploads/' . ltrim((string)$prod['imagen'], '/')
+      : null;
+
+    if ($imagen_principal) {
+      // Evita duplicado si ya está en galería
+      if (!in_array($imagen_principal, $galeria_full, true)) {
+        array_unshift($galeria_full, $imagen_principal);
+      } else {
+        // Asegura que esté en primera posición
+        $galeria_full = array_values(array_unique([$imagen_principal, ...$galeria_full]));
+      }
+    }
+
+    // Agrego campos “amigables” para el frontend
+    $prod['imagen_url']  = $imagen_principal ?: '';
+    $prod['gallery']     = $galeria_full;                       // ← array listo para data-gallery
+    $prod['marca']       = $prod['marca'] ?? '';                // ← para data-brand
+    $prod['descripcion'] = $prod['descripcion'] ?? '';          // ← para data-desc
+  }
+  unset($prod); // buena práctica al usar referencias
+
   // -------- Debug opcional --------
   if ($DEBUG) {
     error_log('[SQL TOTAL] ' . buildDebugSQL($sqlTotal, $params));
@@ -152,12 +206,12 @@ try {
   // -------- Respuesta --------
   $payload = [
     'ok'              => true,
-    'data'            => $productos,
+    'data'            => $productos,     // cada item trae: id_producto, nombre, precio, imagen, imagen_url, descripcion, marca, anio, gallery[]
     'total'           => $total,
     'page'            => $page,
     'pages'           => $totalPages,
-    'grid_html'       => '',    // si en algún momento envías HTML del grid, colócalo aquí
-    'pagination_html' => '',    // si envías HTML de paginación, aquí
+    'grid_html'       => '',             // si algún día envías HTML del grid, colócalo aquí
+    'pagination_html' => '',
     'favorites'       => $favoritos_usuario,
   ];
 

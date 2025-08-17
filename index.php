@@ -1384,6 +1384,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
             console.log('Using new accordion system');
         }
     </script>
+    
     <div id="pop-up-modal" tabindex="-1" aria-hidden="true"
         class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black bg-opacity-40">
         <div class="relative p-4 w-full max-w-md max-h-full">
