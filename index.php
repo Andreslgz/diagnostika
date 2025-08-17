@@ -1175,9 +1175,9 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
                             <p id="modal-product-description" class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
                                 Producto sin descripción.
-                                            </p>
+                            </p>
 
-                            
+
                         </div>
 
                         <div class="flex flex-col gap-4 xl:mt-0 mt-4">

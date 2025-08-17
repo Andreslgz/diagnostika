@@ -14,7 +14,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
 
   // Parseo tolerante a HTML alrededor del JSON
   const parseJSONSafe = (text) => {
-    try { return JSON.parse(text); } catch (_) {}
+    try { return JSON.parse(text); } catch (_) { }
     const s = text.indexOf("{"), e = text.lastIndexOf("}");
     if (s >= 0 && e >= s) return JSON.parse(text.slice(s, e + 1));
     return null; // <-- en vez de lanzar, devolvemos null (el caller decide)
@@ -22,7 +22,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
 
   // Fetch con respuesta JSON tolerante
   async function fetchJSON(url, options = {}) {
-    const res  = await fetch(url, options);
+    const res = await fetch(url, options);
     const text = await res.text();
     const json = parseJSONSafe(text);
     // Devolvemos ambas claves para que cualquier caller funcione
@@ -46,11 +46,11 @@ window.BASE_DIR = 'https://diagnostika:8890';
 // =====================================================
 (() => {
   document.addEventListener("DOMContentLoaded", () => {
-    const modalBody     = document.getElementById("modal-body");
-    const registerTab   = document.getElementById("register-tab");
-    const loginTab      = document.getElementById("login-tab");
+    const modalBody = document.getElementById("modal-body");
+    const registerTab = document.getElementById("register-tab");
+    const loginTab = document.getElementById("login-tab");
     const registerPanel = document.getElementById("register");
-    const loginPanel    = document.getElementById("login");
+    const loginPanel = document.getElementById("login");
 
     const resetTab = (tab) => {
       if (!tab) return;
@@ -66,17 +66,17 @@ window.BASE_DIR = 'https://diagnostika:8890';
     };
 
     const showLoginTab = () => {
-      resetTab(registerTab);  activateTab(loginTab);
+      resetTab(registerTab); activateTab(loginTab);
       if (registerPanel && loginPanel) {
         registerPanel.className = "hidden flex-col justify-center h-full tab-content-transition";
-        loginPanel.className    = "flex flex-col justify-center h-full tab-content-transition";
+        loginPanel.className = "flex flex-col justify-center h-full tab-content-transition";
         loginPanel.style.opacity = "1";
       }
     };
     const showRegisterTab = () => {
       resetTab(loginTab); activateTab(registerTab);
       if (registerPanel && loginPanel) {
-        loginPanel.className    = "hidden flex-col justify-center h-full tab-content-transition";
+        loginPanel.className = "hidden flex-col justify-center h-full tab-content-transition";
         registerPanel.className = "flex flex-col justify-center h-full tab-content-transition";
         registerPanel.style.opacity = "1";
       }
@@ -127,7 +127,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
   // LOGIN
   document.addEventListener("DOMContentLoaded", () => {
     const loginFormEl = document.getElementById("login-form");
-    const errorBox    = document.getElementById("login-error");
+    const errorBox = document.getElementById("login-error");
     const showErr = (msg) => { if (!errorBox) return; errorBox.textContent = msg; errorBox.classList.remove("hidden"); };
     const hideErr = () => errorBox?.classList.add("hidden");
     if (!loginFormEl) return;
@@ -150,7 +150,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
         if (res.redirected) { window.location.href = res.url; return; }
 
         const text = await res.text();
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0,200)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
         const data = App.parseJSONSafe(text);
 
         if (data?.success) {
@@ -187,7 +187,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     registerFormEl.addEventListener("submit", async (e) => {
       e.preventDefault();
       const form = e.target;
-      const pwd  = form.querySelector('input[name="password"]').value.trim();
+      const pwd = form.querySelector('input[name="password"]').value.trim();
       const pwd2 = form.querySelector('input[name="password_confirm"]').value.trim();
       if (pwd !== pwd2) { showError("Las contraseñas no coinciden."); return; }
 
@@ -198,14 +198,14 @@ window.BASE_DIR = 'https://diagnostika:8890';
           method: "POST",
           body: new FormData(form),
           credentials: "same-origin",
-          headers: { "Accept":"application/json", "X-Requested-With":"XMLHttpRequest" },
+          headers: { "Accept": "application/json", "X-Requested-With": "XMLHttpRequest" },
           cache: "no-store"
         });
 
         if (res.redirected) { window.location.href = res.url; return; }
 
         const text = await res.text();
-        if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0,200)}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
         const data = App.parseJSONSafe(text);
 
         if (data.success) {
@@ -230,8 +230,8 @@ window.BASE_DIR = 'https://diagnostika:8890';
 // LOGOUT MODAL
 // =====================================================
 (() => {
-  const logoutBtnEl   = document.getElementById("logoutModalBtn");
-  const cancelLogoutEl= document.getElementById("cancelLogout");
+  const logoutBtnEl = document.getElementById("logoutModalBtn");
+  const cancelLogoutEl = document.getElementById("cancelLogout");
 
   logoutBtnEl?.addEventListener("click", () => {
     const modal = document.getElementById("logoutModal");
@@ -256,7 +256,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
 (() => {
   function mostrarAlerta(mensaje) {
     const alerta = document.getElementById("alertaFavorito");
-    const texto  = document.getElementById("alertaTexto");
+    const texto = document.getElementById("alertaTexto");
     if (!alerta || !texto) { alert(mensaje); return; }
     texto.textContent = mensaje;
     alerta.classList.remove("hidden"); alerta.classList.add("flex");
@@ -286,26 +286,26 @@ window.BASE_DIR = 'https://diagnostika:8890';
       cache: "no-store",
       credentials: "same-origin",
     })
-    .then(r => r.text())
-    .then(App.parseJSONSafe)
-    .then((data) => {
-      if (data?.auth === false) return mostrarAlerta("Debes iniciar sesión para agregar productos a favoritos.");
-      if (data?.success) {
-        const marcar = !!data.favorito;
-        if (svg) {
-          svg.setAttribute("fill", marcar ? "red" : "none");
-          svg.classList.toggle("text-red-600", marcar);
-          svg.classList.toggle("text-black", !marcar);
+      .then(r => r.text())
+      .then(App.parseJSONSafe)
+      .then((data) => {
+        if (data?.auth === false) return mostrarAlerta("Debes iniciar sesión para agregar productos a favoritos.");
+        if (data?.success) {
+          const marcar = !!data.favorito;
+          if (svg) {
+            svg.setAttribute("fill", marcar ? "red" : "none");
+            svg.classList.toggle("text-red-600", marcar);
+            svg.classList.toggle("text-black", !marcar);
+          }
+          btn.classList.toggle("is-fav", marcar);
+        } else {
+          mostrarAlerta(data?.message || "Ocurrió un error.");
         }
-        btn.classList.toggle("is-fav", marcar);
-      } else {
-        mostrarAlerta(data?.message || "Ocurrió un error.");
-      }
-    })
-    .catch((err) => {
-      console.error(err);
-      mostrarAlerta("Error: " + err.message);
-    });
+      })
+      .catch((err) => {
+        console.error(err);
+        mostrarAlerta("Error: " + err.message);
+      });
   });
 })();
 
@@ -345,15 +345,15 @@ window.BASE_DIR = 'https://diagnostika:8890';
       });
       if (!ok || !json?.success) throw new Error(json?.message || raw);
 
-      const elSubtotal  = document.getElementById('subtotalAmount');
+      const elSubtotal = document.getElementById('subtotalAmount');
       const elDiscounts = document.getElementById('discountsAppliedAmount');
-      const elVoucher   = document.getElementById('voucherDiscountAmount');
-      const elTotal     = document.getElementById('cart-total');
+      const elVoucher = document.getElementById('voucherDiscountAmount');
+      const elTotal = document.getElementById('cart-total');
 
-      elSubtotal  && (elSubtotal.textContent  = App.fmtUSD(json.subtotal));
+      elSubtotal && (elSubtotal.textContent = App.fmtUSD(json.subtotal));
       elDiscounts && (elDiscounts.textContent = '- ' + App.fmtUSD(json.discounts_applied));
-      elVoucher   && (elVoucher.textContent   = '- ' + App.fmtUSD(json.voucher_discount));
-      elTotal     && (elTotal.textContent     = App.fmtUSD(json.total));
+      elVoucher && (elVoucher.textContent = '- ' + App.fmtUSD(json.voucher_discount));
+      elTotal && (elTotal.textContent = App.fmtUSD(json.total));
 
       const badge = document.getElementById('cart-count');
       if (badge && typeof json.cart_count !== 'undefined') {
@@ -374,7 +374,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     const btn = e.target.closest(".add-to-cart");
     if (!btn) return;
     e.preventDefault();
-    const id  = btn.dataset.id;
+    const id = btn.dataset.id;
     const qty = parseInt(btn.dataset.qty || "1", 10) || 1;
     if (!id) { console.error("add-to-cart sin data-id"); return; }
 
@@ -393,7 +393,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
         cache: "no-store"
       });
       const text = await res.text();
-      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0,200)}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
       const data = App.parseJSONSafe(text);
 
       if (data?.success) {
@@ -435,7 +435,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
         cache: 'no-store'
       });
       const text = await res.text();
-      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0,200)}`);
+      if (!res.ok) throw new Error(`HTTP ${res.status}: ${text.slice(0, 200)}`);
 
       const data = App.parseJSONSafe(text);
       if (!data?.success) {
@@ -448,10 +448,10 @@ window.BASE_DIR = 'https://diagnostika:8890';
         document.querySelector(`li[data-item="${index}"]`)?.remove();
       } else {
         const qtySpan = document.getElementById(`qty-${index}`) ||
-                        document.querySelector(`li[data-item="${index}"] [data-qty]`);
+          document.querySelector(`li[data-item="${index}"] [data-qty]`);
         qtySpan && (qtySpan.textContent = data.new_qty);
         const subSpan = document.getElementById(`subtotal-${index}`) ||
-                        document.querySelector(`li[data-item="${index}"] [data-subtotal]`);
+          document.querySelector(`li[data-item="${index}"] [data-subtotal]`);
         subSpan && (subSpan.textContent = `USD. ${Number(data.item_subtotal).toFixed(2)}`);
       }
 
@@ -473,86 +473,86 @@ window.BASE_DIR = 'https://diagnostika:8890';
   };
 
   // Eliminar ítem (delegación click en .js-remove-item)
-document.addEventListener("click", async (e) => {
-  const removeBtn = e.target.closest(".js-remove-item");
-  if (!removeBtn) return;
-  e.preventDefault();
+  document.addEventListener("click", async (e) => {
+    const removeBtn = e.target.closest(".js-remove-item");
+    if (!removeBtn) return;
+    e.preventDefault();
 
-  const index = Number(removeBtn.dataset.index);
-  if (!Number.isInteger(index) || index < 0) {
-    console.error("remove: data-index inválido:", removeBtn.dataset.index);
-    return;
-  }
-
-  const base =
-    (typeof App !== "undefined" && App.baseNorm && App.baseNorm()) ||
-    (typeof window !== "undefined" && window.BASE_DIR && window.BASE_DIR.replace(/\/$/, "")) ||
-    (typeof BASE_DIR !== "undefined" && BASE_DIR && BASE_DIR.replace(/\/$/, "")) ||
-    "";
-  const endpoint = base + "/includes/carrito_acciones.php";
-
-  removeBtn.disabled = true;
-  try {
-    const { okHTTP, json, raw } = await App.fetchJSON(endpoint, {
-      method: "POST",
-      credentials: "same-origin",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "Accept": "application/json",
-        "X-Requested-With": "XMLHttpRequest",
-      },
-      body: new URLSearchParams({ action: "remove", index: String(index) }).toString(),
-      cache: "no-store",
-    });
-
-    // Errores reales de red/HTTP
-    if (!okHTTP) {
-      (typeof mostrarAlerta === "function")
-        ? mostrarAlerta("HTTP error: " + String(raw).slice(0, 200))
-        : alert("HTTP error: " + String(raw).slice(0, 200));
+    const index = Number(removeBtn.dataset.index);
+    if (!Number.isInteger(index) || index < 0) {
+      console.error("remove: data-index inválido:", removeBtn.dataset.index);
       return;
     }
 
-    // Respuesta debe ser JSON válido
-    if (!json) {
-      (typeof mostrarAlerta === "function")
-        ? mostrarAlerta("Respuesta no-JSON del servidor.")
-        : alert("Respuesta no-JSON del servidor.");
-      return;
-    }
+    const base =
+      (typeof App !== "undefined" && App.baseNorm && App.baseNorm()) ||
+      (typeof window !== "undefined" && window.BASE_DIR && window.BASE_DIR.replace(/\/$/, "")) ||
+      (typeof BASE_DIR !== "undefined" && BASE_DIR && BASE_DIR.replace(/\/$/, "")) ||
+      "";
+    const endpoint = base + "/includes/carrito_acciones.php";
 
-    // Si el backend avisa fallo lógico
-    if (json.success !== true) {
-      (typeof mostrarAlerta === "function")
-        ? mostrarAlerta(json.message || "No se pudo eliminar el producto.")
-        : alert(json.message || "No se pudo eliminar el producto.");
-      return;
-    }
+    removeBtn.disabled = true;
+    try {
+      const { okHTTP, json, raw } = await App.fetchJSON(endpoint, {
+        method: "POST",
+        credentials: "same-origin",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Accept": "application/json",
+          "X-Requested-With": "XMLHttpRequest",
+        },
+        body: new URLSearchParams({ action: "remove", index: String(index) }).toString(),
+        cache: "no-store",
+      });
 
-    // ÉXITO: actualiza UI sin lanzar excepciones
-    const li = removeBtn.closest('li[data-item]');
-    if (li) li.remove();
-
-    if (typeof refreshMiniCart === "function") {
-      await refreshMiniCart(); // también actualiza totales/order summary si tu función lo hace
-    }
-
-    if (typeof json.cart_count !== "undefined") {
-      const badge = document.getElementById("cart-count");
-      if (badge) {
-        badge.textContent = json.cart_count;
-        badge.classList.toggle("hidden", json.cart_count <= 0);
+      // Errores reales de red/HTTP
+      if (!okHTTP) {
+        (typeof mostrarAlerta === "function")
+          ? mostrarAlerta("HTTP error: " + String(raw).slice(0, 200))
+          : alert("HTTP error: " + String(raw).slice(0, 200));
+        return;
       }
+
+      // Respuesta debe ser JSON válido
+      if (!json) {
+        (typeof mostrarAlerta === "function")
+          ? mostrarAlerta("Respuesta no-JSON del servidor.")
+          : alert("Respuesta no-JSON del servidor.");
+        return;
+      }
+
+      // Si el backend avisa fallo lógico
+      if (json.success !== true) {
+        (typeof mostrarAlerta === "function")
+          ? mostrarAlerta(json.message || "No se pudo eliminar el producto.")
+          : alert(json.message || "No se pudo eliminar el producto.");
+        return;
+      }
+
+      // ÉXITO: actualiza UI sin lanzar excepciones
+      const li = removeBtn.closest('li[data-item]');
+      if (li) li.remove();
+
+      if (typeof refreshMiniCart === "function") {
+        await refreshMiniCart(); // también actualiza totales/order summary si tu función lo hace
+      }
+
+      if (typeof json.cart_count !== "undefined") {
+        const badge = document.getElementById("cart-count");
+        if (badge) {
+          badge.textContent = json.cart_count;
+          badge.classList.toggle("hidden", json.cart_count <= 0);
+        }
+      }
+    } catch (err) {
+      console.error(err);
+      (typeof mostrarAlerta === "function")
+        ? mostrarAlerta("Error al eliminar: " + err.message)
+        : alert("Error al eliminar: " + err.message);
+    } finally {
+      removeBtn.disabled = false;
     }
-  } catch (err) {
-    console.error(err);
-    (typeof mostrarAlerta === "function")
-      ? mostrarAlerta("Error al eliminar: " + err.message)
-      : alert("Error al eliminar: " + err.message);
-  } finally {
-    removeBtn.disabled = false;
-  }
-});
+  });
 
   // Auto-hide cart alert
   document.addEventListener("DOMContentLoaded", () => {
@@ -590,7 +590,7 @@ document.addEventListener("click", async (e) => {
         window.dispatchEvent(new Event('resize'));
       } catch (e) {
         console.error("Error refresh Splide, remontando...", e);
-        try { window.splideInstance.destroy(true); } catch(_) {}
+        try { window.splideInstance.destroy(true); } catch (_) { }
         window.splideInstance = new Splide('#products-carousel', window.__splideOptions || {}).mount();
         window.splideInstance.go(0);
       }
@@ -608,10 +608,10 @@ document.addEventListener("click", async (e) => {
       gap: '1rem',
       pagination: false,
       arrows: true,
-      breakpoints: { 1024:{perPage:3}, 768:{perPage:2}, 480:{perPage:1} },
+      breakpoints: { 1024: { perPage: 3 }, 768: { perPage: 2 }, 480: { perPage: 1 } },
     };
     window.__splideOptions = options;
-    window.splideInstance  = new Splide('#products-carousel', options).mount();
+    window.splideInstance = new Splide('#products-carousel', options).mount();
   });
 
   // Click en logos de marca
@@ -622,23 +622,23 @@ document.addEventListener("click", async (e) => {
     if (!marca) return;
 
     // Marca activo en UI
-    document.querySelectorAll('.brand-tile').forEach(el => el.classList.remove('ring-2','ring-amber-500'));
-    btn.classList.add('ring-2','ring-amber-500');
+    document.querySelectorAll('.brand-tile').forEach(el => el.classList.remove('ring-2', 'ring-amber-500'));
+    btn.classList.add('ring-2', 'ring-amber-500');
 
     try {
       // Endpoint en raíz (ajusta si tu archivo vive en otra ruta)
       const res = await fetch("/ajax_productos.php", {
         method: "POST",
         headers: {
-          "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
-          "Accept":"text/html",
-          "X-Requested-With":"XMLHttpRequest"
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Accept": "text/html",
+          "X-Requested-With": "XMLHttpRequest"
         },
         body: new URLSearchParams({ marca }).toString(),
         cache: "no-store"
       });
       const html = await res.text();
-      if (!res.ok) throw new Error(html.slice(0,200));
+      if (!res.ok) throw new Error(html.slice(0, 200));
       replaceSlidesAndRefresh(html);
     } catch (err) {
       console.error(err);
@@ -654,14 +654,14 @@ document.addEventListener("click", async (e) => {
 // =====================================================
 (() => {
   const debounce = (fn, ms = 100) => { let t; return (...args) => { clearTimeout(t); t = setTimeout(() => fn(...args), ms); }; };
-  const escHTML = (s) => String(s).replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
+  const escHTML = (s) => String(s).replace(/[&<>"']/g, m => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[m]));
   const getChecked = (name) => [...document.querySelectorAll(`input[name="${name}[]"]:checked`)].map(el => el.value);
 
   function renderActiveFilters() {
     const container = document.getElementById('active-filters');
     if (!container) return;
     const marcas = getChecked('marca');
-    const anios  = getChecked('anio');
+    const anios = getChecked('anio');
 
     let html = '';
     for (const v of marcas) {
@@ -706,8 +706,8 @@ document.addEventListener("click", async (e) => {
     const chip = e.target.closest('#active-filters [data-type][data-value]');
     if (chip) {
       const type = chip.getAttribute('data-type');
-      const value= chip.getAttribute('data-value');
-      const sel = `input[name="${type}[]"][value="${CSS?.escape ? CSS.escape(value) : value.replace(/"/g,'\\"')}"]`;
+      const value = chip.getAttribute('data-value');
+      const sel = `input[name="${type}[]"][value="${CSS?.escape ? CSS.escape(value) : value.replace(/"/g, '\\"')}"]`;
       const input = document.querySelector(sel);
       if (input && input.checked) {
         input.checked = false;
@@ -745,7 +745,7 @@ document.addEventListener("click", async (e) => {
   // ================================
   const ENDPOINT_LISTA = (window.BASE_DIR || window.BASE_DIR === '' ? window.BASE_DIR : (typeof BASE_DIR !== 'undefined' ? BASE_DIR : '')) + "/tienda/ajax_productos.php";
   const GRID_ID = "productosGrid";
-  const PAG_ID  = "paginacion";
+  const PAG_ID = "paginacion";
   const PAGE_SIZE = 12;
 
   // ================================
@@ -757,7 +757,7 @@ document.addEventListener("click", async (e) => {
   function applyFavoritesInDOM(root = document) {
     const favs = Array.isArray(window.__favorites) ? window.__favorites : [];
     root.querySelectorAll('.favorito-btn[data-id]').forEach(btn => {
-      const id  = Number(btn.dataset.id || 0);
+      const id = Number(btn.dataset.id || 0);
       const svg = btn.querySelector('svg');
       const isFav = favs.includes(id);
       if (svg) {
@@ -776,7 +776,7 @@ document.addEventListener("click", async (e) => {
   // ================================
   // Utilidades DOM
   // ================================
-  const $  = (sel, ctx = document) => ctx.querySelector(sel);
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
 
   // ================================
@@ -798,10 +798,10 @@ document.addEventListener("click", async (e) => {
     let html = "";
 
     for (const p of list) {
-      const id    = Number(p.id_producto || 0);
-      const name  = String(p.nombre || "Producto");
+      const id = Number(p.id_producto || 0);
+      const name = String(p.nombre || "Producto");
       const price = Number(p.precio || 0).toFixed(2);
-      const img   = p.imagen ? (window.BASE_DIR || "") + `/uploads/${p.imagen}` : placeholder;
+      const img = p.imagen ? (window.BASE_DIR || "") + `/uploads/${p.imagen}` : placeholder;
 
       const isFav = favs.includes(id);
 
@@ -845,47 +845,47 @@ document.addEventListener("click", async (e) => {
   }
 
   document.addEventListener("click", async (e) => {
-  const btn = e.target.closest(".preview");
-  if (!btn) return;
+    const btn = e.target.closest(".preview");
+    if (!btn) return;
 
-  const modal = document.getElementById("product-details-modal");
+    const modal = document.getElementById("product-details-modal");
 
-  // nombre, precio y marca
-  modal.querySelector("h3").textContent = btn.dataset.name;
-  modal.querySelector(".modal-marca").textContent = btn.dataset.marca;
-  modal.querySelector(".modal-precio").textContent = "USD " + btn.dataset.price;
+    // nombre, precio y marca
+    modal.querySelector("h3").textContent = btn.dataset.name;
+    modal.querySelector(".modal-marca").textContent = btn.dataset.marca;
+    modal.querySelector(".modal-precio").textContent = "USD " + btn.dataset.price;
 
-  // Galería
-  let gallery = [];
-  try {
-    gallery = JSON.parse(btn.dataset.gallery || "[]");
-  } catch (err) {}
+    // Galería
+    let gallery = [];
+    try {
+      gallery = JSON.parse(btn.dataset.gallery || "[]");
+    } catch (err) { }
 
-  const mainImg = modal.querySelector("#mainImage");
-  const thumbs  = modal.querySelector("#thumbs");
-  
-  if (gallery.length) {
-    mainImg.src = "/uploads/" + gallery[0]; // primera imagen
-    thumbs.innerHTML = gallery.map(img =>
-      `<img src="/uploads/${img}" 
+    const mainImg = modal.querySelector("#mainImage");
+    const thumbs = modal.querySelector("#thumbs");
+
+    if (gallery.length) {
+      mainImg.src = "/uploads/" + gallery[0]; // primera imagen
+      thumbs.innerHTML = gallery.map(img =>
+        `<img src="/uploads/${img}" 
         class="thumb w-20 h-20 object-cover cursor-pointer border-2 border-transparent hover:border-orange-400"
         onclick="document.getElementById('mainImage').src='/uploads/${img}'">`
-    ).join("");
-  } else {
-    mainImg.src = "https://placehold.co/600x400/png";
-    thumbs.innerHTML = "<p class='text-gray-500'>Sin imágenes adicionales</p>";
-  }
+      ).join("");
+    } else {
+      mainImg.src = "https://placehold.co/600x400/png";
+      thumbs.innerHTML = "<p class='text-gray-500'>Sin imágenes adicionales</p>";
+    }
 
-  // Mostrar modal
-  modal.classList.remove("hidden");
-});
+    // Mostrar modal
+    modal.classList.remove("hidden");
+  });
 
   // ================================
   // Render paginación (cliente)
   // ================================
   function renderPagination(total, currentPage) {
     const totalPages = Math.max(1, Math.ceil((Number(total) || 0) / PAGE_SIZE));
-    const current    = Math.max(1, Number(currentPage) || 1);
+    const current = Math.max(1, Number(currentPage) || 1);
     let html = '<div class="flex items-center gap-2">';
 
     const disPrev = current <= 1 ? "disabled:opacity-50 disabled:cursor-not-allowed" : "";
@@ -951,18 +951,18 @@ document.addEventListener("click", async (e) => {
   // ================================
   async function cargarProductos({ page = 1 } = {}) {
     const grid = document.getElementById(GRID_ID);
-    const pag  = document.getElementById(PAG_ID);
+    const pag = document.getElementById(PAG_ID);
     if (!grid || !pag) return;
 
     const params = new URLSearchParams();
     params.set("page", page);
 
     $$('input[name="marca[]"]:checked').forEach(chk => params.append("marca[]", chk.value));
-    $$('input[name="anio[]"]:checked').forEach(chk  => params.append("anio[]",  chk.value));
+    $$('input[name="anio[]"]:checked').forEach(chk => params.append("anio[]", chk.value));
 
     let res, text, data;
     try {
-      res  = await fetch(ENDPOINT_LISTA, {
+      res = await fetch(ENDPOINT_LISTA, {
         method: "POST",
         headers: { "X-Requested-With": "XMLHttpRequest" },
         body: params
@@ -997,7 +997,7 @@ document.addEventListener("click", async (e) => {
     if (typeof data.pagination_html === "string" && data.pagination_html.trim() !== "") {
       pag.innerHTML = data.pagination_html;
     } else {
-      const total   = Number(data.total || 0);
+      const total = Number(data.total || 0);
       const current = Number(data.page || page || 1);
       pag.innerHTML = renderPagination(total, current);
     }
@@ -1065,7 +1065,7 @@ document.addEventListener("click", async (e) => {
 
   function closeAllFAQs() {
     document.querySelectorAll(".faq-item.active").forEach((faqItem) => {
-      const header  = faqItem.querySelector(".faq-header");
+      const header = faqItem.querySelector(".faq-header");
       const content = faqItem.querySelector(".faq-content");
       closeFAQ(faqItem, header, content);
     });
@@ -1176,50 +1176,50 @@ document.addEventListener("click", async (e) => {
   const PLACEHOLDER_IMG = "https://placehold.co/600x600/png";
   const BASE = (window.BASE_DIR || "").replace(/\/$/, "");
 
-  const $  = (sel, ctx=document) => ctx.querySelector(sel);
-  const $$ = (sel, ctx=document) => Array.from(ctx.querySelectorAll(sel));
-  const fmtUSD = (n) => 'USD ' + (Number(n||0)).toFixed(2);
+  const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  const $$ = (sel, ctx = document) => Array.from(ctx.querySelectorAll(sel));
+  const fmtUSD = (n) => 'USD ' + (Number(n || 0)).toFixed(2);
   const parseMaybeJSON = (v) => { try { return typeof v === 'string' ? JSON.parse(v) : (Array.isArray(v) ? v : null); } catch { return null; } };
 
   // Elementos del modal
-  const modalEl   = document.getElementById("product-details-modal");
-  const nameEl    = document.getElementById("modal-product-name");
-  const brandEl   = document.getElementById("modal-product-brand");
-  const priceEl   = document.getElementById("modal-product-price");
-  const descEl    = document.getElementById("modal-product-description");
+  const modalEl = document.getElementById("product-details-modal");
+  const nameEl = document.getElementById("modal-product-name");
+  const brandEl = document.getElementById("modal-product-brand");
+  const priceEl = document.getElementById("modal-product-price");
+  const descEl = document.getElementById("modal-product-description");
   const mainImgEl = document.getElementById("mainImage");
-  const thumbsEl  = document.getElementById("thumbs");
-  const prevBtn   = document.getElementById("prev");
-  const nextBtn   = document.getElementById("next");
-  const qtyInput  = document.getElementById("quantity-input-1");
-  const decBtn    = document.getElementById("decrement-button");
-  const incBtn    = document.getElementById("increment-button");
-  const addBtn    = document.getElementById("modal-add-to-cart");
-  const moreLink  = document.getElementById("modal-more-details");
+  const thumbsEl = document.getElementById("thumbs");
+  const prevBtn = document.getElementById("prev");
+  const nextBtn = document.getElementById("next");
+  const qtyInput = document.getElementById("quantity-input-1");
+  const decBtn = document.getElementById("decrement-button");
+  const incBtn = document.getElementById("increment-button");
+  const addBtn = document.getElementById("modal-add-to-cart");
+  const moreLink = document.getElementById("modal-more-details");
 
   let currentProduct = null;
   let gallery = [];
   let idx = 0;
   let lastFocus = null;
 
-  function lockScroll(){ document.documentElement.style.overflow='hidden'; }
-  function unlockScroll(){ document.documentElement.style.overflow=''; }
+  function lockScroll() { document.documentElement.style.overflow = 'hidden'; }
+  function unlockScroll() { document.documentElement.style.overflow = ''; }
 
-  function openModal(){
+  function openModal() {
     lastFocus = document.activeElement;
     modalEl.classList.remove('hidden');
     modalEl.classList.add('flex');
-    modalEl.setAttribute('aria-hidden','false');
+    modalEl.setAttribute('aria-hidden', 'false');
     lockScroll();
     const closeBtn = modalEl.querySelector('[data-modal-hide="product-details-modal"]') || modalEl.querySelector('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
-    closeBtn && closeBtn.focus({preventScroll:true});
+    closeBtn && closeBtn.focus({ preventScroll: true });
   }
-  function closeModal(){
+  function closeModal() {
     modalEl.classList.add('hidden');
     modalEl.classList.remove('flex');
-    modalEl.setAttribute('aria-hidden','true');
+    modalEl.setAttribute('aria-hidden', 'true');
     unlockScroll();
-    lastFocus && lastFocus.focus({preventScroll:true});
+    lastFocus && lastFocus.focus({ preventScroll: true });
   }
 
   // Cerrar: backdrop
@@ -1234,31 +1234,31 @@ document.addEventListener("click", async (e) => {
     if (e.key === 'Escape' && !modalEl.classList.contains('hidden')) { e.preventDefault(); closeModal(); }
   });
 
-  function renderGallery(imgs){
+  function renderGallery(imgs) {
     gallery = (imgs && imgs.length) ? imgs : [PLACEHOLDER_IMG];
     idx = 0;
     if (mainImgEl) mainImgEl.src = gallery[0];
     if (thumbsEl) {
       thumbsEl.innerHTML = gallery.map((src, i) => `
         <img src="${src}" data-idx="${i}"
-             class="thumb w-20 h-20 object-cover cursor-pointer border-2 ${i===0?'border-orange-500':'border-transparent'} rounded"
-             alt="Miniatura ${i+1}" loading="lazy">
+             class="thumb w-20 h-20 object-cover cursor-pointer border-2 ${i === 0 ? 'border-orange-500' : 'border-transparent'} rounded"
+             alt="Miniatura ${i + 1}" loading="lazy">
       `).join('');
     }
     updateArrows();
   }
-  function updateArrows(){
+  function updateArrows() {
     const many = gallery.length > 1;
     if (prevBtn) prevBtn.disabled = !many || idx === 0;
     if (nextBtn) nextBtn.disabled = !many || idx === gallery.length - 1;
   }
-  function goTo(n){
+  function goTo(n) {
     if (n < 0 || n >= gallery.length) return;
     idx = n;
     if (mainImgEl) mainImgEl.src = gallery[idx];
-    $$('.thumb', thumbsEl).forEach((t,i) => {
-      t.classList.toggle('border-orange-500', i===idx);
-      t.classList.toggle('border-transparent', i!==idx);
+    $$('.thumb', thumbsEl).forEach((t, i) => {
+      t.classList.toggle('border-orange-500', i === idx);
+      t.classList.toggle('border-transparent', i !== idx);
     });
     updateArrows();
   }
@@ -1266,7 +1266,7 @@ document.addEventListener("click", async (e) => {
   nextBtn && nextBtn.addEventListener('click', () => goTo(idx + 1));
   thumbsEl && thumbsEl.addEventListener('click', (e) => {
     const t = e.target.closest('.thumb'); if (!t) return;
-    goTo(parseInt(t.dataset.idx,10) || 0);
+    goTo(parseInt(t.dataset.idx, 10) || 0);
   });
 
   // Cantidad
@@ -1289,9 +1289,9 @@ document.addEventListener("click", async (e) => {
         method: "POST",
         credentials: "same-origin",
         headers: {
-          "Content-Type":"application/x-www-form-urlencoded; charset=UTF-8",
-          "Accept":"application/json",
-          "X-Requested-With":"XMLHttpRequest"
+          "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+          "Accept": "application/json",
+          "X-Requested-With": "XMLHttpRequest"
         },
         body: new URLSearchParams({ id_producto: String(currentProduct.id), cantidad: String(qty) }).toString(),
         cache: "no-store"
@@ -1299,7 +1299,7 @@ document.addEventListener("click", async (e) => {
       const txt = await res.text();
       let data; try { data = JSON.parse(txt); } catch {
         const s = txt.indexOf("{"), e = txt.lastIndexOf("}");
-        data = (s>=0&&e>=s) ? JSON.parse(txt.slice(s,e+1)) : null;
+        data = (s >= 0 && e >= s) ? JSON.parse(txt.slice(s, e + 1)) : null;
       }
       if (!res.ok || !data?.success) throw new Error(data?.message || 'No se pudo agregar.');
       if (typeof refreshMiniCart === "function") await refreshMiniCart();
@@ -1322,13 +1322,13 @@ document.addEventListener("click", async (e) => {
 
     lastFocus = btn;
 
-    const id    = parseInt(btn.dataset.id || "0", 10) || 0;
-    const name  = btn.dataset.name  || "";
+    const id = parseInt(btn.dataset.id || "0", 10) || 0;
+    const name = btn.dataset.name || "";
     const price = btn.dataset.price || "";
-    const img   = btn.dataset.img   || "";
+    const img = btn.dataset.img || "";
     const brand = btn.dataset.brand || "";
-    const desc  = btn.dataset.desc  || "";
-    const url   = btn.dataset.url   || "";
+    const desc = btn.dataset.desc || "";
+    const url = btn.dataset.url || "";
     const galleryData = parseMaybeJSON(btn.dataset.gallery || "[]") || [];
 
     // completar desde __productosCrudos si hace falta
@@ -1336,19 +1336,19 @@ document.addEventListener("click", async (e) => {
     if ((!prod.name || !prod.price || !prod.img) && id && Array.isArray(window.__productosCrudos)) {
       const found = window.__productosCrudos.find(p => Number(p.id_producto) === id);
       if (found) {
-        prod.name  = prod.name  || found.nombre || "";
+        prod.name = prod.name || found.nombre || "";
         prod.price = prod.price || found.precio || "";
-        prod.img   = prod.img   || (found.imagen ? `/uploads/${found.imagen}` : "");
+        prod.img = prod.img || (found.imagen ? `/uploads/${found.imagen}` : "");
         prod.brand = prod.brand || (found.marca || "");
-        prod.desc  = prod.desc  || (found.descripcion || "");
-        prod.url   = prod.url   || (found.url || "");
+        prod.desc = prod.desc || (found.descripcion || "");
+        prod.url = prod.url || (found.url || "");
         if ((!prod.gallery || !prod.gallery.length) && (found.gallery || found.imagen)) {
           prod.gallery = found.gallery || (found.imagen ? [`/uploads/${found.imagen}`] : []);
         }
       }
     }
 
-    const norm = (s) => !s ? "" : (/^https?:\/\//i.test(s) ? s : (BASE + (s.startsWith('/') ? s : '/'+s)));
+    const norm = (s) => !s ? "" : (/^https?:\/\//i.test(s) ? s : (BASE + (s.startsWith('/') ? s : '/' + s)));
 
     currentProduct = {
       id: prod.id,
@@ -1362,25 +1362,25 @@ document.addEventListener("click", async (e) => {
     };
 
     // Rellenar campos
-    if (nameEl)  nameEl.textContent  = currentProduct.name || "Producto";
+    if (nameEl) nameEl.textContent = currentProduct.name || "Producto";
     if (brandEl) brandEl.textContent = currentProduct.brand || "";
     if (priceEl) priceEl.textContent = fmtUSD(currentProduct.price || 0);
-    
+
     // 💡 Soporta <div>/<p> (textContent) y <textarea> (value)
-if (descEl) {
-  if ('value' in descEl) {
-    // Si por alguna razón sigue siendo <textarea>
-    descEl.value = (currentProduct.desc || '').toString();
-  } else {
-    // <div> / <p> u otro contenedor de texto
-    descEl.textContent = (currentProduct.desc || '').toString();
-  }
-}
+    if (descEl) {
+      if ('value' in descEl) {
+        // Si por alguna razón sigue siendo <textarea>
+        descEl.value = (currentProduct.desc || '').toString();
+      } else {
+        // <div> / <p> u otro contenedor de texto
+        descEl.textContent = (currentProduct.desc || '').toString();
+      }
+    }
 
     renderGallery(currentProduct.gallery);
     if (moreLink) {
-      if (currentProduct.url) { moreLink.href = currentProduct.url; moreLink.classList.remove('pointer-events-none','opacity-60'); }
-      else { moreLink.href = "#"; moreLink.classList.add('pointer-events-none','opacity-60'); }
+      if (currentProduct.url) { moreLink.href = currentProduct.url; moreLink.classList.remove('pointer-events-none', 'opacity-60'); }
+      else { moreLink.href = "#"; moreLink.classList.add('pointer-events-none', 'opacity-60'); }
     }
 
     openModal();
@@ -1393,8 +1393,8 @@ if (descEl) {
 // =====================================================
 (() => {
   const $ = (sel) => document.querySelector(sel);
-  const form   = $("#contactoForm");
-  const btn    = $("#btnEnviar");
+  const form = $("#contactoForm");
+  const btn = $("#btnEnviar");
   const boxMsg = $("#contactoMsg");
   if (!form || !btn || !boxMsg) return;
 
@@ -1406,11 +1406,11 @@ if (descEl) {
   };
 
   const validate = () => {
-    const nombre  = $("#nombre_completo").value.trim();
-    const pais    = $("#pais").value.trim();
-    const email   = $("#email").value.trim();
+    const nombre = $("#nombre_completo").value.trim();
+    const pais = $("#pais").value.trim();
+    const email = $("#email").value.trim();
     const mensaje = $("#mensaje").value.trim();
-    const tel     = $("#telefono").value.trim();
+    const tel = $("#telefono").value.trim();
 
     if (!nombre || nombre.length < 2) return "Ingresa tu nombre completo.";
     if (!pais) return "Selecciona un país.";
@@ -1430,7 +1430,7 @@ if (descEl) {
     fd.append("ajax", "1");
 
     btn.disabled = true;
-    btn.classList.add("opacity-60","cursor-not-allowed");
+    btn.classList.add("opacity-60", "cursor-not-allowed");
     showMsg("Enviando...", true);
 
     try {
@@ -1451,7 +1451,7 @@ if (descEl) {
       showMsg("Error de red. Verifica tu conexión.", false);
     } finally {
       btn.disabled = false;
-      btn.classList.remove("opacity-60","cursor-not-allowed");
+      btn.classList.remove("opacity-60", "cursor-not-allowed");
     }
   });
 })();
