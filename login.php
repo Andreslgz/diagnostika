@@ -3,11 +3,7 @@
 declare(strict_types=1);
 session_start();
 
-// Si NO hay sesión, redirige a index.php
-if (empty($_SESSION['usuario_id'])) {
-  header('Location: /index.php');
-  exit;
-}
+
 
 // (Opcional) Cabeceras anti-cache en zonas privadas
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');

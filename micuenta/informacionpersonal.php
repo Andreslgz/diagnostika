@@ -19,7 +19,7 @@ $usuario = $database->get("usuarios", "*", [
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>cDIAGNOSTIKA DIESEL GLOBAL</title>
+    <title><?php echo $titulo; ?></title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
@@ -314,7 +314,112 @@ $usuario = $database->get("usuarios", "*", [
                 sideMenu.style.opacity = '0';
             }
         });
+
     </script>
+
+    <script>
+(() => {
+  const form    = document.getElementById('profile-form');
+  const btnEdit = document.getElementById('btn-edit');
+  const btnSave = document.getElementById('btn-save');
+  const msgBox  = document.getElementById('profile-msg');
+
+  if (!form || !btnEdit || !btnSave || !msgBox) return;
+
+  // Usa tu URL base de PHP
+  const UPDATE_ENDPOINT = "<?= $url ?>/micuenta/update_profile.php";
+
+  function setMsg(text, ok = true) {
+    msgBox.textContent = text;
+    msgBox.classList.remove('hidden');
+    msgBox.classList.toggle('text-green-600', ok);
+    msgBox.classList.toggle('text-red-600', !ok);
+    msgBox.classList.toggle('bg-green-50', ok);
+    msgBox.classList.toggle('bg-red-50', !ok);
+    msgBox.classList.add('px-3','py-2','rounded','border');
+    msgBox.classList.toggle('border-green-200', ok);
+    msgBox.classList.toggle('border-red-200', !ok);
+  }
+
+  function setDisabled(disabled) {
+    // Habilita/Deshabilita inputs visibles (no los type=hidden)
+    form.querySelectorAll('input:not([type="hidden"]), select, textarea').forEach(el => {
+      el.disabled = disabled;
+      // Refuerzo visual además de las clases disabled: de Tailwind
+      el.classList.toggle('opacity-60', disabled);
+      el.classList.toggle('cursor-not-allowed', disabled);
+    });
+    // Botones: Guardar solo activo cuando se puede editar
+    btnSave.disabled = disabled;
+    // (opcional) Cambiar estilo del botón guardar
+    btnSave.classList.toggle('opacity-50', disabled);
+    btnSave.classList.toggle('cursor-not-allowed', disabled);
+  }
+
+  // Estado inicial: todo bloqueado
+  setDisabled(true);
+
+  // Click en "Editar información" -> habilitar edición
+  btnEdit.addEventListener('click', () => {
+    setDisabled(false);
+    msgBox.classList.add('hidden');
+  });
+
+  // Click en "Guardar cambios" -> enviar
+  btnSave.addEventListener('click', async () => {
+    try {
+      // Asegúrate de que estén habilitados antes de leer FormData
+      setDisabled(false);
+
+      const fd = new FormData(form);
+
+      // Validaciones rápidas
+      const nombre = (fd.get('nombre_completo') || '').toString().trim();
+      const pais   = (fd.get('pais') || '').toString().trim();
+      const email  = (fd.get('email') || '').toString().trim();
+      if (!nombre || !pais || !email) {
+        setMsg('Completa los campos obligatorios.', false);
+        return;
+      }
+
+      btnSave.disabled = true;
+
+      const res = await fetch(UPDATE_ENDPOINT, {
+        method: "POST",
+        body: fd,
+        credentials: "same-origin",
+        headers: {
+          "Accept": "application/json",
+          "X-Requested-With": "XMLHttpRequest"
+        },
+        cache: "no-store"
+      });
+
+      const text = await res.text();
+      let data = null;
+      try { data = JSON.parse(text); } catch {
+        const s = text.indexOf('{'), e = text.lastIndexOf('}');
+        if (s > -1 && e > s) { try { data = JSON.parse(text.slice(s, e+1)); } catch {} }
+      }
+
+      if (!res.ok || !data || data.ok !== true) {
+        const msg = (data && (data.message || data.error)) || `Error ${res.status}`;
+        throw new Error(msg);
+      }
+
+      // Éxito: bloquear de nuevo
+      setMsg(data.message || 'Datos actualizados correctamente.', true);
+      setDisabled(true);
+    } catch (err) {
+      console.error(err);
+      setMsg(err.message || 'Error de conexión con el servidor.', false);
+      // Permitir reintentar
+      btnSave.disabled = false;
+    }
+  });
+})();
+</script>
+
 </body>
 
 </html>
