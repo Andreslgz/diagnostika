@@ -207,8 +207,8 @@ try {
     }
 
     // Campos para el frontend
-    $prod['imagen_url']  = $url.'/'.$imagen_principal ?: '';
-    $prod['gallery']     = $url.'/'.$galeria_full;              // array para data-gallery
+    $prod['imagen_url']  = $imagen_principal ?: '';
+    $prod['gallery']     = $galeria_full;              // array para data-gallery
     $prod['marca']       = $prod['marca'] ?? '';       // data-brand
     $prod['descripcion'] = $prod['descripcion'] ?? ''; // data-desc
   }
