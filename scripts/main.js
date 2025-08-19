@@ -1,4 +1,4 @@
-const ENV = "dev"; // o "prod"
+const ENV = "prod"; // o "prod"
 
 window.BASE_DIR = ENV === "dev"
   ? "https://diagnostika:8890"

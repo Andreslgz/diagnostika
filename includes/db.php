@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$ENV = "dev"; // o "prod"
+$ENV = "prod"; // o "prod"
 
 $BASE_DIR = ($ENV === "dev")
     ? "https://diagnostika:8890"
