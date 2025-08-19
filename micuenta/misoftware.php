@@ -525,7 +525,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return `
       <div class="border border-solid border-gray-300 rounded-lg overflow-hidden">
         <header class="bg-[#00c016] text-white xl:p-3 p-2 flex items-center gap-2">
-          <img src="/assets/icons/svg/icon-instalacion.svg" alt="" class="w-5 h-5">
+          <img src="<?php echo $url;?>/assets/icons/svg/icon-instalacion.svg" alt="" class="w-5 h-5">
           <p class="font-medium">Instalación completada</p>
         </header>
         <div class="xl:p-5 p-3 flex items-center gap-4">
