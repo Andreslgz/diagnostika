@@ -901,7 +901,7 @@ function apiEndpoint(path) {
       const id    = Number(p.id_producto || 0);
       const name  = String(p.nombre || "Producto");
       const price = Number(p.precio || 0).toFixed(2);
-      
+
       const img = p.imagen_url 
     ? p.imagen_url 
     : (p.imagen ? apiEndpoint(`/uploads/${p.imagen}`) : PLACEHOLDER);
@@ -1551,12 +1551,12 @@ function apiEndpoint(path) {
       if (found) {
         prod.name = prod.name || found.nombre || "";
         prod.price = prod.price || found.precio || "";
-        prod.img = prod.img || (found.imagen ? `/uploads/${found.imagen}` : "");
+        prod.img = prod.img || (found.imagen ? apiEndpoint(`/uploads/${found.imagen}`) : "");
         prod.brand = prod.brand || (found.marca || "");
         prod.desc = prod.desc || (found.descripcion || "");
         prod.url = prod.url || (found.url || "");
         if ((!prod.gallery || !prod.gallery.length) && (found.gallery || found.imagen)) {
-          prod.gallery = found.gallery || (found.imagen ? [`/uploads/${found.imagen}`] : []);
+          prod.gallery = found.gallery || (found.imagen ? [apiEndpoint(`/uploads/${found.imagen}`)] : []);
         }
       }
     }
