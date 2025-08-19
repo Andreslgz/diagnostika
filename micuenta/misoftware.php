@@ -520,7 +520,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const html = list.map(row => {
       const imgSrc = row.imagen
-        ? (BASE.replace(/\/$/,'') + $url.'/uploads/' + String(row.imagen).replace(/^\/+/, ''))
+        ? (BASE.replace(/\/$/,'') + <?php echo $url ?>'/uploads/' + String(row.imagen).replace(/^\/+/, ''))
         : 'https://placehold.co/300x180/png';
       return `
       <div class="border border-solid border-gray-300 rounded-lg overflow-hidden">
