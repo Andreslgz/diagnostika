@@ -901,6 +901,7 @@ function apiEndpoint(path) {
       const id    = Number(p.id_producto || 0);
       const name  = String(p.nombre || "Producto");
       const price = Number(p.precio || 0).toFixed(2);
+      
       const img = p.imagen_url 
     ? p.imagen_url 
     : (p.imagen ? apiEndpoint(`/uploads/${p.imagen}`) : PLACEHOLDER);
