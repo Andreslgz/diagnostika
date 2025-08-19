@@ -1,4 +1,12 @@
-window.BASE_DIR = 'https://diagnostika:8890';
+const ENV = "dev"; // o "prod"
+
+window.BASE_DIR = ENV === "dev"
+  ? "https://diagnostika:8890"
+  : "https://mysistemaweb.com/diagnostika";
+
+function apiEndpoint(path) {
+  return window.BASE_DIR + path;
+}
 
 // =====================================================
 // UTILIDADES GENERALES (FIX okHTTP + parseo tolerante)
@@ -173,7 +181,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
       if (inFlightLogin) return;
       hideErr();
 
-      const endpoint = resolveEndpoint(loginFormEl, "/login.php");
+     const endpoint = resolveEndpoint(loginFormEl, apiEndpoint("/login.php"));
       const formData = new FormData(loginFormEl);
       const submitBtn = loginFormEl.querySelector('[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
@@ -254,7 +262,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
       const pwd2 = form.querySelector('input[name="password_confirm"]')?.value?.trim() ?? "";
       if (pwd !== pwd2) { showError("Las contraseñas no coinciden."); return; }
 
-      const endpoint = resolveEndpoint(form, "/register.php");
+     const endpoint = resolveEndpoint(form, apiEndpoint("/register.php"));
       const submitBtn = form.querySelector('[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
       inFlightRegister = true;
@@ -354,8 +362,8 @@ window.BASE_DIR = 'https://diagnostika:8890';
     const svg = btn.querySelector("svg");
     if (!id) { console.error("favorito-btn sin data-id"); return; }
 
-    const endpoint = (App.baseNorm() || "") + "/ajax_favorito.php";
-
+    //const endpoint = (App.baseNorm() || "") + "/ajax_favorito.php";
+    const endpoint = apiEndpoint("/ajax_favorito.php");
     fetch(endpoint, {
       method: "POST",
       headers: {
@@ -401,7 +409,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
   async function refreshMiniCart() {
     // 1) Items del mini-carrito (AJUSTA ruta si tu archivo está en otra carpeta)
     try {
-      const resItems = await fetch('/tienda/mini_cart_html.php', {
+      const resItems = await fetch(apiEndpoint("/tienda/mini_cart_html.php"), {
         method: 'GET',
         credentials: 'same-origin',
         cache: 'no-store'
@@ -415,7 +423,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
 
     // 2) Order Summary (totales)
     try {
-      const { ok, json, raw } = await App.fetchJSON('/includes/carrito_acciones.php', {
+      const { ok, json, raw } = await App.fetchJSON(apiEndpoint("/includes/carrito_acciones.php"), {
         method: 'POST',
         credentials: 'same-origin',
         headers: {
@@ -461,7 +469,8 @@ window.BASE_DIR = 'https://diagnostika:8890';
     const qty = parseInt(btn.dataset.qty || "1", 10) || 1;
     if (!id) { console.error("add-to-cart sin data-id"); return; }
 
-    const endpoint = (App.baseNorm() || "") + "/tienda/ajax_carrito.php";
+    //const endpoint = (App.baseNorm() || "") + "/tienda/ajax_carrito.php";
+    const endpoint = apiEndpoint("/tienda/ajax_carrito.php");
     btn.disabled = true;
     try {
       const res = await fetch(endpoint, {
@@ -504,7 +513,8 @@ window.BASE_DIR = 'https://diagnostika:8890';
 
   // Actualizar cantidad (desde tus botones ± que llaman updateQuantity)
   window.updateQuantity = async function updateQuantity(index, delta) {
-    const endpoint = (App.baseNorm() || "") + "/tienda/ajax_carrito_update.php";
+    //const endpoint = (App.baseNorm() || "") + "/tienda/ajax_carrito_update.php";
+    const endpoint = apiEndpoint("/tienda/ajax_carrito_update.php");
     try {
       const res = await fetch(endpoint, {
         method: 'POST',
@@ -572,7 +582,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
       (typeof window !== "undefined" && window.BASE_DIR && window.BASE_DIR.replace(/\/$/, "")) ||
       (typeof BASE_DIR !== "undefined" && BASE_DIR && BASE_DIR.replace(/\/$/, "")) ||
       "";
-    const endpoint = base + "/includes/carrito_acciones.php";
+    const endpoint = apiEndpoint("/includes/carrito_acciones.php");
 
     removeBtn.disabled = true;
     try {
@@ -710,7 +720,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
 
     try {
       // Endpoint en raíz (ajusta si tu archivo vive en otra ruta)
-      const res = await fetch("/ajax_productos.php", {
+      const res = await fetch(apiEndpoint("/ajax_productos.php"), {
         method: "POST",
         headers: {
           "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
@@ -828,7 +838,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
   // Config
   // ================================
   const BASE = (typeof window.BASE_DIR !== 'undefined' ? window.BASE_DIR : (typeof BASE_DIR !== 'undefined' ? BASE_DIR : '')) || '';
-  const ENDPOINT_LISTA = BASE.replace(/\/$/, '') + "/tienda/ajax_productos.php";
+  const ENDPOINT_LISTA = apiEndpoint("/tienda/ajax_productos.php");
   const GRID_ID  = "productosGrid";
   const PAG_ID   = "paginacion";
   const PAGE_SIZE = 12;
@@ -1484,7 +1494,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     if (!currentProduct?.id) return;
     const qty = Math.max(1, parseInt(qtyInput.value || "1", 10));
     try {
-      const endpoint = (BASE ? BASE : "") + "/tienda/ajax_carrito.php";
+      const endpoint = apiEndpoint("/tienda/ajax_carrito.php");
       const res = await fetch(endpoint, {
         method: "POST",
         credentials: "same-origin",
@@ -1636,7 +1646,7 @@ window.BASE_DIR = 'https://diagnostika:8890';
     showMsg("Enviando...", true);
 
     try {
-      const endpoint = (App.baseNorm() || "") + "/pages/contacto_enviar.php"; // AJUSTA si tu ruta difiere
+      const endpoint = apiEndpoint("/pages/contacto_enviar.php"); 
       const res = await fetch(endpoint, { method: "POST", body: fd });
       const text = await res.text();
       let data; try { data = JSON.parse(text); } catch (_) { data = null; }

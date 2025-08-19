@@ -1,7 +1,14 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
 
-$url = "https://diagnostika:8890";
+$ENV = "dev"; // o "prod"
+
+$BASE_DIR = ($ENV === "dev")
+    ? "https://diagnostika:8890"
+    : "https://mysistemaweb.com/diagnostika";
+
+$url = $BASE_DIR;
+
 $titulo = "DIAGNOSTIKA DIESEL GLOBAL";
 
 use Medoo\Medoo;
@@ -13,5 +20,4 @@ $database = new Medoo([
     'username' => 'mysiste2_root',
     'password' => 'karen2024'
 ]);
-
 ?>
