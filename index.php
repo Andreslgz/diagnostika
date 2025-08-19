@@ -341,7 +341,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                                     data-desc="<?= htmlspecialchars($prod['descripcion'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                                                     data-gallery='<?= $data_gallery; ?>'>
                                                     <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
-                                                        <img src="/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
+                                                        <img src="<?php echo $url;?>/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
                                                     </div>
                                                     <p>PREVIEW</p>
                                                 </button>

@@ -1,4 +1,4 @@
-const ENV = "prod"; // o "prod"
+const ENV = "prod"; // o "prod" // "dev"
 
 window.BASE_DIR = ENV === "dev"
   ? "https://diagnostika:8890"
@@ -901,8 +901,9 @@ function apiEndpoint(path) {
       const id    = Number(p.id_producto || 0);
       const name  = String(p.nombre || "Producto");
       const price = Number(p.precio || 0).toFixed(2);
-      const img   = p.imagen_url ? p.imagen_url
-                   : (p.imagen ? (BASE.replace(/\/$/, '') + `/uploads/${p.imagen}`) : PLACEHOLDER);
+      const img = p.imagen_url 
+    ? p.imagen_url 
+    : (p.imagen ? apiEndpoint(`/uploads/${p.imagen}`) : PLACEHOLDER);
 
       const brand = p.marca || '';
       const desc  = p.descripcion || '';
@@ -946,7 +947,7 @@ function apiEndpoint(path) {
             data-desc="${esc(desc)}"
             data-gallery='${JSON.stringify(gal)}'>
             <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
-              <img src="$url/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
+            <img src="${apiEndpoint('/assets/icons/tienda/previsualizar.svg')}" alt="Preview icon">
             </div>
             <p>PREVIEW</p>
           </button>
