@@ -187,13 +187,13 @@ try {
 
     // Prefija cada imagen con /uploads/
     $galeria_full = array_map(
-      fn($f) => '/uploads/' . ltrim((string)$f, '/'),
+      fn($f) => $url.'/uploads/' . ltrim((string)$f, '/'),
       is_array($galeria) ? $galeria : []
     );
 
     // Imagen principal del producto (primero en la lista)
     $imagen_principal = !empty($prod['imagen'])
-      ? '/uploads/' . ltrim((string)$prod['imagen'], '/')
+      ? $url.'/uploads/' . ltrim((string)$prod['imagen'], '/')
       : null;
 
     if ($imagen_principal) {
@@ -207,7 +207,7 @@ try {
     }
 
     // Campos para el frontend
-    $prod['imagen_url']  = $imagen_principal ?: '';
+    $prod['imagen_url']  = $url.$imagen_principal ?: '';
     $prod['gallery']     = $galeria_full;              // array para data-gallery
     $prod['marca']       = $prod['marca'] ?? '';       // data-brand
     $prod['descripcion'] = $prod['descripcion'] ?? ''; // data-desc
