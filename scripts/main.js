@@ -946,7 +946,7 @@ function apiEndpoint(path) {
             data-desc="${esc(desc)}"
             data-gallery='${JSON.stringify(gal)}'>
             <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
-              <img src="/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
+              <img src="$url/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
             </div>
             <p>PREVIEW</p>
           </button>
