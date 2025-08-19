@@ -20,4 +20,5 @@ $database = new Medoo([
     'username' => 'mysiste2_root',
     'password' => 'karen2024'
 ]);
+
 ?>

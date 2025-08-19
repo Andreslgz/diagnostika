@@ -8,6 +8,7 @@ function apiEndpoint(path) {
   return window.BASE_DIR + path;
 }
 
+
 // =====================================================
 // UTILIDADES GENERALES (FIX okHTTP + parseo tolerante)
 // =====================================================
