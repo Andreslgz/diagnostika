@@ -182,7 +182,8 @@ function apiEndpoint(path) {
       if (inFlightLogin) return;
       hideErr();
 
-     const endpoint = resolveEndpoint(loginFormEl, apiEndpoint("/login.php"));
+      //const endpoint = resolveEndpoint(loginFormEl, apiEndpoint("/login.php"));
+      const endpoint = apiEndpoint("/login.php");
       const formData = new FormData(loginFormEl);
       const submitBtn = loginFormEl.querySelector('[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
