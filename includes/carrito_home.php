@@ -1,3 +1,8 @@
+<?php
+// public/index.php (añadir lógica para mostrar el carrito)
+session_start();
+require_once __DIR__ . '/../includes/db.php';
+?>
 <div id="drawer-right-example"
     class="fixed top-0 right-0 z-40 h-screen px-4 py-10 overflow-y-auto transition-transform translate-x-full btn-secondary xl:w-[500px] w-[calc(100vw-50px)]"
     tabindex="-1" aria-labelledby="drawer-right-label">
