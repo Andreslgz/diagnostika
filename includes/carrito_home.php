@@ -1,6 +1,4 @@
 <?php
-// public/index.php (añadir lógica para mostrar el carrito)
-session_start();
 require_once __DIR__ . '/../includes/db.php';
 ?>
 <div id="drawer-right-example"
