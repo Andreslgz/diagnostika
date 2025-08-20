@@ -205,7 +205,7 @@ $titulo = 'cDIAGNOSTIKA DIESEL GLOBAL';
               <?php foreach ($productos as $prod): 
                 $idProd = (int)$prod['id_producto'];
                 $isFav  = in_array($idProd, $favoritos_usuario, true);
-                $imgSrc = !empty($prod['imagen']) ? '/uploads/' . ltrim((string)$prod['imagen'], '/') : 'https://placehold.co/600x400/png';
+                $imgSrc = !empty($prod['imagen']) ? $url.'/uploads/' . ltrim((string)$prod['imagen'], '/') : 'https://placehold.co/600x400/png';
                 // Galería (opcional)
                 $galeria = $database->select(
                   "galeria_productos",
