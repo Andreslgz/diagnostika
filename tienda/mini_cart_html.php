@@ -6,7 +6,7 @@ header('Content-Type: text/html; charset=utf-8');
 
 // Si usas $url para las rutas de imágenes, defínelo aquí o inclúyelo
 // require __DIR__ . '/includes/config.php'; // donde definas $url
-
+require_once __DIR__ . '/../includes/db.php';
 $total = 0;
 ?>
 
@@ -22,10 +22,10 @@ $total = 0;
                 <div class="flex-shrink-0">
                     <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
                         <img src="<?php
-                                    echo !empty($item['imagen'])
-                                        ? rtrim($url ?? '', '/') . '/uploads/' . htmlspecialchars($item['imagen'], ENT_QUOTES, 'UTF-8')
-                                        : 'https://placehold.co/600x400/png';
-                                    ?>" alt="<?php echo htmlspecialchars($item['nombre'], ENT_QUOTES, 'UTF-8'); ?>"
+                                                    echo !empty($item['imagen'])
+                                                        ? rtrim($url, '/') . '/uploads/' . htmlspecialchars($item['imagen'], ENT_QUOTES, 'UTF-8')
+                                                        : 'https://placehold.co/600x400/png';
+                                                    ?>" alt="<?php echo htmlspecialchars($item['nombre'], ENT_QUOTES, 'UTF-8'); ?>"
                             class="w-full h-full object-cover">
                     </div>
                 </div>
@@ -88,7 +88,7 @@ $total = 0;
                 $<?php echo number_format($total, 2); ?>
             </span>
         </div>
-        <a href="/tienda/carrito.php"
+        <a href="<?php echo $url; ?>/tienda/carrito.php"
             class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
             Go to Cart
         </a>
