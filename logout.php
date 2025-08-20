@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/includes/db.php';
+
 // Destruir todas las variables de sesión
 $_SESSION = [];
 
@@ -22,5 +24,5 @@ if (ini_get("session.use_cookies")) {
 session_destroy();
 
 // Redirigir al inicio o al login
-header('Location: index.php');
+header("Location: " . rtrim($url, "/") . "/index.php");
 exit;
