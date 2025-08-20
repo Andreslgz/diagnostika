@@ -74,14 +74,11 @@
                                 <div class="flex-shrink-0">
                                     <div class="xl:w-[85px] xl:h-[85px] w-[65px] h-[65px]">
                                         <img src="<?php
-    if (!empty($item['imagen'])) {
-        echo rtrim($url, '/') . '/uploads/' . htmlspecialchars($item['imagen'], ENT_QUOTES, 'UTF-8');
-    } else {
-        echo 'https://placehold.co/600x400/png';
-    }
-?>" 
-alt="<?php echo htmlspecialchars($item['nombre'] ?? 'Imagen', ENT_QUOTES, 'UTF-8'); ?>" 
-class="w-full h-full object-cover">
+                                                    echo !empty($item['imagen'])
+                                                        ? rtrim($url, '/') . '/uploads/' . htmlspecialchars($item['imagen'], ENT_QUOTES, 'UTF-8')
+                                                        : 'https://placehold.co/600x400/png';
+                                                    ?>" alt="<?php echo htmlspecialchars($item['nombre']); ?>"
+                                            class="w-full h-full object-cover">
                                     </div>
                                 </div>
 
