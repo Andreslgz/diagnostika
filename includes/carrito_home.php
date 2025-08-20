@@ -149,7 +149,7 @@ require_once __DIR__ . '/../includes/db.php';
                         </div>
                         <a href="<?php echo $url;?>/tienda/carrito.php"
                             class="block w-full text-center btn-primary rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out">
-                            Go to Cart
+                            Go to Cart. x
                         </a>
                         <button
                             class="mt-5 block w-full text-white text-center btn-transparent border border-solid border-white rounded-lg xl:py-3 py-2 xl:text-lg font-semibold shadow hover:brightness-110 transition-all duration-200 ease-in-out"
