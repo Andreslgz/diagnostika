@@ -28,6 +28,8 @@ export function initializeCarousels() {
     mqXL.addEventListener("change", initResponsiveHero);
     mqMD.addEventListener("change", initResponsiveStatistics);
     mqMD.addEventListener("change", initPurchaseProcessCarousel);
+    // Evitar reinicializar el carrusel de productos en cada cambio de breakpoint
+    // mqMD.addEventListener("change", initProductsCarousel); // Comentado para evitar reinicializaciones
   } else {
     // Safari viejo
     mqMD.addListener(initResponsiveHero);
@@ -307,33 +309,101 @@ function initProductsCarousel() {
 
   if (productsCarousel) {
     try {
-      new Splide("#products-carousel", {
+      // Usar mountIfNotMounted para evitar montajes dobles
+      const splideInstance = mountIfNotMounted("#products-carousel", {
         type: "loop",
         perPage: 4,
         perMove: 1,
         autoplay: false,
         pauseOnHover: true,
         arrows: true,
-
         pagination: false,
+        gap: "1rem",
+        focus: 0,
+        trimSpace: false,
+        updateOnMove: false, // Evitar actualizaciones durante el movimiento
+        speed: 600,
+        easing: "cubic-bezier(0.25, 1, 0.5, 1)",
+        mediaQuery: "min", // Usar media query mínima para breakpoints
         breakpoints: {
           1024: {
             perPage: 3,
+            perMove: 1,
+            gap: "0.8rem",
+            focus: 0,
           },
           768: {
             perPage: 2,
+            perMove: 1,
+            gap: "0.6rem",
+            focus: 0,
           },
           640: {
             perPage: 2,
+            perMove: 1,
+            gap: "0.5rem",
+            focus: 0,
+          },
+          480: {
+            perPage: 2,
+            perMove: 1,
+            gap: "0.4rem",
+            focus: 0,
+          },
+          320: {
+            perPage: 2,
+            perMove: 1,
+            gap: "0.3rem",
+            focus: 0,
           },
         },
-      }).mount();
+      });
 
-      console.log("Products carousel initialized successfully");
+      if (splideInstance) {
+        // Agregar listener para mantener configuración en resize
+        window.addEventListener(
+          "resize",
+          debounce(() => {
+            if (splideInstance && !splideInstance.state.is(4)) {
+              // 4 = DESTROYED
+              const currentBreakpoint = getCurrentBreakpoint();
+              console.log(`Current breakpoint: ${currentBreakpoint}`);
+
+              // Forzar refresh para mantener configuración correcta
+              splideInstance.refresh();
+            }
+          }, 250)
+        );
+
+        console.log("Products carousel initialized successfully");
+      }
     } catch (error) {
       console.error("Error initializing products carousel:", error);
     }
   }
+}
+
+// Función helper para detectar el breakpoint actual
+function getCurrentBreakpoint() {
+  const width = window.innerWidth;
+  if (width >= 1024) return "desktop";
+  if (width >= 768) return "tablet";
+  if (width >= 640) return "mobile-large";
+  if (width >= 480) return "mobile-medium";
+  return "mobile-small";
+}
+
+// Función debounce para evitar múltiples ejecuciones
+function debounce(func, wait) {
+  let timeout;
+  return function executedFunction(...args) {
+    const later = () => {
+      clearTimeout(timeout);
+      func(...args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
 }
 
 /**

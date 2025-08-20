@@ -31,7 +31,7 @@
                 class="text-base md:text-xl max-w-[435px] mt-4 md:mt-6 text-center sm:text-left mx-auto xl:text-center sm:mx-0">
                 Catálogo con más de <span class="font-extrabold">200 Softwares!</span>
             </p>
-            <a href="<?php echo $url;?>/tienda/"
+            <a href="<?php echo $url; ?>/tienda/"
                 class="btn-secondary w-full rounded-lg block mt-4 md:mt-5 xl:font-extrabold font-semibold text-base md:text-xl text-center py-2 md:py-3 hover:brightness-110 transition-all easy-in-out duration-200">
                 Ver catálogo
             </a>
@@ -77,9 +77,11 @@
         <div class="mt-4 lg:mt-0">
             <h2 class="text-lg md:text-2xl font-extrabold text-left sm:text-left">Resources</h2>
             <ul class="flex flex-col gap-3 md:gap-5 mt-4 text-base md:text-lg text-left sm:text-left">
-                <li><a href="#home" class="text-gray-900 hover:underline underline-offset-4">Terms and Conditions</a>
+                <li><a href="<?php echo $url; ?>/pages/terminosycondiciones.php"
+                        class="text-gray-900 hover:underline underline-offset-4">Terms and Conditions</a>
                 </li>
-                <li><a href="#features" class="text-gray-900 hover:underline underline-offset-4">Privacy Policy</a>
+                <li><a href="<?php echo $url; ?>/pages/politicayprovacidad.php"
+                        class="text-gray-900 hover:underline underline-offset-4">Privacy Policy</a>
                 </li>
             </ul>
         </div>

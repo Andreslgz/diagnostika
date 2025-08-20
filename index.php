@@ -96,11 +96,11 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     if ($sliders && count($sliders) > 0) {
                         foreach ($sliders as $img) {
                             $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8');
-                    ?>
+                            ?>
                             <li class="splide__slide">
                                 <img src="uploads/slider/<?= $imagen ?>" alt="Slide" class="" />
                             </li>
-                        <?php
+                            <?php
                         }
                     } else {
                         // Fallback si no hay imágenes activas
@@ -108,7 +108,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <li class="splide__slide">
                             <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="" />
                         </li>
-                    <?php
+                        <?php
                     }
                     ?>
                 </ul>
@@ -128,7 +128,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <?php endforeach; ?>
                     <?php else: ?>
                         <li class="splide__slide">
-                            <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen" class="w-full h-full object-cover">
+                            <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen"
+                                class="w-full h-full object-cover">
                         </li>
                     <?php endif; ?>
                 </ul>
@@ -253,14 +254,17 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <!-- Products Carousel -->
 
                     <section id="products-carousel" class="splide" aria-label="Featured Products">
-                        <div class="splide__track xl:h-[61vh] h-[47vh]">
+                        <div class="splide__track h-max">
                             <ul id="productos-lista" class="splide__list">
                                 <?php foreach ($productos as $prod): ?>
-                                    <li class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2 lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
-                                        <div class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-2 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
+                                    <li
+                                        class="splide__slide !pb-4 sm:!pb-6 lg:!pb-10 !pr-2 lg:!pr-6 !pl-2 sm:!pl-4 lg:!pl-6">
+                                        <div
+                                            class="border border-gray-100 border-solid shadow-lg hover:shadow-xl transition-all duration-300 rounded-lg p-2 sm:p-4 lg:p-6 flex flex-col gap-3 sm:gap-3 h-full">
 
                                             <div class="flex justify-end -mb-1">
-                                                <button type="button" class="favorito-btn" data-id="<?= (int)$prod['id_producto']; ?>">
+                                                <button type="button" class="favorito-btn"
+                                                    data-id="<?= (int) $prod['id_producto']; ?>">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
                                                         fill="<?= in_array($prod['id_producto'], $favoritos_usuario) ? 'currentColor' : 'none'; ?>"
                                                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -275,21 +279,20 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                                 alt="<?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?>"
                                                 class="w-full h-36 sm:h-36 lg:h-48 object-cover rounded-md" />
 
-                                            <p class="inline font-semibold text-base lg:text-xl text-balance leading-tight uppercase">
+                                            <p
+                                                class="inline font-semibold text-base lg:text-xl text-balance leading-tight uppercase">
                                                 <?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?>
                                             </p>
 
                                             <p class="inline text-base lg:text-2xl uppercase font-bold">
-                                                USD <?= number_format((float)$prod['precio'], 2); ?>
+                                                USD <?= number_format((float) $prod['precio'], 2); ?>
                                             </p>
 
                                             <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
                                                 <!-- Botón AJAX: agregar al carrito -->
-                                                <button
-                                                    type="button"
+                                                <button type="button"
                                                     class="btn-secondary add-to-cart inline w-full py-1.5 sm:py-2 rounded-lg uppercase font-semibold text-xs sm:text-base"
-                                                    data-id="<?= (int)$prod['id_producto']; ?>"
-                                                    data-qty="1"
+                                                    data-id="<?= (int) $prod['id_producto']; ?>" data-qty="1"
                                                     aria-label="Añadir <?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?> al carrito">
                                                     <span>Añadir al carrito</span>
                                                 </button>
@@ -300,21 +303,21 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                                     "galeria_productos",
                                                     "gal_img",
                                                     [
-                                                        "id_producto" => (int)$prod["id_producto"],
-                                                        "gal_est"     => "activo",
-                                                        "ORDER"       => ["gal_id" => "DESC"]
+                                                        "id_producto" => (int) $prod["id_producto"],
+                                                        "gal_est" => "activo",
+                                                        "ORDER" => ["gal_id" => "DESC"]
                                                     ]
                                                 );
 
                                                 // Prefija cada imagen con /uploads/
                                                 $galeria_full = array_map(
-                                                    fn($f) => '/uploads/' . ltrim((string)$f, '/'),
+                                                    fn($f) => '/uploads/' . ltrim((string) $f, '/'),
                                                     is_array($galeria) ? $galeria : []
                                                 );
 
                                                 // Imagen principal del producto
                                                 $imagen_principal = !empty($prod['imagen'])
-                                                    ? '/uploads/' . ltrim((string)$prod['imagen'], '/')
+                                                    ? '/uploads/' . ltrim((string) $prod['imagen'], '/')
                                                     : null;
 
                                                 // Insertar primero la imagen principal (si existe)
@@ -330,18 +333,19 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                                 );
                                                 ?>
 
-                                                <button
-                                                    type="button"
+                                                <button type="button"
                                                     class="flex flex-row items-center justify-center gap-2 border border-gray-400 rounded-lg py-1.5 sm:py-2 uppercase font-semibold text-sm sm:text-base preview"
-                                                    data-id="<?= (int)$prod['id_producto']; ?>"
+                                                    data-id="<?= (int) $prod['id_producto']; ?>"
                                                     data-name="<?= htmlspecialchars($prod['nombre'], ENT_QUOTES, 'UTF-8'); ?>"
-                                                    data-price="<?= number_format((float)$prod['precio'], 2, '.', ''); ?>"
+                                                    data-price="<?= number_format((float) $prod['precio'], 2, '.', ''); ?>"
                                                     data-img="<?= !empty($prod['imagen']) ? '/uploads/' . $prod['imagen'] : ''; ?>"
                                                     data-brand="<?= htmlspecialchars($prod['marca'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                                                     data-desc="<?= htmlspecialchars($prod['descripcion'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                                                     data-gallery='<?= $data_gallery; ?>'>
-                                                    <div class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
-                                                        <img src="<?php echo $url;?>/assets/icons/tienda/previsualizar.svg" alt="Preview icon">
+                                                    <div
+                                                        class="btn-secondary size-[24px] items-center flex rounded-full justify-center">
+                                                        <img src="<?php echo $url; ?>/assets/icons/tienda/previsualizar.svg"
+                                                            alt="Preview icon">
                                                     </div>
                                                     <p>PREVIEW</p>
                                                 </button>
@@ -357,33 +361,39 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
                 <!-- MARCAS -->
 
-                <section id="brands-grid"
-                    data-endpoint="/ajax_productos.php"
+                <section id="brands-grid" data-endpoint="/ajax_productos.php"
                     class="mx-auto max-w-screen-xl grid xl:grid-cols-6 grid-cols-3 xl:gap-6 gap-4 mt-12">
-                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="CAT">
+                    <button type="button"
+                        class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
+                        data-brand="CAT">
                         <img src="assets/images/logos/logo1.svg" alt="CAT" />
                     </button>
-                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="JCB">
+                    <button type="button"
+                        class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
+                        data-brand="JCB">
                         <img src="assets/images/logos/logo2.svg" alt="JCB" />
                     </button>
-                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="CUMMINS">
+                    <button type="button"
+                        class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
+                        data-brand="CUMMINS">
                         <img src="assets/images/logos/logo3.svg" alt="CUMMINS" />
                     </button>
-                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="PACCAR">
+                    <button type="button"
+                        class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
+                        data-brand="PACCAR">
                         <img src="assets/images/logos/logo4.svg" alt="PACCAR" />
                     </button>
-                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="NOREGON">
+                    <button type="button"
+                        class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
+                        data-brand="NOREGON">
                         <img src="assets/images/logos/logo5.svg" alt="NOREGON" />
                     </button>
-                    <button type="button" class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5" data-brand="NEXIQ">
+                    <button type="button"
+                        class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
+                        data-brand="NEXIQ">
                         <img src="assets/images/logos/logo6.svg" alt="NEXIQ" />
                     </button>
                 </section>
-
-                <!-- El contenedor que recibe los <li> -->
-                <ul id="productos-lista" class="splide__list">
-                    <!-- tus <li> iniciales -->
-                </ul>
 
             </div>
         </section>
@@ -945,7 +955,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
             <section id="testimonials-carousel" class="splide" aria-label="Testimonios de clientes">
                 <div class="splide__track pb-6 pt-3">
-                    <ul class="splide__list xl:h-[51vh] h-[30vh]">
+                    <ul class="splide__list h-max">
                         <li class="splide__slide">
                             <div
                                 class="bg-white shadow border border-gray-100 p-6 md:p-8 mx-2 h-full flex flex-col justify-between xl:min-h-[320px] h-auto">
@@ -1088,8 +1098,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
         <span class="block" id="alertaTexto"></span>
     </div>
 
-    <div id="product-details-modal" tabindex="-1" aria-hidden="true"
-        class="hidden fixed inset-0 z-50 w-full h-full
+    <div id="product-details-modal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full h-full
             justify-center items-center
             overflow-y-auto overflow-x-hidden
             bg-black/60 backdrop-blur-sm"> <!-- 👈 fondo oscuro + blur -->
@@ -1119,17 +1128,19 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <section aria-label="Galería de imágenes">
                             <div class="relative mb-4 overflow-hidden border border-gray-200 bg-white">
                                 <div class="aspect-square">
-                                    <img id="mainImage"
-                                        src="https://placehold.co/600x600/png"
-                                        alt="Imagen principal"
+                                    <img id="mainImage" src="https://placehold.co/600x600/png" alt="Imagen principal"
                                         class="h-full w-full object-cover transition-opacity duration-300"
                                         loading="eager" decoding="async" draggable="false" />
                                 </div>
                             </div>
 
                             <div class="relative">
-                                <div class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
-                                <div class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent">
+                                </div>
+                                <div
+                                    class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent">
+                                </div>
 
                                 <div class="flex items-center gap-2">
                                     <button id="prev"
@@ -1152,28 +1163,35 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <div class="w-full flex flex-col justify-between">
                         <div>
                             <div class="flex flex-row justify-between items-center w-full">
-                                <p id="modal-product-price" class="xl:text-3xl text-lg text-nowrap font-bold">USD 0.00</p>
+                                <p id="modal-product-price" class="xl:text-3xl text-lg text-nowrap font-bold">USD 0.00
+                                </p>
 
                                 <div class="relative mt-2 flex max-w-32 items-center justify-end">
                                     <button type="button" id="decrement-button"
                                         class="xl:h-10 h-8 rounded-s-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
-                                        <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                        <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 18 2">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M1 1h16" />
                                         </svg>
                                     </button>
-                                    <input type="text" id="quantity-input-1" data-input-counter data-input-counter-min="1" data-input-counter-max="50"
+                                    <input type="text" id="quantity-input-1" data-input-counter
+                                        data-input-counter-min="1" data-input-counter-max="50"
                                         class="block xl:h-10 h-8 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
                                         value="1" />
                                     <button type="button" id="increment-button"
                                         class="xl:h-10 h-8 rounded-e-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
-                                        <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                        <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 18 18">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M9 1v16M1 9h16" />
                                         </svg>
                                     </button>
                                 </div>
                             </div>
 
-                            <p id="modal-product-description" class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
+                            <p id="modal-product-description"
+                                class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
                                 Producto sin descripción.
                             </p>
 
@@ -1211,7 +1229,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
     <script>
         console.log('🔍 Debug Script Loaded');
 
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             console.log('🔍 DOM Content Loaded');
 
             // Verificar elementos
@@ -1241,7 +1259,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                 }
 
                 // Event listener para abrir
-                chatTrigger.addEventListener("click", function(e) {
+                chatTrigger.addEventListener("click", function (e) {
                     console.log('🖱️ Chat trigger clicked!');
                     e.preventDefault();
                     e.stopPropagation();
@@ -1250,7 +1268,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
                 // Event listener para cerrar
                 if (closeButton) {
-                    closeButton.addEventListener("click", function(e) {
+                    closeButton.addEventListener("click", function (e) {
                         console.log('🖱️ Close button clicked!');
                         e.preventDefault();
                         e.stopPropagation();
@@ -1259,12 +1277,12 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                 }
 
                 // Agregar hover effect
-                chatTrigger.addEventListener("mouseenter", function() {
+                chatTrigger.addEventListener("mouseenter", function () {
                     chatTrigger.style.transform = "scale(1.05)";
                     chatTrigger.style.transition = "transform 0.2s ease";
                 });
 
-                chatTrigger.addEventListener("mouseleave", function() {
+                chatTrigger.addEventListener("mouseleave", function () {
                     chatTrigger.style.transform = "scale(1)";
                 });
 
@@ -1311,9 +1329,61 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
         .arrow-transition.rotated {
             transform: rotate(180deg);
         }
+
+        /* Forzar ancho correcto en carrusel de productos */
+        #products-carousel .splide__slide {
+            transition: width 0.3s ease;
+        }
+
+        /* Breakpoints para carrusel de productos */
+        @media (max-width: 767px) {
+            #products-carousel .splide__slide {
+                width: calc(50% - 0.5rem) !important;
+                min-width: calc(50% - 0.5rem) !important;
+                max-width: calc(50% - 0.5rem) !important;
+                flex: 0 0 calc(50% - 0.5rem) !important;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1023px) {
+            #products-carousel .splide__slide {
+                width: calc(50% - 0.5rem) !important;
+                min-width: calc(50% - 0.5rem) !important;
+                max-width: calc(50% - 0.5rem) !important;
+                flex: 0 0 calc(50% - 0.5rem) !important;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            #products-carousel .splide__slide {
+                width: calc(33.333% - 0.67rem) !important;
+                min-width: calc(33.333% - 0.67rem) !important;
+                max-width: calc(33.333% - 0.67rem) !important;
+                flex: 0 0 calc(33.333% - 0.67rem) !important;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            #products-carousel .splide__slide {
+                width: calc(25% - 0.75rem) !important;
+                min-width: calc(25% - 0.75rem) !important;
+                max-width: calc(25% - 0.75rem) !important;
+                flex: 0 0 calc(25% - 0.75rem) !important;
+            }
+        }
+
+        /* Ocultar scrollbar */
+        .scrollbar-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scrollbar-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
     </style>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Buscar todos los acordeones
             const accordionContainers = document.querySelectorAll('.grid.grid-cols-1.xl\\:hidden .mx-auto');
 
@@ -1359,7 +1429,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
                 // Agregar event listener
                 if (header) {
-                    header.addEventListener('click', function() {
+                    header.addEventListener('click', function () {
                         // Cerrar todos los demás acordeones
                         accordionContainers.forEach((otherContainer, otherIndex) => {
                             if (otherIndex !== index) {
@@ -1384,7 +1454,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
             console.log('Using new accordion system');
         }
     </script>
-    
+
     <div id="pop-up-modal" tabindex="-1" aria-hidden="true"
         class="hidden fixed top-0 left-0 right-0 z-50 flex justify-center items-center w-full h-full bg-black bg-opacity-40">
         <div class="relative p-4 w-full max-w-md max-h-full">
@@ -1449,7 +1519,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
     <script>
         // Mostrar el modal solo si no está la bandera en localStorage
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             var modal = document.getElementById('pop-up-modal');
             var noShow = localStorage.getItem('noShowAgain');
             if (!noShow && modal) {
@@ -1458,11 +1528,11 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                 modal.classList.add('hidden');
             }
             // Botón cerrar (X)
-            document.getElementById('close-pop-up-modal')?.addEventListener('click', function() {
+            document.getElementById('close-pop-up-modal')?.addEventListener('click', function () {
                 modal.classList.add('hidden');
             });
             // Botón "No volver a mostrar"
-            document.getElementById('no-show-again')?.addEventListener('click', function() {
+            document.getElementById('no-show-again')?.addEventListener('click', function () {
                 modal.classList.add('hidden');
                 localStorage.setItem('noShowAgain', 'true');
             });
@@ -1580,6 +1650,33 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
             scrollbar-width: none;
         }
     </style>
+
+    <script>
+        // Script adicional para estabilizar el carrusel de productos
+        document.addEventListener('DOMContentLoaded', function () {
+            // Esperar a que todos los carruseles se inicialicen
+            setTimeout(() => {
+                const productsCarousel = document.getElementById('products-carousel');
+                if (productsCarousel && productsCarousel.splide) {
+                    // Forzar refresh para asegurar configuración correcta
+                    productsCarousel.splide.refresh();
+
+                    // Agregar listener para detectar cambios y mantener configuración
+                    let resizeTimer;
+                    window.addEventListener('resize', function () {
+                        clearTimeout(resizeTimer);
+                        resizeTimer = setTimeout(() => {
+                            if (productsCarousel.splide && !productsCarousel.splide.state.is(4)) {
+                                productsCarousel.splide.refresh();
+                            }
+                        }, 300);
+                    });
+
+                    console.log('🎠 Products carousel stabilized');
+                }
+            }, 500);
+        });
+    </script>
 </body>
 
 
