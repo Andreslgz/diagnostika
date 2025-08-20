@@ -255,7 +255,7 @@ require_once __DIR__ . '/../auth.php';
     <script>
         AOS.init();
     </script>
-    <script src="../scripts/main.js"></script>
+    <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     <style>

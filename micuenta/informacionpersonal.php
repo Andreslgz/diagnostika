@@ -26,7 +26,7 @@ $usuario = $database->get("usuarios", "*", [
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo $url;?>/styles/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    
+
 </head>
 
 <body>
@@ -270,7 +270,7 @@ $usuario = $database->get("usuarios", "*", [
     <script>
         AOS.init();
     </script>
-    <script src="../scripts/main.js"></script>
+    <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     <style>

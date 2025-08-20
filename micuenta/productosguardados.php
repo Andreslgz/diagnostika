@@ -59,7 +59,7 @@ $productos = $database->select('favoritos(f)', [
 
 // Para pintar el corazón lleno
 $favoritos_usuario = array_map(fn($r) => (int)$r['id_producto'], $productos ?? []);
-$titulo = 'cDIAGNOSTIKA DIESEL GLOBAL';
+//$titulo = 'DIAGNOSTIKA DIESEL GLOBAL';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -277,7 +277,7 @@ $titulo = 'cDIAGNOSTIKA DIESEL GLOBAL';
     <script>
         AOS.init();
     </script>
-    <script src="../scripts/main.js"></script>
+    <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     
