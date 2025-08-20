@@ -9,7 +9,7 @@
             <!-- Saludo -->
             <div class="text-center mb-4">
                 <p class="text-lg font-semibold text-slate-900">
-                    👋 Hello <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre']); ?></span>
+                    👋 Hello <span class="text-indigo-600"><?php echo htmlspecialchars($usuarioMenu['nombre'] ?? '', ENT_QUOTES, 'UTF-8'); ?></span>
                 </p>
                 <p class="text-sm text-slate-500">Welcome back</p>
             </div>
