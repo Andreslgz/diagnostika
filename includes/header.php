@@ -50,7 +50,7 @@
 
                         <div class="flex flex-col">
                             <p class="xl:text-sm text-[11px] font-extrabold text-gray-500">
-                                <?php echo htmlspecialchars($usuarioMenu['nombre']); ?>
+                                <?php echo htmlspecialchars($usuarioMenu['nombre'] ?? '', ENT_QUOTES, 'UTF-8'); ?>
                             </p>
                             <a class="xl:text-sm text-[11px]  text-gray-500 text-nowrap underline underline-offset-4"
                                 href="<?php echo $url; ?>/micuenta/informacionpersonal.php">
