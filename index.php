@@ -927,17 +927,17 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <ul class="splide__list">
                         <!-- Slide 1 -->
                         <li class="splide__slide">
-                            <img src="/assets/images/formasdepago/1.webp" alt="Formas de Pago - Opción 1"
+                            <img src="<?php echo $url;?>/assets/images/formasdepago/1.webp" alt="Formas de Pago - Opción 1"
                                 class="w-full h-auto object-contain rounded-lg" />
                         </li>
                         <!-- Slide 2 -->
                         <li class="splide__slide">
-                            <img src="/assets/images/formasdepago/2.webp" alt="Formas de Pago - Opción 2"
+                            <img src="<?php echo $url;?>/assets/images/formasdepago/2.webp" alt="Formas de Pago - Opción 2"
                                 class="w-full h-auto object-contain rounded-lg" />
                         </li>
                         <!-- Slide 3 -->
                         <li class="splide__slide">
-                            <img src="/assets/images/formasdepago/3.webp" alt="Formas de Pago - Opción 3"
+                            <img src="<?php echo $url;?>/assets/images/formasdepago/3.webp" alt="Formas de Pago - Opción 3"
                                 class="w-full h-auto object-contain rounded-lg" />
                         </li>
                     </ul>
@@ -989,7 +989,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                     </div>
 
                                     <div class="flex items-center gap-4 mb-4 mt-2">
-                                        <img src="/assets/images/testimonial.png" class="xl:size-[53px] size-[45px]"
+                                        <img src="<?php echo $url;?>/assets/images/testimonial.png" class="xl:size-[53px] size-[45px]"
                                             alt="">
                                         <p class="font-bold xl:text-xl text-base">
                                             Jhon Doe
@@ -1006,7 +1006,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
                                     <div class="flex items-center gap-2 justify-end">
                                         <p>País:</p>
-                                        <img src="/assets/icons/svg/peru_flag.svg" alt="" class="w-[20px] h-auto">
+                                        <img src="<?php echo $url;?>/assets/icons/svg/peru_flag.svg" alt="" class="w-[20px] h-auto">
                                     </div>
                                 </div>
                             </div>
