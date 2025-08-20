@@ -264,7 +264,9 @@ function apiEndpoint(path) {
       const pwd2 = form.querySelector('input[name="password_confirm"]')?.value?.trim() ?? "";
       if (pwd !== pwd2) { showError("Las contraseñas no coinciden."); return; }
 
-     const endpoint = resolveEndpoint(form, apiEndpoint("/register.php"));
+      //const endpoint = resolveEndpoint(form, apiEndpoint("/register.php"));
+      const endpoint = apiEndpoint("/register.php");
+      
       const submitBtn = form.querySelector('[type="submit"]');
       if (submitBtn) submitBtn.disabled = true;
       inFlightRegister = true;
