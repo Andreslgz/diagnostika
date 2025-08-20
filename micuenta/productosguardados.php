@@ -216,7 +216,7 @@ $titulo = 'cDIAGNOSTIKA DIESEL GLOBAL';
                     "ORDER"       => ["gal_id" => "DESC"]
                   ]
                 );
-                $galeria_full = array_map(fn($f) => '/uploads/' . ltrim((string)$f, '/'), is_array($galeria) ? $galeria : []);
+                $galeria_full = array_map(fn($f) => $url.'/uploads/' . ltrim((string)$f, '/'), is_array($galeria) ? $galeria : []);
                 if (!empty($prod['imagen'])) array_unshift($galeria_full, $imgSrc);
                 $data_gallery = htmlspecialchars(json_encode($galeria_full, JSON_UNESCAPED_UNICODE|JSON_UNESCAPED_SLASHES), ENT_QUOTES, 'UTF-8');
               ?>
