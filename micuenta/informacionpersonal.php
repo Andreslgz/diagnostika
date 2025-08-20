@@ -26,6 +26,7 @@ $usuario = $database->get("usuarios", "*", [
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="<?php echo $url;?>/styles/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    
 </head>
 
 <body>
