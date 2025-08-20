@@ -198,31 +198,44 @@ require_once __DIR__ . '/../auth.php';
 
                 <!-- Input de fecha dinámico -->
                 <div id="dateInputContainer" class="flex flex-col sm:flex-row gap-3">
-                  <select id="monthSelect" class="border border-gray-300 rounded-lg p-2 flex-1">
-                    <option value="01">Enero</option>
-                    <option value="02">Febrero</option>
-                    <option value="03">Marzo</option>
-                    <option value="04">Abril</option>
-                    <option value="05">Mayo</option>
-                    <option value="06" selected>Junio</option>
-                    <option value="07">Julio</option>
-                    <option value="08">Agosto</option>
-                    <option value="09">Septiembre</option>
-                    <option value="10">Octubre</option>
-                    <option value="11">Noviembre</option>
-                    <option value="12">Diciembre</option>
-                  </select>
-                  <select id="yearSelect"
-                    class="border border-gray-300 rounded-lg p-2 w-full sm:w-32">
-                    <option value="2023">2023</option>
-                    <option value="2024">2024</option>
-                    <option value="2025" selected>2025</option>
-                  </select>
-                  <button
-                    class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-                    Buscar
-                  </button>
-                </div>
+  <select id="monthSelect" class="border border-gray-300 rounded-lg p-2 flex-1"></select>
+  <select id="yearSelect" class="border border-gray-300 rounded-lg p-2 w-full sm:w-32"></select>
+  <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+    Buscar
+  </button>
+</div>
+
+<script>
+  const now = new Date();
+  const currentMonth = String(now.getMonth() + 1).padStart(2, "0"); // "01".."12"
+  const currentYear = now.getFullYear();
+
+  const meses = [
+    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+  ];
+
+  // Llenar meses
+  const monthSelect = document.getElementById("monthSelect");
+  meses.forEach((mes, idx) => {
+    const val = String(idx + 1).padStart(2, "0");
+    const option = document.createElement("option");
+    option.value = val;
+    option.textContent = mes;
+    if (val === currentMonth) option.selected = true;
+    monthSelect.appendChild(option);
+  });
+
+  // Llenar años (5 atrás y 5 adelante)
+  const yearSelect = document.getElementById("yearSelect");
+  for (let y = currentYear - 5; y <= currentYear + 5; y++) {
+    const option = document.createElement("option");
+    option.value = y;
+    option.textContent = y;
+    if (y === currentYear) option.selected = true;
+    yearSelect.appendChild(option);
+  }
+</script>
               </div>
             </div>
             <div id="ordenes-container" class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3"></div>
