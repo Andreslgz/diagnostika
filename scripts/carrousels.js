@@ -99,10 +99,14 @@ function initResponsiveHero() {
       arrows: true,
       pagination: true,
       cover: true,
-      height: "50vh",
+      height: "59vh",
+      fixedHeight: true,
+      heightRatio: 0.55,
       lazyLoad: "nearby",
+      width: "100%",
+      fixedWidth: true,
     });
-    console.log("Hero mobile mounted");
+    console.log("Hero mobile mounted with 55vh");
   } else {
     console.log("Hero oculto en este breakpoint (md–xl sin xl).");
   }

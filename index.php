@@ -84,7 +84,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
     <!-- HEADER - NAVBAR -->
     <?php require_once __DIR__ . '/includes/header.php'; ?>
 
-    <main>
+    <main class="overflow-hidden">
 
         <!-- Hero -->
         <section id="image-carousel" class="splide hidden md:block" aria-label="Beautiful Images">
@@ -116,18 +116,18 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
         </section>
 
         <!-- Hero Mobile -->
-        <section id="image-carousel-mobile" class="splide md:hidden" aria-label="Beautiful Images (Mobile)">
-            <div class="splide__track h-[50vh]">
-                <ul class="splide__list">
+        <section id="image-carousel-mobile" class="splide md:hidden w-full" aria-label="Beautiful Images (Mobile)">
+            <div class="splide__track h-[59vh] !w-full">
+                <ul class="splide__list !h-full w-full">
                     <?php if (!empty($sliders_mov)): ?>
                         <?php foreach ($sliders_mov as $img): ?>
                             <?php $imagen = htmlspecialchars($img, ENT_QUOTES, 'UTF-8'); ?>
-                            <li class="splide__slide">
+                            <li class="splide__slide !h-full w-full">
                                 <img src="uploads/slider/<?= $imagen ?>" alt="Slide Mobile" class="w-full h-full object-cover">
                             </li>
                         <?php endforeach; ?>
                     <?php else: ?>
-                        <li class="splide__slide">
+                        <li class="splide__slide h-full w-full">
                             <img src="uploads/slider/img-no-disponible.jpg" alt="Sin imagen"
                                 class="w-full h-full object-cover">
                         </li>
@@ -143,7 +143,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                 <!-- Desktop Grid (md+) -->
                 <div class="hidden md:grid grid-cols-4 gap-4" data-aos="fade-up" id="statistics-grid">
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
-                        <img src="<?php echo $url;?>/assets/icons/banner/icon1.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
+                        <img src="<?php echo $url; ?>/assets/icons/banner/icon1.svg" alt=""
+                            class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
                             <p class="font-bold xl:text-3xl text-lg">1 Year</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
@@ -152,7 +153,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         </div>
                     </div>
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
-                        <img src="<?php echo $url;?>/assets/icons/banner/icon2.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
+                        <img src="<?php echo $url; ?>/assets/icons/banner/icon2.svg" alt=""
+                            class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
                             <p class="font-bold xl:text-3xl text-lg">24/7</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
@@ -161,7 +163,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         </div>
                     </div>
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
-                        <img src="<?php echo $url;?>/assets/icons/banner/icon3.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
+                        <img src="<?php echo $url; ?>/assets/icons/banner/icon3.svg" alt=""
+                            class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
                             <p class="font-bold xl:text-3xl text-lg">Global</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
@@ -170,7 +173,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         </div>
                     </div>
                     <div class="xl:p-4 p-1 rounded-lg flex flex-row xl:gap-4 gap-3 items-center">
-                        <img src="<?php echo $url;?>/assets/icons/banner/icon4.svg" alt="" class="xl:w-auto xl:h-auto w-[25%] h-auto" />
+                        <img src="<?php echo $url; ?>/assets/icons/banner/icon4.svg" alt=""
+                            class="xl:w-auto xl:h-auto w-[25%] h-auto" />
                         <div class="">
                             <p class="font-bold xl:text-3xl text-lg">123K +</p>
                             <p class="xl:text-lg text-base font-medium text-nowrap xl:mt-0 -mt-2">
@@ -187,7 +191,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <li class="splide__slide">
                                 <div class="grid grid-cols-2 gap-3 ">
                                     <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
-                                        <img src="<?php echo $url;?>/assets/icons/banner/icon1.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <img src="<?php echo $url; ?>/assets/icons/banner/icon1.svg" alt=""
+                                            class="w-8 h-8 flex-shrink-0" />
                                         <div class="flex-1">
                                             <p class="font-bold text-lg leading-tight">1 Año</p>
                                             <p class="text-sm font-medium text-nowrap">
@@ -196,7 +201,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                         </div>
                                     </div>
                                     <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
-                                        <img src="<?php echo $url;?>/assets/icons/banner/icon2.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <img src="<?php echo $url; ?>/assets/icons/banner/icon2.svg" alt=""
+                                            class="w-8 h-8 flex-shrink-0" />
                                         <div class="flex-1">
                                             <p class="font-bold text-lg leading-tight">24/7</p>
                                             <p class="text-sm font-medium text-nowrap">
@@ -209,7 +215,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <li class="splide__slide">
                                 <div class="grid grid-cols-2 gap-3 py-2">
                                     <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
-                                        <img src="<?php echo $url;?>/assets/icons/banner/icon3.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <img src="<?php echo $url; ?>/assets/icons/banner/icon3.svg" alt=""
+                                            class="w-8 h-8 flex-shrink-0" />
                                         <div class="flex-1">
                                             <p class="font-bold text-lg leading-tight">Cobertura</p>
                                             <p class="text-sm font-medium text-nowrap">
@@ -218,7 +225,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                         </div>
                                     </div>
                                     <div class="p-2 rounded-lg flex flex-row gap-2 items-center min-h-[80px]">
-                                        <img src="<?php echo $url;?>/assets/icons/banner/icon4.svg" alt="" class="w-8 h-8 flex-shrink-0" />
+                                        <img src="<?php echo $url; ?>/assets/icons/banner/icon4.svg" alt=""
+                                            class="w-8 h-8 flex-shrink-0" />
                                         <div class="flex-1">
                                             <p class="font-bold text-lg leading-tight">123K +</p>
                                             <p class="text-sm font-medium text-nowrap">
@@ -247,7 +255,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <a href="<?php echo $url; ?>/tienda"
                         class="btn-primary rounded px-4 sm:px-6 lg:px-8 py-2 uppercase font-bold text-sm sm:text-base xl:text-lg flex items-center gap-2 cursor-pointer hover:underline underline-offset-4 self-start sm:self-auto">
                         SEE ALL
-                        <img src="<?php echo $url;?>/assets/icons/svg/tabler--chevron-right.svg" alt="" />
+                        <img src="<?php echo $url; ?>/assets/icons/svg/tabler--chevron-right.svg" alt="" />
                     </a>
                 </div>
                 <div class="mx-auto max-w-screen-xl">
@@ -366,32 +374,32 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <button type="button"
                         class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
                         data-brand="CAT">
-                        <img src="<?php echo $url;?>/assets/images/logos/logo1.svg" alt="CAT" />
+                        <img src="<?php echo $url; ?>/assets/images/logos/logo1.svg" alt="CAT" />
                     </button>
                     <button type="button"
                         class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
                         data-brand="JCB">
-                        <img src="<?php echo $url;?>/assets/images/logos/logo2.svg" alt="JCB" />
+                        <img src="<?php echo $url; ?>/assets/images/logos/logo2.svg" alt="JCB" />
                     </button>
                     <button type="button"
                         class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
                         data-brand="CUMMINS">
-                        <img src="<?php echo $url;?>/assets/images/logos/logo3.svg" alt="CUMMINS" />
+                        <img src="<?php echo $url; ?>/assets/images/logos/logo3.svg" alt="CUMMINS" />
                     </button>
                     <button type="button"
                         class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
                         data-brand="PACCAR">
-                        <img src="<?php echo $url;?>/assets/images/logos/logo4.svg" alt="PACCAR" />
+                        <img src="<?php echo $url; ?>/assets/images/logos/logo4.svg" alt="PACCAR" />
                     </button>
                     <button type="button"
                         class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
                         data-brand="NOREGON">
-                        <img src="<?php echo $url;?>/assets/images/logos/logo5.svg" alt="NOREGON" />
+                        <img src="<?php echo $url; ?>/assets/images/logos/logo5.svg" alt="NOREGON" />
                     </button>
                     <button type="button"
                         class="brands-bg brand-tile rounded-lg flex items-center justify-center aspect-square shadow-md hover:shadow-lg p-1.5"
                         data-brand="NEXIQ">
-                        <img src="<?php echo $url;?>/assets/images/logos/logo6.svg" alt="NEXIQ" />
+                        <img src="<?php echo $url; ?>/assets/images/logos/logo6.svg" alt="NEXIQ" />
                     </button>
                 </section>
 
@@ -407,7 +415,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <!-- Contenido -->
                         <div
                             class="btn-secondary xl:w-[32%] w-[51%] h-auto rounded-l-lg xl:p-4 p-2.5 flex flex-col justify-end">
-                            <img src="<?php echo $url;?>/assets/icons/banner/banner1.svg" alt=""
+                            <img src="<?php echo $url; ?>/assets/icons/banner/banner1.svg" alt=""
                                 class="xl:size-[125px] size-[35px] mx-0" />
                             <p class="xl:text-2xl text-sm font-extrabold text-banner-1 text-left ">
                                 On Highway
@@ -420,7 +428,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         </div>
                         <!-- Imagen -->
                         <div class="xl:w-[70%] w-full h-auto image-anime rounded-r-lg">
-                            <img src="<?php echo $url;?>/assets/images/banner1.jpg" alt=""
+                            <img src="<?php echo $url; ?>/assets/images/banner1.jpg" alt=""
                                 class="w-full h-full object-cover  rounded-r-xl" />
                         </div>
                     </div>
@@ -441,9 +449,9 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <div
                             class="bg-banner2 xl:w-[32%] w-[51%] h-auto rounded-l-lg xl:p-4 p-2.5 flex flex-col justify-end">
                             <div class="flex gap-4 items-center ">
-                                <img src="<?php echo $url;?>/assets/icons/banner/banner2.svg" alt=""
+                                <img src="<?php echo $url; ?>/assets/icons/banner/banner2.svg" alt=""
                                     class="xl:size-[75px] block size-[45px] mx-0 border-r pr-4 border-gray-500" />
-                                <img src="<?php echo $url;?>/assets/icons/banner/banner3.svg" alt=""
+                                <img src="<?php echo $url; ?>/assets/icons/banner/banner3.svg" alt=""
                                     class="xl:size-[75px] block size-[30px] mx-0" />
                             </div>
                             <p class="xl:text-2xl text-sm font-extrabold text-banner-1 text-left xl:mt-4">
@@ -457,7 +465,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         </div>
                         <!-- Imagen -->
                         <div class="xl:w-[70%] w-full h-auto image-anime rounded-r-lg">
-                            <img src="<?php echo $url;?>/assets/images/banner2.jpg" alt=""
+                            <img src="<?php echo $url; ?>/assets/images/banner2.jpg" alt=""
                                 class="w-full h-full object-cover  rounded-r-xl" />
                         </div>
                     </div>
@@ -478,14 +486,16 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
         <!-- STATITICS 2 -->
         <section class="my-10 md:my-20 bg-statistics-2 to-[#D9D9D9] overflow-hidden">
             <div class="py-10 md:py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
-                <img src="<?php echo $url;?>/assets/icons/Logotipo.svg" alt="" class="mx-auto block w-[220px] md:w-[320px] lg:w-[440px]" />
+                <img src="<?php echo $url; ?>/assets/icons/Logotipo.svg" alt=""
+                    class="mx-auto block w-[220px] md:w-[320px] lg:w-[440px]" />
                 <div class="grid grid-cols-1 lg:grid-cols-2 mt-8 md:mt-16 gap-6 lg:gap-0">
                     <div class="grid grid-cols-1 xl:hidden gap-8">
                         <div class="mx-auto overflow-hidden">
                             <div class="flex justify-between items-center cursor-pointer " onclick="toggleAccordion()">
                                 <div
                                     class="btn-secondary w-[55px] h-[55px] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <img src="<?php echo $url;?>/assets/icons/estadisticas/1.svg" alt="" class="w-[70%]">
+                                    <img src="<?php echo $url; ?>/assets/icons/estadisticas/1.svg" alt=""
+                                        class="w-[70%]">
                                 </div>
                                 <div class="flex-1 mx-4">
                                     <h2 class="font-bold text-base">
@@ -517,7 +527,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <div class="flex justify-between items-center cursor-pointer " onclick="toggleAccordion()">
                                 <div
                                     class="btn-secondary w-[55px] h-[55px] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <img src="<?php echo $url;?>/assets/icons/estadisticas/2.svg" alt="" class="w-[70%]">
+                                    <img src="<?php echo $url; ?>/assets/icons/estadisticas/2.svg" alt=""
+                                        class="w-[70%]">
                                 </div>
                                 <div class="flex-1 mx-4">
                                     <h2 class="font-bold text-base">
@@ -546,7 +557,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <div class="flex justify-between items-center cursor-pointer " onclick="toggleAccordion()">
                                 <div
                                     class="btn-secondary w-[55px] h-[55px] rounded-full flex items-center justify-center flex-shrink-0">
-                                    <img src="<?php echo $url;?>/assets/icons/estadisticas/3.svg" alt="" class="w-[70%]">
+                                    <img src="<?php echo $url; ?>/assets/icons/estadisticas/3.svg" alt=""
+                                        class="w-[70%]">
                                 </div>
                                 <div class="flex-1 mx-4">
                                     <h2 class="font-bold text-base">
@@ -573,13 +585,14 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             </div>
                         </div>
                     </div>
-                    <img src="<?php echo $url;?>/assets/images/estadisticas_crop.png" alt=""
+                    <img src="<?php echo $url; ?>/assets/images/estadisticas_crop.png" alt=""
                         class="w-full h-auto object-contain mx-auto max-w-md lg:max-w-full">
                     <div class="xl:flex hidden flex-col gap-4 md:gap-6 lg:gap-8">
                         <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
                                 class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
-                                <img src="<?php echo $url;?>/assets/icons/estadisticas/1.svg" alt="" class="w-[60%] md:w-[70%]">
+                                <img src="<?php echo $url; ?>/assets/icons/estadisticas/1.svg" alt=""
+                                    class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
                                 <h2 class="font-bold text-lg md:text-xl">Specialized Technical Support</h2>
@@ -592,7 +605,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
                                 class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
-                                <img src="<?php echo $url;?>/assets/icons/estadisticas/2.svg" alt="" class="w-[60%] md:w-[70%]">
+                                <img src="<?php echo $url; ?>/assets/icons/estadisticas/2.svg" alt=""
+                                    class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
                                 <h2 class="font-bold text-lg md:text-xl">Global Coverage and Immediate Support</h2>
@@ -605,7 +619,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         <div class="btn-primary p-3 md:p-4 rounded-xl flex flex-col md:flex-row items-center gap-4">
                             <div
                                 class="btn-secondary w-[85px] h-[85px] md:size-[100px] lg:size-[115px] rounded-full flex items-center justify-center flex-shrink-0">
-                                <img src="<?php echo $url;?>/assets/icons/estadisticas/3.svg" alt="" class="w-[60%] md:w-[70%]">
+                                <img src="<?php echo $url; ?>/assets/icons/estadisticas/3.svg" alt=""
+                                    class="w-[60%] md:w-[70%]">
                             </div>
                             <div class="flex-1 flex flex-col text-center md:text-left mt-2 md:mt-0">
                                 <h2 class="font-bold text-lg md:text-xl">Professional Diagnostic Software
@@ -669,7 +684,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <p>1</p>
                         </div>
                         <div class="image-anime">
-                            <img src="<?php echo $url;?>/assets/images/procesocompra/1.jpg" alt="" class="aspect-square object-cover" />
+                            <img src="<?php echo $url; ?>/assets/images/procesocompra/1.jpg" alt=""
+                                class="aspect-square object-cover" />
                         </div>
                     </div>
                     <div class="relative">
@@ -678,7 +694,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <p>2</p>
                         </div>
                         <div class="image-anime">
-                            <img src="<?php echo $url;?>/assets/images/procesocompra/2.jpg" alt="" class="aspect-square object-cover" />
+                            <img src="<?php echo $url; ?>/assets/images/procesocompra/2.jpg" alt=""
+                                class="aspect-square object-cover" />
                         </div>
                     </div>
                     <div class="relative">
@@ -687,7 +704,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <p>3</p>
                         </div>
                         <div class="image-anime">
-                            <img src="<?php echo $url;?>/assets/images/procesocompra/3.jpg" alt="" class="aspect-square object-cover" />
+                            <img src="<?php echo $url; ?>/assets/images/procesocompra/3.jpg" alt=""
+                                class="aspect-square object-cover" />
                         </div>
                     </div>
                     <div class="relative">
@@ -696,7 +714,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <p>4</p>
                         </div>
                         <div class="image-anime">
-                            <img src="<?php echo $url;?>/assets/images/procesocompra/4.jpg" alt="" class="aspect-square object-cover" />
+                            <img src="<?php echo $url; ?>/assets/images/procesocompra/4.jpg" alt=""
+                                class="aspect-square object-cover" />
                         </div>
                     </div>
                     <div class="relative col-span-2 md:col-span-1 mx-auto w-full max-w-[200px] md:max-w-none">
@@ -705,7 +724,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                             <p>5</p>
                         </div>
                         <div class="image-anime">
-                            <img src="<?php echo $url;?>/assets/images/procesocompra/5.jpg" alt="" class="aspect-square object-cover" />
+                            <img src="<?php echo $url; ?>/assets/images/procesocompra/5.jpg" alt=""
+                                class="aspect-square object-cover" />
                         </div>
                     </div>
                 </div>
@@ -716,7 +736,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
                         <div
                             class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                            <img src="<?php echo $url;?>/assets/icons/procesocompra/1.svg"
+                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/1.svg"
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
@@ -728,7 +748,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
                         <div
                             class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                            <img src="<?php echo $url;?>/assets/icons/procesocompra/2.svg"
+                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/2.svg"
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
@@ -740,7 +760,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
                         <div
                             class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                            <img src="<?php echo $url;?>/assets/icons/procesocompra/3.svg"
+                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/3.svg"
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
@@ -752,7 +772,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <div class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px]">
                         <div
                             class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                            <img src="<?php echo $url;?>/assets/icons/procesocompra/4.svg"
+                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/4.svg"
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
@@ -765,7 +785,7 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         class="flex flex-col items-center gap-3 md:gap-7 w-full max-w-[150px] md:max-w-[200px] col-span-2 md:col-span-1 mx-auto">
                         <div
                             class="btn-secondary w-[100px] h-[100px] md:w-[185px] md:h-[185px] rounded-full flex items-center">
-                            <img src="<?php echo $url;?>/assets/icons/procesocompra/5.svg"
+                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/5.svg"
                                 class="w-[60px] h-[60px] md:w-[125px] md:h-[125px] mx-auto" alt="" />
                         </div>
                         <p class="text-center text-sm md:text-xl font-bold text-balance">
@@ -790,14 +810,14 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                             <p>1</p>
                                         </div>
                                         <div class="image-anime">
-                                            <img src="<?php echo $url;?>/assets/images/procesocompra/1.jpg" alt=""
+                                            <img src="<?php echo $url; ?>/assets/images/procesocompra/1.jpg" alt=""
                                                 class="aspect-square object-cover w-full" />
                                         </div>
                                     </div>
                                     <!-- Círculo con icono y texto -->
                                     <div class="flex flex-col items-center gap-3">
                                         <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
-                                            <img src="<?php echo $url;?>/assets/icons/procesocompra/1.svg"
+                                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/1.svg"
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
@@ -817,14 +837,14 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                             <p>2</p>
                                         </div>
                                         <div class="image-anime">
-                                            <img src="<?php echo $url;?>/assets/images/procesocompra/2.jpg" alt=""
+                                            <img src="<?php echo $url; ?>/assets/images/procesocompra/2.jpg" alt=""
                                                 class="aspect-square object-cover w-full" />
                                         </div>
                                     </div>
                                     <!-- Círculo con icono y texto -->
                                     <div class="flex flex-col items-center gap-3">
                                         <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
-                                            <img src="<?php echo $url;?>/assets/icons/procesocompra/2.svg"
+                                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/2.svg"
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
@@ -844,14 +864,14 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                             <p>3</p>
                                         </div>
                                         <div class="image-anime">
-                                            <img src="<?php echo $url;?>/assets/images/procesocompra/3.jpg" alt=""
+                                            <img src="<?php echo $url; ?>/assets/images/procesocompra/3.jpg" alt=""
                                                 class="aspect-square object-cover w-full" />
                                         </div>
                                     </div>
                                     <!-- Círculo con icono y texto -->
                                     <div class="flex flex-col items-center gap-3">
                                         <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
-                                            <img src="<?php echo $url;?>/assets/icons/procesocompra/3.svg"
+                                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/3.svg"
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
@@ -871,14 +891,14 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                             <p>4</p>
                                         </div>
                                         <div class="image-anime">
-                                            <img src="<?php echo $url;?>/assets/images/procesocompra/4.jpg" alt=""
+                                            <img src="<?php echo $url; ?>/assets/images/procesocompra/4.jpg" alt=""
                                                 class="aspect-square object-cover w-full" />
                                         </div>
                                     </div>
                                     <!-- Círculo con icono y texto -->
                                     <div class="flex flex-col items-center gap-3">
                                         <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
-                                            <img src="<?php echo $url;?>/assets/icons/procesocompra/4.svg"
+                                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/4.svg"
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
@@ -898,14 +918,14 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                             <p>5</p>
                                         </div>
                                         <div class="image-anime">
-                                            <img src="<?php echo $url;?>/assets/images/procesocompra/5.jpg" alt=""
+                                            <img src="<?php echo $url; ?>/assets/images/procesocompra/5.jpg" alt=""
                                                 class="aspect-square object-cover w-full" />
                                         </div>
                                     </div>
                                     <!-- Círculo con icono y texto -->
                                     <div class="flex flex-col items-center gap-3">
                                         <div class="btn-secondary w-[100px] h-[100px] rounded-full flex items-center">
-                                            <img src="<?php echo $url;?>/assets/icons/procesocompra/5.svg"
+                                            <img src="<?php echo $url; ?>/assets/icons/procesocompra/5.svg"
                                                 class="w-[60px] h-[60px] mx-auto" alt="" />
                                         </div>
                                         <p class="text-center text-sm font-bold text-balance max-w-[120px]">
@@ -927,18 +947,18 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                     <ul class="splide__list">
                         <!-- Slide 1 -->
                         <li class="splide__slide">
-                            <img src="<?php echo $url;?>/assets/images/formasdepago/1.webp" alt="Formas de Pago - Opción 1"
-                                class="w-full h-auto object-contain rounded-lg" />
+                            <img src="<?php echo $url; ?>/assets/images/formasdepago/1.webp"
+                                alt="Formas de Pago - Opción 1" class="w-full h-auto object-contain rounded-lg" />
                         </li>
                         <!-- Slide 2 -->
                         <li class="splide__slide">
-                            <img src="<?php echo $url;?>/assets/images/formasdepago/2.webp" alt="Formas de Pago - Opción 2"
-                                class="w-full h-auto object-contain rounded-lg" />
+                            <img src="<?php echo $url; ?>/assets/images/formasdepago/2.webp"
+                                alt="Formas de Pago - Opción 2" class="w-full h-auto object-contain rounded-lg" />
                         </li>
                         <!-- Slide 3 -->
                         <li class="splide__slide">
-                            <img src="<?php echo $url;?>/assets/images/formasdepago/3.webp" alt="Formas de Pago - Opción 3"
-                                class="w-full h-auto object-contain rounded-lg" />
+                            <img src="<?php echo $url; ?>/assets/images/formasdepago/3.webp"
+                                alt="Formas de Pago - Opción 3" class="w-full h-auto object-contain rounded-lg" />
                         </li>
                     </ul>
                 </div>
@@ -989,8 +1009,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                                     </div>
 
                                     <div class="flex items-center gap-4 mb-4 mt-2">
-                                        <img src="<?php echo $url;?>/assets/images/testimonial.png" class="xl:size-[53px] size-[45px]"
-                                            alt="">
+                                        <img src="<?php echo $url; ?>/assets/images/testimonial.png"
+                                            class="xl:size-[53px] size-[45px]" alt="">
                                         <p class="font-bold xl:text-xl text-base">
                                             Jhon Doe
                                         </p>
@@ -1006,7 +1026,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
 
                                     <div class="flex items-center gap-2 justify-end">
                                         <p>País:</p>
-                                        <img src="<?php echo $url;?>/assets/icons/svg/peru_flag.svg" alt="" class="w-[20px] h-auto">
+                                        <img src="<?php echo $url; ?>/assets/icons/svg/peru_flag.svg" alt=""
+                                            class="w-[20px] h-auto">
                                     </div>
                                 </div>
                             </div>
