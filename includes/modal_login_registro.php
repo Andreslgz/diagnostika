@@ -39,7 +39,7 @@
                                     Hola, <span class="font-extrabold">amigo</span>!
                                 </h4>
                             </div>
-                            
+
                             <form class="space-y-4" id="login-form" action="login.php" method="POST">
                                 <div>
                                     <label for="input-group-1"
@@ -48,13 +48,19 @@
                                         electrónico</label>
                                     <div class="relative mb-6">
                                         <div
-                                            class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                            class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none z-10">
                                             <img src="<?php echo $url; ?>/assets/icons/svg/correo-electronico-input.svg"
                                                 alt="" />
                                         </div>
-                                        <input name="email" type="text" id="input-group-1"
+                                        <input name="email" type="text" id="login-email-input" autocomplete="off"
                                             class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                             placeholder="name@flowbite.com" />
+
+                                        <!-- Dropdown de sugerencias de email para login -->
+                                        <div id="login-email-suggestions"
+                                            class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg shadow-lg z-50 hidden max-h-48 overflow-y-auto">
+                                            <!-- Las sugerencias se generarán dinámicamente -->
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="">
@@ -153,18 +159,24 @@
 
                                 <!-- Email + Código referido -->
                                 <div class="grid md:grid-cols-2 gap-4">
-                                    <div>
+                                    <div class="relative">
                                         <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">Tu
                                             correo electrónico</label>
                                         <div class="relative">
                                             <div
-                                                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                                                class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none z-10">
                                                 <img src="<?php echo $url; ?>/assets/icons/svg/correo-electronico-input.svg"
                                                     alt="" />
                                             </div>
-                                            <input name="email" type="email"
+                                            <input name="email" type="email" id="email-input" autocomplete="off"
                                                 class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
                                                 placeholder="name@correo.com" required />
+
+                                            <!-- Dropdown de sugerencias de email -->
+                                            <div id="email-suggestions"
+                                                class="absolute top-full left-0 right-0 bg-white border border-gray-300 rounded-lg shadow-lg z-50 hidden max-h-48 overflow-y-auto">
+                                                <!-- Las sugerencias se generarán dinámicamente -->
+                                            </div>
                                         </div>
                                     </div>
                                     <div>
@@ -241,3 +253,195 @@
         </div>
     </div>
 </div>
+
+<script>
+    console.log("Modal script loaded");
+
+    // Funcionalidad de autocompletado para el email
+    document.addEventListener('DOMContentLoaded', function () {
+        const emailInput = document.getElementById('email-input');
+        const suggestionsDiv = document.getElementById('email-suggestions');
+        const loginEmailInput = document.getElementById('login-email-input');
+        const loginSuggestionsDiv = document.getElementById('login-email-suggestions');
+
+        const emailDomains = [
+            '@gmail.com',
+            '@hotmail.com',
+            '@icloud.com',
+            '@outlook.com'
+        ];
+
+        function initEmailAutocomplete(inputElement, suggestionsElement) {
+            function showSuggestions(inputValue) {
+                suggestionsElement.innerHTML = '';
+
+                if (!inputValue || inputValue.includes('@')) {
+                    hideSuggestions();
+                    return;
+                }
+
+                // Crear sugerencias solo si no hay @ en el input
+                const suggestions = emailDomains.map(domain => inputValue + domain);
+
+                suggestions.forEach(suggestion => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.className = 'px-4 py-2 cursor-pointer hover:bg-gray-100 transition-colors duration-150 text-sm text-gray-700 flex items-center';
+                    suggestionItem.innerHTML = `
+                        <span class="font-medium">${suggestion}</span>
+                    `;
+
+                    suggestionItem.addEventListener('click', function () {
+                        inputElement.value = suggestion;
+                        hideSuggestions();
+                        inputElement.focus();
+                    });
+
+                    suggestionsElement.appendChild(suggestionItem);
+                });
+
+                suggestionsElement.classList.remove('hidden');
+            }
+
+            function hideSuggestions() {
+                suggestionsElement.classList.add('hidden');
+            }
+
+            // Event listeners
+            inputElement.addEventListener('input', function () {
+                const value = this.value.trim();
+                showSuggestions(value);
+            });
+
+            inputElement.addEventListener('focus', function () {
+                const value = this.value.trim();
+                if (value && !value.includes('@')) {
+                    showSuggestions(value);
+                }
+            });
+
+            inputElement.addEventListener('blur', function () {
+                // Retrasar el ocultamiento para permitir clicks en las sugerencias
+                setTimeout(() => {
+                    hideSuggestions();
+                }, 150);
+            });
+
+            // Manejar teclas de navegación
+            inputElement.addEventListener('keydown', function (e) {
+                const suggestions = suggestionsElement.querySelectorAll('div');
+                let selectedIndex = -1;
+
+                // Encontrar el elemento seleccionado actual
+                suggestions.forEach((item, index) => {
+                    if (item.classList.contains('bg-blue-100')) {
+                        selectedIndex = index;
+                    }
+                });
+
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    selectedIndex = selectedIndex < suggestions.length - 1 ? selectedIndex + 1 : 0;
+                    updateSelection(suggestions, selectedIndex);
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    selectedIndex = selectedIndex > 0 ? selectedIndex - 1 : suggestions.length - 1;
+                    updateSelection(suggestions, selectedIndex);
+                } else if (e.key === 'Enter' && selectedIndex >= 0) {
+                    e.preventDefault();
+                    suggestions[selectedIndex].click();
+                } else if (e.key === 'Escape') {
+                    hideSuggestions();
+                }
+            });
+
+            function updateSelection(suggestions, selectedIndex) {
+                suggestions.forEach((item, index) => {
+                    if (index === selectedIndex) {
+                        item.classList.add('bg-blue-100', 'text-blue-700');
+                        item.classList.remove('hover:bg-gray-100');
+                    } else {
+                        item.classList.remove('bg-blue-100', 'text-blue-700');
+                        item.classList.add('hover:bg-gray-100');
+                    }
+                });
+            }
+
+            // Cerrar sugerencias al hacer click fuera
+            document.addEventListener('click', function (e) {
+                if (!inputElement.contains(e.target) && !suggestionsElement.contains(e.target)) {
+                    hideSuggestions();
+                }
+            });
+        }
+
+        // Inicializar autocompletado para ambos campos de email
+        if (emailInput && suggestionsDiv) {
+            initEmailAutocomplete(emailInput, suggestionsDiv);
+        }
+
+        if (loginEmailInput && loginSuggestionsDiv) {
+            initEmailAutocomplete(loginEmailInput, loginSuggestionsDiv);
+        }
+    });
+</script>
+
+
+<style>
+    #email-suggestions,
+    #login-email-suggestions {
+        border-top: none;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-top: -1px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    }
+
+    #email-suggestions div:first-child,
+    #login-email-suggestions div:first-child {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    #email-suggestions div:last-child,
+    #login-email-suggestions div:last-child {
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    /* Animación suave para el dropdown */
+    #email-suggestions,
+    #login-email-suggestions {
+        animation: slideDown 0.15s ease-out;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-5px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Mejorar el focus del input cuando hay sugerencias */
+    #email-input:focus+#email-suggestions,
+    #login-email-input:focus+#login-email-suggestions {
+        border-color: #3b82f6;
+    }
+
+    /* Efecto hover más suave */
+    #email-suggestions div,
+    #login-email-suggestions div {
+        transition: all 0.15s ease-in-out;
+    }
+
+    /* Estilo para el elemento seleccionado con teclado */
+    #email-suggestions div.bg-blue-100,
+    #login-email-suggestions div.bg-blue-100 {
+        background-color: #dbeafe !important;
+        color: #1d4ed8 !important;
+    }
+</style>
