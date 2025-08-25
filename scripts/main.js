@@ -1,7 +1,7 @@
 const ENV = "dev"; // o "prod" // "dev"
 
 window.BASE_DIR =
-  ENV === "dev" ? "https://localhost" : "https://mysistemaweb.com/diagnostika";
+  ENV === "dev" ? "http://localhost" : "https://mysistemaweb.com/diagnostika";
 
 function apiEndpoint(path) {
   return window.BASE_DIR + path;

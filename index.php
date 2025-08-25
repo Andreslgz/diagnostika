@@ -1526,8 +1526,8 @@ $sliders_mov = $database->select("slider", "sl_img_mov", [
                         </div>
                     </form>
 
-                    <button id="no-show-again" class="mt-3 text-gray-500 hover:text-gray-800 text-xs block mx-auto">
-                        No volver a mostrar
+                    <button id="no-show-again" class="mt-5 text-gray-500 hover:text-gray-800 text-xs block mx-auto">
+                        Don't show again
                     </button>
                 </div>
                 <!-- <div class="flex items-center p-4 border-t border-gray-200 rounded-b ">
