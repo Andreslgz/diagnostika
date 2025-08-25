@@ -110,13 +110,13 @@ require_once __DIR__ . '/../auth.php';
                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
                 Personal Info
               </a>
-              <div class="p-3 btn-primary bg-blue-600 ">
-                My Software
-              </div>
-              <a href="./estadoinstalaciones.php"
+              <a href="./misoftware.php"
                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                Installation Status
+                My Software
               </a>
+              <div class="p-3 btn-primary bg-blue-600 ">
+                Installation Status
+              </div>
               <a href="./miscupones.php"
                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
                 My Coupons
@@ -215,7 +215,7 @@ require_once __DIR__ . '/../auth.php';
       }
     });
 
-    </script>
+  </script>
 
 
 
