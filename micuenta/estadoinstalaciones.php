@@ -584,6 +584,108 @@ require_once __DIR__ . '/../auth.php';
     .bg-cards:hover {
       background: linear-gradient(0deg, #8A8A89 0%, #C0C0C0 100%);
     }
+
+    /* Estilos optimizados para el slider de items */
+    #itemsSlider .splide__slide {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      padding: 0.25rem;
+    }
+
+    #itemsSlider .splide__slide>div {
+      width: 100%;
+      min-height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+
+
+
+    /* Botones de navegación optimizados */
+    #itemsSliderPrev,
+    #itemsSliderNext {
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    #itemsSliderPrev:hover:not(:disabled),
+    #itemsSliderNext:hover:not(:disabled) {
+      background: linear-gradient(0deg, #f7a615 0%, #ffbd47 100%);
+      color: white;
+      border-color: #f7a615;
+      transform: scale(1.1);
+      box-shadow: 0 4px 12px rgba(247, 166, 21, 0.4);
+    }
+
+    #itemsSliderPrev:active:not(:disabled),
+    #itemsSliderNext:active:not(:disabled) {
+      background: linear-gradient(0deg, #e6940b 0%, #f7a615 100%);
+      transform: scale(1.05);
+      box-shadow: 0 2px 8px rgba(247, 166, 21, 0.5);
+    }
+
+    #itemsSliderPrev:disabled,
+    #itemsSliderNext:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      background-color: #f3f4f6 !important;
+      color: #9ca3af !important;
+    }
+
+    /* Contenedor del slider más compacto */
+    #itemsSlider .splide__track {
+      padding: 0.25rem 0;
+    }
+
+    /* Responsive mejorado */
+    @media (max-width: 1024px) {
+      #itemsSlider .splide__slide>div {
+        min-height: 110px;
+        padding: 0.75rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #itemsSlider .splide__slide>div {
+        min-height: 100px;
+        padding: 0.5rem;
+      }
+
+      #itemsSliderPrev,
+      #itemsSliderNext {
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      #itemsSliderPrev svg,
+      #itemsSliderNext svg {
+        width: 0.875rem;
+        height: 0.875rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      #itemsSlider .splide__slide>div {
+        min-height: 90px;
+      }
+    }
+
+    /* Animación suave para el contenedor */
+    .splide {
+      visibility: visible;
+      opacity: 1;
+      transition: opacity 0.3s ease;
+    }
+
+    /* Mejora visual para el fondo de las imágenes */
+    #itemsSlider .splide__slide>div>div {
+      background: linear-gradient(145deg, #f8fafc, #f1f5f9);
+      border: 1px solid #e2e8f0;
+    }
   </style>
 
   <script>
@@ -619,6 +721,102 @@ require_once __DIR__ . '/../auth.php';
         sideMenu.style.opacity = '0';
       }
     });
+
+    // Inicializar slider de items
+    document.addEventListener('DOMContentLoaded', function () {
+      // Configuración del slider de items
+      const itemsSlider = new Splide('#itemsSlider', {
+        type: 'slide',
+        perPage: 4, // Mostrar 4 items por defecto
+        perMove: 1,
+        gap: '1rem',
+        pagination: false,
+        arrows: false, // Usamos botones customizados
+        breakpoints: {
+          1280: { // xl
+            perPage: 4,
+            gap: '1rem',
+          },
+          1024: { // lg
+            perPage: 3,
+            gap: '0.75rem',
+          },
+          768: { // md
+            perPage: 2,
+            gap: '0.5rem',
+          },
+          640: { // sm
+            perPage: 1,
+            gap: '0.25rem',
+          },
+        },
+        autoplay: false,
+        interval: 5000,
+        pauseOnHover: true,
+        resetProgress: false,
+        speed: 600,
+        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+      });
+
+      // Montar el slider
+      itemsSlider.mount();
+
+      // Conectar botones personalizados
+      const prevBtn = document.getElementById('itemsSliderPrev');
+      const nextBtn = document.getElementById('itemsSliderNext');
+
+      if (prevBtn && nextBtn) {
+        prevBtn.addEventListener('click', () => {
+          itemsSlider.go('<');
+        });
+
+        nextBtn.addEventListener('click', () => {
+          itemsSlider.go('>');
+        });
+
+        // Actualizar estado de los botones según la posición
+        itemsSlider.on('moved', function (newIndex, prevIndex, destIndex) {
+          // Habilitar/deshabilitar botones según la posición
+          const isAtStart = itemsSlider.index === 0;
+          const isAtEnd = itemsSlider.index >= itemsSlider.length - itemsSlider.options.perPage;
+
+          prevBtn.disabled = isAtStart;
+          nextBtn.disabled = isAtEnd;
+
+          // Agregar clases visuales para botones deshabilitados
+          if (isAtStart) {
+            prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            prevBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
+          } else {
+            prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            prevBtn.classList.add('hover:bg-orange-gradient', 'hover:text-white');
+          }
+
+          if (isAtEnd) {
+            nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
+          } else {
+            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+            nextBtn.classList.add('hover:bg-orange-gradient', 'hover:text-white');
+          }
+        });
+
+        // Estado inicial de los botones
+        prevBtn.disabled = true;
+        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        prevBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
+
+        // Verificar si hay suficientes slides para mostrar el botón siguiente
+        const totalSlides = itemsSlider.length;
+        const visibleSlides = itemsSlider.options.perPage;
+        if (totalSlides <= visibleSlides) {
+          nextBtn.disabled = true;
+          nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
+          nextBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
+        }
+      }
+    });
+
 
     // Funcionalidad de tooltips para errores
     document.addEventListener('DOMContentLoaded', function () {
