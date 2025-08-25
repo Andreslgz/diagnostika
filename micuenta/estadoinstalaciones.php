@@ -137,7 +137,17 @@ require_once __DIR__ . '/../auth.php';
 
           <!-- Contenido principal - Responsive -->
           <div class="col-span-1 lg:col-span-8 xl:col-span-9">
-
+            <div>
+              <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
+                Instalation Status
+              </h2>
+              <!-- ITEM -->
+               <div>
+                <header>
+                  
+                </header>
+               </div>
+            </div>
 
           </div>
         </div>

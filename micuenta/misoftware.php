@@ -559,7 +559,7 @@ require_once __DIR__ . '/../auth.php';
             (BASE.replace(/\/$/, '') + '/uploads/' + String(row.imagen).replace(/^\/+/, '')) :
             'https://placehold.co/300x180/png';
           return `
-      <div class="border border-solid border-gray-300 rounded-lg overflow-hidden">
+      <div class="border h-ful border-solid border-gray-300 rounded-lg overflow-hidden">
         <header class="bg-[#00c016] text-white xl:p-3 p-2 flex items-center gap-2">
           <img src="<?php echo $url; ?>/assets/icons/svg/icon-instalacion.svg" alt="" class="w-5 h-5">
           <p class="font-medium">Installation completed</p>
