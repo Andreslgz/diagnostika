@@ -236,7 +236,7 @@ require_once __DIR__ . '/../auth.php';
               </div>
             </div>
             <div id="ordenes-container"
-              class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3">
+              class="border border-solid border-gray-400 rounded-lg p-4 max-h-[1250px] overflow-y-auto flex flex-col gap-3">
             </div>
           </div>
         </div>
@@ -548,7 +548,7 @@ require_once __DIR__ . '/../auth.php';
       function renderOrders(list) {
         if (!Array.isArray(list) || list.length === 0) {
           ordersContainer.innerHTML = `
-        <div class="p-6 text-center text-gray-600 border border-dashed border-gray-300 rounded-lg">
+        <div class="p-6 text-center text-gray-600 border border-dashed border-gray-300 rounded-lg !h-full">
           No orders found with the selected filter.
         </div>`;
           return;
@@ -559,12 +559,12 @@ require_once __DIR__ . '/../auth.php';
             (BASE.replace(/\/$/, '') + '/uploads/' + String(row.imagen).replace(/^\/+/, '')) :
             'https://placehold.co/300x180/png';
           return `
-      <div class="border h-ful border-solid border-gray-300 rounded-lg overflow-hidden">
+      <div class="border  border-solid border-gray-300 rounded-lg overflow-hidden">
         <header class="bg-[#00c016] text-white xl:p-3 p-2 flex items-center gap-2">
           <img src="<?php echo $url; ?>/assets/icons/svg/icon-instalacion.svg" alt="" class="w-5 h-5">
           <p class="font-medium">Installation completed</p>
         </header>
-        <div class="xl:p-5 p-3 flex items-center gap-4">
+        <div class="xl:p-5 p-3 flex items-center gap-4 ">
           <img src="${esc(imgSrc)}" alt="${esc(row.nombre)}" class="xl:size-[150px] size-[70px] object-cover rounded">
           <div class="flex flex-col gap-1">
             <p class="uppercase font-bold xl:text-xl text-sm">${esc(row.nombre)}</p>
