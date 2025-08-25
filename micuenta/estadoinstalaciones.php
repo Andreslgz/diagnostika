@@ -84,7 +84,7 @@ require_once __DIR__ . '/../auth.php';
       </nav>
 
     </section>
-    <section class="xl:pb-16 py-4 md:py-6 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+    <section class="xl:pb-16 py-4 md:py-6 px-4 mx-auto max-w-screen-2xl overflow-hidden xl:mb-24 mb-16">
       <div>
         <h1 class="text-xl md:text-2xl font-extrabold mb-4">
           Mi cuenta
