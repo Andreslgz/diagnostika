@@ -228,7 +228,7 @@ $favoritos_usuario = array_map(fn($r) => (int)$r['id_producto'], $productos ?? [
                       <svg xmlns="http://www.w3.org/2000/svg"
                           fill="<?= $isFav ? 'currentColor' : 'none'; ?>"
                           viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-                          class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 <?= $isFav ? 'text-red-600' : 'text-gray-600'; ?>">
+                          class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 <?= $isFav ? 'text-orange-400' : 'text-gray-600'; ?>">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z"/>
                       </svg>
                     </button>

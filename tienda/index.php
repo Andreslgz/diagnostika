@@ -233,75 +233,7 @@ $anios = $database->select(
                             </div>
 
                         </div>
-                        <!-- 
-                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
-                            <header class="flex items-center justify-between">
-                                <p>
-                                    Industria
-                                </p>
-                                <button class="" type="button">
-                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m19 9-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </header>
-                            <div class="mt-1">
-                                <div class="flex flex-col gap-0.5">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" />
-                                        <span class="ml-2">Industria 1</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" />
-                                        <span class="ml-2">Industria 2</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" />
-                                        <span class="ml-2">Industria 3</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="border-2 border-solid border-gray-400 p-4 rounded-xl mb-5">
-                            <header class="flex items-center justify-between">
-                                <p>
-                                    Interfaz
-                                </p>
-                                <button class="" type="button">
-                                    <svg class="-me-0.5 ms-2 h-  5 w-5" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
-                                        viewBox="0 0 24 24">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                            stroke-width="2" d="m19 9-7 7-7-7" />
-                                    </svg>
-                                </button>
-                            </header>
-                            <div class="mt-1">
-                                <div class="flex flex-col gap-0.5">
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" />
-                                        <span class="ml-2">Interfaz 1</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" />
-                                        <span class="ml-2">Interfaz 2</span>
-                                    </label>
-                                    <label class="inline-flex items-center">
-                                        <input type="checkbox" class="form-checkbox" />
-                                        <span class="ml-2">Interfaz 3</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        -->
 
-                        <!-- <button
-                            class="w-full btn-secondary py-2.5 mt-3 rounded-lg font-bold text-lg  transition-all duration-200 easy-in-out">
-                            Aplicar filtros
-                        </button> -->
                     </div>
                     <!-- Right content -->
                     <div class="w-full ">
@@ -325,7 +257,7 @@ $anios = $database->select(
                                             d="M7 4v16M7 4l3 3M7 4 4 7m9-3h6l-6 6h6m-6.5 10 3.5-7 3.5 7M14 18h4" />
                                     </svg>
                                     <span class="hidden sm:inline">Sort by</span>
-                                    <span class="sm:hidden">Ordenar</span>
+                                    <span class="sm:hidden">Sort by</span>
                                     <svg class="-me-0.5 ms-2 h-4 w-4" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none"
                                         viewBox="0 0 24 24">
@@ -338,7 +270,7 @@ $anios = $database->select(
                                     data-popper-placement="bottom">
                                     <ul id="ordenMenu" class="p-2 text-left text-sm font-medium text-gray-500 "
                                         aria-labelledby="sortDropdownButton">
-                                        
+
                                         <li>
                                             <a href="#"
                                                 class="group inline-flex w-full items-center rounded-md px-3 py-2 text-sm text-gray-500 hover:bg-gray-100 hover:text-gray-900"
@@ -554,8 +486,7 @@ $anios = $database->select(
             </div>
         </section>
 
-        <div id="product-details-modal" tabindex="-1" aria-hidden="true"
-            class="hidden fixed inset-0 z-50 w-full h-full
+        <div id="product-details-modal" tabindex="-1" aria-hidden="true" class="hidden fixed inset-0 z-50 w-full h-full
             justify-center items-center
             overflow-y-auto overflow-x-hidden
             bg-black/60 backdrop-blur-sm"> <!-- 👈 fondo oscuro + blur -->
@@ -568,8 +499,8 @@ $anios = $database->select(
                             <button type="button"
                                 class="text-white bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
                                 data-modal-hide="product-details-modal" aria-label="Cerrar">
-                                <svg class="xl:w-4 w-2.5 xl:h-4 h-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 14 14">
+                                <svg class="xl:w-4 w-2.5 xl:h-4 h-2.5" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                         stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
                                 </svg>
@@ -585,8 +516,7 @@ $anios = $database->select(
                             <section aria-label="Galería de imágenes">
                                 <div class="relative mb-4 overflow-hidden border border-gray-200 bg-white">
                                     <div class="aspect-square">
-                                        <img id="mainImage"
-                                            src="https://placehold.co/600x600/png"
+                                        <img id="mainImage" src="https://placehold.co/600x600/png"
                                             alt="Imagen principal"
                                             class="h-full w-full object-cover transition-opacity duration-300"
                                             loading="eager" decoding="async" draggable="false" />
@@ -594,8 +524,12 @@ $anios = $database->select(
                                 </div>
 
                                 <div class="relative">
-                                    <div class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent"></div>
-                                    <div class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent"></div>
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-gray-50 to-transparent">
+                                    </div>
+                                    <div
+                                        class="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-gray-50 to-transparent">
+                                    </div>
 
                                     <div class="flex items-center gap-2">
                                         <button id="prev"
@@ -618,28 +552,35 @@ $anios = $database->select(
                         <div class="w-full flex flex-col justify-between">
                             <div>
                                 <div class="flex flex-row justify-between items-center w-full">
-                                    <p id="modal-product-price" class="xl:text-3xl text-lg text-nowrap font-bold">USD 0.00</p>
+                                    <p id="modal-product-price" class="xl:text-3xl text-lg text-nowrap font-bold">USD
+                                        0.00</p>
 
                                     <div class="relative mt-2 flex max-w-32 items-center justify-end">
                                         <button type="button" id="decrement-button"
                                             class="xl:h-10 h-8 rounded-s-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
-                                            <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
+                                            <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg"
+                                                fill="none" viewBox="0 0 18 2">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="M1 1h16" />
                                             </svg>
                                         </button>
-                                        <input type="text" id="quantity-input-1" data-input-counter data-input-counter-min="1" data-input-counter-max="50"
+                                        <input type="text" id="quantity-input-1" data-input-counter
+                                            data-input-counter-min="1" data-input-counter-max="50"
                                             class="block xl:h-10 h-8 w-full border-x-0 border-gray-300 bg-gray-50 py-2.5 text-center text-sm text-gray-900 focus:border-primary-500 focus:ring-primary-500"
                                             value="1" />
                                         <button type="button" id="increment-button"
                                             class="xl:h-10 h-8 rounded-e-lg border border-gray-300 bg-gray-100 xl:p-3 p-2 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-100">
-                                            <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
+                                            <svg class="h-3 w-3 text-gray-900" xmlns="http://www.w3.org/2000/svg"
+                                                fill="none" viewBox="0 0 18 18">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2" d="M9 1v16M1 9h16" />
                                             </svg>
                                         </button>
                                     </div>
                                 </div>
 
-                                <p id="modal-product-description" class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
+                                <p id="modal-product-description"
+                                    class="mt-4 text-gray-700 text-sm xl:text-base leading-relaxed">
                                     Producto sin descripción.
                                 </p>
 
@@ -695,14 +636,14 @@ $anios = $database->select(
 
     <script>
         document.addEventListener("click", (ev) => {
-  const link = ev.target.closest("#ordenMenu a[data-order]");
-  if (!link) return;
-  ev.preventDefault();
+            const link = ev.target.closest("#ordenMenu a[data-order]");
+            if (!link) return;
+            ev.preventDefault();
 
-  const selectedOrder = link.dataset.order || "newest";
-  cargarProductos({ page: 1, order: selectedOrder });
-});
-    </script>    
+            const selectedOrder = link.dataset.order || "newest";
+            cargarProductos({ page: 1, order: selectedOrder });
+        });
+    </script>
 
     <script src="<?php echo $url; ?>/scripts/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>

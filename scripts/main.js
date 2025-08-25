@@ -1043,7 +1043,7 @@ function apiEndpoint(path) {
       const isFav = favs.includes(id);
       if (svg) {
         svg.setAttribute("fill", isFav ? "currentColor" : "none");
-        svg.classList.toggle("text-red-600", isFav);
+        svg.classList.toggle("text-orange-400", isFav);
         svg.classList.toggle("text-gray-600", !isFav);
       }
       btn.classList.toggle("is-fav", isFav);
@@ -1125,7 +1125,7 @@ function apiEndpoint(path) {
                  fill="${isFav ? "currentColor" : "none"}"
                  viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                  class="w-5 h-5 sm:w-6 sm:h-6 transition-all duration-200 ${
-                   isFav ? "text-red-600" : "text-gray-600"
+                   isFav ? "text-[#ffbd47]" : "text-gray-600"
                  }">
               <path stroke-linecap="round" stroke-linejoin="round"
                     d="M6.75 3.75h10.5a.75.75 0 01.75.75v15.375a.375.375 0 01-.6.3L12 16.5l-5.4 3.675a.375.375 0 01-.6-.3V4.5a.75.75 0 01.75-.75z" />
@@ -1142,6 +1142,7 @@ function apiEndpoint(path) {
         <p class="inline font-semibold text-sm sm:text-base lg:text-lg text-balance leading-tight uppercase">${esc(
           name
         )}</p>
+       
         <p class="inline text-lg sm:text-xl lg:text-xl uppercase font-bold">USD ${price}</p>
 
         <div class="flex flex-col gap-2 sm:gap-3 mt-auto">
