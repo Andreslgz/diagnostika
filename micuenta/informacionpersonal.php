@@ -5,7 +5,7 @@ require_once __DIR__ . '/../includes/db.php';
 require_once __DIR__ . '/../auth.php';
 
 
-$id_usuario = (int)$_SESSION['usuario_id'];
+$id_usuario = (int) $_SESSION['usuario_id'];
 
 // Traer el usuario actual
 $usuario = $database->get("usuarios", "*", [
@@ -24,7 +24,7 @@ $usuario = $database->get("usuarios", "*", [
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="<?php echo $url;?>/styles/main.css" />
+    <link rel="stylesheet" href="<?php echo $url; ?>/styles/main.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
 </head>
@@ -96,7 +96,7 @@ $usuario = $database->get("usuarios", "*", [
         <section class="xl:pb-16 py-4 md:py-6 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <div>
                 <h1 class="text-xl md:text-2xl font-extrabold mb-4">
-                    Mi cuenta
+                    My Account
                 </h1>
 
                 <!-- Botón del menú móvil (visible solo en móviles) -->
@@ -115,31 +115,31 @@ $usuario = $database->get("usuarios", "*", [
                         <div id="sideMenu"
                             class="border border-solid border-gray-300 rounded menu-transition overflow-hidden max-h-0 lg:max-h-none opacity-0 lg:opacity-100">
                             <div class="p-3 btn-primary bg-blue-600 ">
-                                Información personal
+                                Personal Info
                             </div>
                             <a href="./misoftware.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Mis software
+                                My Software
                             </a>
                             <a href="./estadoinstalaciones.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Estado de instalación
+                                Installation Status
                             </a>
                             <a href="./miscupones.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Mis cupones
+                                My Coupons
                             </a>
                             <a href="./miscreditos.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Mis créditos
+                                My Credits
                             </a>
                             <a href="./productosguardados.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Productos guardados
+                                Saved Products
                             </a>
                             <div
                                 class="p-3 hover:bg-gray-200 hover:cursor-pointer transition-colors text-red-600 font-medium">
-                                Cerrar sesión
+                                Log Out
                             </div>
                         </div>
                     </div>
@@ -148,28 +148,26 @@ $usuario = $database->get("usuarios", "*", [
                     <div class="col-span-1 lg:col-span-8 xl:col-span-9">
                         <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                             <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
-                                Información personal
+                                Personal Info
                             </h2>
                             <div class="flex flex-col sm:flex-row gap-3 sm:gap-6 w-full sm:w-auto">
-                                <button id="btn-edit"
-                                    type="button"
+                                <button id="btn-edit" type="button"
                                     class="flex flex-row gap-2 items-center justify-center py-2 px-4 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
-                                    <p class="text-sm md:text-base">Editar información</p>
+                                    <p class="text-sm md:text-base">Edit Information</p>
                                 </button>
 
-                                <button id="btn-save"
-                                    type="button"
+                                <button id="btn-save" type="button"
                                     class="flex flex-row gap-2 items-center justify-center border border-solid border-gray-100 shadow-xl py-2 px-4 rounded-lg hover:bg-gray-50 bg-white transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                                     disabled>
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V2" />
                                     </svg>
-                                    <p class="text-sm md:text-base">Guardar cambios</p>
+                                    <p class="text-sm md:text-base">Save Changes</p>
                                 </button>
                             </div>
                         </div>
@@ -177,20 +175,20 @@ $usuario = $database->get("usuarios", "*", [
                         <!-- mensajes -->
                         <div id="profile-msg" class="hidden mt-2 text-sm"></div>
 
-                        <form id="profile-form" class="flex flex-col gap-4 max-w-full lg:max-w-[750px] mt-4" autocomplete="off">
+                        <form id="profile-form" class="flex flex-col gap-4 max-w-full lg:max-w-[750px] mt-4"
+                            autocomplete="off">
                             <input type="hidden" name="action" value="update_profile">
 
                             <!-- Nombres y apellidos -->
                             <div>
                                 <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                    Tus nombres y apellidos
+                                    Full Name
                                 </label>
                                 <div class="relative">
-                                    <input name="nombre_completo" type="text"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                    <input name="nombre_completo" type="text" class="border border-gray-300 text-gray-900 text-sm rounded-lg 
                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-                    disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                                        placeholder="Juan Pérez" required
+                    disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed" placeholder="Juan Pérez"
+                                        required
                                         value="<?= htmlspecialchars($usuario['nombre'] ?? '', ENT_QUOTES, 'UTF-8'); ?> <?= htmlspecialchars($usuario['apellidos'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                                         disabled />
                                 </div>
@@ -200,18 +198,15 @@ $usuario = $database->get("usuarios", "*", [
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <div>
                                     <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                        País
+                                        Country
                                     </label>
-                                    <select name="pais"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                    <select name="pais" class="border border-gray-300 text-gray-900 text-sm rounded-lg 
                focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
-               disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                                        required
-                                        disabled>
-                                        <option value="">Elige un país</option>
+               disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed" required disabled>
+                                        <option value="">Choose a country</option>
                                         <?php
                                         $paises = ['Estados Unidos', 'Perú', 'Francia', 'Alemania'];
-                                        $paisSel = (string)($usuario['pais'] ?? '');
+                                        $paisSel = (string) ($usuario['pais'] ?? '');
                                         foreach ($paises as $p) {
                                             $sel = ($paisSel === $p) ? 'selected' : '';
                                             echo '<option value="' . htmlspecialchars($p, ENT_QUOTES, 'UTF-8') . '" ' . $sel . '>' . $p . '</option>';
@@ -221,13 +216,11 @@ $usuario = $database->get("usuarios", "*", [
                                 </div>
                                 <div>
                                     <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                        Teléfono
+                                        Phone
                                     </label>
-                                    <input name="telefono" type="tel"
-                                        class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 
+                                    <input name="telefono" type="tel" class="block p-2.5 w-full text-sm text-gray-900 rounded-lg border border-gray-300 
                     focus:ring-blue-500 focus:border-blue-500
-                    disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
-                                        placeholder="123-456-7890"
+                    disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed" placeholder="123-456-7890"
                                         value="<?= htmlspecialchars($usuario['telefono'] ?? '', ENT_QUOTES, 'UTF-8'); ?>"
                                         disabled />
                                 </div>
@@ -236,11 +229,10 @@ $usuario = $database->get("usuarios", "*", [
                             <!-- Email -->
                             <div>
                                 <label class="block mb-2 text-sm xl:text-base font-medium text-gray-900">
-                                    Correo electrónico
+                                    Email address
                                 </label>
                                 <div class="relative">
-                                    <input name="email" type="email"
-                                        class="border border-gray-300 text-gray-900 text-sm rounded-lg 
+                                    <input name="email" type="email" class="border border-gray-300 text-gray-900 text-sm rounded-lg 
                     focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5
                     disabled:bg-gray-100 disabled:text-gray-500 disabled:cursor-not-allowed"
                                         placeholder="juan.perez@example.com" required
@@ -290,7 +282,7 @@ $usuario = $database->get("usuarios", "*", [
         let isMenuOpen = false;
 
         if (mobileMenuToggle) {
-            mobileMenuToggle.addEventListener('click', function() {
+            mobileMenuToggle.addEventListener('click', function () {
                 isMenuOpen = !isMenuOpen;
 
                 if (isMenuOpen) {
@@ -306,7 +298,7 @@ $usuario = $database->get("usuarios", "*", [
         }
 
         // Asegurar que el menú esté visible en pantallas grandes
-        window.addEventListener('resize', function() {
+        window.addEventListener('resize', function () {
             if (window.innerWidth >= 1024) { // lg breakpoint
                 sideMenu.style.maxHeight = 'none';
                 sideMenu.style.opacity = '1';
@@ -319,107 +311,107 @@ $usuario = $database->get("usuarios", "*", [
     </script>
 
     <script>
-(() => {
-  const form    = document.getElementById('profile-form');
-  const btnEdit = document.getElementById('btn-edit');
-  const btnSave = document.getElementById('btn-save');
-  const msgBox  = document.getElementById('profile-msg');
+        (() => {
+            const form = document.getElementById('profile-form');
+            const btnEdit = document.getElementById('btn-edit');
+            const btnSave = document.getElementById('btn-save');
+            const msgBox = document.getElementById('profile-msg');
 
-  if (!form || !btnEdit || !btnSave || !msgBox) return;
+            if (!form || !btnEdit || !btnSave || !msgBox) return;
 
-  // Usa tu URL base de PHP
-  const UPDATE_ENDPOINT = "<?= $url ?>/micuenta/update_profile.php";
+            // Usa tu URL base de PHP
+            const UPDATE_ENDPOINT = "<?= $url ?>/micuenta/update_profile.php";
 
-  function setMsg(text, ok = true) {
-    msgBox.textContent = text;
-    msgBox.classList.remove('hidden');
-    msgBox.classList.toggle('text-green-600', ok);
-    msgBox.classList.toggle('text-red-600', !ok);
-    msgBox.classList.toggle('bg-green-50', ok);
-    msgBox.classList.toggle('bg-red-50', !ok);
-    msgBox.classList.add('px-3','py-2','rounded','border');
-    msgBox.classList.toggle('border-green-200', ok);
-    msgBox.classList.toggle('border-red-200', !ok);
-  }
+            function setMsg(text, ok = true) {
+                msgBox.textContent = text;
+                msgBox.classList.remove('hidden');
+                msgBox.classList.toggle('text-green-600', ok);
+                msgBox.classList.toggle('text-red-600', !ok);
+                msgBox.classList.toggle('bg-green-50', ok);
+                msgBox.classList.toggle('bg-red-50', !ok);
+                msgBox.classList.add('px-3', 'py-2', 'rounded', 'border');
+                msgBox.classList.toggle('border-green-200', ok);
+                msgBox.classList.toggle('border-red-200', !ok);
+            }
 
-  function setDisabled(disabled) {
-    // Habilita/Deshabilita inputs visibles (no los type=hidden)
-    form.querySelectorAll('input:not([type="hidden"]), select, textarea').forEach(el => {
-      el.disabled = disabled;
-      // Refuerzo visual además de las clases disabled: de Tailwind
-      el.classList.toggle('opacity-60', disabled);
-      el.classList.toggle('cursor-not-allowed', disabled);
-    });
-    // Botones: Guardar solo activo cuando se puede editar
-    btnSave.disabled = disabled;
-    // (opcional) Cambiar estilo del botón guardar
-    btnSave.classList.toggle('opacity-50', disabled);
-    btnSave.classList.toggle('cursor-not-allowed', disabled);
-  }
+            function setDisabled(disabled) {
+                // Habilita/Deshabilita inputs visibles (no los type=hidden)
+                form.querySelectorAll('input:not([type="hidden"]), select, textarea').forEach(el => {
+                    el.disabled = disabled;
+                    // Refuerzo visual además de las clases disabled: de Tailwind
+                    el.classList.toggle('opacity-60', disabled);
+                    el.classList.toggle('cursor-not-allowed', disabled);
+                });
+                // Botones: Guardar solo activo cuando se puede editar
+                btnSave.disabled = disabled;
+                // (opcional) Cambiar estilo del botón guardar
+                btnSave.classList.toggle('opacity-50', disabled);
+                btnSave.classList.toggle('cursor-not-allowed', disabled);
+            }
 
-  // Estado inicial: todo bloqueado
-  setDisabled(true);
+            // Estado inicial: todo bloqueado
+            setDisabled(true);
 
-  // Click en "Editar información" -> habilitar edición
-  btnEdit.addEventListener('click', () => {
-    setDisabled(false);
-    msgBox.classList.add('hidden');
-  });
+            // Click en "Editar información" -> habilitar edición
+            btnEdit.addEventListener('click', () => {
+                setDisabled(false);
+                msgBox.classList.add('hidden');
+            });
 
-  // Click en "Guardar cambios" -> enviar
-  btnSave.addEventListener('click', async () => {
-    try {
-      // Asegúrate de que estén habilitados antes de leer FormData
-      setDisabled(false);
+            // Click en "Guardar cambios" -> enviar
+            btnSave.addEventListener('click', async () => {
+                try {
+                    // Asegúrate de que estén habilitados antes de leer FormData
+                    setDisabled(false);
 
-      const fd = new FormData(form);
+                    const fd = new FormData(form);
 
-      // Validaciones rápidas
-      const nombre = (fd.get('nombre_completo') || '').toString().trim();
-      const pais   = (fd.get('pais') || '').toString().trim();
-      const email  = (fd.get('email') || '').toString().trim();
-      if (!nombre || !pais || !email) {
-        setMsg('Completa los campos obligatorios.', false);
-        return;
-      }
+                    // Validaciones rápidas
+                    const nombre = (fd.get('nombre_completo') || '').toString().trim();
+                    const pais = (fd.get('pais') || '').toString().trim();
+                    const email = (fd.get('email') || '').toString().trim();
+                    if (!nombre || !pais || !email) {
+                        setMsg('Completa los campos obligatorios.', false);
+                        return;
+                    }
 
-      btnSave.disabled = true;
+                    btnSave.disabled = true;
 
-      const res = await fetch(UPDATE_ENDPOINT, {
-        method: "POST",
-        body: fd,
-        credentials: "same-origin",
-        headers: {
-          "Accept": "application/json",
-          "X-Requested-With": "XMLHttpRequest"
-        },
-        cache: "no-store"
-      });
+                    const res = await fetch(UPDATE_ENDPOINT, {
+                        method: "POST",
+                        body: fd,
+                        credentials: "same-origin",
+                        headers: {
+                            "Accept": "application/json",
+                            "X-Requested-With": "XMLHttpRequest"
+                        },
+                        cache: "no-store"
+                    });
 
-      const text = await res.text();
-      let data = null;
-      try { data = JSON.parse(text); } catch {
-        const s = text.indexOf('{'), e = text.lastIndexOf('}');
-        if (s > -1 && e > s) { try { data = JSON.parse(text.slice(s, e+1)); } catch {} }
-      }
+                    const text = await res.text();
+                    let data = null;
+                    try { data = JSON.parse(text); } catch {
+                        const s = text.indexOf('{'), e = text.lastIndexOf('}');
+                        if (s > -1 && e > s) { try { data = JSON.parse(text.slice(s, e + 1)); } catch { } }
+                    }
 
-      if (!res.ok || !data || data.ok !== true) {
-        const msg = (data && (data.message || data.error)) || `Error ${res.status}`;
-        throw new Error(msg);
-      }
+                    if (!res.ok || !data || data.ok !== true) {
+                        const msg = (data && (data.message || data.error)) || `Error ${res.status}`;
+                        throw new Error(msg);
+                    }
 
-      // Éxito: bloquear de nuevo
-      setMsg(data.message || 'Datos actualizados correctamente.', true);
-      setDisabled(true);
-    } catch (err) {
-      console.error(err);
-      setMsg(err.message || 'Error de conexión con el servidor.', false);
-      // Permitir reintentar
-      btnSave.disabled = false;
-    }
-  });
-})();
-</script>
+                    // Éxito: bloquear de nuevo
+                    setMsg(data.message || 'Datos actualizados correctamente.', true);
+                    setDisabled(true);
+                } catch (err) {
+                    console.error(err);
+                    setMsg(err.message || 'Error de conexión con el servidor.', false);
+                    // Permitir reintentar
+                    btnSave.disabled = false;
+                }
+            });
+        })();
+    </script>
 
 </body>
 

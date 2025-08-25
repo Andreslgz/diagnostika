@@ -4,7 +4,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $ENV = "dev"; // o "prod" // "dev"
 
 $BASE_DIR = ($ENV === "dev")
-    ? "http://localhost"
+    ? "http://localhost:3000/"
     : "https://mysistemaweb.com/diagnostika";
 
 $url = $BASE_DIR;

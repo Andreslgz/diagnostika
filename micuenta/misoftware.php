@@ -51,8 +51,8 @@ require_once __DIR__ . '/../auth.php';
           <li class="inline-flex items-center">
             <a href="../tienda/index.php"
               class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-orange-600 ">
-              <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                fill="currentColor" viewBox="0 0 20 20">
+              <svg class="w-3 h-3 me-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 20 20">
                 <path
                   d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z" />
               </svg>
@@ -63,8 +63,8 @@ require_once __DIR__ . '/../auth.php';
             <div class="flex items-center">
               <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" d="m1 9 4-4-4-4" />
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 9 4-4-4-4" />
               </svg>
               <a href="#" class="ms-1 text-sm font-medium text-gray-700 hover:text-orange-600 md:ms-2 ">Mi
                 cuenta</a>
@@ -74,8 +74,8 @@ require_once __DIR__ . '/../auth.php';
             <div class="flex items-center">
               <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                  stroke-width="2" d="m1 9 4-4-4-4" />
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="m1 9 4-4-4-4" />
               </svg>
               <span class="ms-1 text-sm font-medium text-gray-500 md:ms-2">Mis softwares</span>
             </div>
@@ -129,8 +129,7 @@ require_once __DIR__ . '/../auth.php';
                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
                 Productos guardados
               </a>
-              <div
-                class="p-3 hover:bg-gray-200 hover:cursor-pointer transition-colors text-red-600 font-medium">
+              <div class="p-3 hover:bg-gray-200 hover:cursor-pointer transition-colors text-red-600 font-medium">
                 Cerrar sesión
               </div>
             </div>
@@ -141,104 +140,104 @@ require_once __DIR__ . '/../auth.php';
             <div>
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <h2 class="font-bold text-lg md:text-xl mb-2 sm:mb-4">
-                  Órdenes de paquetes y software
+                  Orden Completed
                 </h2>
 
               </div>
               <div class="mb-6 bg-white p-4 rounded-lg shadow-sm border border-gray-200">
-                <p class="font-medium mb-3 text-gray-700">Buscar por fecha</p>
+                <p class="font-medium mb-3 text-gray-700">
+                  Search by date
+                </p>
 
                 <!-- Opciones de filtrado -->
                 <div class="flex flex-wrap gap-2 mb-4">
                   <button
                     class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base"
                     data-filter="dia">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                       </path>
                     </svg>
-                    Día
+                    Day
                   </button>
                   <button
                     class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base active"
                     data-filter="mes">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                       </path>
                     </svg>
-                    Mes
+                    Month
                   </button>
                   <button
                     class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base"
                     data-filter="año">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                       </path>
                     </svg>
-                    Año
+                    Year
                   </button>
                   <button
                     class="filter-btn px-4 py-2 rounded-lg border border-gray-300 hover:border-blue-500 text-sm md:text-base"
                     data-filter="personalizado">
-                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor"
-                      viewBox="0 0 24 24">
+                    <svg class="w-4 h-4 inline mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                         d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
                       </path>
                     </svg>
-                    Personalizado
+                    Custom
                   </button>
                 </div>
 
                 <!-- Input de fecha dinámico -->
                 <div id="dateInputContainer" class="flex flex-col sm:flex-row gap-3">
-  <select id="monthSelect" class="border border-gray-300 rounded-lg p-2 flex-1"></select>
-  <select id="yearSelect" class="border border-gray-300 rounded-lg p-2 w-full sm:w-32"></select>
-  <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
-    Buscar
-  </button>
-</div>
+                  <select id="monthSelect" class="border border-gray-300 rounded-lg p-2 flex-1"></select>
+                  <select id="yearSelect" class="border border-gray-300 rounded-lg p-2 w-full sm:w-32"></select>
+                  <button class="btn-secondary text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                    Search
+                  </button>
+                </div>
 
-<script>
-  const now = new Date();
-  const currentMonth = String(now.getMonth() + 1).padStart(2, "0"); // "01".."12"
-  const currentYear = now.getFullYear();
+                <script>
+                  const now = new Date();
+                  const currentMonth = String(now.getMonth() + 1).padStart(2, "0"); // "01".."12"
+                  const currentYear = now.getFullYear();
 
-  const meses = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-  ];
+                  const meses = [
+                    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
+                    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
+                  ];
 
-  // Llenar meses
-  const monthSelect = document.getElementById("monthSelect");
-  meses.forEach((mes, idx) => {
-    const val = String(idx + 1).padStart(2, "0");
-    const option = document.createElement("option");
-    option.value = val;
-    option.textContent = mes;
-    if (val === currentMonth) option.selected = true;
-    monthSelect.appendChild(option);
-  });
+                  // Llenar meses
+                  const monthSelect = document.getElementById("monthSelect");
+                  meses.forEach((mes, idx) => {
+                    const val = String(idx + 1).padStart(2, "0");
+                    const option = document.createElement("option");
+                    option.value = val;
+                    option.textContent = mes;
+                    if (val === currentMonth) option.selected = true;
+                    monthSelect.appendChild(option);
+                  });
 
-  // Llenar años (5 atrás y 5 adelante)
-  const yearSelect = document.getElementById("yearSelect");
-  for (let y = currentYear - 5; y <= currentYear + 5; y++) {
-    const option = document.createElement("option");
-    option.value = y;
-    option.textContent = y;
-    if (y === currentYear) option.selected = true;
-    yearSelect.appendChild(option);
-  }
-</script>
+                  // Llenar años (5 atrás y 5 adelante)
+                  const yearSelect = document.getElementById("yearSelect");
+                  for (let y = currentYear - 5; y <= currentYear + 5; y++) {
+                    const option = document.createElement("option");
+                    option.value = y;
+                    option.textContent = y;
+                    if (y === currentYear) option.selected = true;
+                    yearSelect.appendChild(option);
+                  }
+                </script>
               </div>
             </div>
-            <div id="ordenes-container" class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3"></div>
+            <div id="ordenes-container"
+              class="border border-solid border-gray-400 rounded-lg p-4 max-h-[750px] overflow-y-auto flex flex-col gap-3">
+            </div>
           </div>
         </div>
       </div>
@@ -289,7 +288,7 @@ require_once __DIR__ . '/../auth.php';
     let isMenuOpen = false;
 
     if (mobileMenuToggle) {
-      mobileMenuToggle.addEventListener('click', function() {
+      mobileMenuToggle.addEventListener('click', function () {
         isMenuOpen = !isMenuOpen;
 
         if (isMenuOpen) {
@@ -305,7 +304,7 @@ require_once __DIR__ . '/../auth.php';
     }
 
     // Asegurar que el menú esté visible en pantallas grandes
-    window.addEventListener('resize', function() {
+    window.addEventListener('resize', function () {
       if (window.innerWidth >= 1024) { // lg breakpoint
         sideMenu.style.maxHeight = 'none';
         sideMenu.style.opacity = '1';
@@ -320,7 +319,7 @@ require_once __DIR__ . '/../auth.php';
     const dateInputContainer = document.getElementById('dateInputContainer');
 
     filterButtons.forEach(button => {
-      button.addEventListener('click', function() {
+      button.addEventListener('click', function () {
         // Remover clase active de todos los botones
         filterButtons.forEach(btn => btn.classList.remove('active'));
         // Agregar clase active al botón clickeado
@@ -456,7 +455,7 @@ require_once __DIR__ . '/../auth.php';
         '>': '&gt;',
         '"': '&quot;',
         "'": '&#39;'
-      } [m]));
+      }[m]));
       const fmtFecha = (s) => {
         if (!s) return '';
         const d = new Date(String(s).replace(' ', 'T')); // "YYYY-MM-DD HH:mm:ss" → "YYYY-MM-DDTHH:mm:ss"
@@ -550,7 +549,7 @@ require_once __DIR__ . '/../auth.php';
         if (!Array.isArray(list) || list.length === 0) {
           ordersContainer.innerHTML = `
         <div class="p-6 text-center text-gray-600 border border-dashed border-gray-300 rounded-lg">
-          No se encontraron órdenes con el filtro seleccionado.
+          No orders found with the selected filter.
         </div>`;
           return;
         }
@@ -563,7 +562,7 @@ require_once __DIR__ . '/../auth.php';
       <div class="border border-solid border-gray-300 rounded-lg overflow-hidden">
         <header class="bg-[#00c016] text-white xl:p-3 p-2 flex items-center gap-2">
           <img src="<?php echo $url; ?>/assets/icons/svg/icon-instalacion.svg" alt="" class="w-5 h-5">
-          <p class="font-medium">Instalación completada</p>
+          <p class="font-medium">Installation completed</p>
         </header>
         <div class="xl:p-5 p-3 flex items-center gap-4">
           <img src="${esc(imgSrc)}" alt="${esc(row.nombre)}" class="xl:size-[150px] size-[70px] object-cover rounded">
@@ -607,7 +606,7 @@ require_once __DIR__ . '/../auth.php';
             if (s > -1 && e > s) {
               try {
                 data = JSON.parse(raw.slice(s, e + 1));
-              } catch {}
+              } catch { }
             }
           }
 
@@ -662,7 +661,7 @@ require_once __DIR__ . '/../auth.php';
         if (s > -1 && e > s) {
           try {
             data = JSON.parse(text.slice(s, e + 1));
-          } catch {}
+          } catch { }
         }
       }
 
@@ -698,7 +697,7 @@ require_once __DIR__ . '/../auth.php';
         renderOrders(data.data || []);
       } catch (err) {
         console.error(err);
-        container.innerHTML = `<pre class="text-red-600 whitespace-pre-wrap break-words">${(err.message||'Error').toString()}</pre>`;
+        container.innerHTML = `<pre class="text-red-600 whitespace-pre-wrap break-words">${(err.message || 'Error').toString()}</pre>`;
       }
     }
 
