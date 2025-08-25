@@ -143,7 +143,7 @@ $favoritos_usuario = array_map(fn($r) => (int)$r['id_producto'], $productos ?? [
         <section class="xl:pb-16 py-4 md:py-6 px-4 mx-auto max-w-screen-2xl overflow-hidden">
             <div>
                 <h1 class="text-xl md:text-2xl font-extrabold mb-4">
-                    Mi cuenta
+                    My Account
                 </h1>
 
                 <!-- Botón del menú móvil (visible solo en móviles) -->
@@ -163,30 +163,30 @@ $favoritos_usuario = array_map(fn($r) => (int)$r['id_producto'], $productos ?? [
                             class="border border-solid border-gray-300 rounded menu-transition overflow-hidden max-h-0 lg:max-h-none opacity-0 lg:opacity-100">
                             <a href="./informacionpersonal.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Información personal
+                                Personal Info
     </a>
                             <a href="./misoftware.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Mis software
+                                My Software
                             </a>
                             <a href="./estadoinstalaciones.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Estado de instalación
+                                Installation Status
                             </a>
                             <a href="./miscupones.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Mis cupones
+                                My Coupons
                             </a>
                             <a href="./miscreditos.php"
                                 class="p-3 border-b block border-gray-300 hover:bg-gray-200 hover:cursor-pointer transition-colors">
-                                Mis créditos
+                                My Credits
                             </a>
                             <div class="p-3 btn-primary bg-blue-600 ">
-                                Productos guardados
-    </div>
+                                Saved Items
+                            </div>
                             <div
                                 class="p-3 hover:bg-gray-200 hover:cursor-pointer transition-colors text-red-600 font-medium">
-                                Cerrar sesión
+                                Log Out
                             </div>
                         </div>
                     </div>
