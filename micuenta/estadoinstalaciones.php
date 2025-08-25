@@ -155,6 +155,208 @@ require_once __DIR__ . '/../auth.php';
                     </p>
                   </div>
                 </header>
+                <!-- ESTADO 1 - GRIS -->
+                <div class="overflow-x-auto p-4 md:p-4">
+                  <div class="flex flex-row items-center min-w-max gap-4">
+                    <!-- Primer estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/gris/Request_Received_Gris.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-gray-400 w-4 h-4 rounded-full bg-white"></div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Request Received</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 1 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-gray-300"></div>
+                    </div>
+
+                    <!-- Segundo estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/gris/Installation_Started_Gris.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-gray-400 w-4 h-4 rounded-full bg-white"></div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Installation Started</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 2 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-gray-300"></div>
+                    </div>
+
+                    <!-- Tercer estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/gris/Payment_Confirmed_Gris.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-gray-400 w-4 h-4 rounded-full bg-white"></div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Payment Confirmed</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 3 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-gray-300"></div>
+                    </div>
+
+                    <!-- Cuarto estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/gris/Installation_Completed_Gris.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-gray-400 w-4 h-4 rounded-full bg-white"></div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Installation Completed</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ESTADO 2 - NARANJA -->
+                <div class="overflow-x-auto p-4 md:p-4">
+                  <div class="flex flex-row items-center min-w-max gap-4">
+                    <!-- Primer estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/orange/Request_Received_Naranja.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-orange-300 bg-orange-300 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Request Received</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 1 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-orange-300"></div>
+                    </div>
+
+                    <!-- Segundo estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/orange/Installation_Started_Naranja.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-orange-300 bg-orange-300 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Installation Started</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 2 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-orange-300"></div>
+                    </div>
+
+                    <!-- Tercer estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/orange/Payment_Confirmed_Naranja.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-orange-300 bg-orange-300 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Payment Confirmed</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 3 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-orange-300"></div>
+                    </div>
+
+                    <!-- Cuarto estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/orange/Installation_Completed_Naranja.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-orange-300 bg-orange-300 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm">
+                        <p>Installation Completed</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- ESTADO 3 - ROJO -->
+
+                <div class="overflow-x-auto p-4 md:p-4">
+                  <div class="flex flex-row items-center min-w-max gap-4">
+                    <!-- Primer estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/red/Request_Received_Red.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm text-red-500">
+                        <p>Request Received</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 1 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-red-300"></div>
+                    </div>
+
+                    <!-- Segundo estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/red/Installation_Started_Red.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm text-red-500">
+                        <p>Installation Started</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 2 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-red-300"></div>
+                    </div>
+
+                    <!-- Tercer estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/red/Payment_Confirmed_Red.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm text-red-500">
+                        <p>Payment Confirmed</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+
+                    <!-- Línea conectora 3 -->
+                    <div class="flex items-center justify-center px-2 md:px-4 min-w-[60px] flex-shrink-0">
+                      <div class="w-12 md:w-16 lg:w-20 h-0.5 bg-red-300"></div>
+                    </div>
+
+                    <!-- Cuarto estado -->
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                      <img src="/assets/icons/estados_instalacion/red/Installation_Completed_Red.svg"
+                        class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
+                      <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
+                      </div>
+                      <div class="text-center font-bold text-xs md:text-sm text-red-500">
+                        <p>Installation Completed</p>
+                        <p>22/07/2025</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Resumen de productos -->
                 <div class="p-4 border border-solid border-gray-300 shadow-sm rounded-lg mt-6">
                   <!-- Header con título y controles de navegación -->
                   <div class="flex flex-row items-center justify-between mb-3">
