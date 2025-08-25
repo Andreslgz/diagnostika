@@ -145,10 +145,10 @@ require_once __DIR__ . '/../auth.php';
               <div>
                 <header>
                   <div class="w-full flex flex-row justify-between">
-                    <p class="text-lg font-bold">ORDER #12345</p>
-                    <p class="text-lg text-gray-500 font-semibold">JUNY 05, 2025 12:00 PM</p>
+                    <p class="xl:text-lg text-sm font-bold">ORDER #12345</p>
+                    <p class="xl:text-lg text-sm text-gray-500 font-semibold">JUNY 05, 2025 12:00 PM</p>
                   </div>
-                  <div class="flex flex-row items-center gap-2 mt-2 text-gray-500">
+                  <div class="flex flex-row items-center gap-2 mt-2 text-gray-500 xl:text-base text-xs">
                     <p>Estimated time to complete the order:</p>
                     <p class="font-semibold">
                       5 hours 45 minutes
