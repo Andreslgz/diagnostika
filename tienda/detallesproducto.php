@@ -45,8 +45,8 @@ require_once __DIR__ . '/../includes/db.php';
 
     <main>
 
-        <section class="py-20 px-4 mx-auto max-w-screen-2xl overflow-hidden">
-            <div class="grid grid-cols-2 gap-4">
+        <section class="xl:py-20 py-8 px-4 mx-auto max-w-screen-2xl overflow-hidden">
+            <div class="grid xl:grid-cols-2 grid-cols-1 xl:gap-8 gap-4">
                 <div>
                     <!-- Galeria de imagenes  -->
                     <div class="relative">
@@ -137,36 +137,36 @@ require_once __DIR__ . '/../includes/db.php';
 
                     <div class="grid grid-cols-2 my-6">
                         <div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/brand.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">Brand:</p>
                                     <p>
                                         CUMMINS
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/type.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">Type:</p>
                                     <p>
                                         DIAGNOSTIC
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/system.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">system:</p>
                                     <p>
                                         ENGINE
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/windows.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">windows:</p>
                                     <p>
                                         10 / 64 bits
@@ -175,27 +175,27 @@ require_once __DIR__ . '/../includes/db.php';
                             </div>
                         </div>
                         <div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/size.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">size:</p>
                                     <p>
                                         3.17 GB
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/ram.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">ram:</p>
                                     <p>
                                         8 - 16 GB
                                     </p>
                                 </div>
                             </div>
-                            <div class="flex flex-row gap-2 items-center justify-start">
+                            <div class="flex flex-row xl:gap-2 gap-0 items-center justify-start">
                                 <img src="/assets/icons/detalleproducto/storage.svg" alt="">
-                                <div class="flex flex-row gap-6">
+                                <div class="flex flex-row xl:gap-6 gap-2 xl:text-base text-xs">
                                     <p class="text-gray-500 uppercase">storage:</p>
                                     <p>
                                         90 GB
@@ -207,7 +207,7 @@ require_once __DIR__ . '/../includes/db.php';
                     </div>
 
                     <div class="flex flex-row items-center justify-between w-full">
-                        <p class="text-4xl font-bold">
+                        <p class="xl:text-4xl text-xl font-bold">
                             USD 50.00
                         </p>
                         <div class="max-w-xs ">
@@ -238,7 +238,7 @@ require_once __DIR__ . '/../includes/db.php';
                         </div>
                     </div>
 
-                    <div class="flex flex-row items-center justify-between mt-4 gap-4">
+                    <div class="flex flex-row items-center justify-between mt-4 xl:gap-4 gap-2">
                         <button
                             class="btn-secondary w-full shadow-lg rounded-lg xl:py-4 py-2 font-bold xl:text-lg text-base">
                             BUY NOW!
@@ -253,7 +253,7 @@ require_once __DIR__ . '/../includes/db.php';
                         data-active-classes="bg-gray-50 text-gray-900">
                         <h2 id="accordion-collapse-heading-1">
                             <button type="button"
-                                class="flex items-center justify-between w-full p-5 font-medium text-gray-500 border border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 gap-3"
+                                class="flex items-center justify-between w-full xl:p-5 p-3 font-medium text-gray-500 border border border-gray-200 rounded-t-xl focus:ring-4 focus:ring-gray-200 gap-3"
                                 data-accordion-target="#accordion-collapse-body-1" aria-expanded="true"
                                 aria-controls="accordion-collapse-body-1">
                                 <span class="uppercase">Technical description</span>
@@ -266,7 +266,7 @@ require_once __DIR__ . '/../includes/db.php';
                         </h2>
                         <div id="accordion-collapse-body-1" class="hidden"
                             aria-labelledby="accordion-collapse-heading-1">
-                            <div class="p-5 border border-gray-200 ">
+                            <div class="xl:p-5 p-3 border border-gray-200 ">
                                 <p class="mb-2 text-gray-500 ">Diagnostics software designed for diagnosis and
                                     programming Volvo Trucks, Volvo buss, Volvo Construction Equipment, and New Models
                                     of Mack, Renault, and Nissan UD.</p>
