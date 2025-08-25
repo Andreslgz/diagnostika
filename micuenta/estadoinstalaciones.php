@@ -288,11 +288,16 @@ require_once __DIR__ . '/../auth.php';
                 </div>
 
                 <!-- ESTADO 3 - ROJO -->
-
-                <div class="overflow-x-auto p-4 md:p-4">
+                <div class="overflow-x-auto p-4 md:p-4 mt-10 relative">
                   <div class="flex flex-row items-center min-w-max gap-4">
                     <!-- Primer estado -->
-                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0 relative">
+                      <button
+                        class="bg-red-500 p-1.5 mx-auto shadow-lg rounded-full hover:bg-red-600 transition-colors cursor-pointer tooltip-trigger"
+                        data-tooltip="error-1">
+                        <img src="/assets/icons/svg/warning.svg" alt="Error" class="w-4 h-4 text-white">
+                      </button>
+
                       <img src="/assets/icons/estados_instalacion/red/Request_Received_Red.svg"
                         class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
                       <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
@@ -309,7 +314,13 @@ require_once __DIR__ . '/../auth.php';
                     </div>
 
                     <!-- Segundo estado -->
-                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0 relative">
+                      <button
+                        class="bg-red-500 p-1.5 mx-auto shadow-lg rounded-full hover:bg-red-600 transition-colors cursor-pointer tooltip-trigger"
+                        data-tooltip="error-2">
+                        <img src="/assets/icons/svg/warning.svg" alt="Error" class="w-4 h-4 text-white">
+                      </button>
+
                       <img src="/assets/icons/estados_instalacion/red/Installation_Started_Red.svg"
                         class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
                       <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
@@ -326,7 +337,13 @@ require_once __DIR__ . '/../auth.php';
                     </div>
 
                     <!-- Tercer estado -->
-                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0 relative">
+                      <button
+                        class="bg-red-500 p-1.5 mx-auto shadow-lg rounded-full hover:bg-red-600 transition-colors cursor-pointer tooltip-trigger"
+                        data-tooltip="error-3">
+                        <img src="/assets/icons/svg/warning.svg" alt="Error" class="w-4 h-4 text-white">
+                      </button>
+
                       <img src="/assets/icons/estados_instalacion/red/Payment_Confirmed_Red.svg"
                         class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
                       <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
@@ -343,7 +360,13 @@ require_once __DIR__ . '/../auth.php';
                     </div>
 
                     <!-- Cuarto estado -->
-                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0">
+                    <div class="flex items-center flex-col gap-2 min-w-[120px] flex-shrink-0 relative">
+                      <button
+                        class="bg-red-500 p-1.5 mx-auto shadow-lg rounded-full hover:bg-red-600 transition-colors cursor-pointer tooltip-trigger"
+                        data-tooltip="error-4">
+                        <img src="/assets/icons/svg/warning.svg" alt="Error" class="w-4 h-4 text-white">
+                      </button>
+
                       <img src="/assets/icons/estados_instalacion/red/Installation_Completed_Red.svg"
                         class="w-16 h-16 md:w-20 lg:w-24 xl:size-[95px]" alt="">
                       <div class="border border-solid border-red-500 bg-red-500 w-4 h-4 rounded-full ">
@@ -352,6 +375,73 @@ require_once __DIR__ . '/../auth.php';
                         <p>Installation Completed</p>
                         <p>22/07/2025</p>
                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tooltips fuera del contenedor overflow -->
+                <div class="relative">
+                  <!-- Tooltip 1 -->
+                  <div id="error-1" class="tooltip hidden fixed w-64 p-3 btn-primary  rounded-lg shadow-xl z-[9999]">
+                    <div class="text-sm">
+                      <p class="font-bold text-red-600 mb-1 text-center">Installation Error:</p>
+                      <p class="text-gray-700 text-center">Unable to proceed due to insufficient storage on the laptop
+                      </p>
+                      <button
+                        class="mt-2 mx-auto block px-3 py-1 btn-secondary text-white text-xs rounded hover:bg-orange-600 transition-colors">
+                        Contact Support
+                      </button>
+                    </div>
+                    <div
+                      class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white">
+                    </div>
+                  </div>
+
+                  <!-- Tooltip 2 -->
+                  <div id="error-2" class="tooltip hidden fixed w-64 p-3 btn-primary  rounded-lg shadow-xl z-[9999]">
+                    <div class="text-sm">
+                      <p class="font-bold text-red-600 mb-1 text-center">Installation Error:</p>
+                      <p class="text-gray-700 text-center">Process failed during software installation phase</p>
+                      <button
+                        class="mt-2 mx-auto block px-3 py-1 btn-secondary text-white text-xs rounded hover:bg-orange-600 transition-colors">
+                        Contact Support
+                      </button>
+                    </div>
+                    <div
+                      class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white">
+                    </div>
+                  </div>
+
+                  <!-- Tooltip 3 -->
+                  <div id="error-3" class="tooltip hidden fixed w-64 p-3 btn-primary  rounded-lg shadow-xl z-[9999]">
+                    <div class="text-sm mx-auto">
+                      <p class="font-bold text-red-600 mb-1 text-center">Payment Error:</p>
+                      <p class="text-gray-700 text-center">Payment verification failed, please check your payment method
+                      </p>
+                      <button
+                        class="mt-2 mx-auto block px-3 py-1 btn-secondary text-white text-xs rounded hover:bg-orange-600 transition-colors">
+                        Contact Support
+                      </button>
+                    </div>
+                    <div
+                      class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white">
+                    </div>
+                  </div>
+
+                  <!-- Tooltip 4 -->
+                  <div id="error-4" class="tooltip hidden fixed w-64 p-3 btn-primary  rounded-lg shadow-xl z-[9999]">
+                    <div class="text-sm">
+                      <p class="font-bold text-red-600 mb-1 text-center">Completion Error:</p>
+                      <p class="text-gray-700 text-center">Installation could not be completed due to system
+                        compatibility issues
+                      </p>
+                      <button
+                        class="mt-2 mx-auto block px-3 py-1 btn-secondary text-white text-xs rounded hover:bg-orange-600 transition-colors">
+                        Contact Support
+                      </button>
+                    </div>
+                    <div
+                      class="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-white">
                     </div>
                   </div>
                 </div>
@@ -494,108 +584,6 @@ require_once __DIR__ . '/../auth.php';
     .bg-cards:hover {
       background: linear-gradient(0deg, #8A8A89 0%, #C0C0C0 100%);
     }
-
-    /* Estilos optimizados para el slider de items */
-    #itemsSlider .splide__slide {
-      display: flex;
-      align-items: stretch;
-      justify-content: center;
-      padding: 0.25rem;
-    }
-
-    #itemsSlider .splide__slide>div {
-      width: 100%;
-      min-height: 120px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-
-
-
-    /* Botones de navegación optimizados */
-    #itemsSliderPrev,
-    #itemsSliderNext {
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    #itemsSliderPrev:hover:not(:disabled),
-    #itemsSliderNext:hover:not(:disabled) {
-      background: linear-gradient(0deg, #f7a615 0%, #ffbd47 100%);
-      color: white;
-      border-color: #f7a615;
-      transform: scale(1.1);
-      box-shadow: 0 4px 12px rgba(247, 166, 21, 0.4);
-    }
-
-    #itemsSliderPrev:active:not(:disabled),
-    #itemsSliderNext:active:not(:disabled) {
-      background: linear-gradient(0deg, #e6940b 0%, #f7a615 100%);
-      transform: scale(1.05);
-      box-shadow: 0 2px 8px rgba(247, 166, 21, 0.5);
-    }
-
-    #itemsSliderPrev:disabled,
-    #itemsSliderNext:disabled {
-      opacity: 0.4;
-      cursor: not-allowed;
-      background-color: #f3f4f6 !important;
-      color: #9ca3af !important;
-    }
-
-    /* Contenedor del slider más compacto */
-    #itemsSlider .splide__track {
-      padding: 0.25rem 0;
-    }
-
-    /* Responsive mejorado */
-    @media (max-width: 1024px) {
-      #itemsSlider .splide__slide>div {
-        min-height: 110px;
-        padding: 0.75rem;
-      }
-    }
-
-    @media (max-width: 768px) {
-      #itemsSlider .splide__slide>div {
-        min-height: 100px;
-        padding: 0.5rem;
-      }
-
-      #itemsSliderPrev,
-      #itemsSliderNext {
-        width: 1.75rem;
-        height: 1.75rem;
-      }
-
-      #itemsSliderPrev svg,
-      #itemsSliderNext svg {
-        width: 0.875rem;
-        height: 0.875rem;
-      }
-    }
-
-    @media (max-width: 640px) {
-      #itemsSlider .splide__slide>div {
-        min-height: 90px;
-      }
-    }
-
-    /* Animación suave para el contenedor */
-    .splide {
-      visibility: visible;
-      opacity: 1;
-      transition: opacity 0.3s ease;
-    }
-
-    /* Mejora visual para el fondo de las imágenes */
-    #itemsSlider .splide__slide>div>div {
-      background: linear-gradient(145deg, #f8fafc, #f1f5f9);
-      border: 1px solid #e2e8f0;
-    }
   </style>
 
   <script>
@@ -632,99 +620,71 @@ require_once __DIR__ . '/../auth.php';
       }
     });
 
-    // Inicializar slider de items
+    // Funcionalidad de tooltips para errores
     document.addEventListener('DOMContentLoaded', function () {
-      // Configuración del slider de items
-      const itemsSlider = new Splide('#itemsSlider', {
-        type: 'slide',
-        perPage: 4, // Mostrar 4 items por defecto
-        perMove: 1,
-        gap: '1rem',
-        pagination: false,
-        arrows: false, // Usamos botones customizados
-        breakpoints: {
-          1280: { // xl
-            perPage: 4,
-            gap: '1rem',
-          },
-          1024: { // lg
-            perPage: 3,
-            gap: '0.75rem',
-          },
-          768: { // md
-            perPage: 2,
-            gap: '0.5rem',
-          },
-          640: { // sm
-            perPage: 1,
-            gap: '0.25rem',
-          },
-        },
-        autoplay: false,
-        interval: 5000,
-        pauseOnHover: true,
-        resetProgress: false,
-        speed: 600,
-        easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+      const tooltipTriggers = document.querySelectorAll('.tooltip-trigger');
+
+      tooltipTriggers.forEach(trigger => {
+        trigger.addEventListener('click', function (e) {
+          e.stopPropagation();
+
+          const tooltipId = this.getAttribute('data-tooltip');
+          const tooltip = document.getElementById(tooltipId);
+
+          // Ocultar todos los otros tooltips
+          document.querySelectorAll('.tooltip').forEach(t => {
+            if (t.id !== tooltipId) {
+              t.classList.add('hidden');
+            }
+          });
+
+          // Calcular posición del botón
+          const rect = this.getBoundingClientRect();
+          const tooltipWidth = 256; // w-64 = 256px
+          const tooltipHeight = 120; // altura aproximada
+
+          // Posicionar el tooltip arriba del botón
+          const top = rect.top - tooltipHeight - 8; // 8px de margen
+          const left = rect.left + (rect.width / 2) - (tooltipWidth / 2);
+
+          // Ajustar si se sale de la pantalla
+          const adjustedLeft = Math.max(16, Math.min(left, window.innerWidth - tooltipWidth - 16));
+
+          // Aplicar posición
+          tooltip.style.top = `${Math.max(16, top)}px`;
+          tooltip.style.left = `${adjustedLeft}px`;
+
+          // Toggle del tooltip actual
+          tooltip.classList.toggle('hidden');
+        });
       });
 
-      // Montar el slider
-      itemsSlider.mount();
-
-      // Conectar botones personalizados
-      const prevBtn = document.getElementById('itemsSliderPrev');
-      const nextBtn = document.getElementById('itemsSliderNext');
-
-      if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', () => {
-          itemsSlider.go('<');
+      // Cerrar tooltips al hacer clic fuera
+      document.addEventListener('click', function () {
+        document.querySelectorAll('.tooltip').forEach(tooltip => {
+          tooltip.classList.add('hidden');
         });
+      });
 
-        nextBtn.addEventListener('click', () => {
-          itemsSlider.go('>');
+      // Prevenir que se cierre el tooltip al hacer clic dentro de él
+      document.querySelectorAll('.tooltip').forEach(tooltip => {
+        tooltip.addEventListener('click', function (e) {
+          e.stopPropagation();
         });
+      });
 
-        // Actualizar estado de los botones según la posición
-        itemsSlider.on('moved', function (newIndex, prevIndex, destIndex) {
-          // Habilitar/deshabilitar botones según la posición
-          const isAtStart = itemsSlider.index === 0;
-          const isAtEnd = itemsSlider.index >= itemsSlider.length - itemsSlider.options.perPage;
-
-          prevBtn.disabled = isAtStart;
-          nextBtn.disabled = isAtEnd;
-
-          // Agregar clases visuales para botones deshabilitados
-          if (isAtStart) {
-            prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            prevBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
-          } else {
-            prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            prevBtn.classList.add('hover:bg-orange-gradient', 'hover:text-white');
-          }
-
-          if (isAtEnd) {
-            nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-            nextBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
-          } else {
-            nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-            nextBtn.classList.add('hover:bg-orange-gradient', 'hover:text-white');
-          }
+      // Reposicionar tooltips al hacer scroll o resize
+      window.addEventListener('scroll', function () {
+        document.querySelectorAll('.tooltip:not(.hidden)').forEach(tooltip => {
+          tooltip.classList.add('hidden');
         });
+      });
 
-        // Estado inicial de los botones
-        prevBtn.disabled = true;
-        prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-        prevBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
-
-        // Verificar si hay suficientes slides para mostrar el botón siguiente
-        const totalSlides = itemsSlider.length;
-        const visibleSlides = itemsSlider.options.perPage;
-        if (totalSlides <= visibleSlides) {
-          nextBtn.disabled = true;
-          nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-          nextBtn.classList.remove('hover:bg-orange-gradient', 'hover:text-white');
-        }
-      }
+      window.addEventListener('resize', function () {
+        document.querySelectorAll('.tooltip:not(.hidden)').forEach(tooltip => {
+          tooltip.classList.add('hidden');
+        });
+      });
     });
 
   </script>
